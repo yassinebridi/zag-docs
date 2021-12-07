@@ -1,11 +1,18 @@
-const baseUrl = "https://github.com/chakra-ui/ui-machines"
+const baseUrl = "https://github.com/chakra-ui/ui-machines";
 
 const siteConfig = {
-  copyright: `Copyright © ${new Date().getFullYear()} Segun Adebayo. All Rights Reserved.`,
+  title: "Chakra UI",
+  tagline: "A declarative, accessible, and performant UI library",
+  url: "https://ui-machines.com",
+  projectName: "ui-machines",
+  copyright: `Copyright © 2021-${new Date().getFullYear()} Segun Adebayo and Contributors`,
   algolia: {
     apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
     indexName: "chakra-ui",
     inputSelector: "#algolia-search",
+  },
+  openCollective: {
+    url: "https://opencollective.com/chakra-ui",
   },
   author: {
     name: "Segun Adebayo",
@@ -19,9 +26,6 @@ const siteConfig = {
     editUrl: `${baseUrl}/edit/main/website/pages`,
     blobUrl: `${baseUrl}/blob/main`,
   },
-  openCollective: {
-    url: "https://opencollective.com/chakra-ui",
-  },
   discord: {
     url: "https://discord.gg/chakra-ui",
   },
@@ -29,7 +33,8 @@ const siteConfig = {
   seo: {
     title: "Chakra UI",
     titleTemplate: "%s - Chakra UI",
-    description: "Simple, Modular and Accessible UI Components for your React Applications.",
+    description:
+      "Simple, Modular and Accessible UI Components for your React Applications.",
     siteUrl: "https://chakra-ui.com",
     twitter: {
       handle: "@chakra-ui",
@@ -41,8 +46,10 @@ const siteConfig = {
       locale: "en_US",
       url: "https://chakra-ui.com",
       title: "Chakra UI",
-      description: "Simple, Modular and Accessible UI Components for your React Applications.",
-      site_name: "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
+      description:
+        "Simple, Modular and Accessible UI Components for your React Applications.",
+      site_name:
+        "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
       images: [
         {
           url: "https://chakra-ui.com/og-image.png",
@@ -59,6 +66,6 @@ const siteConfig = {
       ],
     },
   },
-}
+};
 
-export default siteConfig
+export default siteConfig;
