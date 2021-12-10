@@ -4,20 +4,20 @@ An accessible dropdown and context menu that is used to display a list of action
 
 ## Features
 
-- Support for RTL-aware submenus
-- Support for items, labels, groups of items
-- Focus is fully managed using `aria-activedescendant` pattern
-- Typeahead to allow focusing items by typing text
-- Keyboard navigation support including arrow keys, home/end, page up/down
+- Support for single and nested menus.
+- Support for items, labels, groups of items.
+- Focus is fully managed using `aria-activedescendant` pattern.
+- Typeahead to allow focusing items by typing text.
+- Keyboard navigation support including arrow keys, home/end, page up/down.
 
 ## Installation
 
-To use the editable machine in your project, install the respective package
+To use the menu machine in your project, install the respective package
 
 <InstallSnippet package="@ui-machines/menu" />
 
 ```jsx
-import * as Popover from "@ui-machines/menu"
+import * as Menu from "@ui-machines/menu"
 ```
 
 Next, you'll need to install the binding for your framework
@@ -37,7 +37,7 @@ access to the internal state `isOpen` , `close` and `open` methods
 
 ## Grouping menu items
 
-When the number of menuitems get much, it might be useful to group related menuitems together. To achieve
+When the number of menu items get much, it might be useful to group related menu items together. To achieve
 the`groupProps` provided by the menu machine's connect function.
 
 <CodeSnippet id="menu/grouping-items.mdx" />
@@ -58,9 +58,10 @@ To create submenus or nested menus:
 To show the menu when a trigger element is right-clicked, use the `contextTriggerProps` provided by the menu's connect
 function.
 
+
 Context menu's are also opened during a long-press of roughly `700ms` when the pointer is pen or touch.
 
 <CodeSnippet id="menu/context-menus.mdx" />
 
-> Ensure you don't use both `contextTriggerProps` and `triggerProps`. Menus should have only one trigger type, that is,
-> you should using either a dropdown menu or a context menu. Not both
+> ⚠️ Ensure you don't use both `contextTriggerProps` and `triggerProps`. Menus should have only one trigger type, that is,
+> you should be using either a dropdown menu or a context menu. Not both

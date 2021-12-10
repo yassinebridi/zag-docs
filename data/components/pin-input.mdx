@@ -1,12 +1,14 @@
 # Pin Input
 
+The PinInput is optimized for entering a sequence of digits.
+
 ## Features
 
-- Automatically focuses the next field on typing and focuses the previous field on deletion
-- Supports numeric and alphanumeric values
-- Support for masking value (for sensitive data)
-- Support for copy/paste to autofill all fields
-- OTP-code pasting from clipboard
+- Automatically focuses the next field on typing and focuses the previous field on deletion.
+- Supports numeric and alphanumeric values.
+- Support for masking value (for sensitive data).
+- Support for copy/paste to autofill all fields.
+- OTP-code pasting from clipboard.
 
 ## Installation
 
@@ -24,7 +26,7 @@ Then you'll need to install the binding for your framework of choice
 
 ## Usage
 
-The input fields allow one digit/letter at a time. When a digit/letter is entered, focus transfers to the next input in
+The input fields allow one digit or letter at a time. When the digit or letter is entered, focus transfers to the next input in
 the sequence, until every input is filled in.
 
 The pin inputs connect function exposes `containerProps` and `getInputProps` you can use to compose the UI.
@@ -36,6 +38,8 @@ The pin inputs connect function exposes `containerProps` and `getInputProps` you
 To set the initial value of the pin input, y
 
 ## Changing the placeholder
+
+To customize the default pin input placeholder (○), pass the `placeholder` prop and set it to your desired placeholder.
 
 ## Allowing alphanumeric values
 
