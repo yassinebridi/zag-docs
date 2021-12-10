@@ -11,6 +11,17 @@
   "commitConvention": "angular",
   "contributors": [
     {
+      "login": "segunadebayo",
+      "name": "Segun Adebayo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
+      "profile": "https://twitter.com/thesegunadebayo",
+      "contributions": [
+        "code",
+        "doc",
+        "content"
+      ]
+    },
+    {
       "login": "estheragbaje",
       "name": "Folasade Agbaje",
       "avatar_url": "https://avatars.githubusercontent.com/u/53586167?v=4",
@@ -20,13 +31,13 @@
       ]
     },
     {
-      "login": "segunadebayo",
-      "name": "Segun Adebayo",
-      "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
-      "profile": "https://twitter.com/thesegunadebayo",
+      "login": "Martian2Lee",
+      "name": "Martian Lee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22679825?v=4",
+      "profile": "https://www.linkedin.com/in/martian-lee/",
       "contributions": [
         "code",
-        "doc"
+        "example"
       ]
     }
   ],
