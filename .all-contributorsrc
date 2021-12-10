@@ -29,16 +29,6 @@
       "contributions": [
         "doc"
       ]
-    },
-    {
-      "login": "Martian2Lee",
-      "name": "Martian Lee",
-      "avatar_url": "https://avatars.githubusercontent.com/u/22679825?v=4",
-      "profile": "https://www.linkedin.com/in/martian-lee/",
-      "contributions": [
-        "code",
-        "example"
-      ]
     }
   ],
   "contributorsPerLine": 7
