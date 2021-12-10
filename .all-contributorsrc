@@ -18,6 +18,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "segunadebayo",
+      "name": "Segun Adebayo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
+      "profile": "https://twitter.com/thesegunadebayo",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7

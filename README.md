@@ -9,6 +9,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://estheragbaje.dev/"><img src="https://avatars.githubusercontent.com/u/53586167?v=4?s=32" width="32px;" alt=""/><br /><sub><b>Folasade Agbaje</b></sub></a><br /><a href="https://github.com/chakra-ui/ui-machines-docs/commits?author=estheragbaje" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://twitter.com/thesegunadebayo"><img src="https://avatars.githubusercontent.com/u/6916170?v=4?s=32" width="32px;" alt=""/><br /><sub><b>Segun Adebayo</b></sub></a><br /><a href="https://github.com/chakra-ui/ui-machines-docs/commits?author=segunadebayo" title="Code">💻</a> <a href="https://github.com/chakra-ui/ui-machines-docs/commits?author=segunadebayo" title="Documentation">📖</a></td>
   </tr>
 </table>
 
