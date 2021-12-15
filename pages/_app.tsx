@@ -1,9 +1,10 @@
-import { ChakraProvider } from "@chakra-ui/provider"
+import { ChakraProvider } from "@chakra-ui/react"
 import theme from "lib/theme"
+import "../styles/prism.css"
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme} resetCSS={false}>
+    <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
   )

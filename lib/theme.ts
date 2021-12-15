@@ -1,4 +1,6 @@
-export const spacing = {
+import { em, round } from "./theme-utils"
+
+export const space = {
   px: "1px",
   0.5: "0.125rem",
   1: "0.25rem",
@@ -35,7 +37,7 @@ export const spacing = {
 }
 
 const sizes = {
-  ...spacing,
+  ...space,
   max: "max-content",
   min: "min-content",
   full: "100%",
@@ -68,19 +70,23 @@ const theme = {
     "2xl": "96em",
   },
   sizes,
-  spacing,
+  space,
   colors: {
     bg: "#fff",
     fg: "#000",
-    accent: {
-      "100": "#FAFAFA",
-      "200": "#EAEAEA",
-      "300": "#999",
-      "400": "#888",
-      "500": "#666",
-      "600": "#444",
-      "700": "#333",
-      "800": "#111",
+    text: "#e5e5e5",
+    gray: {
+      "1000": "#1c1c1c",
+      "900": "#232323",
+      "800": "#282828",
+      "700": "#2e2e2e",
+      "600": "#343434",
+      "500": "#3e3e3e",
+      "400": "#505050",
+      "300": "#707070",
+      "200": "#7e7e7e",
+      "100": "#a0a0a0",
+      "50": "#ededed",
     },
     red: {
       lighter: "#F7D4D6",
@@ -113,34 +119,71 @@ const theme = {
       dark: "#29BC9B",
     },
   },
+  styles: {
+    global: {
+      body: {
+        bg: "gray.1000",
+        color: "text",
+      },
+      ":root": {
+        "--font-fallback":
+          '-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      },
+      ol: {
+        marginTop: em(16, 14),
+        marginBottom: em(16, 14),
+      },
+      ul: {
+        marginTop: em(16, 14),
+        marginBottom: em(16, 14),
+      },
+      li: {
+        marginTop: em(4, 14),
+        marginBottom: em(4, 14),
+      },
+      "ol, ul": {
+        paddingLeft: em(22, 14),
+      },
+      "h2,h3,h4": {
+        scrollMarginTop: "32px",
+      },
+    },
+  },
   fonts: {
-    heading: "The Seasons, serif",
-    body: '"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;',
+    heading: '"Inter", var(--font-fallback)',
+    body: '"Inter", var(--font-fallback)',
   },
   textStyles: {
     h1: {
-      fontSize: "3rem",
-      letterSpacing: "-.066875rem",
-      fontWeight: 700,
-      lineHeight: "3.5rem",
+      fontFamily: "heading",
+      color: "white",
+      fontWeight: 600,
+      letterSpace: "-0.05rem",
+      fontSize: "1.5rem",
+      marginTop: "0",
+      marginBottom: em(24, 30),
+      lineHeight: round(36 / 30),
     },
     h2: {
-      fontSize: "2rem",
-      letterSpacing: "-.049375rem",
-      fontWeight: 600,
-      lineHeight: "2.5rem",
+      fontWeight: 500,
+      color: "gray.100",
+      fontFamily: "heading",
+      fontSize: "1.2rem",
+      marginTop: em(32, 20),
+      marginBottom: em(16, 20),
+      lineHeight: round(28 / 20),
     },
     h3: {
-      fontSize: "1.5rem",
-      letterSpacing: "-.029375rem",
-      fontWeight: 600,
-      lineHeight: "2rem",
+      fontFamily: "heading",
+      fontSize: em(18, 14),
+      marginTop: em(28, 18),
+      marginBottom: em(8, 18),
+      lineHeight: round(28 / 18),
     },
     h4: {
-      fontSize: "1.25rem",
-      letterSpacing: "-.020625rem",
-      fontWeight: 600,
-      lineHeight: "1.5rem",
+      marginTop: em(20, 14),
+      marginBottom: em(8, 14),
+      lineHeight: round(20 / 14),
     },
     h5: {
       fontSize: "1rem",
@@ -151,6 +194,15 @@ const theme = {
       fontSize: ".875rem",
       fontWeight: 400,
       lineHeight: "1.25rem",
+    },
+    a: {
+      color: "gray.50",
+      cursor: "pointer",
+      transitionProperty: "text-decoration-color",
+      textDecoration: "underline",
+      textDecorationColor: "gray.300",
+      textDecorationThickness: "2px",
+      textUnderlineOffset: "1px",
     },
   },
 }

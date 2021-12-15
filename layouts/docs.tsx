@@ -1,16 +1,17 @@
-import { chakra } from "@chakra-ui/system"
+import { Box, chakra } from "@chakra-ui/react"
 
-export function Container({ children }) {
+export default function DocsLayout({ children }) {
   return (
-    <chakra.main px={{ base: "16", md: "8" }}>
-      <chakra.div maxW="6xl" mx="auto">
-        <chakra.div display="flex">
-          <chakra.aside width="256px"></chakra.aside>
-          <chakra.div flex="1" mt="12" mb="40" pl={{ sm: "8" }}>
+    <chakra.main pt="6.5rem" px={{ base: "16", md: "8" }}>
+      <Box maxW="6xl" mx="auto">
+        <Box display="flex" flexDirection="row">
+          <Box flex="19.5rem">Side menu</Box>
+          <Box flex="1" mt="12" mb="40">
             {children}
-          </chakra.div>
-        </chakra.div>
-      </chakra.div>
+          </Box>
+          <Box flex="19.5rem">Side menu</Box>
+        </Box>
+      </Box>
     </chakra.main>
   )
 }
