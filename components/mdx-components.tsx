@@ -1,17 +1,17 @@
-import { allSnippets } from ".contentlayer/data";
-import { chakra } from "@chakra-ui/system";
-import { FRAMEWORKS, useFramework } from "lib/framework";
-import { useMDXComponent } from "next-contentlayer/hooks";
-import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { allSnippets } from ".contentlayer/data"
+import { chakra } from "@chakra-ui/system"
+import { FRAMEWORKS, useFramework } from "lib/framework"
+import { useMDXComponent } from "next-contentlayer/hooks"
+import Link from "next/link"
+import { FC, useEffect, useState } from "react"
 
 function SnippetItem({ code, hidden }) {
-  const content = useMDX(code);
+  const content = useMDX(code)
   return (
     <div id="snippet" hidden={hidden}>
       {content}
     </div>
-  );
+  )
 }
 
 const components: Record<string, FC<Record<string, any>>> = {
@@ -26,7 +26,7 @@ const components: Record<string, FC<Record<string, any>>> = {
         }}
         {...props}
       />
-    );
+    )
   },
   h2(props) {
     return (
@@ -38,7 +38,7 @@ const components: Record<string, FC<Record<string, any>>> = {
         }}
         {...props}
       />
-    );
+    )
   },
   code(props) {
     if (typeof props.children === "string") {
@@ -54,12 +54,12 @@ const components: Record<string, FC<Record<string, any>>> = {
           }}
           {...props}
         />
-      );
+      )
     }
-    return <>{props.children}</>;
+    return <>{props.children}</>
   },
   InstallSnippet(props) {
-    const { package: pkg, ...rest } = props;
+    const { package: pkg, ...rest } = props
     return (
       <pre {...rest}>{`
       npm install ${pkg}
@@ -68,19 +68,19 @@ const components: Record<string, FC<Record<string, any>>> = {
       # or
       pnpm install ${pkg}
     `}</pre>
-    );
+    )
   },
   CodeSnippet(props) {
-    const userFramework = useFramework();
-    const [framework, setFramework] = useState(userFramework ?? "react");
+    const userFramework = useFramework()
+    const [framework, setFramework] = useState(userFramework ?? "react")
 
     useEffect(() => {
       if (userFramework && typeof userFramework === "string") {
-        setFramework(userFramework);
+        setFramework(userFramework)
       }
-    }, [userFramework]);
+    }, [userFramework])
 
-    const snippets = allSnippets.filter((p) => p._id.endsWith(props.id));
+    const snippets = allSnippets.filter((p) => p._id.endsWith(props.id))
     return (
       <div>
         <div>
@@ -91,33 +91,28 @@ const components: Record<string, FC<Record<string, any>>> = {
           ))}
         </div>
         {snippets.map((p) => (
-          <SnippetItem
-            key={p._id}
-            code={p.body.code}
-            hidden={p.framework !== framework}
-          />
+          <SnippetItem key={p._id} code={p.body.code} hidden={p.framework !== framework} />
         ))}
       </div>
-    );
+    )
   },
   a(props) {
-    const href = props.href;
-    const isInternalLink =
-      href && (href.startsWith("/") || href.startsWith("#"));
+    const href = props.href
+    const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"))
 
     if (isInternalLink) {
       return (
         <Link href={href}>
           <a {...props}>{props.children}</a>
         </Link>
-      );
+      )
     }
 
-    return <a target="_blank" rel="noopener noreferrer" {...props} />;
+    return <a target="_blank" rel="noopener noreferrer" {...props} />
   },
-};
+}
 
 export function useMDX(code: string) {
-  const MDXComponent = useMDXComponent(code);
-  return <MDXComponent components={components} />;
+  const MDXComponent = useMDXComponent(code)
+  return <MDXComponent components={components} />
 }
