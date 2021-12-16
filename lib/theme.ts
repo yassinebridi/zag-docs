@@ -166,8 +166,8 @@ const theme = {
     },
   },
   fonts: {
-    heading: '"Inter", var(--font-fallback)',
-    body: '"Inter", var(--font-fallback)',
+    heading: "system-ui",
+    body: "system-ui",
   },
   fontSizes: {
     xs: em(12, 16),
@@ -199,25 +199,19 @@ const theme = {
     },
     h3: {
       fontFamily: "heading",
-      fontSize: em(18, 14),
+      fontWeight: 500,
+      color: "gray.100",
+      fontSize: "1.15rem",
       marginTop: em(28, 18),
       marginBottom: em(8, 18),
       lineHeight: round(28 / 18),
     },
     h4: {
+      fontWeight: 500,
+      color: "gray.100",
       marginTop: em(20, 14),
       marginBottom: em(8, 14),
       lineHeight: round(20 / 14),
-    },
-    h5: {
-      fontSize: "1rem",
-      fontWeight: 400,
-      lineHeight: "1.5rem",
-    },
-    h6: {
-      fontSize: ".875rem",
-      fontWeight: 400,
-      lineHeight: "1.25rem",
     },
     a: {
       color: "gray.50",

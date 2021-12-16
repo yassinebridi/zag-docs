@@ -7,7 +7,7 @@ import sidebar from "sidebar.config"
 function DocLink(props: { href: LinkProps["href"]; children: React.ReactNode }) {
   const { asPath } = useRouter()
   const { href, children } = props
-  const current = href.toString().includes(asPath)
+  const current = href === asPath
 
   return (
     <Box as="li" fontSize="sm">

@@ -22,14 +22,13 @@ type SidebarItem =
 
 const sidebar: Record<string, SidebarItem[]> = {
   docsSidebar: [
-    { type: "doc", label: "Introduction", id: "introduction" },
     {
       type: "category",
       label: "Overview",
       id: "overview",
       items: [
-        { type: "doc", label: "Installation", id: "installation" },
-        { type: "doc", label: "Motivation", id: "motivation" },
+        { type: "doc", label: "Introduction", id: "introduction" },
+        { type: "doc", label: "Installation", id: "getting-started" },
         { type: "doc", label: "State machine", id: "whats-a-machine" },
       ],
     },

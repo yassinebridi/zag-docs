@@ -14,7 +14,7 @@
 }
 
 .prose {
-  --prism-font-family: "Menlo", monospace;
+  --prism-font-family: "Monolisa", monospace;
   font-size: 13px;
   max-width: 720px;
   width: 100%;

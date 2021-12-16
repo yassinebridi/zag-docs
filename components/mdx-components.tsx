@@ -32,10 +32,16 @@ const components: Record<string, FC<Record<string, any>>> = {
     )
   },
   h1(props) {
-    return <chakra.h1 textStyle="h1" sx={{ maxW: "85ch", mb: "2rem" }} {...props} />
+    return <chakra.h1 textStyle="h1" sx={{ maxW: "85ch" }} {...props} />
   },
   h2(props) {
-    return <chakra.h2 textStyle="h2" sx={{ mb: "1rem" }} {...props} />
+    return <chakra.h2 textStyle="h2" {...props} />
+  },
+  h3(props) {
+    return <chakra.h3 textStyle="h3" {...props} />
+  },
+  h4(props) {
+    return <chakra.h4 textStyle="h4" {...props} />
   },
   pre(props) {
     return <chakra.pre {...props} className={`prose ${props.className}`} />
