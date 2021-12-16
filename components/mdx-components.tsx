@@ -40,6 +40,18 @@ const components: Record<string, FC<Record<string, any>>> = {
   pre(props) {
     return <chakra.pre {...props} className={`prose ${props.className}`} />
   },
+  li(props) {
+    return (
+      <chakra.li
+        sx={{
+          "&::marker": {
+            color: "cyan.default",
+          },
+        }}
+        {...props}
+      />
+    )
+  },
   inlineCode(props) {
     return (
       <chakra.code

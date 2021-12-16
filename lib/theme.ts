@@ -146,9 +146,22 @@ const theme = {
       },
       "h2,h3,h4": {
         scrollMarginTop: "32px",
+        "&:hover": {
+          "a.anchor": {
+            opacity: 1,
+          },
+        },
       },
       "p+p": {
         marginTop: em(16, 14),
+      },
+      "a.anchor": {
+        opacity: 0,
+        transition: "opacity 0.2s ease-in-out",
+        margin: "0 0.25rem",
+        "&:before": {
+          content: `"#"`,
+        },
       },
     },
   },
@@ -156,12 +169,20 @@ const theme = {
     heading: '"Inter", var(--font-fallback)',
     body: '"Inter", var(--font-fallback)',
   },
+  fontSizes: {
+    xs: em(12, 16),
+    sm: em(14, 16),
+    md: em(16, 16),
+    lg: em(18, 16),
+    xl: em(20, 16),
+    "2xl": em(24, 16),
+  },
   textStyles: {
     h1: {
       fontFamily: "heading",
       color: "white",
       fontWeight: 600,
-      letterSpace: "-0.05rem",
+      letterSpacing: "-0.05rem",
       fontSize: "1.5rem",
       marginTop: "0",
       marginBottom: em(24, 30),

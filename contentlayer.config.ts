@@ -1,4 +1,9 @@
-import { ComputedFields, defineDocumentType, FieldDefs, makeSource } from "contentlayer/source-files"
+import {
+  ComputedFields,
+  defineDocumentType,
+  FieldDefs,
+  makeSource,
+} from "contentlayer/source-files"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeCodeTitles from "rehype-code-titles"
 import rehypePrism from "rehype-prism-plus"
@@ -89,6 +94,8 @@ const contentLayerConfig = makeSource({
       [
         rehypeAutolinkHeadings,
         {
+          behavior: "append",
+          test: ["h2", "h3", "h4", "h5", "h6"],
           properties: {
             className: ["anchor"],
           },
