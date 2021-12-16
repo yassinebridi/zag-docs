@@ -75,7 +75,7 @@ const components: Record<string, FC<Record<string, any>>> = {
     const snippets = allSnippets.filter((p) => p._id.endsWith(props.id))
     const [index, setIndex] = useState(getFrameworkIndex(userFramework ?? "react"))
     return (
-      <Tabs index={index} onChange={setIndex} mt="6" bg="#151515" rounded="6px">
+      <Tabs index={index} onChange={setIndex} my="6" bg="#151515" rounded="6px">
         <TabList borderBottomWidth="1px" borderColor="gray.600">
           {FRAMEWORKS.map((framework) => (
             <Tab

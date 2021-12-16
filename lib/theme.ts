@@ -147,6 +147,9 @@ const theme = {
       "h2,h3,h4": {
         scrollMarginTop: "32px",
       },
+      "p+p": {
+        marginTop: em(16, 14),
+      },
     },
   },
   fonts: {
@@ -169,7 +172,7 @@ const theme = {
       color: "gray.100",
       fontFamily: "heading",
       fontSize: "1.2rem",
-      marginTop: em(32, 20),
+      marginTop: "3rem",
       marginBottom: em(16, 20),
       lineHeight: round(28 / 20),
     },
