@@ -7,20 +7,23 @@ function Accordion() {
   const [state, send] = useMachine(Accordion.machine)
 
   // translate machine output to DOM attributes
-  const bind = useMemo(() => Accordion.connect(state, send), [state])
+  const { rootProps, getTriggerProps, getPanelProps } = useMemo(
+    () => Accordion.connect(state, send),
+    [state],
+  )
 
   // render UI
   return (
-    <div {...bind.rootProps}>
+    <div {...rootProps}>
       <h3>
-        <button {...bind.getTriggerProps({ value: "home" })}>Home Trigger</button>
+        <button {...getTriggerProps({ value: "home" })}>Home Trigger</button>
       </h3>
-      <div {...bind.getPanelProps({ value: "home" })}>Home Content</div>
+      <div {...getPanelProps({ value: "home" })}>Home Content</div>
 
       <h3>
-        <button {...bind.getTriggerProps({ value: "about" })}>About Trigger</button>
+        <button {...getTriggerProps({ value: "about" })}>About Trigger</button>
       </h3>
-      <div {...bind.getPanelProps({ value: "about" })}>About Content</div>
+      <div {...getPanelProps({ value: "about" })}>About Content</div>
     </div>
   )
 }

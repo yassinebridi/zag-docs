@@ -4,7 +4,8 @@ declare module "markdown-toc" {
     filter?: Function
     slugify?: Function
     bullets?: string | Array<string>
-    maxDepth?: number
+    maxdepth?: number
+    firsth1?: boolean
   }
   export default function toc(
     str: string,

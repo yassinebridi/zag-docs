@@ -9,7 +9,7 @@ import rehypeCodeTitles from "rehype-code-titles"
 import rehypePrism from "rehype-prism-plus"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
-import getTableOfContents from "./lib/get-toc"
+import toc from "markdown-toc"
 import siteConfig from "./site.config"
 
 const fields: FieldDefs = {
@@ -39,7 +39,7 @@ const computedFields: ComputedFields = {
       tags: doc.tags,
       author: doc.author,
       slug: `/${doc._raw.flattenedPath}`,
-      headings: getTableOfContents(doc.body.raw),
+      toc: toc(doc.body.raw, { maxdepth: 3 }).json.filter((t) => t.lvl !== 1),
     }),
   },
 }

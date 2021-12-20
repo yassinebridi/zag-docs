@@ -4,13 +4,18 @@ import { useRouter } from "next/router"
 import React from "react"
 import sidebar from "sidebar.config"
 
-function DocLink(props: { href: LinkProps["href"]; children: React.ReactNode }) {
+type DocLinkProps = {
+  href: LinkProps["href"]
+  children: React.ReactNode
+}
+
+function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children } = props
-  const current = href === asPath
+  const current = asPath.startsWith(href.toString())
 
   return (
-    <Box as="li" fontSize="sm">
+    <Box as="li" fontSize="0.8rem">
       <Link href={href} passHref>
         <chakra.a
           display="block"
@@ -29,15 +34,13 @@ function DocLink(props: { href: LinkProps["href"]; children: React.ReactNode }) 
   )
 }
 
-function ExternalLink() {}
-
 type HeaderProps = {
   children: React.ReactNode
 }
 
 function CategoryHeader({ children }: HeaderProps) {
   return (
-    <chakra.a fontSize="16px" px="6" py="2" fontWeight="500">
+    <chakra.a px="6" py="2" fontWeight="600">
       {children}
     </chakra.a>
   )
@@ -56,7 +59,10 @@ export function Sidebar() {
                   {item.items.map((subItem) => {
                     if (subItem.type === "doc") {
                       return (
-                        <DocLink key={subItem.id} href={`/${item.id}/${subItem.id}`}>
+                        <DocLink
+                          key={subItem.id}
+                          href={`/${item.id}/${subItem.id}`}
+                        >
                           {subItem.label}
                         </DocLink>
                       )

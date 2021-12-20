@@ -1,10 +1,23 @@
 import { allSnippets } from ".contentlayer/data"
-import { HStack, Icon, Tab, TabList, TabPanel, TabPanels, Tabs, useTabs } from "@chakra-ui/react"
+import {
+  HStack,
+  Icon,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
-import { frameworks, FRAMEWORKS, getFrameworkIndex, useFramework } from "lib/framework"
+import {
+  frameworks,
+  FRAMEWORKS,
+  getFrameworkIndex,
+  useFramework,
+} from "lib/framework"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 
 function SnippetItem({ code, id }) {
   const content = useMDX(code)
@@ -19,10 +32,9 @@ const components: Record<string, FC<Record<string, any>>> = {
   blockquote(props) {
     return (
       <chakra.blockquote
-        mt="8"
-        mb="4"
-        px="5"
-        py="3"
+        mt="lg"
+        px="md"
+        py="sm"
         bg="rgb(35 211 171 / 18%)"
         borderLeftWidth="2px"
         borderLeftColor="cyan.default"
@@ -62,15 +74,13 @@ const components: Record<string, FC<Record<string, any>>> = {
     return (
       <chakra.code
         className="prose"
+        color="cyan.default"
+        _before={{ content: `"\`"` }}
+        _after={{ content: `"\`"` }}
         sx={{
           px: "1.5",
-          py: "2px",
-          bg: "gray.700",
-          rounded: "4px",
-          color: "cyan.light",
           fontSize: "0.85em",
           fontFamily: "Menlo",
-          whiteSpace: "nowrap",
         }}
         {...props}
       />
@@ -84,21 +94,31 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   InstallSnippet(props) {
     const { package: pkg, ...rest } = props
-    const installSnippet = allSnippets.find((snippet) => snippet.slug === "install")
+    const installSnippet = allSnippets.find(
+      (snippet) => snippet.slug === "install",
+    )
     const code = useMDX(installSnippet.body.code.replaceAll("pkg", pkg))
     return <div {...rest}>{code}</div>
   },
   CodeSnippet(props) {
     const userFramework = useFramework()
     const snippets = allSnippets.filter((p) => p._id.endsWith(props.id))
-    const [index, setIndex] = useState(getFrameworkIndex(userFramework ?? "react"))
+    const [index, setIndex] = useState(
+      getFrameworkIndex(userFramework ?? "react"),
+    )
     return (
-      <Tabs index={index} onChange={setIndex} my="6" bg="#151515" rounded="6px">
-        <TabList borderBottomWidth="1px" borderColor="gray.600">
+      <Tabs
+        index={index}
+        onChange={setIndex}
+        my="xl"
+        bg="gray.800"
+        rounded="6px"
+      >
+        <TabList borderBottomWidth="1px" borderColor="gray.700">
           {FRAMEWORKS.map((framework) => (
             <Tab
-              py="2"
-              px="4"
+              py="xs"
+              px="md"
               fontSize="0.9rem"
               borderBottom="2px solid transparent"
               _selected={{ borderColor: "currentColor", color: "cyan.light" }}
@@ -113,7 +133,7 @@ const components: Record<string, FC<Record<string, any>>> = {
         </TabList>
         <TabPanels>
           {snippets.map((p) => (
-            <TabPanel key={p._id} mt="-6">
+            <TabPanel key={p._id} mt="-lg">
               <SnippetItem id={p.framework} code={p.body.code} />
             </TabPanel>
           ))}
@@ -123,7 +143,8 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   a(props) {
     const href = props.href
-    const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"))
+    const isInternalLink =
+      href && (href.startsWith("/") || href.startsWith("#"))
 
     if (isInternalLink) {
       return (
@@ -135,7 +156,7 @@ const components: Record<string, FC<Record<string, any>>> = {
       )
     }
 
-    return <a target="_blank" rel="noopener noreferrer" {...props} />
+    return <a target="_blank" rel="noopener" {...props} />
   },
 }
 

@@ -1,9 +1,10 @@
 # Accordion
 
-An accordion is a vertically stacked set of interactive headings that each contain a title, content
-snippet, or thumbnail representing a section of content.
+An accordion is a vertically stacked set of interactive headings that each
+contain a title, content snippet, or thumbnail representing a section of
+content.
 
-## Features
+**Features**
 
 - Full keyboard navigation.
 - Can expand one or multiple items.
@@ -19,27 +20,30 @@ To use the accordion machine in your project, install the respective package
 import * as Accordion from "@ui-machines/accordion"
 ```
 
-If you're using React, you'll also need to install the `@ui-machines/react` binding
+If you're using React, you'll also need to install the `@ui-machines/react`
+binding
 
 <CodeSnippet id="accordion/installation.mdx" />
 
 ## Usage
 
-By default, only one item may be expanded and each accordion item uses a unique value, defined in
-the `getTriggerProps` and `getPanelProps`.
+By default, only one item may be expanded and each accordion item uses a unique
+value, defined in the `getTriggerProps` and `getPanelProps`.
 
 The accordion package exports two key functions:
 
-- `machine`: The state machine logic for the accordion widget as described in WAI-ARIA
-  specification.
-- `connect`: The function that translates the machine's state to DOM attributes and event handlers.
+- `machine`: The state machine logic for the accordion widget as described in
+  WAI-ARIA specification.
+- `connect`: The function that translates the machine's state to DOM attributes
+  and event handlers.
 
 <CodeSnippet id="accordion/usage.mdx" />
 
 ## Opening multiple accordions at once
 
-To allow multiple items to be expanded at once, set `multiple` to `true`. This mode implicitly sets
-`collapsible` to `true` to also ensure that each accordion can be expanded.
+To allow multiple items to be expanded at once, set `multiple` to `true`. This
+mode implicitly sets `collapsible` to `true` to also ensure that each accordion
+can be expanded.
 
 ```jsx
 const [state, send] = useMachine(Accordion.machine, {
@@ -49,8 +53,8 @@ const [state, send] = useMachine(Accordion.machine, {
 
 ## Opening specific accordions
 
-To set the value of the accordion(s) that should be opened initially, use the `withContext(...)`
-pattern and pass the `value` attribute.
+To set the value of the accordion(s) that should be opened initially, use the
+`withContext(...)` pattern and pass the `value` attribute.
 
 ```jsx
 // for multiple accordions
@@ -71,8 +75,8 @@ const [state, send] = useMachine(
 
 ## Toggle each accordion item
 
-To allow an expanded accordion item to be collapsed again by clicking on it. Set the context's
-`collapsible` property to `true`.
+To allow an expanded accordion item to be collapsed again by clicking on it. Set
+the context's `collapsible` property to `true`.
 
 > Note: If `multiple` is `true`, we internally set `collapsible` to be `true`.
 
@@ -100,8 +104,9 @@ accordion.setValue("item-2")
 
 ## Styling the expanded state
 
-When an accordion item is expanded, a `data-expanded` attribute is set on the accordion trigger
-element. When it closes, the `data-expanded` attribute is removed.
+When an accordion item is expanded, a `data-expanded` attribute is set on the
+accordion trigger element. When it closes, the `data-expanded` attribute is
+removed.
 
 ```css
 .accordion-trigger {
@@ -114,5 +119,5 @@ element. When it closes, the `data-expanded` attribute is removed.
 }
 ```
 
-> The style above assumes that you passed `.accordion-trigger` classname to the accordion trigger
-> button element.
+> The style above assumes that you passed `.accordion-trigger` classname to the
+> accordion trigger button element.
