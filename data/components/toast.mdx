@@ -1,8 +1,9 @@
 # Toast
 
-The toast component is used to give feedback to users after an action has taken place.
+The toast component is used to give feedback to users after an action has taken
+place.
 
-## Features
+**Features**
 
 - Support for screen readers
 - Limit the number of visible toasts
@@ -27,46 +28,52 @@ Then you'll need to install the framework specific binding
 
 ## Usage
 
-The toast consists of two machines, `toast.machine` and `toast.group.machine`. The toast group machines is the main
-machine as it spawns a new toast machine every time to create a toast.
+The toast consists of two machines, `toast.machine` and `toast.group.machine`.
+The toast group machines is the main machine as it spawns a new toast machine
+every time to create a toast.
 
-The toast group's `connect` function gives you access to methods you can use to add, update, and remove a toast. You
-should setup the toast at the root of your project.
+The toast group's `connect` function gives you access to methods you can use to
+add, update, and remove a toast. You should setup the toast at the root of your
+project.
 
 <CodeSnippet id="toast/basic-usage.mdx" />
 
 ## Using Portals
 
-You can also use the `createPortal` method in the `toast.group.connect` to create a portal specifically for the toasts.
-Using a portal is helpful to ensure that the toast is rendered outside the DOM hierarchy of the parent component.
+You can also use the `createPortal` method in the `toast.group.connect` to
+create a portal specifically for the toasts. Using a portal is helpful to ensure
+that the toast is rendered outside the DOM hierarchy of the parent component.
 
-When dispatching a toast, you can use the framework specific `Portal` implementation.
+When dispatching a toast, you can use the framework specific `Portal`
+implementation.
 
 <CodeSnippet id="toast/using-portals.mdx" />
 
 ## Positioning toast
 
-To position a toast when created, you can pass the `placement` property when you call the `.create(...)` methods
-provided by the toast group's connect funtion.
+To position a toast when created, you can pass the `placement` property when you
+call the `.create(...)` methods provided by the toast group's connect funtion.
 
 <CodeSnippet id="toast/position-toast.mdx" />
 
 ## Updating or removing toast programmatically
 
-When a toast is created using the `.create(...)` method, it returns the `id` of the toast, you can use that to update,
-remove or prevent duplicate toast.
+When a toast is created using the `.create(...)` method, it returns the `id` of
+the toast, you can use that to update, remove or prevent duplicate toast.
 
 <CodeSnippet id="toast/programmatic-control.mdx" />
 
 ## Handling promises
 
-The toast group machine exposes a `.promise(...)` function. Supply a promise or a function that return a promise and the
-notification will be updated if it resolves or fails. When the promise is pending a spinner is displayed.
+The toast group machine exposes a `.promise(...)` function. Supply a promise or
+a function that return a promise and the notification will be updated if it
+resolves or fails. When the promise is pending a spinner is displayed.
 
 ## Using progress bars
 
-The toast machine allows you render a linear progress bar to visualize the time left before the toast closes. The
-`toast.connect(...)` exposes a `progress` object that has `value` and `max` properties.
+The toast machine allows you render a linear progress bar to visualize the time
+left before the toast closes. The `toast.connect(...)` exposes a `progress`
+object that has `value` and `max` properties.
 
 <CodeSnippet id="toast/progress-bars.mdx" />
 
@@ -74,8 +81,8 @@ The toast machine allows you render a linear progress bar to visualize the time 
 
 There are 3 scenarios we provide to pause a toast from timing out:
 
-- When the document loses focus or the page is idle (e.g. switching to a new browser tab), controlled via the
-  `pauseOnPageIdle` context property.
+- When the document loses focus or the page is idle (e.g. switching to a new
+  browser tab), controlled via the `pauseOnPageIdle` context property.
 - When the toast is hovered, controlled by the `pauseOnHover` context property.
 - An explicity `pause(id)` call, provided by the `toast.group.connect(...)`
 
@@ -83,8 +90,9 @@ There are 3 scenarios we provide to pause a toast from timing out:
 
 ## Limiting the number of toasts
 
-Toasts are great but displaying too many of them can sometimes hamper the user experience. To limit the number of
-visible toasts, pass the `max` property to the group machine's context.
+Toasts are great but displaying too many of them can sometimes hamper the user
+experience. To limit the number of visible toasts, pass the `max` property to
+the group machine's context.
 
 ```jsx
 const [state, send] = useMachine(
@@ -96,8 +104,9 @@ const [state, send] = useMachine(
 
 ## Listening for changes
 
-When the number of toasts on screen changes, the toast group's connect function exposes a `subscribe` method you can
-use. When called, a function to unsubscribe is returned for cleanup purposes.
+When the number of toasts on screen changes, the toast group's connect function
+exposes a `subscribe` method you can use. When called, a function to unsubscribe
+is returned for cleanup purposes.
 
 <CodeSnippet id="toast/subscribe-function.mdx" />
 
@@ -105,10 +114,12 @@ use. When called, a function to unsubscribe is returned for cleanup purposes.
 
 ### Toast styling
 
-- When the toast is visible, we attach a `data-open` attribute to the toast's container.
+- When the toast is visible, we attach a `data-open` attribute to the toast's
+  container.
 - `data-type` attribute is added based on the `type` property passed.
-- The CSS variable `--toast-remove-delay` that matched the specified remove delay is added to the toast's container.
-  This is useful when defining the exit animations in CSS.
+- The CSS variable `--toast-remove-delay` that matched the specified remove
+  delay is added to the toast's container. This is useful when defining the exit
+  animations in CSS.
 
 ```css
 ["data-part"="container"] {
@@ -126,8 +137,8 @@ use. When called, a function to unsubscribe is returned for cleanup purposes.
 
 ### Progress bar
 
-- The CSS variable `--toast-progress-percent` is added to the progress bar element. This is useful when defining the
-  style of the progress bar.
+- The CSS variable `--toast-progress-percent` is added to the progress bar
+  element. This is useful when defining the style of the progress bar.
 
 ```css
 [data-part="progress"] {
@@ -138,17 +149,19 @@ use. When called, a function to unsubscribe is returned for cleanup purposes.
 
 ## Using toast outside component
 
-The toast exposes a `global` function you can invoke to get access to specific methods from the `toast.group.connect`.
-The methods available are `count`, `isVisible`, `upsert`, `dismiss`, `remove`, `promise`.
+The toast exposes a `global` function you can invoke to get access to specific
+methods from the `toast.group.connect`. The methods available are `count`,
+`isVisible`, `upsert`, `dismiss`, `remove`, `promise`.
 
-> For toast to work outside component, ensure you've setup the toast group as defined in the [usage guide](#usage)
+> For toast to work outside component, ensure you've setup the toast group as
+> defined in the [usage guide](#usage)
 
 <CodeSnippet id="toast/global-function.mdx" />
 
 ## Default toast durations
 
-Every toast type has a default visible duration. You can override them by passing the `duration` property when you
-create a toast.
+Every toast type has a default visible duration. You can override them by
+passing the `duration` property when you create a toast.
 
 | type      | duration   |
 | --------- | ---------- |
@@ -160,8 +173,8 @@ create a toast.
 
 ## Changing the space between toasts
 
-When multiple toasts are rendered, a gutter of `1rem` is applied between each toast. To change this value, pass the
-`spacing` context property.
+When multiple toasts are rendered, a gutter of `1rem` is applied between each
+toast. To change this value, pass the `spacing` context property.
 
 ```jsx
 const [state, send] = useMachine(

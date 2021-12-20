@@ -2,9 +2,10 @@
 
 The PinInput is optimized for entering a sequence of digits.
 
-## Features
+**Features**
 
-- Automatically focuses the next field on typing and focuses the previous field on deletion.
+- Automatically focuses the next field on typing and focuses the previous field
+  on deletion.
 - Supports numeric and alphanumeric values.
 - Support for masking value (for sensitive data).
 - Support for copy/paste to autofill all fields.
@@ -26,10 +27,12 @@ Then you'll need to install the binding for your framework of choice
 
 ## Usage
 
-The input fields allow one digit or letter at a time. When the digit or letter is entered, focus transfers to the next input in
-the sequence, until every input is filled in.
+The input fields allow one digit or letter at a time. When the digit or letter
+is entered, focus transfers to the next input in the sequence, until every input
+is filled in.
 
-The pin inputs connect function exposes `containerProps` and `getInputProps` you can use to compose the UI.
+The pin inputs connect function exposes `containerProps` and `getInputProps` you
+can use to compose the UI.
 
 <CodeSnippet id="pin-input/basic-usage.mdx" />
 
@@ -39,12 +42,14 @@ To set the initial value of the pin input, y
 
 ## Changing the placeholder
 
-To customize the default pin input placeholder (○), pass the `placeholder` prop and set it to your desired placeholder.
+To customize the default pin input placeholder (○), pass the `placeholder` prop
+and set it to your desired placeholder.
 
 ## Allowing alphanumeric values
 
-By default, the pin input accepts only number values. To add support for alphanumeric values, pass the `type` context
-property and set its value to `alphanumeric`.
+By default, the pin input accepts only number values. To add support for
+alphanumeric values, pass the `type` context property and set its value to
+`alphanumeric`.
 
 ```jsx
 const [state, send] = useMachine(
@@ -58,30 +63,35 @@ const [state, send] = useMachine(
 
 ## Using OTP mode
 
-To trigger smartphone OTC auto-suggestion, it is recommended to apply `autocomplete="one-time-code"` to the input field.
-The pin-input machine provides support for this. To enable this, set the `otp` context property to `true`.
+To trigger smartphone OTC auto-suggestion, it is recommended to apply
+`autocomplete="one-time-code"` to the input field. The pin-input machine
+provides support for this. To enable this, set the `otp` context property to
+`true`.
 
 <CodeSnippet id="pin-input/otp.mdx" />
 
 ## Securing the text input
 
-When collecting private or sensitive information using the pin input, you might need to mask the value entered, similar
-to `<input type="password"/>`. Pass the `mask` context property and set it to `true`.
+When collecting private or sensitive information using the pin input, you might
+need to mask the value entered, similar to `<input type="password"/>`. Pass the
+`mask` context property and set it to `true`.
 
 ## Copy and paste
 
 Try copying & pasting `3000` into any of the inputs in the example above.
 
-By default, you can only change one input at a time, but if one of the input field receives a longer string by pasting
-into it, pin-input attempts to validate the string and fill the other inputs.
+By default, you can only change one input at a time, but if one of the input
+field receives a longer string by pasting into it, pin-input attempts to
+validate the string and fill the other inputs.
 
 <CodeSnippet id="pin-input/copy-paste.mdx" />
 
 ## Listening for changes
 
-- When the pin-input's value is changed, the `onChange` listener is invoked with the current value
-- When all fields have been completed (by typing or pasting), the `onComplete` callback is invoked with the final value
-  of the input.
+- When the pin-input's value is changed, the `onChange` listener is invoked with
+  the current value
+- When all fields have been completed (by typing or pasting), the `onComplete`
+  callback is invoked with the final value of the input.
 
 ```jsx
 const [state, send] = useMachine(

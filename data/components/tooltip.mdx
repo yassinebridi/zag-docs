@@ -1,16 +1,18 @@
 # Tooltip
 
-A tooltip is a brief, informative message that appears when a user interacts with an element. Tooltips are usually
-initiated when a button is focused or hovered.
+A tooltip is a brief, informative message that appears when a user interacts
+with an element. Tooltips are usually initiated when a button is focused or
+hovered.
 
-## Features
+**Features**
 
 - Show tooltip on hover and focus
 - Hide tooltip on esc or pointer down
 - Only one tooltip shows at a time
 - Labeling support for screen readers via `aria-describedby`
 - Custom show and hide delay support
-- Matches native tooltip behavior with delay on hover of first tooltip and no delay on subsequent tooltips.
+- Matches native tooltip behavior with delay on hover of first tooltip and no
+  delay on subsequent tooltips.
 
 ## Installation
 
@@ -35,8 +37,8 @@ To get the tooltip working correct, you'll need to:
 
 ## Customizing the timings
 
-The tooltip is designed to show after `1200ms` and hide after `500ms`. You can customize this by passing the `openDelay`
-and `closeDelay` context properties.
+The tooltip is designed to show after `1200ms` and hide after `500ms`. You can
+customize this by passing the `openDelay` and `closeDelay` context properties.
 
 ```jsx
 const [state, send] = useMachine(
@@ -51,8 +53,9 @@ const [state, send] = useMachine(
 
 ## Pointerdown behavior
 
-By default, the tooltip will close when the pointer is down on its trigger. To prevent this behavior, pass the
-`closeOnPointerDown` context property and set it to `false`.
+By default, the tooltip will close when the pointer is down on its trigger. To
+prevent this behavior, pass the `closeOnPointerDown` context property and set it
+to `false`.
 
 ```jsx
 const [state, send] = useMachine(
@@ -64,10 +67,11 @@ const [state, send] = useMachine(
 
 ## Making the tooltip interactive
 
-Tooltips are interactive by default. That means it'll remain open even the pointer leaves the trigger and move into the
-tooltip's content.
+Tooltips are interactive by default. That means it'll remain open even the
+pointer leaves the trigger and move into the tooltip's content.
 
-To disabled this behavior, pass the `interactive` context property and set it to `false`.
+To disabled this behavior, pass the `interactive` context property and set it to
+`false`.
 
 > Disabling this will violate the
 > [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)
@@ -84,10 +88,11 @@ const [state, send] = useMachine(
 
 ## Using custom labels
 
-By default, the only content announced to them is whatever is in the tooltip. On some cases you may want the screen
-readers to know more information about the trigger (e.g. a notifications system with count).
+By default, the only content announced to them is whatever is in the tooltip. On
+some cases you may want the screen readers to know more information about the
+trigger (e.g. a notifications system with count).
 
-For this use-case, pass the `aria-label` context property and use the `labelProps` exposed in the tooltip's connect
-function.
+For this use-case, pass the `aria-label` context property and use the
+`labelProps` exposed in the tooltip's connect function.
 
 <CodeSnippet id="tooltip/custom-label.mdx" />

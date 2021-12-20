@@ -1,11 +1,13 @@
 # Slider
 
-The Slider is used to allow users to make selections from a range of values. Think of it as a custom
-`<input type='range'/>` with the ability to achieve custom styling and accessibility.
+The Slider is used to allow users to make selections from a range of values.
+Think of it as a custom `<input type='range'/>` with the ability to achieve
+custom styling and accessibility.
 
-## Features
+**Features**
 
-- Supports centered origin (slider starting at center, instead of start position)
+- Supports centered origin (slider starting at center, instead of start
+  position)
 - Fully managed keyboard navigation
 - Supports touch or click on track to update value
 - Supports Right-to-Left directionality
@@ -28,19 +30,21 @@ Then you'll need to install the binding for your framework of choice
 
 ## Usage
 
-The slider's connect function exposes the `labelProps`, `outputProps`, `thumbProps`, `rangeProps` and `rootProps` you
-can compose the slider UI.
+The slider's connect function exposes the `labelProps`, `outputProps`,
+`thumbProps`, `rangeProps` and `rootProps` you can compose the slider UI.
 
 <CodeSnippet id="slider/basic-usage.mdx" />
 
 ## Changing the orientation of the slider
 
-By default, the slider is assumed to be horizontal. To change the orientation to vertical, set the `orientation`
-property in the machine's context to `vertical`.
+By default, the slider is assumed to be horizontal. To change the orientation to
+vertical, set the `orientation` property in the machine's context to `vertical`.
 
-In this mode, the slider will use the arrow up and down keys to increment/decrement its value.
+In this mode, the slider will use the arrow up and down keys to
+increment/decrement its value.
 
-> Don't forget to change the styles of the vertical slider by specifying its height
+> Don't forget to change the styles of the vertical slider by specifying its
+> height
 
 ```jsx
 const [state, send] = useMachine(
@@ -54,8 +58,9 @@ const [state, send] = useMachine(
 
 ## Specifying the minimum and maximum
 
-By default, the minimum is `0` and the maximum is `100`. If that's not what you want, you can easily specify different
-bounds by changing the values of the min and/or max attributes.
+By default, the minimum is `0` and the maximum is `100`. If that's not what you
+want, you can easily specify different bounds by changing the values of the min
+and/or max attributes.
 
 For example, to ask the user for a value between `-10` and `10`, you can use:
 
@@ -63,18 +68,18 @@ For example, to ask the user for a value between `-10` and `10`, you can use:
 
 ## Setting the value's granularity
 
-By default, the granularity, is `1`, meaning that the value is always an integer. You can change the step attribute to
-control the granularity.
+By default, the granularity, is `1`, meaning that the value is always an
+integer. You can change the step attribute to control the granularity.
 
-For example, If you need a value between `5` and `10`, accurate to two decimal places, you should set the value of step
-to `0.01`:
+For example, If you need a value between `5` and `10`, accurate to two decimal
+places, you should set the value of step to `0.01`:
 
 <CodeSnippet id="slider/setting-step.mdx" />
 
 ## Listening for changes
 
-When the slider value changes, the `onChange` and `onChangeEnd` callbacks are invoked. You can use this to setup custom
-behaviors in your app.
+When the slider value changes, the `onChange` and `onChangeEnd` callbacks are
+invoked. You can use this to setup custom behaviors in your app.
 
 ```jsx
 const [state, send] = useMachine(
@@ -91,18 +96,20 @@ const [state, send] = useMachine(
 
 ## Getting and setting the slider values
 
-The slider's connect function provides properties and methods you can use to programmatically read and set the slider's
-value.
+The slider's connect function provides properties and methods you can use to
+programmatically read and set the slider's value.
 
 - **Properties:** `isFocused`, `isDragging`, `value`, `percent`
-- **Methods:** `setValue`, `getPercentValue`, `blur`, `focus`, `increment` and `decrement`
+- **Methods:** `setValue`, `getPercentValue`, `blur`, `focus`, `increment` and
+  `decrement`
 
 <CodeSnippet id="slider/programmatic-control.mdx" />
 
 ## Changing the start position of the slider
 
-By default, the slider's "zero position" is usually at the start position (left in LTR and right in RTL). In scenarios
-where the value represents an offset (or relative value), it might be useful to change the "zero position" to center.
+By default, the slider's "zero position" is usually at the start position (left
+in LTR and right in RTL). In scenarios where the value represents an offset (or
+relative value), it might be useful to change the "zero position" to center.
 
 To do this, pass the `origin` context property to `center`.
 
@@ -118,15 +125,18 @@ const [state, send] = useMachine(
 
 ## Usage within forms
 
-To use slider within forms, use the exposed `inputProps` from the `connect` function and ensure you pass `name` value to
-the machine's context. It will render a hidden input and ensure the value changes get propagated to the form correctly.
+To use slider within forms, use the exposed `inputProps` from the `connect`
+function and ensure you pass `name` value to the machine's context. It will
+render a hidden input and ensure the value changes get propagated to the form
+correctly.
 
 <CodeSnippet id="slider/form-usage.mdx" />
 
 ## Using slider marks
 
-In some cases you might need to define a series of mark along the slider track. To achieve this, use the exposed
-`getMarkerProps` from the `connect` function and position the slider marks relative to the track.
+In some cases you might need to define a series of mark along the slider track.
+To achieve this, use the exposed `getMarkerProps` from the `connect` function
+and position the slider marks relative to the track.
 
 <CodeSnippet id="slider/using-marks.mdx" />
 

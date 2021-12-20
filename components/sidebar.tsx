@@ -49,7 +49,7 @@ function CategoryHeader({ children }: HeaderProps) {
 export function Sidebar() {
   return (
     <nav aria-label="sidebar navigation">
-      <Stack as="ul" listStyleType="none" direction="column" pl="0" spacing="6">
+      <Stack listStyleType="none" direction="column" pl="0" spacing="6">
         {sidebar.docsSidebar.map((item) => {
           if (item.type === "category") {
             return (
