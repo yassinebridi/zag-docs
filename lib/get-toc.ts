@@ -1,23 +1,9 @@
-import slugger from "github-slugger"
+import toc from "markdown-toc"
 
 export default function getTableOfContents(mdxContent: string) {
-  const regexp = new RegExp(/^(### |## )(.*)\n/, "gm")
-  const headings = Array.from(mdxContent.matchAll(regexp))
-  let tableOfContents = []
-
-  if (headings.length) {
-    tableOfContents = headings.map((heading) => {
-      const headingText = heading[2].trim()
-      const headingType = heading[1].trim() === "##" ? "h2" : "h3"
-      const headingLink = slugger.slug(headingText, false)
-
-      return {
-        text: headingText,
-        id: headingLink,
-        level: headingType,
-      }
-    })
-  }
-
-  return tableOfContents
+  return toc(mdxContent).json.map((t) => ({
+    text: t.content,
+    id: t.slug,
+    level: t.lvl,
+  }))
 }
