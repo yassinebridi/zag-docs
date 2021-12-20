@@ -34,7 +34,9 @@ export function getComponentPaths() {
 }
 
 export function getComponentDoc(slug: string) {
-  return allComponents.find((post) => post.frontmatter.slug.endsWith(slug))
+  return allComponents.find(
+    (post) => post.frontmatter.slug === `/components/${slug}`,
+  )
 }
 
 /* -----------------------------------------------------------------------------
@@ -46,7 +48,9 @@ export function getOverviewPaths() {
 }
 
 export function getOverviewDoc(slug: string | string[]) {
-  return allOverviews.find((post) => post.frontmatter.slug.endsWith(slug))
+  return allOverviews.find(
+    (post) => post.frontmatter.slug === `/overview/${slug}`,
+  )
 }
 
 /* -----------------------------------------------------------------------------
@@ -58,5 +62,5 @@ export function getGuidePaths() {
 }
 
 export function getGuideDoc(slug: string | string[]) {
-  return allGuides.find((post) => post.frontmatter.slug.endsWith(slug))
+  return allGuides.find((post) => post.frontmatter.slug === `/guides/${slug}`)
 }

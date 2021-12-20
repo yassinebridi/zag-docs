@@ -160,13 +160,15 @@ const theme = {
       lineHeight: "1.5",
     },
     a: {
-      color: "gray.50",
       cursor: "pointer",
-      transitionProperty: "text-decoration-color",
+      fontWeight: "600",
       textDecoration: "underline",
-      textDecorationColor: "gray.300",
-      textDecorationThickness: "2px",
-      textUnderlineOffset: "1px",
+      textDecorationColor: "cyan.default",
+      textDecorationThickness: "1px",
+      textUnderlineOffset: "2px",
+      _hover: {
+        textDecorationThickness: "2px",
+      },
     },
   },
 }
