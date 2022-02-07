@@ -1,27 +1,7 @@
-export const space = {
-  "4xl": "8rem",
-  "3xl": "6rem",
-  "2xl": "4rem",
-  xl: "2.5rem",
-  lg: "1.5rem",
-  md: "1rem",
-  sm: "0.75rem",
-  xs: "0.5rem",
-  "2xs": "0.25rem",
-}
-
-const sizes = {
-  xl: "36rem",
-  "2xl": "42rem",
-  "3xl": "48rem",
-  "4xl": "56rem",
-  "5xl": "64rem",
-  "6xl": "72rem",
-  "7xl": "80rem",
-  "8xl": "90rem",
-}
+import foundations from "@chakra-ui/theme/foundations"
 
 const theme = {
+  ...foundations,
   config: {
     useSystemColorMode: true,
     initialColorMode: "light",
@@ -33,65 +13,13 @@ const theme = {
     xl: "80em",
     "2xl": "96em",
   },
-  sizes,
-  space,
-  colors: {
-    bg: "#fff",
-    fg: "#000",
-    text: "#e5e5e5",
-    gray: {
-      50: "#fafafa",
-      100: "#f5f5f5",
-      200: "#e5e5e5",
-      300: "#d4d4d4",
-      400: "#a3a3a3",
-      500: "#737373",
-      600: "#525252",
-      700: "#404040",
-      800: "#262626",
-      900: "#171717",
-    },
-    red: {
-      lighter: "#F7D4D6",
-      light: "#FF1A1A",
-      default: "#E00",
-      dark: "#C50000",
-    },
-    orange: {
-      lighter: "#FFEFCF",
-      light: "#F7B955",
-      default: "#F5A623",
-      dark: "#AB570A",
-    },
-    blue: {
-      lighter: "#D3E5FF",
-      light: "#3291FF",
-      default: "#0070F3",
-      dark: "#0761D1",
-    },
-    violet: {
-      lighter: "#D8CCF1",
-      light: "#8A63D2",
-      default: "#7928CA",
-      dark: "#4C2889",
-    },
-    cyan: {
-      lighter: "#AAFFEC",
-      light: "#79FFE1",
-      default: "#50E3C2",
-      dark: "#29BC9B",
-    },
-  },
   styles: {
     global: {
       body: {
-        bg: "#171717",
-        color: "text",
-        lineHeight: "1.75",
+        bg: "#F1F0EE",
       },
-      ":root": {
-        "--font-fallback":
-          '-apple-system,"BlinkMacSystemFont","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+      mark: {
+        bg: "transparent",
       },
       li: {
         marginY: "2xs",
@@ -120,10 +48,6 @@ const theme = {
         },
       },
     },
-  },
-  fonts: {
-    heading: "system-ui",
-    body: "system-ui",
   },
   textStyles: {
     h1: {

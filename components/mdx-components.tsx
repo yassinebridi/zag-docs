@@ -1,14 +1,8 @@
 import { allSnippets } from ".contentlayer/data"
-import {
-  HStack,
-  Icon,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react"
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
+import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
+import { Icon } from "@chakra-ui/icon"
 import {
   frameworks,
   FRAMEWORKS,

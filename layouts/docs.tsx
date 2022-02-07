@@ -2,8 +2,14 @@ import { Box, chakra } from "@chakra-ui/react"
 import { Sidebar } from "components/sidebar"
 import { TableOfContents } from "components/toc"
 import { useRouter } from "next/router"
+import React from "react"
 
-export default function DocsLayout({ children, toc }) {
+type DocsLayoutProps = {
+  children: React.ReactNode
+  toc?: any[]
+}
+
+export default function DocsLayout({ children, toc }: DocsLayoutProps) {
   const { asPath } = useRouter()
   const isComponent = asPath.includes("/components/")
 

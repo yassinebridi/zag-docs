@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/provider"
 import theme from "lib/theme"
 import "../styles/prism.css"
 
