@@ -1,4 +1,5 @@
-import { Box, chakra } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
 import { Sidebar } from "components/sidebar"
 import { TableOfContents } from "components/toc"
 import { useRouter } from "next/router"

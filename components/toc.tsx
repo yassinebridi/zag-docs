@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/react"
+import { chakra } from "@chakra-ui/system"
 import { useScrollSpy } from "./use-scrollspy"
 
 type TOC = Array<{
