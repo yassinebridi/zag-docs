@@ -15,6 +15,7 @@ const styleConfig: StyleConfig = {
     textAlign: "start",
     rounded: "lg",
     paddingX: "5",
+    transition: "background 0.2s ease",
     shadow: "md",
     _focusWithin: {
       outline: "2px solid",
@@ -25,14 +26,23 @@ const styleConfig: StyleConfig = {
     green: {
       bg: "green.500",
       color: "white",
+      _hover: {
+        bg: "green.600",
+      },
     },
     white: {
       color: "gray.900",
       bg: "white",
+      _hover: {
+        bg: "gray.100",
+      },
     },
     black: {
       bg: "black",
       color: "white",
+      _hover: {
+        bg: "gray.900",
+      },
     },
   },
   sizes: {
