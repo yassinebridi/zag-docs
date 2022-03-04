@@ -24,21 +24,10 @@ function SnippetItem({ code, id }) {
 
 const components: Record<string, FC<Record<string, any>>> = {
   blockquote(props) {
-    return (
-      <chakra.blockquote
-        mt="lg"
-        px="md"
-        py="sm"
-        bg="rgb(35 211 171 / 18%)"
-        borderLeftWidth="2px"
-        borderLeftColor="cyan.default"
-        rounded="4px"
-        {...props}
-      />
-    )
+    return <chakra.blockquote layerStyle="blockquote" {...props} />
   },
   h1(props) {
-    return <chakra.h1 textStyle="h1" sx={{ maxW: "85ch" }} {...props} />
+    return <chakra.h1 textStyle="h1" {...props} />
   },
   h2(props) {
     return <chakra.h2 textStyle="h2" {...props} />
@@ -65,20 +54,7 @@ const components: Record<string, FC<Record<string, any>>> = {
     )
   },
   inlineCode(props) {
-    return (
-      <chakra.code
-        className="prose"
-        color="cyan.default"
-        _before={{ content: `"\`"` }}
-        _after={{ content: `"\`"` }}
-        sx={{
-          px: "1.5",
-          fontSize: "0.85em",
-          fontFamily: "Menlo",
-        }}
-        {...props}
-      />
-    )
+    return <chakra.code className="prose" layerStyle="inlineCode" {...props} />
   },
   code(props) {
     if (typeof props.children === "string") {
@@ -104,30 +80,33 @@ const components: Record<string, FC<Record<string, any>>> = {
       <Tabs
         index={index}
         onChange={setIndex}
-        my="xl"
+        width="full"
+        maxW="768px"
+        my="16"
         bg="gray.800"
         rounded="6px"
       >
         <TabList borderBottomWidth="1px" borderColor="gray.700">
           {FRAMEWORKS.map((framework) => (
             <Tab
-              py="xs"
-              px="md"
-              fontSize="0.9rem"
+              color="white"
+              py="3"
+              px="8"
+              fontSize="sm"
               borderBottom="2px solid transparent"
-              _selected={{ borderColor: "currentColor", color: "cyan.light" }}
+              _selected={{ borderColor: "currentColor", color: "cyan.500" }}
               key={framework}
             >
               <HStack>
                 <Icon as={frameworks[framework].icon} />
-                <p>{framework}</p>
+                <p>{frameworks[framework].label}</p>
               </HStack>
             </Tab>
           ))}
         </TabList>
         <TabPanels>
           {snippets.map((p) => (
-            <TabPanel key={p._id} mt="-lg">
+            <TabPanel key={p._id} mt="-6">
               <SnippetItem id={p.framework} code={p.body.code} />
             </TabPanel>
           ))}

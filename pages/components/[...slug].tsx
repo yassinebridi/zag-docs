@@ -2,7 +2,11 @@ import type { Component } from ".contentlayer/types"
 import { useMDX } from "components/mdx-components"
 import DocsLayout from "layouts/docs"
 import { Framework, FrameworkContext } from "lib/framework"
-import { extractParams, getComponentDoc, getComponentPaths } from "lib/get-paths"
+import {
+  extractParams,
+  getComponentDoc,
+  getComponentPaths,
+} from "lib/get-paths"
 import { GetStaticPaths, GetStaticProps } from "next"
 
 type PageProps = {

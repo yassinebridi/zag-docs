@@ -1,3 +1,4 @@
+import { Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { useScrollSpy } from "./use-scrollspy"
 
@@ -11,22 +12,26 @@ export function TableOfContents({ data = [] }: { data: TOC }) {
   const activeId = useScrollSpy(data.map((item) => `[id="${item.slug}"]`))
 
   return (
-    <div>
-      <chakra.h5 fontWeight="bold">On this page</chakra.h5>
-      <chakra.ul fontSize="0.8rem" listStyleType="none" paddingLeft="0">
+    <div className="toc">
+      <chakra.h5 fontWeight="bold" className="toc__heading">
+        On this page
+      </chakra.h5>
+
+      <Stack as="ul" fontSize="0.8rem" listStyleType="none" mt="3">
         {data.map((item) => (
           <chakra.li
             data-selected={activeId === item.slug || undefined}
             key={item.slug}
-            marginLeft={item.lvl > 2 ? "sm" : undefined}
+            marginLeft={item.lvl > 2 ? "2" : undefined}
             _selected={{
-              color: "cyan.default",
+              textDecoration: "underline",
+              textUnderlineOffset: "2px",
             }}
           >
             <chakra.a href={`#${item.slug}`}>{item.content}</chakra.a>
           </chakra.li>
         ))}
-      </chakra.ul>
+      </Stack>
     </div>
   )
 }

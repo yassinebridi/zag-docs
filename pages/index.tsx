@@ -6,7 +6,6 @@ import {
   AccessibilityIcon,
   ArrowRightIcon,
   FrameworkAgnosticIcon,
-  GithubIcon,
   PlayIcon,
   ReactIcon,
   SolidIcon,
@@ -15,6 +14,7 @@ import {
 } from "components/icons"
 import { Illustration } from "components/illustration"
 import { ElementType } from "react"
+import { TopNavigation } from "components/top-navigation"
 
 type FeatureItemProps = {
   title: string
@@ -38,7 +38,7 @@ function FeatureItem(props: FeatureItemProps) {
 export default function Home() {
   return (
     <Box>
-      <Box as="header" position="relative">
+      <Box as="header" position="relative" maxW="7xl" mx="auto">
         <Icon
           display={{ base: "none", md: "initial" }}
           as={Illustration}
@@ -49,38 +49,9 @@ export default function Home() {
           height="auto"
         />
         <Box px={{ base: "4", sm: "6", md: "8" }}>
-          <Box
-            fontWeight="semibold"
-            fontSize="sm"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            pos="relative"
-            pt={{ base: "6", lg: "8" }}
-          >
-            <div>Logo</div>
-            <Box display="flex" alignItems="center" gap="8">
-              <nav>
-                <Box
-                  as="ul"
-                  display="flex"
-                  alignItems="center"
-                  gap="8"
-                  listStyleType="none"
-                >
-                  <li>Tutorials</li>
-                  <li>API</li>
-                  <li>Components</li>
-                </Box>
-              </nav>
-              <Box>
-                <Box srOnly>UI machines on Github</Box>
-                <Icon as={GithubIcon} fontSize="lg" />
-              </Box>
-            </Box>
-          </Box>
+          <TopNavigation />
 
-          <Box pos="relative" maxW="4xl" pt="24">
+          <Box pos="relative" maxW="4xl" pt="16">
             <chakra.h1
               letterSpacing="tight"
               fontSize={{ base: "4xl", sm: "5xl", lg: "7xl" }}
@@ -101,13 +72,13 @@ export default function Home() {
             </Text>
           </Box>
 
-          <Flex my="8" gap="5">
+          <Flex mt="8" mb="12" gap="5" fontSize="lg">
             <Button variant="green" gap="8">
               <span>Get Started</span>
-              <Icon as={ArrowRightIcon} fontSize="lg" />
+              <Icon as={ArrowRightIcon} />
             </Button>
             <Button gap="2">
-              <Icon as={PlayIcon} fontSize="lg" />
+              <Icon as={PlayIcon} />
               <span>Watch Demo</span>
             </Button>
           </Flex>
@@ -120,7 +91,13 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box as="section" px={{ base: "4", sm: "6", md: "8" }} my="32" py="8">
+      <Box
+        as="section"
+        px={{ base: "4", sm: "6", md: "8" }}
+        my="32"
+        maxW="7xl"
+        mx="auto"
+      >
         <Box bg="white" padding={{ base: "0", md: "20" }}>
           <chakra.h2 fontSize="6xl" mb="6" maxW="760px" lineHeight="1.4">
             UI machines provides the component SDK for the Web.

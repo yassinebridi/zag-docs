@@ -13,6 +13,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths: getOverviewPaths(), fallback: false }
 }
 
-export const getStaticProps: GetStaticProps<{ doc: Overview }> = async (ctx) => {
+export const getStaticProps: GetStaticProps<{ doc: Overview }> = async (
+  ctx,
+) => {
   return { props: { doc: getOverviewDoc(ctx.params.slug) } }
 }

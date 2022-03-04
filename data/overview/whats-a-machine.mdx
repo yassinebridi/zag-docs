@@ -1,18 +1,20 @@
 # What's a machine
 
-A component machine is a behavior model of the component's logic and interactions. The machine is
-built based on the premise that a component has a finite number of states it can be in, and state
-changes can only happen based on events or interactions.
+A component machine is a behavior model of the component's logic and
+interactions. The machine is built based on the premise that a component has a
+finite number of states it can be in, and state changes can only happen based on
+events or interactions.
 
-State machines has been popularly known as a tool to model complex business model. In this case, the
-"business" is "components". Machines makes it easier to model and manage complex components logic.
+State machines has been popularly known as a tool to model complex business
+model. In this case, the "business" is "components". Machines makes it easier to
+model and manage complex components logic.
 
 The basic building blocks of a state machine are states and transitions.
 
 ## Example of State machine
 
-Consider a simple toggle or switch component that consists of two states, `Active` and `Inactive`.
-The initial state will be `Active`
+Consider a simple toggle or switch component that consists of two states,
+`Active` and `Inactive`. The initial state will be `Active`
 
 The supported transitions that can happen here:
 
@@ -49,19 +51,20 @@ const toggleMachine = createMachine({
 
 The `toggleMachine` gives you access to these key information:
 
-- `state`: State is an representation of the machine at a specific point in time and contains the
-  following properties:
+- `state`: State is an representation of the machine at a specific point in time
+  and contains the following properties:
 
   - `value`: the current state value
   - `context`: the current context or data stored in the machine
-  - `event`: the event object that triggered the transition of this current state
-  - `matches(...)`: the function to check whether the machine is in a specific state. It's similar
-    to `state.value === <state>`
+  - `event`: the event object that triggered the transition of this current
+    state
+  - `matches(...)`: the function to check whether the machine is in a specific
+    state. It's similar to `state.value === <state>`
 
 - `send`: A function to send events or signals to the machine.
 
-Now that we've modelled the component logic, let's map that to DOM attributes and event handlers.
-Let's follow the
+Now that we've modelled the component logic, let's map that to DOM attributes
+and event handlers. Let's follow the
 [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html)
 specification for the switch component.
 
@@ -109,6 +112,6 @@ function Toggle() {
 }
 ```
 
-That's it! Now you've learned the fundamentals of a component state machine. To learn more about the
-others features liek guards, actions, activities, delayed transitions, you can go here
-[advanced](/advanced-concepts)
+That's it! Now you've learned the fundamentals of a component state machine. To
+learn more about the others features liek guards, actions, activities, delayed
+transitions, you can go here [advanced](/advanced-concepts)

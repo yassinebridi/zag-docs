@@ -1,4 +1,4 @@
-const baseUrl = "https://github.com/chakra-ui/ui-machines";
+const baseUrl = "https://github.com/chakra-ui/ui-machines"
 
 const siteConfig = {
   title: "Chakra UI",
@@ -66,6 +66,6 @@ const siteConfig = {
       ],
     },
   },
-};
+}
 
-export default siteConfig;
+export default siteConfig

@@ -13,20 +13,17 @@ type DocLinkProps = {
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children } = props
-  const current = asPath.startsWith(href.toString())
+  const current = href
+    .toString()
+    .split("/")
+    .every((part) => asPath.includes(part))
 
   return (
-    <Box as="li" fontSize="0.8rem">
+    <Box as="li" fontSize="sm">
       <Link href={href} passHref>
         <chakra.a
-          display="block"
-          px="6"
-          py="1"
-          transition="color 0.2s ease-in-out"
           aria-current={current ? "page" : undefined}
-          color="gray.300"
-          _hover={{ color: "white" }}
-          _activeLink={{ color: "cyan.default" }}
+          textStyle="sidebarLink"
         >
           {children}
         </chakra.a>
@@ -35,28 +32,18 @@ function DocLink(props: DocLinkProps) {
   )
 }
 
-type HeaderProps = {
-  children: React.ReactNode
-}
-
-function CategoryHeader({ children }: HeaderProps) {
-  return (
-    <chakra.a px="6" py="2" fontWeight="600">
-      {children}
-    </chakra.a>
-  )
-}
-
 export function Sidebar() {
   return (
-    <nav aria-label="sidebar navigation">
-      <Stack listStyleType="none" direction="column" pl="0" spacing="6">
+    <nav aria-label="Sidebar Navigation">
+      <Stack as="ul" listStyleType="none" direction="column" spacing="6">
         {sidebar.docsSidebar.map((item) => {
           if (item.type === "category") {
             return (
-              <div key={item.id}>
-                <CategoryHeader>{item.label}</CategoryHeader>
-                <Flex as="ul" listStyleType="none" direction="column" pl="0">
+              <li className="sidebar__category" key={item.id}>
+                <chakra.h5 mb="2" fontWeight="600">
+                  {item.label}
+                </chakra.h5>
+                <Flex as="ul" listStyleType="none" direction="column">
                   {item.items.map((subItem) => {
                     if (subItem.type === "doc") {
                       return (
@@ -68,15 +55,17 @@ export function Sidebar() {
                         </DocLink>
                       )
                     }
+                    return null
                   })}
                 </Flex>
-              </div>
+              </li>
             )
           }
+
           return (
-            <DocLink key={item.id} href={`/docs/${item.id}`}>
-              {item.label}
-            </DocLink>
+            <li className="sidebar__link" key={item.id}>
+              <DocLink href={`/docs/${item.id}`}>{item.label}</DocLink>
+            </li>
           )
         })}
       </Stack>

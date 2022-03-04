@@ -12,7 +12,8 @@ export default defineComponent({
     )
 
     return () => {
-      const { getItemProps, getTriggerProps, getContentProps, rootProps } = accordionState.value
+      const { getItemProps, getTriggerProps, getContentProps, rootProps } =
+        accordionState.value
       return (
         <div>
           <div ref={ref} {...rootProps}>
@@ -21,8 +22,8 @@ export default defineComponent({
                 <button {...getTriggerProps({ value: "home" })}>Home</button>
               </h3>
               <div {...getContentProps({ value: "home" })}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </div>
             </div>
 
@@ -31,18 +32,20 @@ export default defineComponent({
                 <button {...getTriggerProps({ value: "about" })}>About</button>
               </h3>
               <div {...getContentProps({ value: "about" })}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </div>
             </div>
 
             <div {...getItemProps({ value: "contact" })}>
               <h3>
-                <button {...getTriggerProps({ value: "contact" })}>Contact</button>
+                <button {...getTriggerProps({ value: "contact" })}>
+                  Contact
+                </button>
               </h3>
               <div {...getContentProps({ value: "contact" })}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </div>
             </div>
           </div>

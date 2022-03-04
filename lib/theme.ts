@@ -6,92 +6,122 @@ const theme = {
     useSystemColorMode: true,
     initialColorMode: "light",
   },
-  breakpoints: {
-    sm: "30em",
-    md: "48em",
-    lg: "62em",
-    xl: "80em",
-    "2xl": "96em",
-  },
   styles: {
     global: {
+      "*": {
+        borderColor: "gray.200",
+      },
       body: {
-        bg: "#F1F0EE",
+        bg: "gray.50",
       },
       mark: {
         bg: "transparent",
       },
-      li: {
-        marginY: "2xs",
-      },
-      "ol, ul": {
-        marginY: "md",
-        paddingLeft: "lg",
-      },
-      "h2,h3,h4": {
-        scrollMarginTop: "32px",
-        "&:hover": {
-          "a.anchor": {
-            opacity: 1,
+      ".mdx-content": {
+        li: {
+          marginY: "1",
+        },
+        "ol, ul": {
+          marginY: "5",
+          paddingLeft: "4",
+        },
+        "h2,h3,h4": {
+          scrollMarginTop: "8",
+          "&:hover": {
+            "a.anchor": {
+              opacity: 1,
+            },
+          },
+        },
+        "p+p": {
+          marginTop: "8",
+        },
+        "a.anchor": {
+          opacity: 0,
+          transition: "opacity 0.2s ease-in-out",
+          marginX: "3",
+          "&:before": {
+            content: `"#"`,
           },
         },
       },
-      "p+p": {
-        marginTop: "xl",
-      },
-      "a.anchor": {
-        opacity: 0,
-        transition: "opacity 0.2s ease-in-out",
-        mx: "2xs",
-        "&:before": {
-          content: `"#"`,
-        },
-      },
+    },
+  },
+  layerStyles: {
+    blockquote: {
+      mt: "5",
+      px: "4",
+      py: "3",
+      bg: "orange.100",
+      borderLeftWidth: "2px",
+      borderLeftColor: "orange.500",
+      rounded: "4px",
+    },
+    inlineCode: {
+      bg: "blackAlpha.100",
+      rounded: "sm",
+      py: "0.5",
+      px: "1.5",
+      fontSize: "0.85em",
+      fontFamily: "Menlo",
     },
   },
   textStyles: {
     h1: {
       fontFamily: "heading",
-      color: "white",
-      fontWeight: 800,
-      letterSpacing: "-0.05rem",
-      fontSize: "3.5rem",
-      marginBottom: "md",
+      letterSpacing: "tight",
+      fontWeight: "extrabold",
+      fontSize: { base: "3xl", md: "4xl" },
+      marginBottom: "5",
       lineHeight: "1.2",
+      maxWidth: "85ch",
     },
     h2: {
-      fontWeight: 800,
       fontFamily: "heading",
-      fontSize: "2rem",
-      marginTop: "3rem",
-      marginBottom: "sm",
+      fontWeight: "bold",
+      fontSize: { base: "xl", md: "2xl" },
+      marginTop: "12",
+      marginBottom: "3",
       lineHeight: "1.4",
     },
     h3: {
       fontFamily: "heading",
-      fontWeight: 500,
-      color: "gray.100",
-      fontSize: "1.15rem",
+      fontWeight: "regular",
+      fontSize: "2xl",
       marginTop: "xl",
-      marginBottom: "xs",
+      marginBottom: "4",
       lineHeight: "1.5",
     },
     h4: {
-      fontWeight: 500,
-      color: "gray.100",
+      fontWeight: "regular",
       marginTop: "lg",
-      marginBottom: "2xs",
+      marginBottom: "3",
       lineHeight: "1.5",
     },
     a: {
       cursor: "pointer",
-      fontWeight: "600",
+      fontWeight: "medium",
       textDecoration: "underline",
       textDecorationColor: "cyan.default",
       textDecorationThickness: "1px",
       textUnderlineOffset: "2px",
       _hover: {
         textDecorationThickness: "2px",
+      },
+    },
+    sidebarLink: {
+      display: "block",
+      px: "6",
+      py: "1",
+      transition: "color 0.2s ease-in-out",
+      _hover: {
+        textDecoration: "underline",
+        textUnderlineOffset: "2px",
+      },
+      _activeLink: {
+        textDecoration: "underline",
+        textUnderlineOffset: "2px",
+        fontWeight: "bold",
       },
     },
   },

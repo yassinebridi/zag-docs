@@ -12,8 +12,8 @@ There two ways to use UI machines in React:
 
 ## Local state
 
-This is useful the component encapsulate the state and doesn't use react context. You can use the
-`useMachine` hook from `@ui-machines/react`.
+This is useful the component encapsulate the state and doesn't use react
+context. You can use the `useMachine` hook from `@ui-machines/react`.
 
 ```jsx
 import { useMachine } from "@ui-machines/react"
@@ -28,18 +28,21 @@ function Toggle() {
 
 ## Global state
 
-When you need to build compound components or propagate the machine's state via React context, we
-recommended using the `useService` and `useActor` hooks to get better rendering optimization and
-performance.
+When you need to build compound components or propagate the machine's state via
+React context, we recommended using the `useService` and `useActor` hooks to get
+better rendering optimization and performance.
 
-This technique can be useful if you're building a design system or UI library on top of UI machines.
+This technique can be useful if you're building a design system or UI library on
+top of UI machines.
 
 > This feature is powered by the `useSnapshot` hook provided by `valtio`
 
-Let's take an example of an accordion component using the compound component pattern. It'll have:
+Let's take an example of an accordion component using the compound component
+pattern. It'll have:
 
 - `Accordion`: holds the machine and provides it via context
-- `AccordionItem`: consumes the accordion context and renders a single accordion item
+- `AccordionItem`: consumes the accordion context and renders a single accordion
+  item
 
 ```jsx
 import { createContext, useContext } from "react"
@@ -75,10 +78,11 @@ function AccordionItem({ value }) {
 
 ### Some Gotchas
 
-Since the base library we use is `valtio`, there some best practices you need to follow:
+Since the base library we use is `valtio`, there some best practices you need to
+follow:
 
-- Avoid destructuring. `valtio` uses the `Proxy` API that tracks property access via the dot
-  notation (for nested properties)
+- Avoid destructuring. `valtio` uses the `Proxy` API that tracks property access
+  via the dot notation (for nested properties)
 
 ```jsx
 const [state, send] = useMachine(machine)
@@ -90,9 +94,9 @@ const { value } = state.context
 const value = state.context.value
 ```
 
-- When dealing with editable fields, you might notice inconsistent caret behavior. This is due to
-  the state batching mechanism in valtio. To fix this pass the `sync` option to the `useMachine` or
-  `useActor` hook.
+- When dealing with editable fields, you might notice inconsistent caret
+  behavior. This is due to the state batching mechanism in valtio. To fix this
+  pass the `sync` option to the `useMachine` or `useActor` hook.
 
 ```jsx
 const [state, send] = useMachine(machine, { sync: true })
