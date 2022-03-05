@@ -12,6 +12,8 @@ import {
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
+import { Accordion } from "./machines/accordion"
+import { Playground } from "./playground"
 
 function SnippetItem({ code, id }) {
   const content = useMDX(code)
@@ -23,6 +25,19 @@ function SnippetItem({ code, id }) {
 }
 
 const components: Record<string, FC<Record<string, any>>> = {
+  Accordion: () => (
+    <Playground
+      component={Accordion}
+      defaultProps={{
+        collapsible: true,
+        multiple: true,
+        value: {
+          default: "Aircrafts",
+          options: ["Aircrafts", "Automobiles", "Watercraft"],
+        },
+      }}
+    />
+  ),
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },

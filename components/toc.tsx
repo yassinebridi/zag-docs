@@ -13,7 +13,7 @@ export function TableOfContents({ data = [] }: { data: TOC }) {
 
   return (
     <div className="toc">
-      <chakra.h5 fontWeight="bold" className="toc__heading">
+      <chakra.h5 fontSize="sm" fontWeight="bold" className="toc__heading">
         On this page
       </chakra.h5>
 

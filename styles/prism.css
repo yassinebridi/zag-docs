@@ -14,7 +14,7 @@
 }
 
 .prose {
-  --prism-font-family: "JetBrains Mono", "Menlo", monospace;
+  --prism-font-family: var(--fonts-mono);
   font-size: 13px;
   width: 100%;
   --prism-selector: burlywood;

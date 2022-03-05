@@ -21,6 +21,8 @@
     "@chakra-ui/tabs": "^1.6.5",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@ui-machines/accordion": "dev",
+    "@ui-machines/react": "dev",
     "contentlayer": "^0.0.34",
     "framer-motion": "4.1.17",
     "markdown-toc": "^1.2.0",

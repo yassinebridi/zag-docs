@@ -34,10 +34,16 @@ export default function DocsLayout({ children, toc }: DocsLayoutProps) {
             pb="10"
             px="8"
             overflowY="auto"
+            overscrollBehavior="contain"
           >
-            <SearchTrigger mt="10" />
-            <Spacer height="5" />
-            <Sidebar />
+            <Box position="relative">
+              <Box position="sticky" top="0">
+                <Spacer height="10" bg="white" />
+                <SearchTrigger />
+                <Spacer mt="px" height="5" bg="white" />
+              </Box>
+              <Sidebar />
+            </Box>
           </Box>
 
           <Box

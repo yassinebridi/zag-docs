@@ -8,11 +8,15 @@ const theme = {
   },
   styles: {
     global: {
+      "body, html": {
+        fontFamily: "body",
+        textRendering: "geometricprecision",
+        textSizeAdjust: "100%",
+        WebkitFontSmoothing: "antialiased",
+      },
       "*": {
         borderColor: "gray.200",
-      },
-      body: {
-        bg: "gray.50",
+        borderStyle: "solid",
       },
       mark: {
         bg: "transparent",
@@ -26,14 +30,14 @@ const theme = {
           paddingLeft: "4",
         },
         "h2,h3,h4": {
-          scrollMarginTop: "8",
+          scrollMarginTop: "24",
           "&:hover": {
             "a.anchor": {
               opacity: 1,
             },
           },
         },
-        "p+p": {
+        "p + p": {
           marginTop: "8",
         },
         "a.anchor": {
@@ -62,15 +66,16 @@ const theme = {
       rounded: "sm",
       py: "0.5",
       px: "1.5",
-      fontSize: "0.85em",
-      fontFamily: "Menlo",
+      fontSize: "0.8em",
+      fontFamily: "mono",
+      color: "red.600",
     },
   },
   textStyles: {
     h1: {
       fontFamily: "heading",
       letterSpacing: "tight",
-      fontWeight: "extrabold",
+      fontWeight: "bold",
       fontSize: { base: "3xl", md: "4xl" },
       marginBottom: "5",
       lineHeight: "1.2",

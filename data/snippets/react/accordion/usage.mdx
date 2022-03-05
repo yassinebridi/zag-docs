@@ -1,29 +1,32 @@
 ```jsx
-import * as Accordion from "@ui-machines/accordion"
+import * as accordion from "@ui-machines/accordion"
 import { useMachine } from "@ui-machines/react"
+import { useMemo } from "react"
+
+const data = [
+  { title: "Watercraft", content: "Sample accordion content" },
+  { title: "Automobiles", content: "Sample accordion content" },
+  { title: "Aircrafts", content: "Sample accordion content" },
+]
 
 function Accordion() {
-  // invoke the machine within react
-  const [state, send] = useMachine(Accordion.machine)
+  const [state, send] = useMachine(accordion.machine)
+  const api = useMemo(() => Accordion.connect(state, send), [state])
 
-  // translate machine output to DOM attributes
-  const { rootProps, getTriggerProps, getPanelProps } = useMemo(
-    () => Accordion.connect(state, send),
-    [state],
-  )
-
-  // render UI
   return (
-    <div {...rootProps}>
-      <h3>
-        <button {...getTriggerProps({ value: "home" })}>Home Trigger</button>
-      </h3>
-      <div {...getPanelProps({ value: "home" })}>Home Content</div>
-
-      <h3>
-        <button {...getTriggerProps({ value: "about" })}>About Trigger</button>
-      </h3>
-      <div {...getPanelProps({ value: "about" })}>About Content</div>
+    <div {...api.rootProps}>
+      {data.map((item) => (
+        <div {...api.getItemProps({ value: item.value })}>
+          <h3>
+            <button {...api.getTriggerProps({ value: item.value })}>
+              {item.title}
+            </button>
+          </h3>
+          <div {...api.getContentProps({ value: item.value })}>
+            {item.content}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

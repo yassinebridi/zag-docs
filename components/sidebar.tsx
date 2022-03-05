@@ -40,10 +40,15 @@ export function Sidebar() {
           if (item.type === "category") {
             return (
               <li className="sidebar__category" key={item.id}>
-                <chakra.h5 mb="2" fontWeight="600">
+                <chakra.h5 fontSize="sm" mb="2" fontWeight="600">
                   {item.label}
                 </chakra.h5>
-                <Flex as="ul" listStyleType="none" direction="column">
+                <Flex
+                  as="ul"
+                  listStyleType="none"
+                  direction="column"
+                  borderLeftWidth="1px"
+                >
                   {item.items.map((subItem) => {
                     if (subItem.type === "doc") {
                       return (
