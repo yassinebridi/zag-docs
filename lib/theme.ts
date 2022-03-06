@@ -3,7 +3,7 @@ import foundations from "@chakra-ui/theme/foundations"
 const theme = {
   ...foundations,
   config: {
-    useSystemColorMode: true,
+    useSystemColorMode: false,
     initialColorMode: "light",
   },
   styles: {
@@ -32,10 +32,9 @@ const theme = {
         "h2,h3,h4": {
           scrollMarginTop: "24",
           "&:hover": {
-            "a.anchor": {
-              opacity: 1,
-            },
+            "a.anchor": { opacity: 1 },
           },
+          "a:focus": { opacity: 1 },
         },
         "p + p": {
           marginTop: "8",
@@ -56,9 +55,7 @@ const theme = {
       mt: "5",
       px: "4",
       py: "3",
-      bg: "orange.100",
-      borderLeftWidth: "2px",
-      borderLeftColor: "orange.500",
+      bg: "orange.50",
       rounded: "4px",
     },
     inlineCode: {
