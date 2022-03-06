@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import { Box, Divider, Flex } from "@chakra-ui/layout"
+import { Box, Divider, Flex, Stack } from "@chakra-ui/layout"
 import React, { useState } from "react"
 
 const Header = (props: any) => (
@@ -51,7 +51,7 @@ export function Playground(props: PlaygroundProps) {
 
       <Box width="240px" fontSize="sm">
         <Header>Properties</Header>
-        <Flex direction="column" gap="4" px="5" py="4">
+        <Stack direction="column" spacing="4" px="5" py="4">
           {Object.keys(state).map((key) => {
             const value = state[key]
             const type = defaultProps[key]
@@ -142,7 +142,7 @@ export function Playground(props: PlaygroundProps) {
               {JSON.stringify(state, null, 2)}
             </Box>
           )}
-        </Flex>
+        </Stack>
       </Box>
     </Flex>
   )

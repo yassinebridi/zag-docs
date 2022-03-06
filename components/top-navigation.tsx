@@ -1,5 +1,5 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex } from "@chakra-ui/layout"
+import { Box, Flex, HStack } from "@chakra-ui/layout"
 import { GithubIcon } from "components/icons"
 
 export function TopNavigation() {
@@ -16,13 +16,11 @@ export function TopNavigation() {
     >
       <Flex align="center" justify="space-between" maxW="8xl" mx="auto">
         <div>Logo</div>
-        <Flex align="center" gap="8">
+        <HStack spacing="8">
           <nav>
-            <Box
+            <HStack
               as="ul"
-              display="flex"
-              alignItems="center"
-              gap="8"
+              spacing="8"
               listStyleType="none"
               fontWeight="semibold"
               fontSize="sm"
@@ -30,7 +28,7 @@ export function TopNavigation() {
               <li>Tutorials</li>
               <li>API</li>
               <li>Components</li>
-            </Box>
+            </HStack>
           </nav>
           <Flex
             as="a"
@@ -40,7 +38,7 @@ export function TopNavigation() {
             <Box srOnly>UI machines on Github</Box>
             <Icon as={GithubIcon} fontSize="lg" color="gray.500" />
           </Flex>
-        </Flex>
+        </HStack>
       </Flex>
     </Box>
   )

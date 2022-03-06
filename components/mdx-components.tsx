@@ -98,18 +98,19 @@ const components: Record<string, FC<Record<string, any>>> = {
         width="full"
         maxW="768px"
         my="16"
-        bg="gray.800"
+        bg="hsl(230, 1%, 98%)"
         rounded="6px"
       >
-        <TabList borderBottomWidth="1px" borderColor="gray.700">
+        <TabList>
           {FRAMEWORKS.map((framework) => (
             <Tab
-              color="white"
-              py="3"
+              py="2"
               px="8"
               fontSize="sm"
+              fontWeight="medium"
               borderBottom="2px solid transparent"
-              _selected={{ borderColor: "currentColor", color: "cyan.500" }}
+              _selected={{ borderColor: "currentColor", color: "green.500" }}
+              _focusVisible={{ outline: "2px solid blue" }}
               key={framework}
             >
               <HStack>
@@ -120,11 +121,18 @@ const components: Record<string, FC<Record<string, any>>> = {
           ))}
         </TabList>
         <TabPanels>
-          {snippets.map((p) => (
-            <TabPanel key={p._id} mt="-6">
-              <SnippetItem id={p.framework} code={p.body.code} />
-            </TabPanel>
-          ))}
+          {FRAMEWORKS.map((framework) => {
+            const snippet = snippets.find((p) => p.framework === framework)
+            return (
+              <TabPanel
+                key={framework}
+                mt="-6"
+                _focusVisible={{ outline: "2px solid blue" }}
+              >
+                <SnippetItem id={framework} code={snippet.body.code} />
+              </TabPanel>
+            )
+          })}
         </TabPanels>
       </Tabs>
     )

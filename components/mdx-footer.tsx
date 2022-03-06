@@ -21,13 +21,12 @@ export function MdxFooter() {
           <HiChevronRight />
         </Flex>
       </Flex>
+
       <Box
         pt="10"
-        pb="28"
         borderTopWidth="1px"
         display={{ sm: "flex" }}
         justifyContent="space-between"
-        color="gray.500"
       >
         <Box mb={{ base: "6", sm: "0" }}>
           <p>
@@ -35,11 +34,14 @@ export function MdxFooter() {
             <chakra.span role="img" aria-label="Nigeria" mx="2">
               🇳🇬
             </chakra.span>
-            by Segun Adebayo.
+            by Segun Adebayo
           </p>
-          <p>Copyright © {new Date().getFullYear()}</p>
         </Box>
         <a href="#">Edit this page on GitHub</a>
+      </Box>
+
+      <Box fontSize="xs" mt="4" mb="28" opacity={0.5}>
+        Copyright © {new Date().getFullYear()}
       </Box>
     </chakra.footer>
   )
