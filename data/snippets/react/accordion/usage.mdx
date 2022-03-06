@@ -11,7 +11,7 @@ const data = [
 
 function Accordion() {
   const [state, send] = useMachine(accordion.machine)
-  const api = useMemo(() => Accordion.connect(state, send), [state])
+  const api = useMemo(() => accordion.connect(state, send), [state])
 
   return (
     <div {...api.rootProps}>

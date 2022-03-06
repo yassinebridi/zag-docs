@@ -1,0 +1,36 @@
+```jsx
+import * as accordion from "@ui-machines/accordion"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, createUniqueId, For } from "solid-js"
+
+const data = [
+  { title: "Watercraft", content: "Sample accordion content" },
+  { title: "Automobiles", content: "Sample accordion content" },
+  { title: "Aircrafts", content: "Sample accordion content" },
+]
+
+function Accordion() {
+  const [state, send] = useMachine(accordion.machine)
+  const ref = useSetup({ send, id: createUniqueId() })
+  const api = createMemo(() => accordion.connect(state, send, normalizeProps))
+
+  return (
+    <div ref={ref} {...api().rootProps}>
+      <For each={data}>
+        {(item) => (
+          <div {...api().getItemProps({ value: item.value })}>
+            <h3>
+              <button {...api().getTriggerProps({ value: item.value })}>
+                {item.label}
+              </button>
+            </h3>
+            <div {...api().getContentProps({ value: item.id })}>
+              {item.content}
+            </div>
+          </div>
+        )}
+      </For>
+    </div>
+  )
+}
+```
