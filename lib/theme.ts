@@ -88,7 +88,6 @@ const theme = {
     },
     h3: {
       fontFamily: "heading",
-      fontWeight: "regular",
       fontSize: "2xl",
       marginTop: "xl",
       marginBottom: "4",

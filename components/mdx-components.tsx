@@ -1,8 +1,9 @@
 import { allSnippets } from ".contentlayer/data"
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
+import { Icon } from "@chakra-ui/icon"
 import { HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Icon } from "@chakra-ui/icon"
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
+import { MDX } from "contentlayer/core"
 import {
   frameworks,
   FRAMEWORKS,
@@ -12,14 +13,17 @@ import {
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
+import { CopyButton } from "./copy-button"
 import { Accordion } from "./machines/accordion"
 import { Playground } from "./playground"
 
-function SnippetItem({ code, id }) {
-  const content = useMDX(code)
+function SnippetItem({ body, id }: { body: MDX; id: string }) {
+  const content = useMDX(body.code)
+  const textContent = body.raw.split("\n").slice(1, -2).join("\n")
   return (
     <div className="prose" id="snippet" data-framework={id}>
       {content}
+      <CopyButton content={textContent} />
     </div>
   )
 }
@@ -91,6 +95,7 @@ const components: Record<string, FC<Record<string, any>>> = {
     const [index, setIndex] = useState(
       getFrameworkIndex(userFramework ?? "react"),
     )
+
     return (
       <Tabs
         index={index}
@@ -125,11 +130,12 @@ const components: Record<string, FC<Record<string, any>>> = {
             const snippet = snippets.find((p) => p.framework === framework)
             return (
               <TabPanel
+                position="relative"
                 key={framework}
                 mt="-6"
                 _focusVisible={{ outline: "2px solid blue" }}
               >
-                <SnippetItem id={framework} code={snippet.body.code} />
+                <SnippetItem id={framework} body={snippet.body} />
               </TabPanel>
             )
           })}
