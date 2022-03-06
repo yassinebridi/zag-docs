@@ -36,7 +36,12 @@ export function Playground(props: PlaygroundProps) {
   )
 
   return (
-    <Flex borderWidth="1px" minHeight="24em" my="16">
+    <Flex
+      direction={{ base: "column", md: "row" }}
+      borderWidth="1px"
+      minHeight="24em"
+      my="16"
+    >
       <Box
         padding="5"
         bg="gray.50"
@@ -49,7 +54,7 @@ export function Playground(props: PlaygroundProps) {
 
       <Divider orientation="vertical" width="1px" borderColor="red" />
 
-      <Box width="240px" fontSize="sm">
+      <Box width={{ md: "240px" }} fontSize="sm">
         <Header>Properties</Header>
         <Stack direction="column" spacing="4" px="5" py="4">
           {Object.keys(state).map((key) => {
