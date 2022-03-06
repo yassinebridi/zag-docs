@@ -1,6 +1,11 @@
+import { ElementType } from "react"
+import { AiOutlineCompass } from "react-icons/ai"
+import { HiOutlineViewGrid } from "react-icons/hi"
+
 type SidebarItem =
   | {
       type: "category"
+      icon?: ElementType
       id: string
       label: string
       collapsible?: boolean
@@ -25,6 +30,7 @@ const sidebar: Record<string, SidebarItem[]> = {
     {
       type: "category",
       label: "Overview",
+      icon: AiOutlineCompass,
       id: "overview",
       items: [
         { type: "doc", label: "Introduction", id: "introduction" },
@@ -35,6 +41,7 @@ const sidebar: Record<string, SidebarItem[]> = {
     {
       type: "category",
       label: "Components",
+      icon: HiOutlineViewGrid,
       id: "components",
       items: [
         { type: "doc", label: "Accordion", id: "accordion" },

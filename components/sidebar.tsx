@@ -1,4 +1,5 @@
-import { Box, Flex, Stack } from "@chakra-ui/layout"
+import Icon from "@chakra-ui/icon"
+import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
@@ -35,20 +36,22 @@ function DocLink(props: DocLinkProps) {
 export function Sidebar() {
   return (
     <nav aria-label="Sidebar Navigation">
-      <Stack as="ul" listStyleType="none" direction="column" spacing="6">
+      <Stack as="ul" listStyleType="none" direction="column" spacing="10">
         {sidebar.docsSidebar.map((item) => {
           if (item.type === "category") {
             return (
               <li className="sidebar__category" key={item.id}>
-                <chakra.h5 fontSize="sm" mb="2" fontWeight="600">
-                  {item.label}
-                </chakra.h5>
-                <Flex
-                  as="ul"
-                  listStyleType="none"
-                  direction="column"
-                  borderLeftWidth="1px"
-                >
+                <HStack mb="3">
+                  <Icon as={item.icon} />
+                  <chakra.h5
+                    fontSize="xs"
+                    fontWeight="semibold"
+                    textTransform="uppercase"
+                  >
+                    {item.label}
+                  </chakra.h5>
+                </HStack>
+                <Flex as="ul" listStyleType="none" direction="column">
                   {item.items.map((subItem) => {
                     if (subItem.type === "doc") {
                       return (

@@ -116,7 +116,6 @@ const theme = {
     },
     sidebarLink: {
       display: "block",
-      px: "6",
       py: "1",
       transition: "color 0.2s ease-in-out",
       _hover: {
