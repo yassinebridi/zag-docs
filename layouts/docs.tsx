@@ -1,5 +1,6 @@
 import { Box, Spacer } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
+import { FrameworkSelect } from "components/framework-select"
 import { MdxFooter } from "components/mdx-footer"
 import { SearchTrigger } from "components/search-trigger"
 import { Sidebar } from "components/sidebar"
@@ -41,6 +42,7 @@ export default function DocsLayout({ children, toc }: DocsLayoutProps) {
                 <Spacer height="10" bg="white" />
                 <SearchTrigger />
                 <Spacer mt="px" height="5" bg="white" />
+                <FrameworkSelect />
               </Box>
               <Sidebar />
             </Box>

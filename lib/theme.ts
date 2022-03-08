@@ -52,17 +52,17 @@ const theme = {
   },
   layerStyles: {
     blockquote: {
-      mt: "5",
-      px: "4",
-      py: "3",
+      marginY: "5",
+      paddingX: "4",
+      paddingY: "3",
       bg: "orange.50",
       rounded: "4px",
     },
     inlineCode: {
       bg: "blackAlpha.100",
       rounded: "sm",
-      py: "0.5",
-      px: "1.5",
+      paddingY: "0.5",
+      paddingX: "1.5",
       fontSize: "0.8em",
       fontFamily: "mono",
       color: "red.600",
@@ -88,14 +88,15 @@ const theme = {
     },
     h3: {
       fontFamily: "heading",
-      fontSize: "2xl",
-      marginTop: "xl",
+      fontWeight: "semibold",
+      fontSize: "xl",
+      marginTop: "6",
       marginBottom: "4",
       lineHeight: "1.5",
     },
     h4: {
-      fontWeight: "regular",
-      marginTop: "lg",
+      fontWeight: "semibold",
+      marginTop: "6",
       marginBottom: "3",
       lineHeight: "1.5",
     },
@@ -112,7 +113,7 @@ const theme = {
     },
     sidebarLink: {
       display: "block",
-      py: "1",
+      paddingY: "1",
       transition: "color 0.2s ease-in-out",
       _hover: {
         textDecoration: "underline",
