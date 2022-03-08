@@ -1,7 +1,7 @@
 import type { Component } from ".contentlayer/types"
 import { useMDX } from "components/mdx-components"
 import DocsLayout from "layouts/docs"
-import { Framework, FrameworkContext } from "lib/framework"
+import { Framework, FrameworkProvider } from "lib/framework"
 import {
   extractParams,
   getComponentDoc,
@@ -17,9 +17,9 @@ type PageProps = {
 export default function ComponentPage({ doc, framework }: PageProps) {
   const mdx = useMDX(doc.body.code)
   return (
-    <FrameworkContext.Provider value={framework}>
+    <FrameworkProvider value={framework}>
       <DocsLayout toc={doc.frontmatter.toc}>{mdx}</DocsLayout>
-    </FrameworkContext.Provider>
+    </FrameworkProvider>
   )
 }
 

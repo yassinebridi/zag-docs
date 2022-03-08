@@ -1,10 +1,10 @@
 import { HStack } from "@chakra-ui/layout"
-import { useFramework } from "lib/framework"
+import { Framework, useFramework } from "lib/framework"
 import { useRouter } from "next/router"
 import { chakra } from "@chakra-ui/system"
 
 export function FrameworkSelect() {
-  const framework = useFramework()
+  const { framework, setFramework } = useFramework()
   const { replace, asPath } = useRouter()
 
   return (
@@ -23,8 +23,9 @@ export function FrameworkSelect() {
         color="green.500"
         defaultValue={framework}
         onChange={(event) => {
-          const newFramework = event.currentTarget.value
-          if (newFramework !== framework) {
+          const newFramework = event.currentTarget.value as Framework
+          setFramework(newFramework)
+          if (asPath.includes(framework) && newFramework !== framework) {
             const url = asPath.replace(framework, newFramework)
             replace(url)
           }

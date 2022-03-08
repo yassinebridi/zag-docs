@@ -14,8 +14,6 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
-import { Accordion } from "./machines/accordion"
-import { Playground } from "./playground"
 import { __components } from "./playground-components"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
@@ -79,7 +77,7 @@ const components: Record<string, FC<Record<string, any>>> = {
     return <div {...rest}>{code}</div>
   },
   CodeSnippet(props) {
-    const userFramework = useFramework()
+    const { framework: userFramework } = useFramework()
     const snippets = allSnippets.filter((p) => p._id.endsWith(props.id))
     const [index, setIndex] = useState(
       getFrameworkIndex(userFramework ?? "react"),

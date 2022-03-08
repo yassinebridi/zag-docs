@@ -1,7 +1,7 @@
 import sidebar from "sidebar.config"
 
-function formatUrl(group: string, item: string, framework?: string) {
-  return "/" + [group, framework, item].filter(Boolean).join("/")
+export function formatUrl(category: string, item: string, framework?: string) {
+  return "/" + [category, framework, item].filter(Boolean).join("/")
 }
 
 export function getPaginationData(framework: string) {

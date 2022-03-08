@@ -1,6 +1,8 @@
 import Icon from "@chakra-ui/icon"
 import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
+import { useFramework } from "lib/framework"
+import { formatUrl } from "lib/pagination-utils"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
@@ -34,6 +36,8 @@ function DocLink(props: DocLinkProps) {
 }
 
 export function Sidebar() {
+  const { framework } = useFramework()
+
   return (
     <nav aria-label="Sidebar Navigation">
       <Stack as="ul" listStyleType="none" direction="column" spacing="10">
@@ -53,12 +57,10 @@ export function Sidebar() {
                 </HStack>
                 <Flex as="ul" listStyleType="none" direction="column">
                   {item.items.map((subItem) => {
+                    const href = formatUrl(item.id, subItem.id, framework)
                     if (subItem.type === "doc") {
                       return (
-                        <DocLink
-                          key={subItem.id}
-                          href={`/${item.id}/${subItem.id}`}
-                        >
+                        <DocLink key={subItem.id} href={href}>
                           {subItem.label}
                         </DocLink>
                       )
@@ -70,11 +72,7 @@ export function Sidebar() {
             )
           }
 
-          return (
-            <li className="sidebar__link" key={item.id}>
-              <DocLink href={`/docs/${item.id}`}>{item.label}</DocLink>
-            </li>
-          )
+          return null
         })}
       </Stack>
     </nav>
