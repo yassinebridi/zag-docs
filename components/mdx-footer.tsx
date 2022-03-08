@@ -15,28 +15,26 @@ export function MdxFooter() {
         color="gray.700"
         fontWeight="semibold"
       >
-        <Link href={prev?.url} passHref>
-          <HStack
-            as="a"
-            visibility={!prev ? "hidden" : undefined}
-            spacing="3"
-            rel="prev"
-          >
-            <HiChevronLeft />
-            <span>{prev?.label}</span>
-          </HStack>
-        </Link>
-        <Link href={next?.url} passHref>
-          <HStack
-            visibility={!prev ? "hidden" : undefined}
-            as="a"
-            spacing="3"
-            rel="next"
-          >
-            <span>{next?.label}</span>
-            <HiChevronRight />
-          </HStack>
-        </Link>
+        {prev ? (
+          <Link href={prev.url} passHref>
+            <HStack as="a" spacing="3" rel="prev">
+              <HiChevronLeft />
+              <span>{prev.label}</span>
+            </HStack>
+          </Link>
+        ) : (
+          <div className="pagination__empty" />
+        )}
+        {next ? (
+          <Link href={next.url} passHref>
+            <HStack as="a" spacing="3" rel="next">
+              <span>{next.label}</span>
+              <HiChevronRight />
+            </HStack>
+          </Link>
+        ) : (
+          <div className="pagination__empty" />
+        )}
       </Flex>
 
       <Box
