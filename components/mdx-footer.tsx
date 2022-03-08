@@ -1,15 +1,11 @@
 import { Box, Flex, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { useFramework } from "lib/framework"
-import { paginate } from "lib/pagination-utils"
+import { usePagination } from "lib/use-pagination"
 import Link from "next/link"
-import { useRouter } from "next/router"
-import { HiChevronRight, HiChevronLeft } from "react-icons/hi"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 
 export function MdxFooter() {
-  const framework = useFramework()
-  const { asPath } = useRouter()
-  const { prev, next } = paginate({ framework, current: asPath })
+  const { prev, next } = usePagination()
   return (
     <chakra.footer fontSize="sm" mt="12">
       <Flex
@@ -20,13 +16,23 @@ export function MdxFooter() {
         fontWeight="semibold"
       >
         <Link href={prev?.url} passHref>
-          <HStack as="a" visibility={!prev ? "hidden" : undefined} spacing="3">
+          <HStack
+            as="a"
+            visibility={!prev ? "hidden" : undefined}
+            spacing="3"
+            rel="prev"
+          >
             <HiChevronLeft />
             <span>{prev?.label}</span>
           </HStack>
         </Link>
         <Link href={next?.url} passHref>
-          <HStack visibility={!prev ? "hidden" : undefined} as="a" spacing="3">
+          <HStack
+            visibility={!prev ? "hidden" : undefined}
+            as="a"
+            spacing="3"
+            rel="next"
+          >
             <span>{next?.label}</span>
             <HiChevronRight />
           </HStack>

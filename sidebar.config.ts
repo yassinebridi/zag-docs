@@ -25,8 +25,8 @@ type SidebarItem =
       href: string
     }
 
-const sidebar: Record<string, SidebarItem[]> = {
-  docsSidebar: [
+const sidebar: Record<"docs", SidebarItem[]> = {
+  docs: [
     {
       type: "category",
       label: "Overview",

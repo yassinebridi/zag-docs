@@ -37,7 +37,7 @@ export function Sidebar() {
   return (
     <nav aria-label="Sidebar Navigation">
       <Stack as="ul" listStyleType="none" direction="column" spacing="10">
-        {sidebar.docsSidebar.map((item) => {
+        {sidebar.docs.map((item) => {
           if (item.type === "category") {
             return (
               <li className="sidebar__category" key={item.id}>

@@ -1,6 +1,6 @@
 import { allSnippets } from ".contentlayer/data"
 import { Icon } from "@chakra-ui/icon"
-import { HStack } from "@chakra-ui/layout"
+import { Box, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
 import { MDX } from "contentlayer/core"
@@ -16,6 +16,7 @@ import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
 import { Accordion } from "./machines/accordion"
 import { Playground } from "./playground"
+import { __components } from "./playground-components"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -29,19 +30,7 @@ function SnippetItem({ body, id }: { body: MDX; id: string }) {
 }
 
 const components: Record<string, FC<Record<string, any>>> = {
-  Accordion: () => (
-    <Playground
-      component={Accordion}
-      defaultProps={{
-        collapsible: true,
-        multiple: true,
-        value: {
-          default: "Aircrafts",
-          options: ["Aircrafts", "Automobiles", "Watercraft"],
-        },
-      }}
-    />
-  ),
+  ...__components,
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },
@@ -135,7 +124,13 @@ const components: Record<string, FC<Record<string, any>>> = {
                 mt="-6"
                 _focusVisible={{ outline: "2px solid blue" }}
               >
-                <SnippetItem id={framework} body={snippet.body} />
+                {snippet ? (
+                  <SnippetItem id={framework} body={snippet.body} />
+                ) : (
+                  <Box mt="6" padding="4" fontSize="sm" opacity="0.5">
+                    Snippet not found :(
+                  </Box>
+                )}
               </TabPanel>
             )
           })}

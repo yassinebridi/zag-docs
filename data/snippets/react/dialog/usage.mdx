@@ -1,0 +1,36 @@
+```jsx
+import { Portal } from "@reach/portal"
+import * as dialog from "@ui-machines/dialog"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+export function Dialog() {
+  const [state, send] = useMachine(dialog.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = dialog.connect(state, send)
+
+  return (
+    <>
+      <button ref={ref} {...api.triggerProps}>
+        Open Dialog
+      </button>
+      {api.isOpen && (
+        <Portal>
+          <div {...api.overlayProps}>
+            <div {...api.contentProps}>
+              <button {...api.closeButtonProps}>Close</button>
+              <h2 {...api.titleProps}>Edit profile</h2>
+              <p {...api.descriptionProps}>
+                Make changes to your profile here. Click save when you are done.
+              </p>
+              <div>
+                <input placeholder="Enter name..." />
+                <button>Save</button>
+              </div>
+            </div>
+          </div>
+        </Portal>
+      )}
+    </>
+  )
+}
+```
