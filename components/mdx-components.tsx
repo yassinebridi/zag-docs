@@ -72,10 +72,10 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   InstallSnippet(props) {
     const { package: pkg, ...rest } = props
-    const installSnippet = allSnippets.find(
-      (snippet) => snippet.slug === "install",
+    const installSnippet = allSnippets.find((s) => s.slug === "install")
+    const code = useMDX(
+      installSnippet.body.code.replace(new RegExp("pkg", "g"), pkg),
     )
-    const code = useMDX(installSnippet.body.code.replaceAll("pkg", pkg))
     return <div {...rest}>{code}</div>
   },
   CodeSnippet(props) {
