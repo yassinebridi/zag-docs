@@ -19,7 +19,7 @@ To use the accordion machine in your project, install the respective package
 <InstallSnippet package="@ui-machines/accordion" />
 
 ```jsx
-import * as Accordion from "@ui-machines/accordion"
+import * as accordion from "@ui-machines/accordion"
 ```
 
 If you're using React, you'll also need to install the `@ui-machines/react`
@@ -48,7 +48,7 @@ mode implicitly sets `collapsible` to `true` to also ensure that each accordion
 can be expanded.
 
 ```jsx
-const [state, send] = useMachine(Accordion.machine, {
+const [state, send] = useMachine(accordion.machine, {
   context: { multiple: true },
 })
 ```
@@ -61,7 +61,7 @@ To set the value of the accordion(s) that should be opened initially, use the
 ```jsx
 // for multiple accordions
 const [state, send] = useMachine(
-  Accordion.machine.withContext({
+  accordion.machine.withContext({
     multiple: true,
     value: ["home"],
   }),
@@ -69,7 +69,7 @@ const [state, send] = useMachine(
 
 // for single accordions
 const [state, send] = useMachine(
-  Accordion.machine.withContext({
+  accordion.machine.withContext({
     value: "home",
   }),
 )
@@ -84,7 +84,7 @@ the context's `collapsible` property to `true`.
 
 ```jsx
 const [state, send] = useMachine(
-  Accordion.machine.withContext({
+  accordion.machine.withContext({
     collapsible: true,
   }),
 )
@@ -98,28 +98,27 @@ The accordion's connect method exposes the following methods:
 - `value`: The value of the currently selected accordion
 
 ```jsx
-const accordion = connect(state, send)
+const api = connect(state, send)
 
-accordion.value // => "item-1"
-accordion.setValue("item-2")
+api.value // => "item-1"
+api.setValue("item-2")
 ```
 
 ## Styling the expanded state
 
 When an accordion item is expanded, a `data-expanded` attribute is set on the
-accordion trigger element. When it closes, the `data-expanded` attribute is
-removed.
+accordion item, trigger and content elements. When it closes, the
+`data-expanded` attribute is removed. You can use this to style the expanded
+states accordingly.
 
 ```css
-.accordion-trigger {
+/* Default styles for accordion trigger */
+[data-part="trigger"] {
   background: white;
 }
 
 /* Styling the expanded state */
-.accordion-trigger[data-expanded] {
+[data-part="trigger"][data-expanded] {
   background: red;
 }
 ```
-
-> The style above assumes that you passed `.accordion-trigger` classname to the
-> accordion trigger button element.

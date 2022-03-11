@@ -4,13 +4,12 @@ import { chakra } from "@chakra-ui/system"
 import { Portal } from "@reach/portal"
 import * as dialog from "@ui-machines/dialog"
 import { useMachine, useSetup } from "@ui-machines/react"
-import { useMemo } from "react"
 import { HiX } from "react-icons/hi"
 
-export function Dialog() {
-  const [state, send] = useMachine(dialog.machine)
+export function Dialog(props: { controls: any }) {
+  const [state, send] = useMachine(dialog.machine, { context: props.controls })
   const ref = useSetup<HTMLButtonElement>({ send, id: "1" })
-  const api = useMemo(() => dialog.connect(state, send), [state, send])
+  const api = dialog.connect(state, send)
 
   return (
     <>
@@ -29,15 +28,15 @@ export function Dialog() {
             position="fixed"
             inset="0"
             bg="blackAlpha.500"
-            zIndex="overlay"
-            {...api.overlayProps}
+            zIndex="modal"
           />
           <Center
             height="100vh"
-            position="absolute"
+            width="100vw"
+            position="fixed"
             zIndex="modal"
             inset="0"
-            pointerEvents="none"
+            {...api.underlayProps}
           >
             <chakra.div
               width="full"
@@ -46,6 +45,7 @@ export function Dialog() {
               bg="white"
               padding="5"
               position="relative"
+              pointerEvents="auto"
               {...api.contentProps}
             >
               <chakra.h2
@@ -59,6 +59,7 @@ export function Dialog() {
               <chakra.p fontSize="sm" {...api.descriptionProps} mb="3">
                 Make changes to your profile here. Click save when you are done.
               </chakra.p>
+
               <HStack>
                 <chakra.input
                   flex="1"
