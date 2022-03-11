@@ -2,12 +2,22 @@ import foundations from "@chakra-ui/theme/foundations"
 
 const theme = {
   ...foundations,
+  fonts: {
+    ...foundations.fonts,
+    heading: "'Spline Sans', sans-serif",
+    body: "'Spline Sans', sans-serif",
+  },
   config: {
     useSystemColorMode: false,
     initialColorMode: "light",
   },
   styles: {
     global: {
+      "@font-face": {
+        fontFamily: "'Spline Sans'",
+        src: "url('/fonts/spline-sans.woff2') format('woff2')",
+        fontWeight: "100 1000",
+      },
       "body, html": {
         fontFamily: "body",
         textRendering: "geometricprecision",
@@ -55,7 +65,7 @@ const theme = {
       marginY: "5",
       paddingX: "4",
       paddingY: "3",
-      bg: "orange.50",
+      bg: "green.100",
       rounded: "4px",
     },
     inlineCode: {
@@ -65,6 +75,7 @@ const theme = {
       paddingX: "1.5",
       fontSize: "0.8em",
       fontFamily: "mono",
+      fontWeight: "bold",
       color: "red.600",
     },
   },
@@ -72,7 +83,7 @@ const theme = {
     h1: {
       fontFamily: "heading",
       letterSpacing: "tight",
-      fontWeight: "bold",
+      fontWeight: "900",
       fontSize: { base: "3xl", md: "4xl" },
       marginBottom: "5",
       lineHeight: "1.2",

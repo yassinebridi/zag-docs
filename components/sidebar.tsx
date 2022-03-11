@@ -45,7 +45,7 @@ export function Sidebar() {
           if (item.type === "category") {
             return (
               <li className="sidebar__category" key={item.id}>
-                <HStack mb="3">
+                <HStack mb="3" color="green.500">
                   <Icon as={item.icon} />
                   <chakra.h5
                     fontSize="xs"
