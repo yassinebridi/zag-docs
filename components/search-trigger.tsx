@@ -13,7 +13,6 @@ export function SearchTrigger(props: HTMLChakraProps<"button">) {
       gap="2"
       bg="white"
       fontSize="sm"
-      rounded="md"
       py="2"
       pl="2"
       pr="3"

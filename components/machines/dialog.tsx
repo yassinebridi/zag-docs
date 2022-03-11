@@ -16,7 +16,9 @@ export function Dialog(props: { controls: any }) {
       <chakra.button
         px="4"
         py="2"
-        bg="gray.400"
+        bg="green.500"
+        color="white"
+        fontWeight="medium"
         ref={ref}
         {...api.triggerProps}
       >
