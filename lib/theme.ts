@@ -47,7 +47,7 @@ const theme = {
           "a:focus": { opacity: 1 },
         },
         "p + p": {
-          marginTop: "8",
+          marginTop: "6",
         },
         "a.anchor": {
           opacity: 0,

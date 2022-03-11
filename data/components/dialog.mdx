@@ -41,13 +41,23 @@ By default, the dialog opens when the trigger is clicked. If you need
 programmatically open the dialog from other elements, you can leverage the
 exposed `open` and `close` methods.
 
-<CodeSnippet id="dialog/open-close.mdx" />
+```jsx
+const api = dialog.connect(state, send)
+
+// to open the dialog
+api.open()
+
+// to close the dialog
+api.close()
+```
 
 ## Managing focus within the dialog
 
 When the dialog opens, it automatically sets focus on the first focusable
 elements and traps focus within it, so that tabbing will be contrained within
-it. To control the element that should receive focus on open, pass the
+it.
+
+To control the element that should receive focus on open, pass the
 `initialFocusEl` context (which can be an element or a function that returns an
 element)
 
@@ -62,13 +72,25 @@ be an element or a function that returns an element)
 ## Closing the dialog on overlay click
 
 By default, the dialog closes when you click its overlay. You can set
-`closeOnOverlayClick` to false if you want the modal to stay visible.
+`closeOnOutsideClick` to `false` if you want the modal to stay visible.
 
-<CodeSnippet id="dialog/close-on-overlay-click.mdx" />
+```jsx
+const [state, send] = useMachine(
+  dialog.machine.withContext({
+    closeOnOutsideClick: false,
+  }),
+)
+```
 
 ## Controlling the scroll behavior
 
 When the dialog is open, it prevents scrolling on the `body` element. To disable
 this behavior, set the `preventScroll` context to `false`.
 
-<CodeSnippet id="dialog/prevent-scroll.mdx" />
+```jsx
+const [state, send] = useMachine(
+  dialog.machine.withContext({
+    preventScroll: false,
+  }),
+)
+```
