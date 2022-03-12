@@ -13,6 +13,7 @@ export default defineComponent({
   name: "Accordion",
   setup() {
     const [state, send] = useMachine(accordion.machine)
+    const ref = useSetup({ send, id: "1" })
     const apiRef = computed(() =>
       accordion.connect(state.value, send, normalizeProps),
     )

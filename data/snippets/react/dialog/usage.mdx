@@ -15,9 +15,9 @@ export function Dialog() {
       </button>
       {api.isOpen && (
         <Portal>
-          <div {...api.overlayProps}>
+          <div {...api.overlayProps} />
+          <div {...api.underlayProps}>
             <div {...api.contentProps}>
-              <button {...api.closeButtonProps}>Close</button>
               <h2 {...api.titleProps}>Edit profile</h2>
               <p {...api.descriptionProps}>
                 Make changes to your profile here. Click save when you are done.
@@ -26,6 +26,7 @@ export function Dialog() {
                 <input placeholder="Enter name..." />
                 <button>Save</button>
               </div>
+              <button {...api.closeButtonProps}>Close</button>
             </div>
           </div>
         </Portal>

@@ -29,7 +29,7 @@ pre[class*="language-"] *::selection {
 
 /* Code blocks */
 pre[class*="language-"] {
-  padding: 1em;
+  padding: 1em 0;
   margin: 2em 0;
   overflow: auto;
   border-radius: 0.3em;
@@ -244,13 +244,14 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:focus {
 
 /* Line Highlight plugin overrides */
 /* The highlighted line itself */
-.line-highlight.line-highlight {
+.highlight-line.highlight-line {
   background: hsla(230, 8%, 24%, 0.05);
+  border-left: 2px solid var(--colors-green-400);
 }
 
 /* Default line numbers in Line Highlight plugin */
-.line-highlight.line-highlight:before,
-.line-highlight.line-highlight[data-end]:after {
+.highlight-line.highlight-line:before,
+.highlight-line.highlight-line[data-end]:after {
   background: hsl(230, 1%, 90%);
   color: hsl(230, 8%, 24%);
   padding: 0.1em 0.6em;
@@ -394,4 +395,9 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 /* Fill colour of the handle */
 .prism-previewer-easing.prism-previewer-easing circle {
   fill: transparent;
+}
+
+.code-line {
+  display: block;
+  padding: 0 1em;
 }
