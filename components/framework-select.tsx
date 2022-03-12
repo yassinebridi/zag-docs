@@ -8,7 +8,7 @@ export function FrameworkSelect() {
   const { replace, asPath } = useRouter()
 
   return (
-    <HStack mb="8">
+    <HStack>
       <chakra.label
         fontWeight="medium"
         htmlFor="framework-select"

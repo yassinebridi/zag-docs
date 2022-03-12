@@ -38,7 +38,7 @@ export default function DocsLayout({ children, toc }: DocsLayoutProps) {
             overscrollBehavior="contain"
           >
             <Box position="relative">
-              <Box position="sticky" top="0">
+              <Box position="sticky" top="0" bg="white" pb="5">
                 <Spacer height="10" bg="white" />
                 <SearchTrigger />
                 <Spacer mt="px" height="5" bg="white" />
