@@ -1,0 +1,21 @@
+```jsx
+import * as numberInput from "@ui-machines/number-input"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+export function NumberInput() {
+  const [state, send] = useMachine(numberInput.machine, { sync: true })
+  const ref = useSetup({ send, id: "1" })
+  const api = numberInput.connect(state, send)
+
+  return (
+    <div ref={ref}>
+      <label {...api.labelProps}>Enter number:</label>
+      <div>
+        <button {...api.decrementButtonProps}>DEC</button>
+        <input {...api.inputProps} />
+        <button {...api.incrementButtonProps}>INC</button>
+      </div>
+    </div>
+  )
+}
+```

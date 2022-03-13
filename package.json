@@ -24,6 +24,7 @@
     "@reach/portal": "^0.16.2",
     "@ui-machines/accordion": "dev",
     "@ui-machines/dialog": "dev",
+    "@ui-machines/number-input": "dev",
     "@ui-machines/react": "dev",
     "@ui-machines/editable": "dev",
     "@ui-machines/pin-input": "dev",

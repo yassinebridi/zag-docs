@@ -1,6 +1,7 @@
 import { Accordion } from "./machines/accordion"
 import { Dialog } from "./machines/dialog"
 import { Editable } from "./machines/editable"
+import { NumberInput } from "./machines/number-input"
 import { PinInput } from "./machines/pin-input"
 import { Playground } from "./playground"
 
@@ -57,6 +58,20 @@ const components = {
           default: "alphanumeric",
         },
         mask: false,
+      }}
+    />
+  ),
+  NumberInput: () => (
+    <Playground
+      component={NumberInput}
+      defaultProps={{
+        disabled: false,
+        precision: 0,
+        min: -10,
+        max: 20,
+        step: 1,
+        allowMouseWheel: false,
+        clampValueOnBlur: true,
       }}
     />
   ),

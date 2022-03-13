@@ -2,6 +2,8 @@
 
 The NumberInput has controls for incrementing or decrementing numeric values.
 
+<Showcase id="NumberInput" />
+
 **Features**
 
 - Based on the spinbutton ARIA pattern.
@@ -22,7 +24,7 @@ To use the number input machine in your project, install the respective package
 <InstallSnippet package="@ui-machines/number-input" />
 
 ```jsx
-import * as NumberInput from "@ui-machines/number-input"
+import * as numberInput from "@ui-machines/number-input"
 ```
 
 Then you'll need to install the binding for your framework of choice
@@ -35,7 +37,7 @@ The number input's connect exposes `inputProps`, `labelProps`,
 `incrementButtonProps` and `decrementButtonProps`. Add these attributes to their
 respective elements.
 
-<CodeSnippet id="number-input/basic-usage.mdx" />
+<CodeSnippet id="number-input/usage.mdx" />
 
 ## Setting a minimum and maximum value
 
@@ -43,15 +45,27 @@ Pass the `min` prop or `max` prop to set an upper and lower limit for the input.
 By default, the input will restrict the value to stay within the specified
 range.
 
-<CodeSnippet id="number-input/setting-range.mdx" />
+```jsx
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    min: 10,
+    max: 200,
+  }),
+)
+```
 
 ## Adjusting the precision of the value
 
 In some cases, you might need the value to be rounded to specific decimal
-points. Simply pass the precision prop and set it to the number of decimal
-points.
+points. Pass the `precision` prop and set it to the number of decimal points.
 
-<CodeSnippet id="number-input/setting-precision.mdx" />
+```jsx
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    precision: 3,
+  }),
+)
+```
 
 ## Scrubbing the input value
 
@@ -70,7 +84,13 @@ The number input machine exposes a way to increment/decrement the value using
 the mouse wheel event. To activate this, pass the `allowMouseWheel` property to
 the machine's context.
 
-<CodeSnippet id="number-input/mouse-wheel.mdx" />
+```jsx
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    allowMouseWheel: true,
+  }),
+)
+```
 
 ## Clamp value when user blurs the input
 
@@ -80,7 +100,13 @@ of the input.
 
 To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 
-<CodeSnippet id="number-input/clamp-on-blur.mdx" />
+```jsx
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    clampValueOnBlur: false,
+  }),
+)
+```
 
 ## Format and parse value
 
@@ -88,7 +114,14 @@ To apply custom formatting to the input's value, use the exposed `format` and
 `parse` functions. For example, to format the input's value to currency, here's
 how to achieve it:
 
-<CodeSnippet id="number-input/format-and-parse.mdx" />
+```jsx
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    format(value) {...},
+    parse(value) {...},
+  }),
+)
+```
 
 ## Styling guide
 

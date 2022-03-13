@@ -114,6 +114,8 @@ export function Playground(props: PlaygroundProps) {
                     id={key}
                     type="number"
                     maxWidth="5ch"
+                    borderWidth="1px"
+                    px="2"
                     defaultValue={state[key] as number}
                     onChange={(e) => {
                       const val = e.currentTarget.valueAsNumber
