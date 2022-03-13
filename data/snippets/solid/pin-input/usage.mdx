@@ -1,0 +1,22 @@
+```jsx
+import * as pinInput from "@ui-machines/pin-input"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, createUniqueId } from "solid-js"
+
+export function PinInput() {
+  const [state, send] = useMachine(pinInput.machine)
+  const ref = useSetup({ send, id: createUniqueId() })
+  const api = createMemo(() => pinInput.connect(state, send, normalizeProps))
+
+  return (
+    <div>
+      <div ref={ref} {...api().containerProps}>
+        <input {...api().getInputProps({ index: 0 })} />
+        <input {...api().getInputProps({ index: 1 })} />
+        <input {...api().getInputProps({ index: 2 })} />
+      </div>
+      <button onClick={api().clearValue}>Clear</button>
+    </div>
+  )
+}
+```

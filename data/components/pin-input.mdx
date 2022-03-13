@@ -2,6 +2,8 @@
 
 The PinInput is optimized for entering a sequence of digits.
 
+<Showcase id="PinInput" />
+
 **Features**
 
 - Automatically focuses the next field on typing and focuses the previous field
@@ -34,22 +36,12 @@ is filled in.
 The pin inputs connect function exposes `containerProps` and `getInputProps` you
 can use to compose the UI.
 
-<CodeSnippet id="pin-input/basic-usage.mdx" />
+<CodeSnippet id="pin-input/usage.mdx" />
 
 ## Setting a default value
 
-To set the initial value of the pin input, y
-
-## Changing the placeholder
-
-To customize the default pin input placeholder (○), pass the `placeholder` prop
-and set it to your desired placeholder.
-
-## Allowing alphanumeric values
-
-By default, the pin input accepts only number values. To add support for
-alphanumeric values, pass the `type` context property and set its value to
-`alphanumeric`.
+To set the initial value of the pin input, pass the `value` context property as
+shown below.
 
 ```jsx
 const [state, send] = useMachine(
@@ -59,7 +51,32 @@ const [state, send] = useMachine(
 )
 ```
 
-<CodeSnippet id="pin-input/alphanumeric-usage.mdx" />
+## Changing the placeholder
+
+To customize the default pin input placeholder (○) for each input, pass the
+`placeholder` prop and set it to your desired value.
+
+```jsx
+const [state, send] = useMachine(
+  PinInput.machine.withContext({
+    placeholder: "*",
+  }),
+)
+```
+
+## Allowing alphanumeric values
+
+By default, the pin input accepts only number values but you can choose between
+`numeric`, `alphanumeric` and `alphabetic` values. To change the input mode,
+pass the `type` context property and set its value to `alphanumeric`.
+
+```jsx
+const [state, send] = useMachine(
+  PinInput.machine.withContext({
+    type: "alphanumeric",
+  }),
+)
+```
 
 ## Using OTP mode
 
@@ -68,7 +85,13 @@ To trigger smartphone OTC auto-suggestion, it is recommended to apply
 provides support for this. To enable this, set the `otp` context property to
 `true`.
 
-<CodeSnippet id="pin-input/otp.mdx" />
+```jsx
+const [state, send] = useMachine(
+  PinInput.machine.withContext({
+    otp: true,
+  }),
+)
+```
 
 ## Securing the text input
 
@@ -76,15 +99,13 @@ When collecting private or sensitive information using the pin input, you might
 need to mask the value entered, similar to `<input type="password"/>`. Pass the
 `mask` context property and set it to `true`.
 
-## Copy and paste
-
-Try copying & pasting `3000` into any of the inputs in the example above.
-
-By default, you can only change one input at a time, but if one of the input
-field receives a longer string by pasting into it, pin-input attempts to
-validate the string and fill the other inputs.
-
-<CodeSnippet id="pin-input/copy-paste.mdx" />
+```jsx
+const [state, send] = useMachine(
+  PinInput.machine.withContext({
+    mask: true,
+  }),
+)
+```
 
 ## Listening for changes
 
@@ -105,8 +126,6 @@ const [state, send] = useMachine(
   }),
 )
 ```
-
-<CodeSnippet id="pin-input/listening-for-changes.mdx" />
 
 ## Styling guide
 

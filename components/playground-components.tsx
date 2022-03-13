@@ -1,6 +1,7 @@
 import { Accordion } from "./machines/accordion"
 import { Dialog } from "./machines/dialog"
 import { Editable } from "./machines/editable"
+import { PinInput } from "./machines/pin-input"
 import { Playground } from "./playground"
 
 const components = {
@@ -42,6 +43,20 @@ const components = {
           options: ["enter", "blur", "none", "both"],
           default: "enter",
         },
+      }}
+    />
+  ),
+  PinInput: () => (
+    <Playground
+      component={PinInput}
+      defaultProps={{
+        disabled: false,
+        otp: false,
+        type: {
+          options: ["alphanumeric", "numeric", "alphabetic"],
+          default: "alphanumeric",
+        },
+        mask: false,
       }}
     />
   ),
