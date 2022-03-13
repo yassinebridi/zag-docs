@@ -14,7 +14,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
-import { __components } from "./playground-components"
+import { Showcase } from "./playground-components"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -28,7 +28,7 @@ function SnippetItem({ body, id }: { body: MDX; id: string }) {
 }
 
 const components: Record<string, FC<Record<string, any>>> = {
-  ...__components,
+  Showcase,
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },

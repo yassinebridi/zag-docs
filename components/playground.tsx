@@ -1,5 +1,5 @@
+import { Box, Flex, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Box, Divider, Flex, Stack } from "@chakra-ui/layout"
 import React, { useState } from "react"
 
 const Header = (props: any) => (
@@ -54,7 +54,7 @@ export function Playground(props: PlaygroundProps) {
         <Comp controls={state} />
       </Box>
 
-      <Divider orientation="vertical" width="1px" borderColor="red" />
+      <Box flexBasis="1px" alignSelf="stretch" bg="gray.200" />
 
       <Box width={{ md: "240px" }} fontSize="sm" hidden={isEmpty}>
         <Header>Properties</Header>
@@ -90,7 +90,11 @@ export function Playground(props: PlaygroundProps) {
               return (
                 <div key={key}>
                   <label htmlFor={key}>{key}</label>
-                  <input
+                  <chakra.input
+                    mt="1"
+                    width="full"
+                    borderWidth="1px"
+                    px="2"
                     id={key}
                     type="text"
                     defaultValue={value as any}
@@ -112,7 +116,7 @@ export function Playground(props: PlaygroundProps) {
                     maxWidth="5ch"
                     defaultValue={state[key] as number}
                     onChange={(e) => {
-                      const val = parseFloat(e.currentTarget.value)
+                      const val = e.currentTarget.valueAsNumber
                       setState((s) => ({ ...s, [key]: isNaN(val) ? 0 : val }))
                     }}
                   />

@@ -1,0 +1,27 @@
+```jsx
+import * as editable from "@ui-machines/editable"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+export default function Editable() {
+  const [state, send] = useMachine(editable.machine)
+  const ref = useSetup({ send, id: "1" })
+
+  const api = editable.connect(state, send)
+
+  return (
+    <div ref={ref}>
+      <div>
+        <input {...api.inputProps} />
+        <span {...api.previewProps} />
+      </div>
+      {!api.isEditing && <button {...api.editButtonProps}>Edit</button>}
+      {api.isEditing && (
+        <div>
+          <button {...api.submitButtonProps}>Save</button>
+          <button {...api.cancelButtonProps}>Cancel</button>
+        </div>
+      )}
+    </div>
+  )
+}
+```

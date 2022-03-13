@@ -70,7 +70,7 @@ export default function Home() {
             pos="absolute"
             bottom="0"
             right="0"
-            width="48vw"
+            width="min(50%,48vw)"
             height="auto"
           />
 

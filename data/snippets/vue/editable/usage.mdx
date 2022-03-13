@@ -1,0 +1,36 @@
+```jsx
+import * as editable from "@ui-machines/editable"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/vue"
+import { computed, defineComponent, h, Fragment } from "vue"
+
+export default defineComponent({
+  name: "Editable",
+  setup() {
+    const [state, send] = useMachine(editable.machine)
+    const ref = useSetup({ send, id: "1" })
+    const apiRef = computed(() =>
+      editable.connect(state.value, send, normalizeProps),
+    )
+
+    return () => {
+      const api = apiRef.value
+
+      return (
+        <div ref={ref}>
+          <div>
+            <input {...api.inputProps} />
+            <span {...api.previewProps} />
+          </div>
+          {!api.isEditing && <button {...api.editButtonProps}>Edit</button>}
+          {api.isEditing && (
+            <div>
+              <button {...api.submitButtonProps}>Save</button>
+              <button {...api.cancelButtonProps}>Cancel</button>
+            </div>
+          )}
+        </div>
+      )
+    }
+  },
+})
+```

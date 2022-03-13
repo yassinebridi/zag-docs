@@ -1,8 +1,9 @@
 import { Accordion } from "./machines/accordion"
 import { Dialog } from "./machines/dialog"
+import { Editable } from "./machines/editable"
 import { Playground } from "./playground"
 
-export const __components = {
+const components = {
   Dialog: () => (
     <Playground
       component={Dialog}
@@ -27,4 +28,26 @@ export const __components = {
       }}
     />
   ),
+  Editable: () => (
+    <Playground
+      component={Editable}
+      defaultProps={{
+        selectOnFocus: true,
+        placeholder: "Enter text...",
+        activationMode: {
+          options: ["focus", "dblclick", "none"],
+          default: "focus",
+        },
+        submitMode: {
+          options: ["enter", "blur", "none", "both"],
+          default: "enter",
+        },
+      }}
+    />
+  ),
+}
+
+export function Showcase(props: { id: keyof typeof components }) {
+  const Component = components[props.id]
+  return <Component />
 }
