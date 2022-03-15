@@ -1,0 +1,31 @@
+```jsx
+import { Portal } from "@reach/portal"
+import * as popover from "@ui-machines/popover"
+import { useMachine, useSetup } from "@ui-machines/react"
+import * as React from "react"
+
+export default function Page() {
+  const [state, send] = useMachine(popover.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = popover.connect(state, send)
+
+  const Wrapper = api.portalled ? Portal : React.Fragment
+
+  return (
+    <div ref={ref}>
+      <button {...api.triggerProps}>Click me</button>
+      <Wrapper>
+        <div {...api.contentProps}>
+          <div {...api.arrowProps}>
+            <div {...api.innerArrowProps} />
+          </div>
+          <div {...api.titleProps}>Presenters</div>
+          <div {...api.descriptionProps}>Description</div>
+          <button>Action Button</button>
+          <button {...api.closeButtonProps}>X</button>
+        </div>
+      </Wrapper>
+    </div>
+  )
+}
+```
