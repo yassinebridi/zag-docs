@@ -1,0 +1,38 @@
+```jsx
+import * as popover from "@ui-machines/popover"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, createUniqueId } from "solid-js"
+import { Portal } from "solid-js/web"
+
+function Wrapper(props) {
+  return props.portal ? (
+    <Portal mount={document.body}>{props.children}</Portal>
+  ) : (
+    props.children
+  )
+}
+
+export function Popover() {
+  const [state, send] = useMachine(popover.machine)
+  const ref = useSetup({ send, id: createUniqueId() })
+  const api = createMemo(() => Popover.connect(state, send, normalizeProps))
+
+  return (
+    <div ref={ref}>
+      <button {...api().triggerProps}>Click me</button>
+      <Wrapper portal={popover().portalled}>
+        <div {...api().positionerProps}>
+          <div {...api().contentProps}>
+            <div {...api().arrowProps}>
+              <div {...api().innerArrowProps} />
+            </div>
+            <div {...api().titleProps}>Popover Title</div>
+            <div {...api().descriptionProps}>Description</div>
+            <button {...api().closeButtonProps}>X</button>
+          </div>
+        </div>
+      </Wrapper>
+    </div>
+  )
+}
+```

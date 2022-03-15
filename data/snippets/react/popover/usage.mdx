@@ -4,7 +4,7 @@ import * as popover from "@ui-machines/popover"
 import { useMachine, useSetup } from "@ui-machines/react"
 import * as React from "react"
 
-export default function Page() {
+export function Accordion() {
   const [state, send] = useMachine(popover.machine)
   const ref = useSetup({ send, id: "1" })
   const api = popover.connect(state, send)

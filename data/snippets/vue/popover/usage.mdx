@@ -1,0 +1,41 @@
+```jsx
+import * as popover from "@ui-machines/popover"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/vue"
+import { defineComponent, computed, h, Fragment, Teleport } from "vue"
+
+export default defineComponent({
+  name: "Popover",
+  setup() {
+    const [state, send] = useMachine(popover.machine)
+
+    const ref = useSetup({ send, id: "1" })
+
+    const apiRef = computed(() =>
+      popover.connect(state.value, send, normalizeProps),
+    )
+
+    return () => {
+      const api = apiRef.value
+      const Wrapper = api.portalled ? Teleport : Fragment
+      return (
+        <div ref={ref}>
+          <button {...api.triggerProps}>Click me</button>
+          <Wrapper>
+            <div {...api.positionerProps}>
+              <div {...api.contentProps}>
+                <div {...api.arrowProps}>
+                  <div {...api.innerArrowProps} />
+                </div>
+                <div {...api.titleProps}>Presenters</div>
+                <div {...api.descriptionProps}>Description</div>
+                <button>Action Button</button>
+                <button {...api.closeButtonProps}>X</button>
+              </div>
+            </div>
+          </Wrapper>
+        </div>
+      )
+    }
+  },
+})
+```
