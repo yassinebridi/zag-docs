@@ -3,6 +3,7 @@ import { Dialog } from "./machines/dialog"
 import { Editable } from "./machines/editable"
 import { NumberInput } from "./machines/number-input"
 import { PinInput } from "./machines/pin-input"
+import { Popover } from "./machines/popover"
 import { Playground } from "./playground"
 
 const components = {
@@ -72,6 +73,18 @@ const components = {
         step: 1,
         allowMouseWheel: false,
         clampValueOnBlur: true,
+      }}
+    />
+  ),
+  Popover: () => (
+    <Playground
+      component={Popover}
+      defaultProps={{
+        modal: false,
+        portalled: false,
+        autoFocus: true,
+        closeOnBlur: true,
+        closeOnEsc: true,
       }}
     />
   ),

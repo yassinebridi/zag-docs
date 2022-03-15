@@ -24,6 +24,12 @@ const theme = {
         textSizeAdjust: "100%",
         WebkitFontSmoothing: "antialiased",
       },
+      ".focus-outline": {
+        "*:focus": {
+          outline: "2px solid hsl(204, 100%, 40%)",
+          outlineOffset: "2px",
+        },
+      },
       "*": {
         borderColor: "gray.200",
         borderStyle: "solid",

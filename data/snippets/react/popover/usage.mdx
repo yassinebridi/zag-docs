@@ -15,14 +15,16 @@ export default function Page() {
     <div ref={ref}>
       <button {...api.triggerProps}>Click me</button>
       <Wrapper>
-        <div {...api.contentProps}>
-          <div {...api.arrowProps}>
-            <div {...api.innerArrowProps} />
+        <div {...api.positionerProps}>
+          <div {...api.contentProps}>
+            <div {...api.arrowProps}>
+              <div {...api.innerArrowProps} />
+            </div>
+            <div {...api.titleProps}>Presenters</div>
+            <div {...api.descriptionProps}>Description</div>
+            <button>Action Button</button>
+            <button {...api.closeButtonProps}>X</button>
           </div>
-          <div {...api.titleProps}>Presenters</div>
-          <div {...api.descriptionProps}>Description</div>
-          <button>Action Button</button>
-          <button {...api.closeButtonProps}>X</button>
         </div>
       </Wrapper>
     </div>
