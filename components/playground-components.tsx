@@ -4,6 +4,7 @@ import { Editable } from "./machines/editable"
 import { NumberInput } from "./machines/number-input"
 import { PinInput } from "./machines/pin-input"
 import { Popover } from "./machines/popover"
+import { Tabs } from "./machines/tabs"
 import { Playground } from "./playground"
 
 const components = {
@@ -85,6 +86,18 @@ const components = {
         autoFocus: true,
         closeOnBlur: true,
         closeOnEsc: true,
+      }}
+    />
+  ),
+  Tabs: () => (
+    <Playground
+      component={Tabs}
+      defaultProps={{
+        loop: false,
+        activationMode: {
+          default: "automatic",
+          options: ["manual", "automatic"],
+        },
       }}
     />
   ),

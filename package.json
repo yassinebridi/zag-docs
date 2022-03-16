@@ -34,6 +34,7 @@
     "@ui-machines/react": "^0.0.0-dev-20220315093055",
     "@ui-machines/slider": "^0.0.0-dev-20220315093055",
     "@ui-machines/splitter": "^0.0.0-dev-20220315093055",
+    "@ui-machines/tabs": "^0.0.0-dev-20220315093055",
     "@ui-machines/tags-input": "^0.0.0-dev-20220315093055",
     "@ui-machines/toast": "^0.0.0-dev-20220315093055",
     "@ui-machines/toggle": "^0.0.0-dev-20220315093055",

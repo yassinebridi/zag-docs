@@ -1230,6 +1230,16 @@
     "@ui-machines/rect-utils" "^0.0.0-dev-20220315163136"
     "@ui-machines/types" "^0.0.0-dev-20220315163136"
 
+"@ui-machines/tabs@^0.0.0-dev-20220315093055":
+  version "0.0.0-dev-20220315163136"
+  resolved "https://registry.yarnpkg.com/@ui-machines/tabs/-/tabs-0.0.0-dev-20220315163136.tgz#e7f0786df2e380e95ad97aaf7009154f7a59c5f5"
+  integrity sha512-D6YNQNBMWIiohFqXZBaC7MR/8ZpqYiohnEqeTzbnAOKgXFfqA45hcHMjgbhYR6xXjqvxWyRyX1JXvt586/7FXw==
+  dependencies:
+    "@ui-machines/core" "^0.0.0-dev-20220315163136"
+    "@ui-machines/dom-utils" "^0.0.0-dev-20220315163136"
+    "@ui-machines/types" "^0.0.0-dev-20220315163136"
+    "@ui-machines/utils" "^0.0.0-dev-20220315163136"
+
 "@ui-machines/tags-input@^0.0.0-dev-20220315093055":
   version "0.0.0-dev-20220315163136"
   resolved "https://registry.yarnpkg.com/@ui-machines/tags-input/-/tags-input-0.0.0-dev-20220315163136.tgz#46b563c60233871246a3133176ea343582ac0ad0"
