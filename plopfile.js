@@ -19,8 +19,9 @@ module.exports = function main(plop) {
       frameworks.forEach((framework) => {
         actions.push({
           type: "addMany",
-          templateFiles: `snippet/${framework}`,
-          destination: `../data/snippets/${framework}/${component}`,
+          templateFiles: `./plop/snippet/${framework}/**`,
+          destination: `./data/snippets/${framework}/${component}`,
+          base: `./plop/snippet/${framework}`,
           data: { component },
         })
       })
