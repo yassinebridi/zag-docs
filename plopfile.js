@@ -1,10 +1,7 @@
-import nodePlop from "node-plop"
-import _ from "lodash"
-
-const basePlop = nodePlop("plop/index.hbs")
-
-async function handler() {
-  const plop = await basePlop
+/**
+ * @param {import("plop").NodePlopAPI} plop
+ */
+module.exports = function main(plop) {
   plop.setGenerator("snippet", {
     prompts: [
       {
@@ -31,15 +28,4 @@ async function handler() {
       return actions
     },
   })
-
-  const { runPrompts, runActions } = plop.getGenerator("snippet")
-
-  const answers = await runPrompts()
-  await runActions(answers)
 }
-
-async function main() {
-  await handler()
-}
-
-main()

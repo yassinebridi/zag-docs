@@ -10,7 +10,7 @@
     "lint": "next lint",
     "theme": "chakra-cli tokens lib/theme.ts",
     "watch:theme": "npx nodemon --watch lib/theme.ts --exec yarn theme",
-    "snippet": "node plop/generate.ts"
+    "snippet": "plop snippet"
   },
   "dependencies": {
     "@chakra-ui/cli": "^1.8.1",
@@ -44,7 +44,7 @@
     "markdown-toc": "^1.2.0",
     "next": "^12.1.0",
     "next-contentlayer": "^0.0.34",
-    "node-plop": "^0.30.0",
+    "plop": "^3.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1"
