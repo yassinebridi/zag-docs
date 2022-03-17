@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "theme": "chakra-cli tokens lib/theme.ts",
-    "watch:theme": "npx nodemon --watch lib/theme.ts --exec yarn theme"
+    "watch:theme": "npx nodemon --watch lib/theme.ts --exec yarn theme",
+    "snippet": "node plop/generate.ts"
   },
   "dependencies": {
     "@chakra-ui/cli": "^1.8.1",

@@ -1,11 +1,7 @@
-import nodePlop, { ActionType } from "node-plop"
+import nodePlop from "node-plop"
 import _ from "lodash"
 
 const basePlop = nodePlop("plop/index.hbs")
-
-interface Answers {
-  component: string
-}
 
 async function handler() {
   const plop = await basePlop
@@ -17,10 +13,10 @@ async function handler() {
         message: "Enter machine name (e.g. menu, popover):",
       },
     ],
-    actions(answers: any) {
-      const actions: ActionType[] = []
+    actions(answers) {
+      const actions = []
       if (!answers) return actions
-      const { component } = answers as Answers
+      const { component } = answers
 
       const frameworks = ["react", "vue", "solid"]
       frameworks.forEach((framework) => {
@@ -36,7 +32,7 @@ async function handler() {
     },
   })
 
-  const { runPrompts, runActions } = plop.getGenerator("machine")
+  const { runPrompts, runActions } = plop.getGenerator("snippet")
 
   const answers = await runPrompts()
   await runActions(answers)
