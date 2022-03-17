@@ -11,7 +11,7 @@ export function Slider() {
     <div ref={ref}>
       <div>
         <label {...api.labelProps}>Slider Label</label>
-        <output {...api.outputProps}>{value}</output>
+        <output {...api.outputProps}>{api.value}</output>
       </div>
       <div {...api.rootProps}>
         <div {...api.trackProps}>

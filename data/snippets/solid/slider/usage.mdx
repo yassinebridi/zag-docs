@@ -1,0 +1,28 @@
+```jsx
+import * as slider from "@ui-machines/slider"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, createUniqueId } from "solid-js"
+
+export function Slider() {
+  const [state, send] = useMachine(slider.machine)
+  const ref = useSetup({ send, id: createUniqueId() })
+  const api = createMemo(() => slider.connect(state, send, normalizeProps))
+
+  return (
+    <div ref={ref}>
+      <div>
+        <label {...api().labelProps}>Slider Label</label>
+        <output {...api().outputProps}>{api().value}</output>
+      </div>
+      <div {...api().rootProps}>
+        <div {...api().trackProps}>
+          <div {...api().rangeProps} />
+        </div>
+        <div {...api().thumbProps}>
+          <input {...api().inputProps} />
+        </div>
+      </div>
+    </div>
+  )
+}
+```
