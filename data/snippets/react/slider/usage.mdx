@@ -1,0 +1,27 @@
+```jsx
+import * as slider from "@ui-machines/slider"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+export function Slider() {
+  const [state, send] = useMachine(slider.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = slider.connect(state, send)
+
+  return (
+    <div ref={ref}>
+      <div>
+        <label {...api.labelProps}>Slider Label</label>
+        <output {...api.outputProps}>{value}</output>
+      </div>
+      <div {...api.rootProps}>
+        <div {...api.trackProps}>
+          <div {...api.rangeProps} />
+        </div>
+        <div {...api.thumbProps}>
+          <input {...api.inputProps} />
+        </div>
+      </div>
+    </div>
+  )
+}
+```
