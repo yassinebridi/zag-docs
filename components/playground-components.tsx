@@ -107,7 +107,6 @@ const components = {
       component={Slider}
       defaultProps={{
         disabled: false,
-        value: 20,
         origin: {
           default: "start",
           options: ["start", "center"],

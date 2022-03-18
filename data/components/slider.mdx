@@ -48,15 +48,13 @@ increment/decrement its value.
 > Don't forget to change the styles of the vertical slider by specifying its
 > height
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   Slider.machine.withContext({
     orientation: "vertical",
   }),
 )
 ```
-
-<CodeSnippet id="slider/vertical-slider.mdx" />
 
 ## Specifying the minimum and maximum
 
@@ -66,7 +64,14 @@ and/or max attributes.
 
 For example, to ask the user for a value between `-10` and `10`, you can use:
 
-<CodeSnippet id="slider/setting-min-max.mdx" />
+```jsx {3-4}
+const [state, send] = useMachine(
+  Slider.machine.withContext({
+    min: -10,
+    max: 10,
+  }),
+)
+```
 
 ## Setting the value's granularity
 
@@ -76,14 +81,22 @@ integer. You can change the step attribute to control the granularity.
 For example, If you need a value between `5` and `10`, accurate to two decimal
 places, you should set the value of step to `0.01`:
 
-<CodeSnippet id="slider/setting-step.mdx" />
+```jsx {5}
+const [state, send] = useMachine(
+  Slider.machine.withContext({
+    min: 5,
+    max: 10,
+    step: 0.01,
+  }),
+)
+```
 
 ## Listening for changes
 
 When the slider value changes, the `onChange` and `onChangeEnd` callbacks are
 invoked. You can use this to setup custom behaviors in your app.
 
-```jsx
+```jsx {3-8}
 const [state, send] = useMachine(
   Slider.machine.withContext({
     onChange(value) {
@@ -96,14 +109,21 @@ const [state, send] = useMachine(
 )
 ```
 
-## Getting and setting the slider values
+## Exposed API methods
 
-The slider's connect function provides properties and methods you can use to
+The slider's `connect` function provides properties and methods you can use to
 programmatically read and set the slider's value.
 
-- **Properties:** `isFocused`, `isDragging`, `value`, `percent`
-- **Methods:** `setValue`, `getPercentValue`, `blur`, `focus`, `increment` and
-  `decrement`
+| Property          | Description                                                  |
+| ----------------- | ------------------------------------------------------------ |
+| `isFocused`       | Whether the slider is focused                                |
+| `isDragging`      | Whether the slider is being scrubbed/dragged                 |
+| `value`           | The current value of the slider                              |
+| `percent`         | The slider's value represented as a percentage               |
+| `setValue`        | Function to set the value of the slider                      |
+| `getPercentValue` | Function that returns the value associated with a percentage |
+| `increment`       | Function to increment the value                              |
+| `decrement`       | Function to decrement the value                              |
 
 <CodeSnippet id="slider/programmatic-control.mdx" />
 
@@ -115,15 +135,13 @@ relative value), it might be useful to change the "zero position" to center.
 
 To do this, pass the `origin` context property to `center`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   Slider.machine.withContext({
     origin: "center",
   }),
 )
 ```
-
-<CodeSnippet id="slider/center-origin.mdx" />
 
 ## Usage within forms
 

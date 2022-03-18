@@ -34,6 +34,19 @@ const theme = {
         borderColor: "gray.200",
         borderStyle: "solid",
       },
+      table: {
+        width: "100%",
+        marginY: "8",
+        th: {
+          bg: "gray.100",
+        },
+        "th, td": {
+          borderWidth: "1px",
+          py: "3",
+          px: "5",
+          textAlign: "start",
+        },
+      },
       mark: {
         bg: "transparent",
       },
