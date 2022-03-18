@@ -1,5 +1,5 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex, Text } from "@chakra-ui/layout"
+import { Box, Flex, Stack, Text } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
 import {
@@ -102,9 +102,9 @@ export default function Home() {
         maxW="8xl"
         mx="auto"
       >
-        <Box bg="green.100" padding={{ base: "0", md: "20" }}>
+        <Box bg="green.100" padding={{ base: "14", md: "20" }}>
           <chakra.h2
-            fontSize="6xl"
+            fontSize={{ base: "4xl", md: "6xl" }}
             mb="8"
             maxW="28ch"
             lineHeight="short"
@@ -119,7 +119,11 @@ export default function Home() {
             </Button>
           </Link>
 
-          <Flex gap="20" mt="12">
+          <Stack
+            direction={{ base: "column", md: "row" }}
+            spacing={{ base: "8", md: "20" }}
+            mt="12"
+          >
             <FeatureItem icon={StatechartIcon} title="Powered by Statecharts">
               Simple, resilient component logic. Write component logic once and
               use anywhere.
@@ -135,7 +139,7 @@ export default function Home() {
               Component logic is largely JavaScript code and can be consumed in
               any JS framework.
             </FeatureItem>
-          </Flex>
+          </Stack>
         </Box>
       </Box>
     </Box>

@@ -25,7 +25,7 @@ const components = {
       component={Accordion}
       defaultProps={{
         collapsible: true,
-        multiple: true,
+        multiple: false,
         value: {
           default: "Aircrafts",
           options: ["Aircrafts", "Automobiles", "Watercraft"],
