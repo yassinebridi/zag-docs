@@ -18,7 +18,7 @@ To use the editable machine in your project, install the respective package
 <InstallSnippet package="@ui-machines/range-slider" />
 
 ```jsx
-import * as RangeSlider from "@ui-machines/range-slider"
+import * as rangeSlider from "@ui-machines/range-slider"
 ```
 
 Then you'll need to install the binding for your framework of choice
@@ -46,7 +46,7 @@ increment/decrement its value.
 
 ```jsx
 const [state, send] = useMachine(
-  RangeSlider.machine.withContext({
+  rangeSlider.machine.withContext({
     orientation: "vertical",
   }),
 )
@@ -81,7 +81,7 @@ invoked. You can use this to setup custom behaviors in your app.
 
 ```jsx
 const [state, send] = useMachine(
-  RangeSlider.machine.withContext({
+  rangeSlider.machine.withContext({
     onChange(values) {
       console.log("value changing to:", values)
     },
@@ -167,7 +167,7 @@ To ensure the range slider has an accessible label, there are 3 options:
 }
 ```
 
-## Getting and setting the slider values
+## Exposed API Properties and Methods
 
 The slider's connect function provides properties and methods you can use to
 programmatically read and set the slider's value.

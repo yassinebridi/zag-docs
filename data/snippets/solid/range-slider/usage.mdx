@@ -1,0 +1,31 @@
+```jsx
+import * as rangeSlider from "@ui-machines/range-slider"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, For, createUniqueId } from "solid-js"
+
+export function RangeSlider() {
+  const [state, send] = useMachine(
+    rangeSlider.machine.withContext({
+      name: ["min", "max"],
+      value: [10, 60],
+    }),
+  )
+  const ref = useSetup({ send, id: createUniqueId() })
+  const api = createMemo(() => rangeSlider.connect(state, send, normalizeProps))
+
+  return (
+    <div ref={ref} {...api().rootProps}>
+      <div {...api().trackProps}>
+        <div {...api().rangeProps} />
+      </div>
+      <For each={api().values}>
+        {(_, index) => (
+          <div {...api().getThumbProps(index())}>
+            <input {...api().getInputProps(index())} />
+          </div>
+        )}
+      </For>
+    </div>
+  )
+}
+```

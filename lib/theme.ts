@@ -88,6 +88,7 @@ const theme = {
       rounded: "4px",
     },
     inlineCode: {
+      whiteSpace: "nowrap",
       bg: "blackAlpha.100",
       rounded: "sm",
       paddingY: "0.5",
