@@ -13,14 +13,16 @@ type DocLinkProps = {
   children: React.ReactNode
 }
 
+function test(href: string, asPath: string) {
+  const a = href.split("/")
+  const b = asPath.split("/")
+  return a[a.length - 1] === b[b.length - 1]
+}
+
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children } = props
-  const current = href
-    .toString()
-    .split("/")
-    .every((part) => asPath.includes(part))
-
+  const current = test(href.toString(), asPath)
   return (
     <Box as="li" fontSize="sm">
       <Link href={href} passHref>
