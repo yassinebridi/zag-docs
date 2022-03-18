@@ -14,7 +14,7 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
-import { Showcase } from "./playground-components"
+import { Showcase } from "./showcase"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
