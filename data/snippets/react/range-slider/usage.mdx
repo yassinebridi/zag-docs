@@ -17,7 +17,7 @@ export function RangeSlider() {
       <div {...api.trackProps}>
         <div {...api.rangeProps} />
       </div>
-      {values.map((_, index) => (
+      {api.values.map((_, index) => (
         <div key={index} {...api.getThumbProps(index)}>
           <input {...api.getInputProps(index)} />
         </div>

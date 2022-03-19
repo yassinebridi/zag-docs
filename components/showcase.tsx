@@ -4,6 +4,7 @@ import { Editable } from "./machines/editable"
 import { NumberInput } from "./machines/number-input"
 import { PinInput } from "./machines/pin-input"
 import { Popover } from "./machines/popover"
+import { RangeSlider } from "./machines/range-slider"
 import { Slider } from "./machines/slider"
 import { Tabs } from "./machines/tabs"
 import { Playground } from "./playground"
@@ -111,6 +112,15 @@ const components = {
           default: "start",
           options: ["start", "center"],
         },
+      }}
+    />
+  ),
+  RangeSlider: () => (
+    <Playground
+      component={RangeSlider}
+      defaultProps={{
+        disabled: false,
+        step: 1,
       }}
     />
   ),
