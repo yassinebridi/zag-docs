@@ -15,7 +15,7 @@ export function TagsInput(props: any) {
   return (
     <div>
       <div>
-        <label>Enter frameworks:</label>
+        <label {...api.labelProps}>Enter frameworks:</label>
       </div>
       <chakra.div
         mt="2"
