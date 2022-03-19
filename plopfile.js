@@ -2,6 +2,9 @@
  * @param {import("plop").NodePlopAPI} plop
  */
 module.exports = function main(plop) {
+  plop.setHelper("camelize", (txt) => {
+    return txt.replace(/[-_]([a-z])/g, (g) => g[1].toUpperCase())
+  })
   plop.setGenerator("snippet", {
     prompts: [
       {
