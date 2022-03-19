@@ -1,0 +1,31 @@
+```jsx
+import * as tagsInput from "@ui-machines/tags-input"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+export function TagsInput() {
+  const [state, send] = useMachine(
+    tagsInput.machine.withContext({
+      value: ["React", "Vue"],
+    }),
+  )
+  const ref = useSetup({ send, id: "1" })
+  const api = tagsInput.connect(state, send)
+
+  return (
+    <div ref={ref} {...api.rootProps}>
+      {api.value.map((value, index) => (
+        <span key={index}>
+          <div {...api.getTagProps({ index, value })}>
+            <span>{value} </span>
+            <button {...api.getTagDeleteButtonProps({ index, value })}>
+              &#x2715;
+            </button>
+          </div>
+          <input {...api.getTagInputProps({ index })} />
+        </span>
+      ))}
+      <input placeholder="Add tag..." {...api.inputProps} />
+    </div>
+  )
+}
+```
