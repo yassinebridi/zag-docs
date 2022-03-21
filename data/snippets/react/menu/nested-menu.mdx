@@ -1,0 +1,60 @@
+```jsx
+import { Portal } from "@reach/portal"
+import * as menu from "@ui-machines/menu"
+import { useMachine, useSetup } from "@ui-machines/react"
+import { useEffect } from "react"
+
+export function NestedMenu() {
+  // Level 1 - File Menu
+  const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
+    menu.machine,
+  )
+  const fileMenuRef = useSetup({ send: fileMenuSend, id: "1" })
+  const fileMenu = menu.connect(fileMenuState, fileMenuSend)
+
+  // Level 2 - Share Menu
+  const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
+    menu.machine,
+  )
+  const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
+  const shareMenu = menu.connect(shareMenuState, shareMenuSend)
+
+  useEffect(() => {
+    setTimeout(() => {
+      fileMenu.setChild(shareMenuMachine)
+      shareMenu.setParent(fileMenuMachine)
+    })
+  }, [])
+
+  // Share menu trigger
+  const shareMenuTriggerProps = fileMenu.getTriggerItemProps(shareMenu)
+
+  return (
+    <>
+      <button {...fileMenu.triggerProps}>Click me</button>
+
+      <Portal>
+        <div {...fileMenu.positionerProps}>
+          <ul ref={fileMenuRef} {...fileMenu.contentProps}>
+            <li {...fileMenu.getItemProps({ id: "new-tab" })}>New tab</li>
+            <li {...fileMenu.getItemProps({ id: "new-win" })}>New window</li>
+            <li {...shareMenuTriggerProps}>Share</li>
+            <li {...fileMenu.getItemProps({ id: "print" })}>Print...</li>
+            <li {...fileMenu.getItemProps({ id: "help" })}>Help</li>
+          </ul>
+        </div>
+      </Portal>
+
+      <Portal>
+        <div {...shareMenu.positionerProps}>
+          <ul ref={shareMenuRef} {...shareMenu.contentProps}>
+            <li {...shareMenu.getItemProps({ id: "messages" })}>Messages</li>
+            <li {...shareMenu.getItemProps({ id: "airdrop" })}>Airdrop</li>
+            <li {...shareMenu.getItemProps({ id: "whatsapp" })}>WhatsApp</li>
+          </ul>
+        </div>
+      </Portal>
+    </>
+  )
+}
+```
