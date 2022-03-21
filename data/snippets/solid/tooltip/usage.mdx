@@ -1,0 +1,24 @@
+```jsx
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import * as tooltip from "@ui-machines/tooltip"
+import { createMemo } from "solid-js"
+
+export function Tooltip() {
+  const [state, send] = useMachine(tooltip.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = createMemo(() => tooltip.connect(state, send, normalizeProps))
+
+  return (
+    <div>
+      <button ref={ref} {...api().triggerProps}>
+        Over me
+      </button>
+      {api().isVisible && (
+        <div {...api().positionerProps}>
+          <div {...api().contentProps}>Tooltip</div>
+        </div>
+      )}
+    </div>
+  )
+}
+```

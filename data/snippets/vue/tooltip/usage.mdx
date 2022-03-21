@@ -1,0 +1,34 @@
+```jsx
+import * as tooltip from "@ui-machines/tooltip"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/vue"
+import { computed, defineComponent, h, Fragment } from "vue"
+
+export default defineComponent({
+  name: "Tooltip",
+  setup() {
+    const [state, send] = useMachine(tooltip.machine)
+    const apiRef = computed(() =>
+      tooltip.connect(state.value, send, normalizeProps),
+    )
+    const ref = useSetup({ send, id: "1" })
+
+    return () => {
+      const api = apiRef.current
+      return (
+        <>
+          <div>
+            <button ref={ref} {...api.triggerProps}>
+              Over me
+            </button>
+            {api.isVisible && (
+              <div {...api.positionerProps}>
+                <div {...api.contentProps}>Tooltip</div>
+              </div>
+            )}
+          </div>
+        </>
+      )
+    }
+  },
+})
+```

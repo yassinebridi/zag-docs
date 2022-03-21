@@ -1,0 +1,23 @@
+```jsx
+import { useMachine, useSetup } from "@ui-machines/react"
+import * as tooltip from "@ui-machines/tooltip"
+
+export function Tooltip() {
+  const [state, send] = useMachine(tooltip.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = tooltip.connect(state, send)
+
+  return (
+    <>
+      <button ref={ref} {...api.triggerProps}>
+        Over me
+      </button>
+      {api.isVisible && (
+        <div {...api.positionerProps}>
+          <div {...api.contentProps}>Tooltip</div>
+        </div>
+      )}
+    </>
+  )
+}
+```
