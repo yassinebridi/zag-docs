@@ -10,14 +10,7 @@ const data = [
 ]
 
 export function Menu(props) {
-  const [state, send] = useMachine(
-    menu.machine.withContext({
-      placementOptions: {
-        placement: "bottom-start",
-      },
-    }),
-    { context: props.controls },
-  )
+  const [state, send] = useMachine(menu.machine, { context: props.controls })
   const ref = useSetup<HTMLDivElement>({ send, id: "1" })
   const api = menu.connect(state, send)
 
@@ -38,6 +31,7 @@ export function Menu(props) {
           width="240px"
           padding="2"
           listStyleType="none"
+          shadow="base"
           {...api.contentProps}
         >
           {data.map((item) => (
