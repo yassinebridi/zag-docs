@@ -138,7 +138,16 @@ const components = {
     />
   ),
   Menu: () => <Playground component={Menu} />,
-  Tooltip: () => <Playground component={Tooltip} />,
+  Tooltip: () => (
+    <Playground
+      component={Tooltip}
+      defaultProps={{
+        closeOnPointerDown: true,
+        openDelay: 400,
+        closeDelay: 200,
+      }}
+    />
+  ),
 }
 
 export function Showcase(props: { id: keyof typeof components }) {

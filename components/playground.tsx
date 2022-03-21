@@ -113,7 +113,7 @@ export function Playground(props: PlaygroundProps) {
                   <chakra.input
                     id={key}
                     type="number"
-                    maxWidth="5ch"
+                    maxWidth="6ch"
                     borderWidth="1px"
                     px="2"
                     defaultValue={state[key] as number}
