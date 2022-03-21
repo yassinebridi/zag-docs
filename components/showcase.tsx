@@ -1,6 +1,7 @@
 import { Accordion } from "./machines/accordion"
 import { Dialog } from "./machines/dialog"
 import { Editable } from "./machines/editable"
+import { Menu } from "./machines/menu"
 import { NumberInput } from "./machines/number-input"
 import { PinInput } from "./machines/pin-input"
 import { Popover } from "./machines/popover"
@@ -135,6 +136,7 @@ const components = {
       }}
     />
   ),
+  Menu: () => <Playground component={Menu} />,
 }
 
 export function Showcase(props: { id: keyof typeof components }) {

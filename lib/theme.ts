@@ -51,10 +51,10 @@ const theme = {
         bg: "transparent",
       },
       ".mdx-content": {
-        li: {
+        "li:not([role])": {
           marginY: "1",
         },
-        "ol, ul": {
+        "ol:not([role]), ul:not([role])": {
           marginY: "5",
           paddingLeft: "4",
         },

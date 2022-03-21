@@ -17,7 +17,7 @@ const Header = (props: any) => (
 
 type PlaygroundProps = {
   component: React.ElementType
-  defaultProps: Record<
+  defaultProps?: Record<
     string,
     string | number | boolean | { options: string[]; default: string }
   >
@@ -25,7 +25,7 @@ type PlaygroundProps = {
 }
 
 export function Playground(props: PlaygroundProps) {
-  const { component: Comp, defaultProps, debug } = props
+  const { component: Comp, defaultProps = {}, debug } = props
   const [state, setState] = useState(
     Object.fromEntries(
       Object.entries(defaultProps).map(([key, value]) => [
