@@ -9,6 +9,7 @@ import { RangeSlider } from "./machines/range-slider"
 import { Slider } from "./machines/slider"
 import { Tabs } from "./machines/tabs"
 import { TagsInput } from "./machines/tags-input"
+import { Tooltip } from "./machines/tooltip"
 import { Playground } from "./playground"
 
 const components = {
@@ -137,6 +138,7 @@ const components = {
     />
   ),
   Menu: () => <Playground component={Menu} />,
+  Tooltip: () => <Playground component={Tooltip} />,
 }
 
 export function Showcase(props: { id: keyof typeof components }) {

@@ -25,7 +25,10 @@ export function Tabs(props: any) {
             px="4"
             borderBottomWidth="2px"
             borderBottomColor="transparent"
-            _selected={{ color: "red", borderBottomColor: "currentColor" }}
+            _selected={{
+              color: "green.500",
+              borderBottomColor: "currentColor",
+            }}
             {...api.getTabProps({ value: item.value })}
             key={item.value}
           >
