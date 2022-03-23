@@ -1,0 +1,70 @@
+# TypeScript Usage
+
+Working with TypeScript can help you detect many errors via static analysis done
+by the TypeScript compiler. TypeScript also improves the developer experience by
+providing:
+
+- Useful auto-completion in your IDEs.
+- Ensuring the JSX attributes used are strongly typed.
+
+## Usage Notes
+
+### `useSetup`
+
+The setup hook is used to ensure that the component works in any `window`
+environment (iframes, electron, etc.).
+
+The hook returns a `ref` function or object that you need to attach to an
+element in order for the machines to retrieve the correct reference to `window`
+and `document`.
+
+To make it work in TypeScript, you'll need to add an extra generic for the
+element type you want to attach the `ref` to.
+
+```tsx
+const ref = useSetup<HTMLButtonElement>({ send, id: "..." })
+```
+
+### `connect`
+
+To ensure that the properties you spread unto the JSX elements is strongly typed
+in your framework, you'll need to:
+
+- Import the `PropTypes` type and add it as a generic argument.
+- Import the `normalizeProps` function to help convert JSX properties to
+  Vue-compatible equivalent.
+
+> Note: This step isn't required for React
+
+**In Vue.js:**
+
+```tsx
+import * as accordion from "@ui-machines/accordion"
+import { PropTypes, normalzeProps } from "@ui-machines/vue"
+
+const Accordion = defineComponent({
+  // ...
+  setup() {
+    // ...
+    const apiRef = computed(() =>
+      accordion.connect<PropTypes>(state, send, normalzeProps),
+    )
+    // ...
+  },
+})
+```
+
+**In Solid.js:**
+
+```tsx
+import * as accordion from "@ui-machines/accordion"
+import { PropTypes, normalzeProps } from "@ui-machines/solid"
+
+const Accordion = (props) => {
+  // ...
+  const api = createMemo(() =>
+    accordion.connect<PropTypes>(state, send, normalzeProps),
+  )
+  // ...
+}
+```

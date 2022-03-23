@@ -36,6 +36,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Introduction", id: "introduction" },
         { type: "doc", label: "Installation", id: "getting-started" },
         { type: "doc", label: "State machine", id: "whats-a-machine" },
+        { type: "doc", label: "TypeScript usage", id: "typescript-usage" },
       ],
     },
     {
