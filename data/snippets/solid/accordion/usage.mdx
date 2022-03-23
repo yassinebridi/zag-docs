@@ -18,13 +18,13 @@ function Accordion() {
     <div ref={ref} {...api().rootProps}>
       <For each={data}>
         {(item) => (
-          <div {...api().getItemProps({ value: item.value })}>
+          <div {...api().getItemProps({ value: item.title })}>
             <h3>
-              <button {...api().getTriggerProps({ value: item.value })}>
-                {item.label}
+              <button {...api().getTriggerProps({ value: item.title })}>
+                {item.title}
               </button>
             </h3>
-            <div {...api().getContentProps({ value: item.id })}>
+            <div {...api().getContentProps({ value: item.title })}>
               {item.content}
             </div>
           </div>
