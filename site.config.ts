@@ -1,11 +1,11 @@
-const baseUrl = "https://github.com/chakra-ui/ui-machines"
+const baseUrl = "https://github.com/chakra-ui/ui-machines-docs"
 
 const siteConfig = {
   title: "Chakra UI",
   tagline: "A declarative, accessible, and performant UI library",
   url: "https://ui-machines.com",
   projectName: "ui-machines",
-  copyright: `Copyright © 2021-${new Date().getFullYear()} Segun Adebayo and Contributors`,
+  copyright: `Copyright &copy; ${new Date().getFullYear()}`,
   algolia: {
     apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
     indexName: "chakra-ui",
@@ -23,16 +23,16 @@ const siteConfig = {
   },
   repo: {
     url: baseUrl,
-    editUrl: `${baseUrl}/edit/main/website/pages`,
+    editUrl: `${baseUrl}/edit/main/data`,
     blobUrl: `${baseUrl}/blob/main`,
   },
   discord: {
-    url: "https://discord.gg/chakra-ui",
+    url: "https://discord.gg/ui-machines",
   },
   youtube: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   seo: {
-    title: "Chakra UI",
-    titleTemplate: "%s - Chakra UI",
+    title: "UI Machines",
+    titleTemplate: "%s - UI Machines",
     description:
       "Simple, Modular and Accessible UI Components for your React Applications.",
     siteUrl: "https://chakra-ui.com",
