@@ -9,7 +9,7 @@ import { HiX } from "react-icons/hi"
 export function Popover(props: any) {
   const [state, send] = useMachine(
     popover.machine.withContext({
-      placementOptions: {
+      positioning: {
         placement: "bottom",
         arrow: {
           size: 10,

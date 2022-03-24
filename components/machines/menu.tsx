@@ -1,6 +1,7 @@
 import * as menu from "@ui-machines/menu"
 import { useMachine, useSetup } from "@ui-machines/react"
 import { chakra } from "@chakra-ui/system"
+import Portal from "@reach/portal"
 
 const data = [
   { label: "Edit", value: "edit" },
@@ -25,28 +26,32 @@ export function Menu(props) {
       >
         Actions <span aria-hidden>▾</span>
       </chakra.button>
-      <div {...api.positionerProps}>
-        <chakra.ul
-          bg="white"
-          width="240px"
-          padding="2"
-          listStyleType="none"
-          shadow="base"
-          {...api.contentProps}
-        >
-          {data.map((item) => (
-            <chakra.li
-              px="1"
-              py="2"
-              key={item.value}
-              _selected={{ bg: "green.200" }}
-              {...api.getItemProps({ id: item.value })}
-            >
-              {item.label}
-            </chakra.li>
-          ))}
-        </chakra.ul>
-      </div>
+      <Portal>
+        <div className="focus-outline" {...api.positionerProps}>
+          <chakra.ul
+            bg="white"
+            width="240px"
+            padding="2"
+            zIndex="50"
+            listStyleType="none"
+            shadow="base"
+            {...api.contentProps}
+          >
+            {data.map((item) => (
+              <chakra.li
+                px="2"
+                py="1"
+                cursor="pointer"
+                key={item.value}
+                _selected={{ bg: "green.200" }}
+                {...api.getItemProps({ id: item.value })}
+              >
+                {item.label}
+              </chakra.li>
+            ))}
+          </chakra.ul>
+        </div>
+      </Portal>
     </div>
   )
 }
