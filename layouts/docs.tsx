@@ -1,4 +1,6 @@
-import { Box, Spacer } from "@chakra-ui/layout"
+import { DocumentTypes } from ".contentlayer/types"
+import Icon from "@chakra-ui/icon"
+import { Box, HStack, Spacer } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { FrameworkSelect } from "components/framework-select"
 import { MdxFooter } from "components/mdx-footer"
@@ -8,13 +10,14 @@ import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import { useRouter } from "next/router"
 import React from "react"
+import { HiPencilAlt } from "react-icons/hi"
 
 type DocsLayoutProps = {
   children: React.ReactNode
-  toc?: any[]
+  doc: DocumentTypes
 }
 
-export default function DocsLayout({ children, toc }: DocsLayoutProps) {
+export default function DocsLayout({ children, doc }: DocsLayoutProps) {
   const { asPath } = useRouter()
   const isComponent = asPath.includes("/components/")
 
@@ -61,6 +64,16 @@ export default function DocsLayout({ children, toc }: DocsLayoutProps) {
               mx="auto"
             >
               {children}
+              <HStack
+                as="a"
+                href={doc.editUrl}
+                textStyle="a"
+                fontSize="sm"
+                mt="14"
+              >
+                <Icon as={HiPencilAlt} />
+                <p>Edit this page on GitHub</p>
+              </HStack>
               <MdxFooter />
             </Box>
           </Box>
@@ -77,7 +90,7 @@ export default function DocsLayout({ children, toc }: DocsLayoutProps) {
             width="19.5rem"
             visibility={!isComponent ? "hidden" : undefined}
           >
-            <TableOfContents data={toc} />
+            <TableOfContents data={doc.frontmatter.toc} />
           </Box>
         </Box>
       </chakra.div>

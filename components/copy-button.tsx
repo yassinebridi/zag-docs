@@ -1,14 +1,20 @@
+import Icon from "@chakra-ui/icon"
 import { HStack } from "@chakra-ui/layout"
 import { useState } from "react"
 import { HiCheck, HiOutlineClipboardCopy } from "react-icons/hi"
 
 export function CopyButton({ content }: { content: string }) {
   const [copied, setCopied] = useState(false)
+  const icon = copied ? HiCheck : HiOutlineClipboardCopy
   return (
     <HStack
+      bg="white"
+      px="2"
+      py="1"
       spacing="1"
+      borderWidth="1px"
       position="absolute"
-      right="3"
+      right="5"
       top="3"
       as="button"
       type="button"
@@ -19,7 +25,7 @@ export function CopyButton({ content }: { content: string }) {
         setTimeout(() => setCopied(false), 1000)
       }}
     >
-      {copied ? <HiCheck /> : <HiOutlineClipboardCopy />}
+      <Icon as={icon} fontSize="md" />
       <span>{copied ? "Copied" : "Copy"}</span>
     </HStack>
   )

@@ -18,7 +18,7 @@ export default function ComponentPage({ doc, framework }: PageProps) {
   const mdx = useMDX(doc.body.code)
   return (
     <FrameworkProvider value={framework}>
-      <DocsLayout toc={doc.frontmatter.toc}>{mdx}</DocsLayout>
+      <DocsLayout doc={doc}>{mdx}</DocsLayout>
     </FrameworkProvider>
   )
 }
