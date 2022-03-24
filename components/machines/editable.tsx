@@ -12,7 +12,7 @@ export function Editable(props: any) {
   const api = editable.connect(state, send)
 
   return (
-    <div>
+    <div className="focus-outline">
       <chakra.div mb="3">
         <chakra.input bg="transparent" ref={ref} {...api.inputProps} />
         <span {...api.previewProps} />

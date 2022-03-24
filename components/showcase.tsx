@@ -41,6 +41,7 @@ const components = {
     <Playground
       component={Editable}
       defaultProps={{
+        autoResize: false,
         selectOnFocus: true,
         placeholder: "Enter text...",
         activationMode: {

@@ -21,6 +21,15 @@ export default defineComponent({
             <input {...api.inputProps} />
             <span {...api.previewProps} />
           </div>
+          <div>
+            {!api.isEditing && <button {...api.editButtonProps}>Edit</button>}
+            {api.isEditing && (
+              <div>
+                <button {...api.submitButtonProps}>Save</button>
+                <button {...api.cancelButtonProps}>Cancel</button>
+              </div>
+            )}
+          </div>
         </div>
       )
     }

@@ -22,13 +22,16 @@ export function TableOfContents({ data = [] }: { data: TOC }) {
           <chakra.li
             data-selected={activeId === item.slug || undefined}
             key={item.slug}
-            marginLeft={item.lvl > 2 ? "2" : undefined}
+            paddingLeft={item.lvl > 2 ? "4" : undefined}
             _selected={{
               textDecoration: "underline",
               textUnderlineOffset: "2px",
             }}
           >
-            <chakra.a href={`#${item.slug}`}>{item.content}</chakra.a>
+            <chakra.a href={`#${item.slug}`}>
+              <chakra.span mr="1">{item.lvl > 2 ? "—" : null}</chakra.span>{" "}
+              {item.content}
+            </chakra.a>
           </chakra.li>
         ))}
       </Stack>
