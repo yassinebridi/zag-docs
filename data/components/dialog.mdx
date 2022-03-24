@@ -9,35 +9,67 @@ interact with it.
 **Features**
 
 - Supports modal and non-modal modes.
-- Focus is automatically trapped and scrolling is blocked when modal.
-- Manages screen reader announcements with Title and Description components.
-- `Esc` closes the dialog automatically.
+- Focus is trapped and scrolling is blocked when modal.
+- Provides screen reader announcements via rendered title and description.
+- Pressing `Esc` closes the dialog.
 
 ## Installation
 
-To use the accordion machine in your project, install the respective package
+To use the menu machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="dialog/installation.mdx" />
+
+This command will install the framework agnostic dialog logic and the reactive
+utilities for your framework of choice.
+
+Now you can use the dialog in your project!
 
 ```jsx
 import * as dialog from "@ui-machines/dialog"
 ```
 
-Next, you'll also need to install the framework binding
+## Anatomy
 
-<CodeSnippet id="dialog/installation.mdx" />
+To use the dialog component correctly, you'll need to understand its anatomy and
+how we name its parts. Each part includes a `data-part` attribute to help
+identify them in the DOM.
+
+The dialog pattern consists of:
+
+- **Trigger**: The button that triggers the dialog
+- **Backdrop**: The dim background overlay that's usually behind the dialog
+  element.
+- **Underlay**: The container for the dialog's content.
+- **Content**: Used to house the content of the dialog.
+
+The dialog's content consists of:
+
+- **Title**: The human readable title of the dialog.
+- **Description**: The human readable description that supports the title.
+- **Close Button**: The button used to close the dialog.
 
 ## Usage
 
-The dialog machine exposes the `triggerProps`, `overlayProps`, `contentProps`,
-`titleProps`, `descriptionProps`, and `closeButtonProps` following properties to
-get it working correctly:
+The dialog package exports two key functions:
+
+- `machine` — The state machine logic for the dialog widget as described in
+  WAI-ARIA specification.
+- `connect` — The function that translates the machine's state to DOM attributes
+  and event handlers for each part.
+
+> You'll need to provide a unique `id` to the `useSetup` hook. We do this to
+> ensure that the dialog and its part has a unique identifier.
 
 <CodeSnippet id="dialog/usage.mdx" />
 
-## Opening and Closing the dialog
+## Methods and Properties
 
-By default, the dialog opens when the trigger is clicked. If you need
-programmatically open the dialog from other elements, you can leverage the
-exposed `open` and `close` methods.
+The dialog's connect method exposes the following methods:
+
+- `isOpen` — Whether the dialog is open.
+- `open()` — Function used to open the dialog.
+- `close()` — Function used to close the dialog.
 
 ```jsx
 const api = dialog.connect(state, send)
@@ -47,6 +79,9 @@ api.open()
 
 // to close the dialog
 api.close()
+
+// is dialog open?
+api.isOpen
 ```
 
 ## Managing focus within the dialog
@@ -61,11 +96,8 @@ element)
 
 <CodeSnippet id="dialog/initial-focus.mdx" />
 
-When it closes, it restores focus back to the trigger. To control the element
-that should receive focus on close, pass the `finalFocusEl` context (which can
-be an element or a function that returns an element)
-
-<CodeSnippet id="dialog/final-focus.mdx" />
+To set the element that receives focus when the dialog closes, pass the
+`finalFocusEl` in the similar fashion as shown above.
 
 ## Closing the dialog on overlay click
 
@@ -85,10 +117,29 @@ const [state, send] = useMachine(
 When the dialog is open, it prevents scrolling on the `body` element. To disable
 this behavior, set the `preventScroll` context to `false`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   dialog.machine.withContext({
     preventScroll: false,
   }),
 )
 ```
+
+## Creating an Alert dialog
+
+The dialog has support for dialog and alert dialog roles. It's set to `dialog`
+by default, to change it's role, pass the `role: alertdialog` property to the
+machine's context.
+
+That's it! Now you have an alert dialog.
+
+```jsx {3}
+const [state, send] = useMachine(
+  dialog.machine.withContext({
+    role: "alertdialog",
+  }),
+)
+```
+
+> By definition, an alert dialog will contain two or more action buttons. We
+> recommended setting focus to the least destructive action via `initialFocusEl`

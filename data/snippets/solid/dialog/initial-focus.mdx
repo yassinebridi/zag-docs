@@ -1,11 +1,11 @@
 ```jsx {3,7,15}
 export function Dialog() {
-  // initial focused element ref
-  const inputRef = useRef(null)
+  // initial focused element signal
+  const [inputEl, setInputEl] = createSignal()
 
   const [state, send] = useMachine(
     dialog.machine.withContext({
-      initialFocusEl: () => ref.current,
+      initialFocusEl: inputEl,
     }),
   )
 
@@ -13,7 +13,7 @@ export function Dialog() {
 
   return (
     //...
-    <input ref={inputRef} />
+    <input ref={setInputEl} />
     // ...
   )
 }
