@@ -68,17 +68,13 @@ const components: Record<string, FC<Record<string, any>>> = {
     }
     return <div className="prose">{props.children}</div>
   },
-  InstallSnippet(props) {
-    const { package: pkg, ...rest } = props
-    const installSnippet = allSnippets.find((s) => s.slug === "install")
-    const code = useMDX(
-      installSnippet.body.code.replace(new RegExp("pkg", "g"), pkg),
-    )
-    return <div {...rest}>{code}</div>
-  },
   CodeSnippet(props) {
     const { framework: userFramework } = useFramework()
-    const snippets = allSnippets.filter((p) => p._id.endsWith(props.id))
+    const snippets = allSnippets.filter((p) => {
+      const [_, __, ...rest] = p.params
+      const str = rest.join("/") + ".mdx"
+      return str === props.id
+    })
     const [index, setIndex] = useState(
       getFrameworkIndex(userFramework ?? "react"),
     )
@@ -89,7 +85,7 @@ const components: Record<string, FC<Record<string, any>>> = {
         onChange={setIndex}
         width="full"
         maxW="768px"
-        my="16"
+        my="8"
         bg="hsl(230, 1%, 98%)"
         rounded="6px"
       >
@@ -151,7 +147,7 @@ const components: Record<string, FC<Record<string, any>>> = {
       )
     }
 
-    return <a target="_blank" rel="noopener" {...props} />
+    return <chakra.a textStyle="a" target="_blank" rel="noopener" {...props} />
   },
 }
 
