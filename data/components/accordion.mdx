@@ -14,32 +14,55 @@ content.
 
 ## Installation
 
-To use the accordion machine in your project, install the respective package
+To use the menu machine in your project, run the following command in your
+command line:
 
-<InstallSnippet package="@ui-machines/accordion" />
+<CodeSnippet id="accordion/installation.mdx" />
+
+This command will install the framework agnostic accordion logic and the
+reactive utilities for your framework of choice.
+
+Now you can use the accordion in your project!
 
 ```jsx
 import * as accordion from "@ui-machines/accordion"
 ```
 
-If you're using React, you'll also need to install the `@ui-machines/react`
-binding
+## Anatomy
 
-<CodeSnippet id="accordion/installation.mdx" />
+To use the accordion component correctly, you'll need to understand its anatomy
+and how we name its parts. Each part includes a `data-part` attribute to help
+identify them in the DOM.
+
+On a high level, the accordion consists of:
+
+- **Root**: The root container for the accordion
+- **Item**: The container for each accordion item
+
+For each accordion item, it consists of:
+
+- **Trigger**: The trigger for the accordion item
+- **Content**: The content area that is revealed when the trigger is clicked
 
 ## Usage
 
-By default, only one item may be expanded and each accordion item uses a unique
-value, defined in the `getTriggerProps` and `getPanelProps`.
-
 The accordion package exports two key functions:
 
-- `machine`: The state machine logic for the accordion widget as described in
+- `machine` — The state machine logic for the accordion widget as described in
   WAI-ARIA specification.
-- `connect`: The function that translates the machine's state to DOM attributes
-  and event handlers.
+- `connect` — The function that translates the machine's state to DOM attributes
+  and event handlers for each part.
+
+You'll need to provide a unique `id` to the `useSetup` hook. We do this to
+ensure that the accordion and its part has a unique identifier.
 
 <CodeSnippet id="accordion/usage.mdx" />
+
+You may have noticed we wrapped each accordion trigger within an `h3`. This is
+recommended by the
+[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties)
+design pattern to ensure the accordion has the appropriate hierarchy on the
+page.
 
 ## Opening multiple accordions at once
 
@@ -47,10 +70,12 @@ To allow multiple items to be expanded at once, set `multiple` to `true`. This
 mode implicitly sets `collapsible` to `true` to also ensure that each accordion
 can be expanded.
 
-```jsx
-const [state, send] = useMachine(accordion.machine, {
-  context: { multiple: true },
-})
+```jsx {3}
+const [state, send] = useMachine(
+  accordion.machine.withContext({
+    multiple: true,
+  }),
+)
 ```
 
 ## Opening specific accordions
@@ -58,7 +83,7 @@ const [state, send] = useMachine(accordion.machine, {
 To set the value of the accordion(s) that should be opened initially, use the
 `withContext(...)` pattern and pass the `value` attribute.
 
-```jsx
+```jsx {4,5,12}
 // for multiple accordions
 const [state, send] = useMachine(
   accordion.machine.withContext({
@@ -82,10 +107,42 @@ the context's `collapsible` property to `true`.
 
 > Note: If `multiple` is `true`, we internally set `collapsible` to be `true`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   accordion.machine.withContext({
     collapsible: true,
+  }),
+)
+```
+
+## Disabling specific accordion items
+
+To disable a specific accordions, you can pass the `disabled: true` property to
+the `getItemProps`, `getTriggerProps` and `getContentProps`.
+
+When an accordion item is disabled, it is skipped from keyboard navigation and
+can't be interacted with.
+
+```jsx
+//...
+<div {...api.getItemProps({ value: "item", disabled: true })}>
+  <h3>
+    <button {...api.getTriggerProps({ value: "item", disabled: true })}>
+      Trigger
+    </button>
+  </h3>
+  <div {...api.getContentProps({ value: "item", disabled: true })}>Content</div>
+</div>
+//...
+```
+
+You can also disable the entire accordion items by passing `disabled` to the
+machine's context.
+
+```jsx {3}
+const [state, send] = useMachine(
+  accordion.machine.withContext({
+    disabled: true,
   }),
 )
 ```
@@ -94,31 +151,62 @@ const [state, send] = useMachine(
 
 The accordion's connect method exposes the following methods:
 
-- `setValue`: Used to set the value of the accordion that will be expanded.
-- `value`: The value of the currently selected accordion
+- `setValue()` — Used to set the value of the accordion that will be expanded.
+- `value` — The value of the currently selected accordion.
+- `getItemState()` — Function to check the state a accordion item is expanded.
+  It returns an object containing `isOpen`, `isFocused`, `isDisabled`
 
 ```jsx
 const api = connect(state, send)
 
-api.value // => "item-1"
+api.value
+// => "item-1"
+
 api.setValue("item-2")
+
+api.getItemState({ value: "item-2" })
+// => { isOpen: true, isFocused: false, isDisabled: false }
 ```
 
-## Styling the expanded state
+## Styling guide
+
+Earlier we mentioned that each accordion part has a `data-part` attribute added
+to them to select and style them in the DOM.
+
+### Selected state
 
 When an accordion item is expanded, a `data-expanded` attribute is set on the
-accordion item, trigger and content elements. When it closes, the
-`data-expanded` attribute is removed. You can use this to style the expanded
-states accordingly.
+item, trigger and content elements. This attribute is removed when it is closed.
 
 ```css
-/* Default styles for accordion trigger */
-[data-part="trigger"] {
-  background: white;
+[data-part="item"][data-expanded] {
+  /* CSS for the item's expanded state */
 }
 
-/* Styling the expanded state */
 [data-part="trigger"][data-expanded] {
-  background: red;
+  /* CSS for the trigger's expanded state */
+}
+
+[data-part="content"][data-expanded] {
+  /* CSS for the content's expanded state */
+}
+```
+
+### Focused state
+
+When an accordion item's trigger is focused, a `data-focused` attribute is set
+on the item and content.
+
+```css
+[data-part="item"][data-focus] {
+  /* CSS for the item's focus state */
+}
+
+[data-part="trigger"]:focus {
+  /* CSS for the trigger's focus state */
+}
+
+[data-part="content"][data-focus] {
+  /* CSS for the content's focus state */
 }
 ```
