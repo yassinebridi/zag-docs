@@ -81,6 +81,7 @@ const components = {
         step: 1,
         allowMouseWheel: false,
         clampValueOnBlur: true,
+        allowOverflow: false,
       }}
     />
   ),
