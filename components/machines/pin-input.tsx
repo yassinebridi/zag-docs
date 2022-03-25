@@ -11,8 +11,8 @@ export function PinInput(props: any) {
   const api = pinInput.connect(state, send)
 
   return (
-    <div ref={ref}>
-      <HStack mb="4" {...api.containerProps}>
+    <div>
+      <HStack ref={ref} mb="4" {...api.containerProps}>
         {[1, 2, 3].map((_, index) => (
           <chakra.input
             bg="white"
