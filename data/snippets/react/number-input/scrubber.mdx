@@ -1,4 +1,4 @@
-```jsx
+```jsx {13}
 import * as numberInput from "@ui-machines/number-input"
 import { useMachine, useSetup } from "@ui-machines/react"
 
@@ -11,9 +11,8 @@ export function NumberInput() {
     <div ref={ref} {...api.rootProps}>
       <label {...api.labelProps}>Enter number:</label>
       <div>
-        <button {...api.decrementButtonProps}>DEC</button>
+        <div {...api.scrubberProps} />
         <input {...api.inputProps} />
-        <button {...api.incrementButtonProps}>INC</button>
       </div>
     </div>
   )

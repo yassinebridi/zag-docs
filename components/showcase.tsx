@@ -65,6 +65,7 @@ const components = {
           options: ["alphanumeric", "numeric", "alphabetic"],
           default: "alphanumeric",
         },
+        blurOnComplete: false,
         mask: false,
       }}
     />

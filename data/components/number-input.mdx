@@ -1,41 +1,81 @@
 # Number Input
 
-The NumberInput has controls for incrementing or decrementing numeric values.
+The number input component provides controls for editing, incrementing or
+decrementing numeric values using the keyboard or pointer.
 
 <Showcase id="NumberInput" />
 
 **Features**
 
-- Based on the spinbutton ARIA pattern.
+- Based on the spinbutton pattern.
 - Supports using the scroll wheel to increment and decrement the value.
 - Handles floating point rounding errors when incrementing, decrementing, and
   snapping to step.
-- Supports pressing and holding the stepper buttons to continuously increment or
+- Supports pressing and holding the spin buttons to continuously increment or
   decrement.
-- Support for stepper buttons and arrow keys to increment and decrement the
-  value according to the step value.
-- Supports rounding to a configurable number of fraction digits.
+- Supports rounding value to specific number of fraction digits.
 - Support for scrubbing interaction.
 
 ## Installation
 
-To use the number input machine in your project, install the respective package
-
-```jsx
-import * as numberInput from "@ui-machines/number-input"
-```
-
-Then you'll need to install the binding for your framework of choice
+To use the number input machine in your project, run the following command in
+your command line:
 
 <CodeSnippet id="number-input/installation.mdx" />
 
+This command will install the framework agnostic number input logic and the
+reactive utilities for your framework of choice.
+
+Now you can use the number input in your project!
+
+```jsx
+import * as numberInput from "@ui-machines/pin-input"
+```
+
+## Anatomy
+
+To set up the number input correctly, you'll need to understand its anatomy and
+how we name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the number input consists of:
+
+- **Root**: The root container for the number input.
+- **Input**: The editable field to change the value.
+- **Label**: The accessible label for the input.
+- **Increment Button**: The spin button to increment the value.
+- **Decrement Button**: The spin button to decrement the value.
+- **Scrubber**: The element that allows you to change the value by scrubbing.
+
 ## Usage
 
-The number input's connect exposes `inputProps`, `labelProps`,
-`incrementButtonProps` and `decrementButtonProps`. Add these attributes to their
-respective elements.
+The number input package exports two key functions:
+
+- `machine` — The state machine logic for the number input widget as described
+  in the WAI-ARIA spinner pattern.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
+
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that the every part has a unique identifier.
 
 <CodeSnippet id="number-input/usage.mdx" />
+
+## Setting the initial value
+
+To set the initial value of the number input, you can set the `value` context
+property.
+
+> **Note:** The value must be a string
+
+```jsx {3}
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    value: "13",
+  }),
+)
+```
 
 ## Setting a minimum and maximum value
 
@@ -43,7 +83,7 @@ Pass the `min` prop or `max` prop to set an upper and lower limit for the input.
 By default, the input will restrict the value to stay within the specified
 range.
 
-```jsx
+```jsx {3,4}
 const [state, send] = useMachine(
   numberInput.machine.withContext({
     min: 10,
@@ -52,12 +92,15 @@ const [state, send] = useMachine(
 )
 ```
 
+> To allow the value overflow the specified min or max, set the
+> `allowOverflow: true` in the context.
+
 ## Adjusting the precision of the value
 
 In some cases, you might need the value to be rounded to specific decimal
 points. Pass the `precision` prop and set it to the number of decimal points.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   numberInput.machine.withContext({
     precision: 3,
@@ -67,9 +110,8 @@ const [state, send] = useMachine(
 
 ## Scrubbing the input value
 
-The number input machine supports the scrubber interaction pattern. The values
-can changed by scrubbing on an arbitrary element with the `scrubberProps` spread
-on it.
+The number input machine supports the scrubber interaction pattern. The use this
+pattern, spread the `scrubberProps` from the `api` on to the scrubbing element.
 
 It uses the Pointer lock API and tracks the pointer movement. It also renders a
 virtual cursor which mimicks the real cursor's pointer.
@@ -82,7 +124,7 @@ The number input machine exposes a way to increment/decrement the value using
 the mouse wheel event. To activate this, pass the `allowMouseWheel` property to
 the machine's context.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   numberInput.machine.withContext({
     allowMouseWheel: true,
@@ -98,10 +140,23 @@ of the input.
 
 To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
   numberInput.machine.withContext({
     clampValueOnBlur: false,
+  }),
+)
+```
+
+## Usage within forms
+
+To use the number input within forms, set the `name` property in the machine's
+contact.
+
+```jsx {3}
+const [state, send] = useMachine(
+  numberInput.machine.withContext({
+    name: "quantity",
   }),
 )
 ```
@@ -112,41 +167,106 @@ To apply custom formatting to the input's value, use the exposed `format` and
 `parse` functions. For example, to format the input's value to currency, here's
 how to achieve it:
 
-```jsx
+```jsx {3,4}
 const [state, send] = useMachine(
   numberInput.machine.withContext({
-    format(value) {...},
-    parse(value) {...},
+    format: (value) => `$${value}`,
+    parse: (value) => value.replace(/\$/g, ""),
   }),
 )
 ```
 
+## Methods and Properties
+
+The number-input's connect method exposes the following methods:
+
+- `value` — The formatted value of the array.
+- `valueAsNumber` — The value of the input as number.
+- `setValue()` — Function used to set the a new value of the input.
+- `clearValue()` — Function used to clear the values.
+- `increment()` — Function used to increment the value.
+- `decrement()` — Function used to decrement the value.
+- `setToMax()` — Function used to set the value to the max.
+- `setToMin()` — Function used to set the value to the min.
+- `focus()` — Function used to focus the first input.
+
+```jsx
+const api = connect(state, send)
+
+api.value
+// => "12"
+
+api.valueAsNumber
+// => 12
+
+api.setValue("300")
+api.clearValue() // => new value: ""
+api.increment() // => new value: "1"
+api.decrement() // => new value: "0"
+
+api.setToMax() // => new value: "100"
+api.setToMin() // => new value: "0"
+api.focus()
+```
+
 ## Styling guide
 
-**Input**
+Earlier, we mentioned that each number-input's part has a `data-part` attribute
+added to them to select and style them in the DOM.
+
+### Disabled state
+
+When the number input is disabled, the root, label and input parts will have
+`data-disabled` attribute added to them.
+
+The increment and decrement spin buttons are disabled when the number input is
+disabled and the min/max is reached.
 
 ```css
-[data-part="input"] {
-  /* base styles for input */
-}
-
-[data-part="input"][data-invalid] {
-  /* styles for when value is invalid */
+[data-part="root"][data-disabled] {
+  /* disabled styles for the input */
 }
 
 [data-part="input"][data-disabled] {
-  /* styles for when input is disabled */
+  /* disabled styles for the input */
+}
+
+[data-part="label"][data-disabled] {
+  /* disabled styles for the label */
+}
+
+[data-part="spin-button"][data-disabled] {
+  /* disabled styles for the spin buttons */
 }
 ```
 
-**Decrement/Increment Button**
+### Invalid state
+
+The number input is invalid, either by passing `invalid: true` or when the value
+exceeds the max and `allowOverflow: true` is passed. When this happens, the
+root, label and input parts will have `data-invalid` attribute added to them.
 
 ```css
-[data-part="spinner-button"] {
-  /* base styles for spinner  */
+[data-part="root"][data-invalid] {
+  /* disabled styles for the input */
 }
 
-[data-part="spinner-button"][data-disabled] {
-  /* styles for spinner button when is disabled */
+[data-part="input"][data-invalid] {
+  /* invalid styles for the input */
+}
+
+[data-part="label"][data-invalid] {
+  /* invalid styles for the label */
+}
+```
+
+### Readonly state
+
+When the number input is readonly, the input part will have `data-readonly`
+added.
+
+```css
+[data-part="input"][data-readonly] {
+  /* readonly styles for the input */
 }
 ```
