@@ -65,7 +65,7 @@ const theme = {
           },
           "a:focus": { opacity: 1 },
         },
-        p: {
+        "p, li:not([role])": {
           lineHeight: "taller",
         },
         "p + p": {

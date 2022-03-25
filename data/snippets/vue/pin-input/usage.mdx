@@ -15,7 +15,7 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <div>
-          <div ref={ref} {...api.containerProps}>
+          <div ref={ref} {...api.rootProps}>
             <input {...api.getInputProps({ index: 0 })} />
             <input {...api.getInputProps({ index: 1 })} />
             <input {...api.getInputProps({ index: 2 })} />

@@ -1,6 +1,8 @@
 # Pin Input
 
-The PinInput is optimized for entering a sequence of digits.
+The pin input is optimized for entering a sequence of digits or letters. The
+input fields allow one character at a time. When the digit or letter is entered,
+focus transfers to the next input in the sequence, until every input is filled.
 
 <Showcase id="PinInput" />
 
@@ -11,39 +13,57 @@ The PinInput is optimized for entering a sequence of digits.
 - Supports numeric and alphanumeric values.
 - Support for masking value (for sensitive data).
 - Support for copy/paste to autofill all fields.
-- OTP-code pasting from clipboard.
+- Supports fast paste SMS-code.
 
 ## Installation
 
-To use the pin input machine in your project, install the respective package
+To use the pin input machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="pin-input/installation.mdx" />
+
+This command will install the framework agnostic pin input logic and the
+reactive utilities for your framework of choice.
+
+Now you can use the pin input in your project!
 
 ```jsx
 import * as pinInput from "@ui-machines/pin-input"
 ```
 
-Then you'll need to install the binding for your framework of choice
+## Anatomy
 
-<CodeSnippet id="pin-input/installation.mdx" />
+To set up the pin input correctly, you'll need to understand its anatomy and how
+we name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the pin input consists of:
+
+- **Root**: The root container for the pin input.
+- **Input**: The editable field for users to enter values.
 
 ## Usage
 
-The input fields allow one digit or letter at a time. When the digit or letter
-is entered, focus transfers to the next input in the sequence, until every input
-is filled in.
+The pin input package exports two key functions:
 
-The pin inputs connect function exposes `containerProps` and `getInputProps` you
-can use to compose the UI.
+- `machine` — The state machine logic for the pin input widget.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
+
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that the every part has a unique identifier.
 
 <CodeSnippet id="pin-input/usage.mdx" />
 
 ## Setting a default value
 
-To set the initial value of the pin input, pass the `value` context property as
-shown below.
+To set the initial value of the pin input, pass the `value` property to the
+machine's context.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
+  pinInput.machine.withContext({
     value: ["1", "2", ""],
   }),
 )
@@ -54,10 +74,24 @@ const [state, send] = useMachine(
 To customize the default pin input placeholder (○) for each input, pass the
 `placeholder` prop and set it to your desired value.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
+  pinInput.machine.withContext({
     placeholder: "*",
+  }),
+)
+```
+
+## Blur on complete
+
+By default, the last input maintains focus when filled and we invoke the
+`onComplete` callback. To blur the last input when the user completes the input,
+set the `blurOnComplete: true` in the machine's context.
+
+```jsx {3}
+const [state, send] = useMachine(
+  pinInput.machine.withContext({
+    blurOnComplete: true,
   }),
 )
 ```
@@ -68,9 +102,9 @@ By default, the pin input accepts only number values but you can choose between
 `numeric`, `alphanumeric` and `alphabetic` values. To change the input mode,
 pass the `type` context property and set its value to `alphanumeric`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
+  pinInput.machine.withContext({
     type: "alphanumeric",
   }),
 )
@@ -78,14 +112,14 @@ const [state, send] = useMachine(
 
 ## Using OTP mode
 
-To trigger smartphone OTC auto-suggestion, it is recommended to apply
-`autocomplete="one-time-code"` to the input field. The pin-input machine
-provides support for this. To enable this, set the `otp` context property to
+To trigger smartphone OTC auto-suggestion, it is recommended to set the
+`autocomplete` attribute to "one-time-code". The pin-input machine provides
+support for this automatically when you set the `otp` context property to
 `true`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
+  pinInput.machine.withContext({
     otp: true,
   }),
 )
@@ -97,9 +131,9 @@ When collecting private or sensitive information using the pin input, you might
 need to mask the value entered, similar to `<input type="password"/>`. Pass the
 `mask` context property and set it to `true`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
+  pinInput.machine.withContext({
     mask: true,
   }),
 )
@@ -107,58 +141,119 @@ const [state, send] = useMachine(
 
 ## Listening for changes
 
-- When the pin-input's value is changed, the `onChange` listener is invoked with
-  the current value
-- When all fields have been completed (by typing or pasting), the `onComplete`
-  callback is invoked with the final value of the input.
+The pin-input machine invokes several callback functions when the user enters:
+
+- `onChange` — Function invoked when the value is changed.
+- `onComplete` — Function invoked when all fields have been completed (by typing
+  or pasting).
+- `onInvalid` — Function invoked when an invalid value is entered into the
+  input. An invalid value is any value that doesn't match the specified "type".
 
 ```jsx
 const [state, send] = useMachine(
-  PinInput.machine.withContext({
-    onChange(values) {
+  pinInput.machine.withContext({
+    onChange(value) {
+      // value => string[]
       console.log("value changed to:", values)
     },
-    onComplete(values) {
+    onComplete(value, valueAsString) {
+      // value => string[], valueAsString => string
       console.log("completed value:", values)
+    },
+    onInvalid(details) {
+      // details => { index: number, value: string }
+      console.log("invalid value:", details)
     },
   }),
 )
 ```
 
-## Styling guide
+## RTL support
 
-**Container**
+The pin input machine supports RTL writing directions. To set the `dir` property
+in the machine's context.
 
-```css
-[data-part="container"] {
-  /* base styles for the container */
-}
+When this attribute is set, we attach a `dir` attribute to the root part.
 
-[data-part="container"][data-complete] {
-  /* styles for when all value has been filled */
-}
+```jsx {3}
+const [state, send] = useMachine(
+  pinInput.machine.withContext({
+    dir: "rtl",
+  }),
+)
 ```
 
-**Input**
+## Methods and Properties
+
+The pin-input's connect method exposes the following methods:
+
+- `value` — The value of the pin input as an array.
+- `valueAsString` — The value of the pin input as string.
+- `isValueComplete` — Whether all input's have been filled.
+- `setValue()` — Function used to set the a new value of the input.
+- `clearValue()` — Function used to clear the values.
+- `setValueAtIndex()` — Function used to set value at the specified index.
+
+```jsx
+const api = connect(state, send)
+
+api.value
+// => ["1", "3", "3"]
+
+api.valueAsString
+// => "133"
+
+api.isValueComplete
+// => true
+
+api.setValue(["3", "0", "0"])
+api.clearValue()
+
+api.setValueAtIndex(1, "2") // sets the value at index 1 to "2"
+```
+
+## Styling guide
+
+Earlier, we mentioned that each pin-input's part has a `data-part` attribute
+added to them to select and style them in the DOM.
+
+### Completed state
+
+When all values have been filled, we attach a `data-complete` attribute to the
+root and input parts.
 
 ```css
-[data-part="input"] {
-  /* base styles for the input  */
-}
-
-[data-part="input"]:focus {
-  /* styles for when the input is focused */
-}
-
-[data-part="input"][data-invalid] {
-  /* styles for when the input is invalid */
-}
-
-[data-part="input"][data-disabled] {
-  /* styles for when the input is disabled */
+[data-part="root"][data-complete] {
+  /* styles for when all value has been filled */
 }
 
 [data-part="input"][data-complete] {
   /* styles for when all value has been filled */
+}
+```
+
+### Invalid state
+
+When an invalid value is entered, we attach a `data-invalid` attribute to the
+affected input part.
+
+```css
+[data-part="input"][data-invalid] {
+  /* styles for when the input is invalid */
+}
+```
+
+### Disabled state
+
+When the pin-input is disabled, we attach a `data-disabled` attribute to the
+root and input parts.
+
+```css
+[data-part="root"][data-disabled] {
+  /* styles for when the input is disabled */
+}
+
+[data-part="input"][data-invalid] {
+  /* styles for when the input is disabled */
 }
 ```

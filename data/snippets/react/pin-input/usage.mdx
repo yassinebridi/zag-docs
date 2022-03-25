@@ -8,8 +8,8 @@ export function PinInput() {
   const api = pinInput.connect(state, send)
 
   return (
-    <div ref={ref}>
-      <div {...api.containerProps}>
+    <div>
+      <div ref={ref} {...api.rootProps}>
         <input {...api.getInputProps({ index: 0 })} />
         <input {...api.getInputProps({ index: 1 })} />
         <input {...api.getInputProps({ index: 2 })} />

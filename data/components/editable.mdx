@@ -55,13 +55,12 @@ need these parts:
 
 The editable package exports two key functions:
 
-- `machine` — The state machine logic for the editable widget as described in
-  WAI-ARIA specification.
-- `connect` — The function that translates the machine's state to DOM attributes
-  and event handlers for each part.
+- `machine` — The state machine logic for the editable widget.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
 
-> You'll need to provide a unique `id` to the `useSetup` hook. We do this to
-> ensure that the editable and its part has a unique identifier.
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that every part has a unique identifier.
 
 <CodeSnippet id="editable/usage.mdx" />
 

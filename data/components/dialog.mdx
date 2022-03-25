@@ -32,8 +32,9 @@ import * as dialog from "@ui-machines/dialog"
 ## Anatomy
 
 To use the dialog component correctly, you'll need to understand its anatomy and
-how we name its parts. Each part includes a `data-part` attribute to help
-identify them in the DOM.
+how we name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
 
 The dialog pattern consists of:
 
@@ -55,11 +56,11 @@ The dialog package exports two key functions:
 
 - `machine` — The state machine logic for the dialog widget as described in
   WAI-ARIA specification.
-- `connect` — The function that translates the machine's state to DOM attributes
-  and event handlers for each part.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
 
-> You'll need to provide a unique `id` to the `useSetup` hook. We do this to
-> ensure that the dialog and its part has a unique identifier.
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that every part has a unique identifier.
 
 <CodeSnippet id="dialog/usage.mdx" />
 
