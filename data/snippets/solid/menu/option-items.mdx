@@ -1,0 +1,48 @@
+```jsx
+import * as menu from "@ui-machines/menu"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/solid"
+import { createMemo, For } from "solid-js"
+
+export function Menu() {
+  const [state, send] = useMachine(
+    menu.machine.withContext({
+      values: { order: "", type: [] },
+    }),
+  )
+  const ref = useSetup({ send, id: "1" })
+  const api = createMemo(() => menu.connect(state, send, normalizeProps))
+
+  return (
+    <>
+      <button ref={ref} {...api().triggerProps}>
+        Trigger
+      </button>
+      <div {...api().positionerProps}>
+        <div {...api().contentProps}>
+          <For each={data.order}>
+            {(item) => {
+              const option = { type: "radio", name: "order", value: item.id }
+              return (
+                <div {...api().getOptionItemProps(option)}>
+                  {api().isOptionChecked(option) ? "✅" : null} {item.label}
+                </div>
+              )
+            }}
+          </For>
+          <hr  {...api.separatorProps/>
+          <For each={data.type}>
+            {(item) => {
+              const option = { type: "checkbox", name: "type", value: item.id }
+              return (
+                <div {...api().getOptionItemProps(option)}>
+                  {api().isOptionChecked(option) ? "✅" : null} {item.label}
+                </div>
+              )
+            }}
+          </For>
+        </div>
+      </div>
+    </>
+  )
+}
+```

@@ -1,0 +1,56 @@
+```jsx
+import * as menu from "@ui-machines/menu"
+import { useMachine, useSetup } from "@ui-machines/react"
+
+const data = {
+  order: [
+    { label: "Ascending", id: "asc" },
+    { label: "Descending", id: "desc" },
+    { label: "None", id: "none" },
+  ],
+  type: [
+    { label: "Email", id: "email" },
+    { label: "Phone", id: "phone" },
+    { label: "Address", id: "address" },
+  ],
+}
+
+export function Menu() {
+  const [state, send] = useMachine(
+    menu.machine.withContext({
+      values: { order: "", type: [] },
+    }),
+  )
+  const ref = useSetup({ send, id: "1" })
+  const api = menu.connect(state, send)
+
+  return (
+    <>
+      <button ref={ref} {...api.triggerProps}>
+        Trigger
+      </button>
+      <div {...api.positionerProps}>
+        <div {...api.contentProps}>
+          {data.order.map((item) => {
+            const option = { type: "radio", name: "order", value: item.id }
+            return (
+              <div key={item.id} {...api.getOptionItemProps(option)}>
+                {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+              </div>
+            )
+          })}
+          <hr {...api.separatorProps} />
+          {data.type.map((item) => {
+            const option = { type: "checkbox", name: "type", value: item.id }
+            return (
+              <div key={item.id} {...api.getOptionItemProps(option)}>
+                {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </>
+  )
+}
+```

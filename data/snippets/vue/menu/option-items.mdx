@@ -1,0 +1,53 @@
+```jsx
+import * as menu from "@ui-machines/menu"
+import { normalizeProps, useMachine, useSetup } from "@ui-machines/vue"
+import { computed, defineComponent, h, Fragment } from "vue"
+
+export default defineComponent({
+  name: "Menu",
+  setup() {
+    const [state, send] = useMachine(
+      menu.machine.withContext({
+        values: { order: "", type: [] },
+        onValuesChange: console.log,
+      }),
+    )
+    const ref = useSetup({ send, id: "1" })
+    const apiRef = computed(
+      () => menu.connect < PropTypes > (state.value, send, normalizeProps),
+    )
+
+    return () => {
+      const api = apiRef.value
+      return (
+        <>
+          <button ref={ref} {...api.triggerProps}>
+            Trigger
+          </button>
+          <div {...api.positionerProps}>
+            <div {...api.contentProps}>
+              {data.order.map((item) => {
+                const opts = { type: "radio", name: "order", value: item.id }
+                return (
+                  <div key={item.id} {...api.getOptionItemProps(opts)}>
+                    {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+                  </div>
+                )
+              })}
+              <hr {...api.separatorProps} />
+              {data.type.map((item) => {
+                const opts = { type: "checkbox", name: "type", value: item.id }
+                return (
+                  <div key={item.id} {...api.getOptionItemProps(opts)}>
+                    {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </>
+      )
+    }
+  },
+})
+```

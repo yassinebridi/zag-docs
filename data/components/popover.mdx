@@ -154,7 +154,10 @@ return (
 
 ## Changing the placement
 
-```jsx
+To change the placment of the popover, set the `positioning.placement` property
+in the machine's context.
+
+```jsx {3-5}
 const [state, send] = useMachine(
   accordion.machine.withContext({
     positioning: {
