@@ -12,7 +12,7 @@ export function Slider(props: any) {
   const api = slider.connect(state, send)
 
   return (
-    <div className="focus-outline" ref={ref}>
+    <div ref={ref}>
       <div>
         <chakra.label mr="2" {...api.labelProps}>
           Slider Label:
@@ -49,6 +49,7 @@ export function Slider(props: any) {
           rounded="full"
           bg="white"
           shadow="base"
+          className="focus-outline"
           _disabled={{ bg: "gray.200" }}
           {...api.thumbProps}
         >
