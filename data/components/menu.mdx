@@ -164,3 +164,59 @@ pointer is pen or touch.
 > ⚠️ Ensure you don't use both `contextTriggerProps` and `triggerProps`. Menus
 > should have only one trigger type, that is, you should be using either a
 > dropdown menu or a context menu. Not both
+
+## Styling guide
+
+Earlier, we mentioned that each menu part has a `data-part` attribute added to
+them to select and style them in the DOM.
+
+### Focused item state
+
+When an item is focused, via keyboard navigation or pointer, it is given a
+`data-focus` attribute.
+
+```css
+[data-part="item"][data-focus] {
+  /* styles for focused state */
+}
+
+[data-part="option-item"][data-focus] {
+  /* styles for focused state */
+}
+```
+
+### Disabled item state
+
+When an item or an option item is disabled, it is given a `data-disabled`
+attribute.
+
+```css
+[data-part="item"][data-disabled] {
+  /* styles for disabled state */
+}
+
+[data-part="option-item"][data-disabled] {
+  /* styles for disabled state */
+}
+```
+
+### Using arrows
+
+When using arrows within the menu, you can style it using css variables.
+
+```css
+[data-part="arrow"] {
+  --arrow-size: 20px;
+  --arrow-background: red;
+}
+```
+
+### Checked option item state
+
+When an option item is checked, it is given a `data-checked` attribute.
+
+```css
+[data-part="option-item"][data-checked] {
+  /* styles for checked state */
+}
+```
