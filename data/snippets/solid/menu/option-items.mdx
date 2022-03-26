@@ -6,6 +6,7 @@ import { createMemo, For } from "solid-js"
 export function Menu() {
   const [state, send] = useMachine(
     menu.machine.withContext({
+       "aria-label": "Sort by",
       values: { order: "", type: [] },
     }),
   )

@@ -83,10 +83,26 @@ When building nested menus, you'll need to use:
 ## Grouping menu items
 
 When the number of menu items get much, it might be useful to group related menu
-items together. To achieve the`groupProps` provided by the menu machine's
-connect function.
+items. To achieve this:
 
-<CodeSnippet id="menu/grouping-items.mdx" />
+- Wrap the menu items within an element.
+- Spread the `api.groupProps(...)` JSX properties unto the element, providing an
+  `id`.
+- Render a label for the menu group, providing the `id` of the group element.
+
+```jsx
+//...
+<div {...api.contentProps}>
+  {/* ... */}
+  <hr {...api.separatorProps} />
+  <p {...api.getLabelProps({ htmlFor: "account" })}>Accounts</p>
+  <div {...api.getGroupProps({ id: "account" })}>
+    <button {...api.getItemProps({ id: "account-1" })}>Account 1</button>
+    <button {...api.getItemProps({ id: "account-2" })}>Account 2</button>
+  </div>
+</div>
+//...
+```
 
 ## Checkbox and Radio option items
 

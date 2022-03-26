@@ -4,7 +4,10 @@ import { useMachine, useSetup } from "@ui-machines/react"
 
 export function ContextMenu() {
   const [state, send] = useMachine(
-    menu.machine.withContext({ contextMenu: true }),
+    menu.machine.withContext({
+      "aria-label": "File",
+      contextMenu: true,
+    }),
   )
   const api = menu.connect(state, send)
   const ref = useSetup({ send, id: "1" })

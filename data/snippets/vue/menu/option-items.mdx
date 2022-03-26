@@ -8,13 +8,13 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       menu.machine.withContext({
+        "aria-label": "Sort by",
         values: { order: "", type: [] },
-        onValuesChange: console.log,
       }),
     )
     const ref = useSetup({ send, id: "1" })
-    const apiRef = computed(
-      () => menu.connect < PropTypes > (state.value, send, normalizeProps),
+    const apiRef = computed(() =>
+      menu.connect(state.value, send, normalizeProps),
     )
 
     return () => {

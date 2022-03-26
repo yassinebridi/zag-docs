@@ -5,7 +5,10 @@ import { createMemo } from "solid-js"
 
 export function ContextMenu() {
   const [state, send] = useMachine(
-    menu.machine.withContext({ contextMenu: true }),
+    menu.machine.withContext({
+      "aria-label": "File",
+      contextMenu: true,
+    }),
   )
   const ref = useSetup({ send, id: "1" })
   const api = createMemo(() => menu.connect(state, send, normalizeProps))

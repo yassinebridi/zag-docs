@@ -6,7 +6,9 @@ import { computed, defineComponent, h, Fragment } from "vue"
 export default defineComponent({
   name: "Menu",
   setup() {
-    const [state, send] = useMachine(menu.machine)
+    const [state, send] = useMachine(
+      menu.machine.withContext({ "aria-label": "File" }),
+    )
     const ref = useSetup({ send, id: "1" })
     const apiRef = computed(() =>
       menu.connect(state.value, send, normalizeProps),

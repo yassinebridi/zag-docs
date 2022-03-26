@@ -8,6 +8,7 @@ export default defineComponent({
   setup() {
     const [state, send] = useMachine(
       menu.machine.withContext({
+        "aria-label": "File",
         contextMenu: true,
       }),
     )
