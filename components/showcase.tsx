@@ -114,10 +114,9 @@ const components = {
       component={Slider}
       defaultProps={{
         disabled: false,
-        origin: {
-          default: "start",
-          options: ["start", "center"],
-        },
+        readonly: false,
+        origin: { default: "start", options: ["start", "center"] },
+        dir: { default: "ltr", options: ["ltr", "rtl"] },
       }}
     />
   ),

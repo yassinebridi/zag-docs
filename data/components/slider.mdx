@@ -1,8 +1,8 @@
 # Slider
 
-The Slider is used to allow users to make selections from a range of values.
-Think of it as a custom `<input type='range'/>` with the ability to achieve
-custom styling and accessibility.
+A slider is used to allow users to make selections from a range of values. Think
+of it as a custom `<input type='range'/>` with the ability to achieve custom
+styling and accessibility.
 
 <Showcase id="Slider" />
 
@@ -18,24 +18,52 @@ custom styling and accessibility.
 
 ## Installation
 
-To use the editable machine in your project, install the respective package
+To use the slider machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="slider/installation.mdx" />
+
+This command will install the framework agnostic slider logic and the reactive
+utilities for your framework of choice.
+
+Now you can use the slider in your project!
 
 ```jsx
 import * as slider from "@ui-machines/slider"
 ```
 
-Then you'll need to install the binding for your framework of choice
+## Anatomy
 
-<CodeSnippet id="slider/installation.mdx" />
+To set up the slider correctly, you'll need to understand its anatomy and how we
+name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the slider consists of:
+
+- **Root**: The root container for the slider
+- **Label**: The accessible label for the slider
+- **Control**: The container for the slider's track and thumb
+- **Track**: The slider's track element
+- **Range**: the element that visually represents the slider's range
+- **Thumb**: The control element used to drag the slider
+- **Output**: The element that displays the current value of the slider
 
 ## Usage
 
-The slider's connect function exposes the `labelProps`, `outputProps`,
-`thumbProps`, `rangeProps` and `rootProps` you can compose the slider UI.
+The slider package exports two key functions:
+
+- `machine` — The state machine logic for the slider widget as described in the
+  WAI-ARIA spec.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
+
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that every part has a unique identifier.
 
 <CodeSnippet id="slider/usage.mdx" />
 
-## Changing the orientation of the slider
+## Changing the orientation
 
 By default, the slider is assumed to be horizontal. To change the orientation to
 vertical, set the `orientation` property in the machine's context to `vertical`.
@@ -48,7 +76,7 @@ increment/decrement its value.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  Slider.machine.withContext({
+  slider.machine.withContext({
     orientation: "vertical",
   }),
 )
@@ -64,7 +92,7 @@ For example, to ask the user for a value between `-10` and `10`, you can use:
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  Slider.machine.withContext({
+  slider.machine.withContext({
     min: -10,
     max: 10,
   }),
@@ -81,7 +109,7 @@ places, you should set the value of step to `0.01`:
 
 ```jsx {5}
 const [state, send] = useMachine(
-  Slider.machine.withContext({
+  slider.machine.withContext({
     min: 5,
     max: 10,
     step: 0.01,
@@ -96,7 +124,7 @@ invoked. You can use this to setup custom behaviors in your app.
 
 ```jsx {3-8}
 const [state, send] = useMachine(
-  Slider.machine.withContext({
+  slider.machine.withContext({
     onChange(value) {
       console.log("value is changing to:", value)
     },
@@ -107,35 +135,35 @@ const [state, send] = useMachine(
 )
 ```
 
-## Exposed API methods
+## Methods and Properties
 
 The slider's `connect` function provides properties and methods you can use to
 programmatically read and set the slider's value.
 
-| Property          | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| `isFocused`       | Whether the slider is focused                                |
-| `isDragging`      | Whether the slider is being scrubbed/dragged                 |
-| `value`           | The current value of the slider                              |
-| `percent`         | The slider's value represented as a percentage               |
-| `setValue`        | Function to set the value of the slider                      |
-| `getPercentValue` | Function that returns the value associated with a percentage |
-| `increment`       | Function to increment the value                              |
-| `decrement`       | Function to decrement the value                              |
+| Property            | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| `isFocused`         | Whether the slider is focused                                |
+| `isDragging`        | Whether the slider is being scrubbed/dragged                 |
+| `value`             | The current value of the slider                              |
+| `percent`           | The slider's value represented as a percentage               |
+| `setValue()`        | Function to set the value of the slider                      |
+| `getPercentValue()` | Function that returns the value associated with a percentage |
+| `increment()`       | Function to increment the value                              |
+| `decrement()`       | Function to decrement the value                              |
+| `focus()`           | Function to focus the slider thumb                           |
 
-<CodeSnippet id="slider/programmatic-control.mdx" />
-
-## Changing the start position of the slider
+## Changing the start position
 
 By default, the slider's "zero position" is usually at the start position (left
-in LTR and right in RTL). In scenarios where the value represents an offset (or
-relative value), it might be useful to change the "zero position" to center.
+in LTR and right in RTL).
 
-To do this, pass the `origin` context property to `center`.
+In scenarios where the value represents an offset (or relative value), it might
+be useful to change the "zero position" to center. To do this, pass the `origin`
+context property to `center`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  Slider.machine.withContext({
+  slider.machine.withContext({
     origin: "center",
   }),
 )
@@ -148,65 +176,154 @@ function and ensure you pass `name` value to the machine's context. It will
 render a hidden input and ensure the value changes get propagated to the form
 correctly.
 
-<CodeSnippet id="slider/form-usage.mdx" />
+```jsx {3}
+const [state, send] = useMachine(
+  slider.machine.withContext({
+    name: "quantity",
+  }),
+)
+```
+
+## RTL Support
+
+The slider has built-in support for RTL alignment and interaction. In the RTL
+mode, operations are performed from right to left, meaning, the left arrow key
+will increment and the right arrow key will decrement.
+
+To enable RTL support, pass the `dir: rtl` context property
+
+```jsx {3}
+const [state, send] = useMachine(
+  slider.machine.withContext({
+    dir: "rtl",
+  }),
+)
+```
+
+> While we take care of the interactions in RTL mode, you'll have to ensure you
+> apply the correct CSS styles to flip the layout.
 
 ## Using slider marks
 
-In some cases you might need to define a series of mark along the slider track.
-To achieve this, use the exposed `getMarkerProps` from the `connect` function
-and position the slider marks relative to the track.
+To show marks or ticks along the slider track, use the exposed
+`api.getMarkerProps()` method to position the slider marks relative to the
+track.
 
-<CodeSnippet id="slider/using-marks.mdx" />
+<CodeSnippet id="slider/tick-marks.mdx" />
 
 ## Styling guide
 
-**Slider Thumb**
+Earlier, we mentioned that each slider part has a `data-part` attribute added to
+them to select and style them in the DOM.
+
+### Focused State
+
+When the slider thumb is focused, the `data-focus` attribute is added to the
+root, control, thumb and label parts.
 
 ```css
-[data-part="thumb"] {
-  /* base styles for the thumb */
+[data-part="root"][data-focus] {
+  /* styles for root focus state */
+}
+
+[data-part="thumb"]:focus {
+  /* styles for thumb focus state */
+}
+
+[data-part="control"][data-focus] {
+  /* styles for control focus state */
+}
+
+[data-part="track"][data-focus] {
+  /* styles for track focus state */
+}
+
+[data-part="range"][data-focus] {
+  /* styles for range focus state */
+}
+```
+
+### Disabled State
+
+When the slider is disabled, the `data-disabled` attribute is added to the root,
+label, control and thumb.
+
+```css
+[data-part="root"][data-disabled] {
+  /* styles for root disabled state */
+}
+
+[data-part="label"][data-disabled] {
+  /* styles for label disabled state */
+}
+
+[data-part="control"][data-disabled] {
+  /* styles for control disabled state */
+}
+
+[data-part="output"][data-disabled] {
+  /* styles for output disabled state */
 }
 
 [data-part="thumb"][data-disabled] {
-  /* styles for disabled state */
+  /* styles for thumb disabled state */
 }
 
-[data-part="thumb"][data-focus] {
-  /* styles for the focused state */
+[data-part="range"][data-disabled] {
+  /* styles for thumb disabled state */
+}
+```
+
+### Invalid State
+
+When the slider is invalid, the `data-invalid` attribute is added to the root,
+track, range, label, and thumb parts.
+
+```css
+[data-part="root"][data-invalid] {
+  /* styles for root invalid state */
+}
+
+[data-part="label"][data-invalid] {
+  /* styles for label invalid state */
+}
+
+[data-part="control"][data-invalid] {
+  /* styles for control invalid state */
+}
+
+[data-part="output"][data-invalid] {
+  /* styles for output invalid state */
+}
+
+[data-part="thumb"][data-invalid] {
+  /* styles for thumb invalid state */
+}
+
+[data-part="range"][data-invalid] {
+  /* styles for range invalid state */
+}
+```
+
+### Orientation
+
+```css
+[data-part="root"][data-orientation="(horizontal|vertical)"] {
+  /* styles for horizontal or vertical  */
 }
 
 [data-part="thumb"][data-orientation="(horizontal|vertical)"] {
   /* styles for horizontal or vertical  */
 }
-```
-
-**Slider Track**
-
-```css
-[data-part="track"] {
-  /* base styles for the track */
-}
-
-[data-part="track"][data-disabled] {
-  /* styles for disabled state */
-}
-
-[data-part="track"][data-focus] {
-  /* styles for when the slider is focused */
-}
 
 [data-part="track"][data-orientation="(horizontal|vertical)"] {
-  /* styles for slider orientation */
+  /* styles for horizontal or vertical  */
 }
 ```
 
-**Slider Marker**
+### Styling the markers
 
 ```css
-[data-part="marker"] {
-  /* base styles for marker */
-}
-
 [data-part="marker"][data-state="(at|under|over)-value"] {
   /* styles for when the value exceeds the marker's value */
 }

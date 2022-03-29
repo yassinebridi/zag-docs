@@ -6,7 +6,7 @@ import { GetStaticPaths, GetStaticProps } from "next"
 
 export default function OverviewPage({ doc }: { doc: Overview }) {
   const mdx = useMDX(doc?.body?.code ?? "")
-  return <DocsLayout>{mdx}</DocsLayout>
+  return <DocsLayout doc={doc}>{mdx}</DocsLayout>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
