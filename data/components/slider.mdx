@@ -82,6 +82,16 @@ const [state, send] = useMachine(
 )
 ```
 
+## Setting the initial value
+
+```jsx {3}
+const [state, send] = useMachine(
+  slider.machine.withContext({
+    value: 30,
+  }),
+)
+```
+
 ## Specifying the minimum and maximum
 
 By default, the minimum is `0` and the maximum is `100`. If that's not what you
@@ -137,8 +147,8 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The slider's `connect` function provides properties and methods you can use to
-programmatically read and set the slider's value.
+The slider's api provides properties and methods you can use to programmatically
+read and set the slider's value.
 
 | Property            | Description                                                  |
 | ------------------- | ------------------------------------------------------------ |

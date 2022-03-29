@@ -7,20 +7,9 @@ import { Stack } from "@chakra-ui/layout"
 import { HiX } from "react-icons/hi"
 
 export function Popover(props: any) {
-  const [state, send] = useMachine(
-    popover.machine.withContext({
-      positioning: {
-        placement: "bottom",
-        arrow: {
-          size: 10,
-          shadowColor: "black",
-        },
-      },
-    }),
-    {
-      context: props.controls,
-    },
-  )
+  const [state, send] = useMachine(popover.machine, {
+    context: props.controls,
+  })
   const ref = useSetup<HTMLDivElement>({ send, id: "1" })
   const api = popover.connect(state, send)
 
@@ -52,7 +41,7 @@ export function Popover(props: any) {
             {...api.contentProps}
           >
             <chakra.div
-              sx={{ "--arrow-background": "white" }}
+              sx={{ "--arrow-background": "white", "--arrow-size": "10px" }}
               {...api.arrowProps}
             >
               <chakra.div rounded="sm" {...api.innerArrowProps} />

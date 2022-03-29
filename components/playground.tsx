@@ -47,8 +47,7 @@ export function Playground(props: PlaygroundProps) {
       <Flex
         align="flex-start"
         justify="center"
-        pt="20"
-        pb="10"
+        py="20"
         bg="gray.50"
         flex="1"
         bgImage="radial-gradient(circle,var(--colors-gray-200) 1px, transparent 1px);"
