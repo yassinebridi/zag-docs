@@ -6,7 +6,7 @@ import { Center, Flex } from "@chakra-ui/layout"
 export function RangeSlider(props: any) {
   const [state, send] = useMachine(
     rangeSlider.machine.withContext({
-      name: ["min", "max"],
+      name: "quantity",
       value: [10, 60],
     }),
     { context: props.controls },
@@ -15,22 +15,22 @@ export function RangeSlider(props: any) {
   const api = rangeSlider.connect(state, send)
 
   return (
-    <div className="focus-outline" ref={ref}>
-      <div>
+    <chakra.div width="200px" ref={ref} {...api.rootProps}>
+      <Flex justify="space-between">
         <chakra.label mr="2" {...api.labelProps}>
-          Slider Label:
+          Quantity
         </chakra.label>
         <output {...api.outputProps}>
-          <b>{api.values.toString()}</b>
+          <b>{api.values.join(" - ")}</b>
         </output>
-      </div>
+      </Flex>
+
       <Flex
         mt="5"
         align="center"
         position="relative"
-        maxW="200px"
-        py="10px"
-        {...api.rootProps}
+        py="2.5"
+        {...api.controlProps}
       >
         <chakra.div
           height="4px"
@@ -49,6 +49,7 @@ export function RangeSlider(props: any) {
         </chakra.div>
         {api.values.map((_, index) => (
           <Center
+            className="focus-outline"
             boxSize="20px"
             rounded="full"
             bg="white"
@@ -61,6 +62,6 @@ export function RangeSlider(props: any) {
           </Center>
         ))}
       </Flex>
-    </div>
+    </chakra.div>
   )
 }

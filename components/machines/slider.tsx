@@ -12,22 +12,22 @@ export function Slider(props: any) {
   const api = slider.connect(state, send)
 
   return (
-    <div ref={ref}>
-      <div>
+    <chakra.div width="240px" ref={ref} {...api.rootProps}>
+      <Flex justify="space-between">
         <chakra.label mr="2" {...api.labelProps}>
-          Slider Label:
+          Quantity
         </chakra.label>
         <output {...api.outputProps}>
           <b>{api.value}</b>
         </output>
-      </div>
+      </Flex>
+
       <Flex
         mt="5"
         align="center"
         position="relative"
-        maxW="200px"
-        py="10px"
-        {...api.rootProps}
+        py="2.5"
+        {...api.controlProps}
       >
         <chakra.div
           height="4px"
@@ -56,6 +56,6 @@ export function Slider(props: any) {
           <input {...api.inputProps} />
         </Center>
       </Flex>
-    </div>
+    </chakra.div>
   )
 }

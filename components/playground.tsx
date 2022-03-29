@@ -1,4 +1,4 @@
-import { Box, Flex, Stack } from "@chakra-ui/layout"
+import { Box, Center, Flex, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import React, { useState } from "react"
 
@@ -44,15 +44,18 @@ export function Playground(props: PlaygroundProps) {
       minHeight="24em"
       my="16"
     >
-      <Box
-        padding="5"
+      <Flex
+        align="flex-start"
+        justify="center"
+        pt="20"
+        pb="10"
         bg="gray.50"
         flex="1"
         bgImage="radial-gradient(circle,var(--colors-gray-200) 1px, transparent 1px);"
         bgSize="16px 16px"
       >
         <Comp controls={state} />
-      </Box>
+      </Flex>
 
       <Box flexBasis="1px" alignSelf="stretch" bg="gray.200" />
 

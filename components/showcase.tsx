@@ -125,7 +125,8 @@ const components = {
       component={RangeSlider}
       defaultProps={{
         disabled: false,
-        step: 1,
+        readonly: false,
+        dir: { default: "ltr", options: ["ltr", "rtl"] },
       }}
     />
   ),
