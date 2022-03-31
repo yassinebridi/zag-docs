@@ -17,7 +17,7 @@ export function Tabs() {
   const api = createMemo(() => tabs.connect(state, send, normalizeProps))
 
   return (
-    <div ref={ref}>
+    <div ref={ref} {...api().rootProps}>
       <div {...api().tabIndicatorProps} />
       <div {...api().tablistProps}>
         <For each={data}>

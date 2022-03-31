@@ -23,7 +23,6 @@ export function Tabs() {
             {item.label}
           </button>
         ))}
-        <div {...api.tabIndicatorProps} />
       </div>
       {data.map((item) => (
         <div {...api.getTabPanelProps({ value: item.value })} key={item.value}>

@@ -13,12 +13,18 @@ export function Tabs(props: any) {
     tabs.machine.withContext({ value: "item-1" }),
     { context: props.controls },
   )
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = tabs.connect(state, send)
 
   return (
-    <div className="focus-outline" ref={ref}>
-      <chakra.div bg="white" {...api.tablistProps}>
+    <chakra.div
+      width="full"
+      maxW="400px"
+      fontSize="sm"
+      className="focus-outline"
+      ref={ref}
+    >
+      <chakra.div bg="white" borderBottomWidth="1px" {...api.tablistProps}>
         {data.map((item) => (
           <chakra.button
             py="2"
@@ -47,6 +53,6 @@ export function Tabs(props: any) {
           <p>{item.content}</p>
         </chakra.div>
       ))}
-    </div>
+    </chakra.div>
   )
 }

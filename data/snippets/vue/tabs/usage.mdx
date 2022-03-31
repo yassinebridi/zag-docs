@@ -23,7 +23,7 @@ export default defineComponent({
     return () => {
       const api = apiRef.value
       return (
-        <div ref={ref}>
+        <div ref={ref} {...api.rootProps}>
           <div {...api.tablistProps}>
             {data.map((item) => (
               <button
