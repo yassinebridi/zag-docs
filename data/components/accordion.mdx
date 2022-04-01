@@ -1,8 +1,7 @@
 # Accordion
 
-An accordion is a vertically stacked set of interactive headings that each
-contain a title, content snippet, or thumbnail representing a section of
-content.
+An accordion is a vertically stacked set of interactive headings containing a
+title, content snippet, or thumbnail representing a section of content.
 
 <Showcase id="Accordion" />
 
@@ -21,12 +20,6 @@ command line:
 
 This command will install the framework agnostic accordion logic and the
 reactive utilities for your framework of choice.
-
-Now you can use the accordion in your project!
-
-```jsx
-import * as accordion from "@ui-machines/accordion"
-```
 
 ## Anatomy
 
@@ -47,14 +40,23 @@ For each accordion item, it consists of:
 
 ## Usage
 
+First, import the accordion package into your project
+
+```jsx
+import * as accordion from "@ui-machines/accordion"
+```
+
 The accordion package exports two key functions:
 
 - `machine` — The state machine logic for the accordion widget.
 - `connect` — The function that translates the machine's state to JSX attributes
   and event handlers.
 
-> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
-> ensure that every part has a unique identifier.
+> You'll also need to provide a unique `id` to the `useSetup` hook. This is used
+> to ensure that every part has a unique identifier.
+
+Next, import the required hooks and function for your framework. Now you can use
+the accordion in your project! Below is a basic usage of the accordion machine.
 
 <CodeSnippet id="accordion/usage.mdx" />
 
@@ -67,8 +69,8 @@ page.
 ## Opening multiple accordions at once
 
 To allow multiple items to be expanded at once, set `multiple` to `true`. This
-mode implicitly sets `collapsible` to `true` to also ensure that each accordion
-can be expanded.
+mode implicitly sets `collapsible` to `true` and ensures that each accordion can
+be expanded.
 
 ```jsx {3}
 const [state, send] = useMachine(
@@ -102,8 +104,8 @@ const [state, send] = useMachine(
 
 ## Toggle each accordion item
 
-To allow an expanded accordion item to be collapsed again by clicking on it. Set
-the context's `collapsible` property to `true`.
+To collapse an already exapnded accordion item by clicking on it, set the
+context's `collapsible` property to `true`.
 
 > Note: If `multiple` is `true`, we internally set `collapsible` to be `true`.
 
@@ -117,8 +119,8 @@ const [state, send] = useMachine(
 
 ## Disabling specific accordion items
 
-To disable a specific accordions, you can pass the `disabled: true` property to
-the `getItemProps`, `getTriggerProps` and `getContentProps`.
+To disable a specific accordion, pass the `disabled: true` property to the
+`getItemProps`, `getTriggerProps` and `getContentProps`.
 
 When an accordion item is disabled, it is skipped from keyboard navigation and
 can't be interacted with.
@@ -149,12 +151,13 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The accordion's connect method exposes the following methods:
+The accordion's `api` exposes the following methods and properties:
 
 - `value` — The value of the currently selected accordion.
-- `setValue()` — Used to set the value of the accordion that will be expanded.
-- `getItemState()` — Function to check the state a accordion item is expanded.
-  It returns an object containing `isOpen`, `isFocused`, `isDisabled`
+- `setValue()` — The function used to set the value of the accordion that will
+  be expanded.
+- `getItemState()` — The function to check the state of an accordion item. It
+  returns an object containing `isOpen`, `isFocused`, `isDisabled`
 
 ```jsx
 const api = connect(state, send)
