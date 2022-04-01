@@ -12,7 +12,7 @@ export function PinInput(props: any) {
 
   return (
     <div>
-      <HStack ref={ref} mb="4" {...api.containerProps}>
+      <HStack ref={ref} mb="4" {...api.rootProps}>
         {[1, 2, 3].map((_, index) => (
           <chakra.input
             bg="white"

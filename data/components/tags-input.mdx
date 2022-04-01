@@ -17,15 +17,36 @@ Tag inputs render tags inside an input, followed by an actual text input.
 
 ## Installation
 
-To use the tags input machine in your project, install the respective package
+To use the accordion machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="tags-input/installation.mdx" />
+
+This command will install the framework agnostic tags-input logic and the
+reactive utilities for your framework of choice.
+
+Now you can use the tags-input in your project!
 
 ```jsx
 import * as tagsInput from "@ui-machines/tags-input"
 ```
 
-Then you'll need to install the framework specific binding
+## Anatomy
 
-<CodeSnippet id="tags-input/installation.mdx" />
+To set up the tags input correctly, you'll need to understand its anatomy and
+how we name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the tags input consists of:
+
+- **Root**: The root container for the tags input
+- **Item**: The container for each tags input item
+
+For each tags input item, it consists of:
+
+- **Trigger**: The trigger for the tags input item
+- **Content**: The content area that is revealed when the trigger is clicked
 
 ## Usage
 
@@ -93,14 +114,110 @@ render the `hiddenInput` element
 
 <CodeSnippet id="tags-input/form-usage.mdx" />
 
-## Using Custom components
+## Methods and Properties
 
-You won't always have to use the regular tags UI for the component. Here's an
-example of rendering a list of users for an email client.
+The tag input's connect method exposes the following methods:
 
-<CodeSnippet id="tags-input/custom-component.mdx" />
+- `value` — The value of the added tags.
+- `valueAsString` — The value of the added tags represented as a string.
+- `inputValue` — The value of the tags input field.
+- `setValue()` — Used to set the value of the accordion that will be expanded.
+- `addValue()` — Function used to add a new tag value.
+- `clearValue()` — Function used to clear all tag values.
+- `deleteValue()` — Function used to remove a specific tag value.
 
-## Styling
+```jsx
+const api = connect(state, send)
+
+api.value
+// => "item-1"
+
+api.setValue("item-2")
+
+api.getItemState({ value: "item-2" })
+// => { isOpen: true, isFocused: false, isDisabled: false }
+```
+
+## Limiting the number of tag
+
+To limit the number of tags within the component, you can set the `max` property
+to the limit you want.
+
+<CodeSnippet id="tags-input/limit-tags.mdx" />
+
+## Validating Tags
+
+Before a tag is added, we allow the user validate the tags via `validateTag`
+option. This function should return a `boolean` indicating whether a value
+should be added.
+
+A common use-case for validating tags is preventing duplicates. Here's how to
+achieve that:
+
+```jsx
+const [state, send] = useMachine(
+  tagsInput.machine.withContext({
+    validateTag(opts) {
+      return !opts.values.includes(opts.value)
+    },
+  }),
+)
+```
+
+## Blur behavior
+
+When the tags input is blurred and the input element is not empty, you can set
+the machine to add a new tag using the input's value. Pass the `addOnBlur`
+option.
+
+```jsx
+const [state, send] = useMachine(
+  tagsInput.machine.withContext({
+    addOnBlur: true,
+  }),
+)
+```
+
+## Paste behavior
+
+To add a tag when a arbritary value is pasted in the input element, pass the
+`addOnPaste` option.
+
+```jsx
+const [state, send] = useMachine(
+  tagsInput.machine.withContext({
+    addOnPaste: true,
+  }),
+)
+```
+
+## Events
+
+During the lifetime of the tags input interaction, here's a list of events we
+emit:
+
+- `onChange`: invoked when the tag value changes
+- `onHighlight`: invoked when a tag has visual focus
+- `onInvalid`: invoked when the max tag count is reached or the `validateTag`
+  function returns `false`
+
+```jsx
+const [state, send] = useMachine(
+  tagsInput.machine.withContext({
+    onChange(tags) {
+      console.log("tags changed to:", tags)
+    },
+    onHighlight(tag) {
+      console.log("highlighted tag:", tag)
+    },
+    onInvalid(err) {
+      console.log("Invalid!", err)
+    },
+  }),
+)
+```
+
+## Styling guide
 
 When the input is focused or any tag is clicked, we attached specific `data-*`
 attributes to help you style the elements better.
@@ -138,83 +255,4 @@ attributes to help you style the elements better.
 [data-part="tag"][data-selected] {
   /* styles for visual focus */
 }
-```
-
-## Limiting the number of tag
-
-To limit the number of tags within the component, you can set the `max` property
-to the limit you want.
-
-<CodeSnippet id="tags-input/limit-tags.mdx" />
-
-## Validating Tags
-
-Before a tag is added, we allow the user validate the tags via `validateTag`
-option. This function should return a `boolean` indicating whether a value
-should be added.
-
-A common use-case for validating tags is preventing duplicates. Here's how to
-achieve that:
-
-```jsx
-const [state, send] = useMachine(
-  TagsInput.machine.withContext({
-    validateTag(opts) {
-      return !opts.values.includes(opts.value)
-    },
-  }),
-)
-```
-
-## Blur behavior
-
-When the tags input is blurred and the input element is not empty, you can set
-the machine to add a new tag using the input's value. Pass the `addOnBlur`
-option.
-
-```jsx
-const [state, send] = useMachine(
-  TagsInput.machine.withContext({
-    addOnBlur: true,
-  }),
-)
-```
-
-## Paste behavior
-
-To add a tag when a arbritary value is pasted in the input element, pass the
-`addOnPaste` option.
-
-```jsx
-const [state, send] = useMachine(
-  TagsInput.machine.withContext({
-    addOnPaste: true,
-  }),
-)
-```
-
-## Events
-
-During the lifetime of the tags input interaction, here's a list of events we
-emit:
-
-- `onChange`: invoked when the tag value changes
-- `onHighlight`: invoked when a tag has visual focus
-- `onInvalid`: invoked when the max tag count is reached or the `validateTag`
-  function returns `false`
-
-```jsx
-const [state, send] = useMachine(
-  TagsInput.machine.withContext({
-    onChange(tags) {
-      console.log("tags changed to:", tags)
-    },
-    onHighlight(tag) {
-      console.log("highlighted tag:", tag)
-    },
-    onInvalid(err) {
-      console.log("Invalid!", err)
-    },
-  }),
-)
 ```
