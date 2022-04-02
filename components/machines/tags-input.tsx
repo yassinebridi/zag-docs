@@ -13,59 +13,58 @@ export function TagsInput(props: any) {
   const api = tagsInput.connect(state, send)
 
   return (
-    <div>
-      <div>
+    <chakra.div width="400px">
+      <chakra.div ref={ref} {...api.rootProps}>
         <label {...api.labelProps}>Enter frameworks:</label>
-      </div>
-      <chakra.div
-        mt="2"
-        py="2px"
-        px="1"
-        bg="white"
-        borderWidth="1px"
-        _focus={{
-          outline: "2px solid hsl(204, 100%, 40%)",
-          outlineOffset: "2px",
-        }}
-        ref={ref}
-        {...api.rootProps}
-      >
-        {api.value.map((value, index) => (
-          <span key={index}>
-            <chakra.div
-              bg="gray.100"
-              px="2"
-              rounded="2px"
-              display="inline-block"
-              margin="4px"
-              _selected={{ bg: "green.200" }}
-              _disabled={{ opacity: 0.6 }}
-              {...api.getTagProps({ index, value })}
-            >
-              <span>{value} </span>
-              <chakra.button
-                ml="1"
-                {...api.getTagDeleteButtonProps({ index, value })}
-              >
-                &#x2715;
-              </chakra.button>
-            </chakra.div>
-            <chakra.input
-              px="2"
-              width="10"
-              outline="0"
-              {...api.getTagInputProps({ index })}
-            />
-          </span>
-        ))}
-        <chakra.input
-          margin="4px"
-          px="2"
-          placeholder="Add tag..."
-          _focus={{ outline: "0" }}
-          {...api.inputProps}
-        />
+        <chakra.div
+          bg="white"
+          borderWidth="1px"
+          mt="2"
+          py="2px"
+          px="1"
+          _focus={{
+            outline: "2px solid hsl(204, 100%, 40%)",
+            outlineOffset: "2px",
+          }}
+          {...api.controlProps}
+        >
+          {api.value.map((value, index) => {
+            const opt = { index, value }
+            return (
+              <span key={index}>
+                <chakra.div
+                  bg="gray.100"
+                  px="2"
+                  rounded="2px"
+                  display="inline-block"
+                  margin="4px"
+                  _selected={{ bg: "green.200" }}
+                  _disabled={{ opacity: 0.6 }}
+                  {...api.getTagProps(opt)}
+                >
+                  <span>{value}</span>
+                  <chakra.button ml="1" {...api.getTagDeleteButtonProps(opt)}>
+                    &#x2715;
+                  </chakra.button>
+                </chakra.div>
+                <chakra.input
+                  px="2"
+                  width="10"
+                  outline="0"
+                  {...api.getTagInputProps(opt)}
+                />
+              </span>
+            )
+          })}
+          <chakra.input
+            margin="4px"
+            px="2"
+            placeholder="Add tag..."
+            _focus={{ outline: "0" }}
+            {...api.inputProps}
+          />
+        </chakra.div>
       </chakra.div>
-    </div>
+    </chakra.div>
   )
 }

@@ -135,7 +135,8 @@ const components = {
       component={TagsInput}
       defaultProps={{
         disabled: false,
-        addOnBlur: false,
+        dir: { default: "ltr", options: ["ltr", "rtl"] },
+        blurBehavior: { default: "--", options: ["add", "clear"] },
         addOnPaste: false,
       }}
     />

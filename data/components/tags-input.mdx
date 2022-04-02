@@ -1,6 +1,8 @@
 # Tags Input
 
-Tag inputs render tags inside an input, followed by an actual text input.
+Tag inputs render tags inside an input, followed by an actual text input. Tags
+are added when text is typed in the input field and the `Enter` or `Comma` key
+is pressed. Throughout the interaction, DOM focus remains on the input element.
 
 <Showcase id="TagsInput" />
 
@@ -40,27 +42,38 @@ how we name its parts.
 
 On a high level, the tags input consists of:
 
-- **Root**: The root container for the tags input
-- **Item**: The container for each tags input item
+- **Root**: The root container for the tags input.
+- **Label**: The accessible label for the tags input textbox.
+- **Control**: The container for the tags and the input's textbox.
+- **Tag**: The element that represents a tag.
+- **Input**: The textbox for adding new tags.
+- **Hidden Input**: The hidden input that holds the value of the tags input.
+  Used within forms.
+- **Clear Button**: The button that clears all tags.
 
-For each tags input item, it consists of:
+Each tag consists of:
 
-- **Trigger**: The trigger for the tags input item
-- **Content**: The content area that is revealed when the trigger is clicked
+- **Tag Input**: The input element that is used to edit a tag.
+- **Tag Delete Button**: The button to delete a tag.
 
 ## Usage
 
-By default, tags are added when text is typed in the input field and the `Enter`
-or `Comma` key is pressed. Throughout the interaction, DOM focus remains on the
-input element.
+The tags input package exports two key functions:
+
+- `machine` — The state machine logic for the tags input widget.
+- `connect` — The function that translates the machine's state to JSX attributes
+  and event handlers.
+
+> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
+> ensure that every part has a unique identifier.
 
 <CodeSnippet id="tags-input/usage.mdx" />
 
 ## Navigating and Editing tags
 
-When the input has an empty value or the caret is at the start position, user
-can navigate the tags by using the arrow left and arrow right keys. When
-"visual" focus in on any tag:
+When the input has an empty value or the caret is at the start position, the
+tags can be selected by using the arrow left and arrow right keys. When "visual"
+focus in on any tag:
 
 - Pressing `Enter` or double clicking on the tag will put the it in edit mode,
   allowing the user change its value and press `Enter` to commit the changes.
@@ -68,97 +81,85 @@ can navigate the tags by using the arrow left and arrow right keys. When
 
 ## Setting the initial tags
 
-To set the initial tag values, pass the `value` option in the machine's context.
+To set the initial tag values, pass the `value` property in the machine's
+context.
 
-<CodeSnippet id="tags-input/setting-initial-tags.mdx" />
-
-## Readonly tags
-
-You can make the tags input readonly by passing the `readonly` property. It'll
-make the input readonly and also disallow interations with the tag.
-
-<CodeSnippet id="tags-input/readonly.mdx" />
-
-## Updating tags programmatically
-
-If you need to programmatically (manually) set or change the list of selected
-tags from "outside", you can leverage the exposed methods in `connect` function.
-
-```js
-const { add, delete, clear } = connect(state, send)
+```jsx {3}
+const [state, send] = useMachine(
+  accordion.machine.withContext({
+    value: ["React", "Redux", "TypeScript"],
+  }),
+)
 ```
-
-<CodeSnippet id="tags-input/programmatic-update.mdx" />
 
 ## Removing all tags
 
 The tags input will remove all tags when the clear button is clicked. To remove
-all tags, use the `clearButtonProps` to a `button` element.
+all tags, use the provided `clearButtonProps` function from the `api`.
 
-<CodeSnippet id="tags-input/remove-all-tags.mdx" />
+```jsx {4}
+//...
+<div {...api.controlProps}>
+  <input {...api.inputProps} />
+  <button {...api.clearButtonProps} />
+</div>
+//...
+```
 
-To programmatically remove all tags, use the `clear` method that's available in
-the `connect`.
+To programmatically remove all tags, use the `api.clearAll()` method that's
+available in the `connect`.
 
 ## Usage within forms
 
 The tags input works when placed within a form and the form is submitted. We
 achieve this by:
 
-- ensuring we emit the change event via the DOM APIs
+- ensuring we emit the input event as the value changes.
 - adding a `name` and `value` attribute to a hidden input so the tags can be
-  accessed in the `FormData`
+  accessed in the `FormData`.
 
 To get this feature working you need to pass a `name` option to the context and
-render the `hiddenInput` element
+render the `hiddenInput` element.
 
-<CodeSnippet id="tags-input/form-usage.mdx" />
-
-## Methods and Properties
-
-The tag input's connect method exposes the following methods:
-
-- `value` — The value of the added tags.
-- `valueAsString` — The value of the added tags represented as a string.
-- `inputValue` — The value of the tags input field.
-- `setValue()` — Used to set the value of the accordion that will be expanded.
-- `addValue()` — Function used to add a new tag value.
-- `clearValue()` — Function used to clear all tag values.
-- `deleteValue()` — Function used to remove a specific tag value.
-
-```jsx
-const api = connect(state, send)
-
-api.value
-// => "item-1"
-
-api.setValue("item-2")
-
-api.getItemState({ value: "item-2" })
-// => { isOpen: true, isFocused: false, isDisabled: false }
+```jsx {3}
+const [state, send] = useMachine(
+  accordion.machine.withContext({
+    name: "tags",
+    values: ["React", "Redux", "TypeScript"],
+  }),
+)
 ```
 
 ## Limiting the number of tag
 
 To limit the number of tags within the component, you can set the `max` property
-to the limit you want.
+to the limit you want. The default value is `Infinity`.
 
-<CodeSnippet id="tags-input/limit-tags.mdx" />
+When the tag reaches the limit, new tags cannot be added except the
+`allowOverflow` option is passed to the context.
+
+```jsx {3-4}
+const [state, send] = useMachine(
+  accordion.machine.withContext({
+    max: 10,
+    allowOverflow: true,
+  }),
+)
+```
 
 ## Validating Tags
 
-Before a tag is added, we allow the user validate the tags via `validateTag`
-option. This function should return a `boolean` indicating whether a value
-should be added.
+Before a tag is added, the machine provides a `validate` function you can use to
+determine whether to accept or reject a tag.
 
-A common use-case for validating tags is preventing duplicates. Here's how to
-achieve that:
+A common use-case for validating tags is preventing duplicates or validating the
+data type.
 
-```jsx
+```jsx {3-4}
 const [state, send] = useMachine(
   tagsInput.machine.withContext({
-    validateTag(opts) {
-      return !opts.values.includes(opts.value)
+    validate(details) {
+      return !details.values.includes(details.value)
     },
   }),
 )
@@ -166,14 +167,16 @@ const [state, send] = useMachine(
 
 ## Blur behavior
 
-When the tags input is blurred and the input element is not empty, you can set
-the machine to add a new tag using the input's value. Pass the `addOnBlur`
-option.
+When the tags input is blurred, you can configure the action the machine should
+take by passing the `blurBehavior` option to the context.
 
-```jsx
+- `"add"` — Adds the tag to the list of tags.
+- `"clear"` — Clears the tags input value.
+
+```jsx {3}
 const [state, send] = useMachine(
   tagsInput.machine.withContext({
-    addOnBlur: true,
+    blurBehavior: "add",
   }),
 )
 ```
@@ -183,10 +186,29 @@ const [state, send] = useMachine(
 To add a tag when a arbritary value is pasted in the input element, pass the
 `addOnPaste` option.
 
-```jsx
+When a value is pasted, the machine will:
+
+- check if the value is a valid tag based on the `validate` option
+- split the value by the `delimiter` option passed
+
+```jsx {3}
 const [state, send] = useMachine(
   tagsInput.machine.withContext({
     addOnPaste: true,
+  }),
+)
+```
+
+## Disable tag editing
+
+by default the tags can be edited by double clicking on the tag or focusing on
+them and pressing `Enter`. To disable this behavior, pass the
+`allowEditTag: false`
+
+```jsx {3}
+const [state, send] = useMachine(
+  tagsInput.machine.withContext({
+    allowEditTag: false,
   }),
 )
 ```
@@ -196,10 +218,10 @@ const [state, send] = useMachine(
 During the lifetime of the tags input interaction, here's a list of events we
 emit:
 
-- `onChange`: invoked when the tag value changes
-- `onHighlight`: invoked when a tag has visual focus
-- `onInvalid`: invoked when the max tag count is reached or the `validateTag`
-  function returns `false`
+- `onChange` — invoked when the tag value changes.
+- `onHighlight` — invoked when a tag has visual focus.
+- `onInvalid` — invoked when the max tag count is reached or the `validate`
+  function returns `false`.
 
 ```jsx
 const [state, send] = useMachine(
@@ -217,42 +239,142 @@ const [state, send] = useMachine(
 )
 ```
 
+## Methods and Properties
+
+The tag input's connect method exposes the following methods:
+
+- `value` — The value of the added tags.
+- `count` — The total number of the added tags.
+- `valueAsString` — The value of the added tags represented as a string.
+- `inputValue` — The value of the tags input field.
+- `setValue()` — Used to set the value of the accordion that will be expanded.
+- `addValue()` — Function used to add a new tag value.
+- `deleteValue()` — Function used to remove a specific tag value.
+- `clearAll()` — Function used to clear all tag values.
+
+```jsx
+const api = connect(state, send)
+
+api.value
+// => ["tag-1", "tag-2"]
+
+api.setValue(["item-2", "item-3"]) // => ["item-2", "item-3"]
+
+api.valueAsString // => "['item-2', 'item-3']"
+
+api.addValue("item-4") // => ["item-2", "item-3", "item-4"]
+
+api.deleteValue("item-2") // => ["item-3", "item-4"]
+
+api.clearAll() // => []
+```
+
 ## Styling guide
 
-When the input is focused or any tag is clicked, we attached specific `data-*`
-attributes to help you style the elements better.
+Earlier, we mentioned that each accordion part has a `data-part` attribute added
+to them to select and style them in the DOM.
 
-### `rootProps`
+### Focused state
 
-- Gets a `data-disabled` attribute when `disabled:true` is passed to the context
-- Gets a `data-focus` attribute when the input is focused.
-- Gets a `data-invalid` attribute when the number of tags exceeds the max
+The combobox input is focused when the user clicks on the input element. In this
+focused state, the root, label, input.
+
+```css
+[data-part="root"][data-focus] {
+  /* styles for focus state */
+}
+
+[data-part="label"][data-focus] {
+  /* styles for focus state */
+}
+
+[data-part="input"]:focus {
+  /* styles for focus state */
+}
+```
+
+### Invalid state
+
+When the tags input is invalid by setting the `invalid: true` in the machine's
+context, the `data-invalid` attribute is set on the root, input, control, and
+label.
 
 ```css
 [data-part="root"][data-invalid] {
   /* styles for invalid state */
 }
 
+[data-part="label"][data-invalid] {
+  /* styles for invalid state */
+}
+
+[data-part="input"][data-invalid] {
+  /* styles for invalid state */
+}
+```
+
+### Disabled state
+
+When the tags input is disabled by setting the `disabled: true` in the machine's
+context, the `data-disabled` attribute is set on the root, input, control and
+label.
+
+```css
 [data-part="root"][data-disabled] {
   /* styles for disabled state */
 }
 
-[data-part="root"][data-focus] {
-  /* styles for when "inner" input is focused */
+[data-part="label"][data-disabled] {
+  /* styles for disabled state */
+}
+
+[data-part="input"][data-disabled] {
+  /* styles for disabled state */
+}
+
+[data-part="control"][data-disabled] {
+  /* styles for disabled state */
 }
 ```
 
-### `getTagProps`
-
-- Gets a `data-disabled` attribute when `disabled:true` is passed to the context
-- Gets a `data-selected` attribute when the tags has visual focus
+When an option is disabled, the `data-disabled` attribute is set on the option.
 
 ```css
-[data-part="tag"][data-disabled] {
-  /* styles for disabled tag */
+[data-part="option"][data-disabled] {
+  /* styles for disabled option */
 }
+```
 
+### Selected state
+
+When an option is selected via the keyboard navigation or pointer hover, a
+`data-selected` attribute is set on the option.
+
+```css
 [data-part="tag"][data-selected] {
   /* styles for visual focus */
+}
+```
+
+### Readonly state
+
+When the tags input is in its readonly state, the `data-readonly` attribute is
+set on the root, label, input and control.
+
+```css
+[data-part="root"][data-readonly] {
+  /* styles for readonly tag */
+}
+
+[data-part="control"][data-readonly] {
+  /* styles for readonly focus */
+}
+
+[data-part="input"][data-readonly] {
+  /* styles for readonly focus */
+}
+
+[data-part="label"][data-readonly] {
+  /* styles for readonly focus */
 }
 ```
