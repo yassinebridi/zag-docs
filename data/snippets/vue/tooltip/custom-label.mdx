@@ -1,4 +1,4 @@
-```jsx
+```jsx {10,28-34}
 import * as tooltip from "@ui-machines/tooltip"
 import { normalizeProps, useMachine, useSetup } from "@ui-machines/vue"
 import { computed, defineComponent, h, Fragment } from "vue"
@@ -6,11 +6,15 @@ import { computed, defineComponent, h, Fragment } from "vue"
 export default defineComponent({
   name: "Tooltip",
   setup() {
-    const [state, send] = useMachine(tooltip.machine)
+    const [state, send] = useMachine(
+      tooltip.machine.withContext({
+        "aria-label": "Tooltip Custom Label",
+      }),
+    )
+    const ref = useSetup({ send, id: "1" })
     const apiRef = computed(() =>
       tooltip.connect(state.value, send, normalizeProps),
     )
-    const ref = useSetup({ send, id: "1" })
 
     return () => {
       const api = apiRef.current
@@ -22,7 +26,12 @@ export default defineComponent({
             </button>
             {api.isOpen && (
               <div {...api.positionerProps}>
-                <div {...api.contentProps}>Tooltip</div>
+                <div {...api.contentProps}>
+                  {/* rendered */}
+                  <span>Tooltip</span>
+                  {/* announced */}
+                  <div {...api.labelProps} />
+                </div>
               </div>
             )}
           </div>

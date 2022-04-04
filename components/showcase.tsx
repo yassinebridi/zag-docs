@@ -147,8 +147,8 @@ const components = {
       component={Tooltip}
       defaultProps={{
         closeOnPointerDown: true,
-        openDelay: 400,
-        closeDelay: 200,
+        openDelay: 1000,
+        closeDelay: 500,
       }}
     />
   ),

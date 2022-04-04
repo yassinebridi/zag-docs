@@ -25,7 +25,7 @@ const theme = {
         WebkitFontSmoothing: "antialiased",
       },
       ".focus-outline": {
-        "&:focus, &[data-focus], *:focus, *[data-focus]": {
+        "&:focus, &[data-focus]": {
           outline: "2px solid hsl(204, 100%, 40%)",
           outlineOffset: "2px",
         },

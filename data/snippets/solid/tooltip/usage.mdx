@@ -13,7 +13,7 @@ export function Tooltip() {
       <button ref={ref} {...api().triggerProps}>
         Over me
       </button>
-      {api().isVisible && (
+      {api().isOpen && (
         <div {...api().positionerProps}>
           <div {...api().contentProps}>Tooltip</div>
         </div>

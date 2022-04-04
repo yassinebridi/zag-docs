@@ -19,13 +19,16 @@ export function Tooltip(props) {
       >
         Over me
       </chakra.button>
-      {api.isVisible && (
+      {api.isOpen && (
         <div {...api.positionerProps}>
           <chakra.div
-            px="4"
-            py="2"
-            bg="black"
-            color="white"
+            px="2"
+            py="1"
+            fontSize="sm"
+            bg="white"
+            shadow="base"
+            color="#444"
+            borderWidth="1px"
             {...api.contentProps}
           >
             Tooltip

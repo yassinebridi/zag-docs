@@ -1,9 +1,13 @@
-```jsx
+```jsx {7,20-25}
 import { useMachine, useSetup } from "@ui-machines/react"
 import * as tooltip from "@ui-machines/tooltip"
 
 export function Tooltip() {
-  const [state, send] = useMachine(tooltip.machine)
+  const [state, send] = useMachine(
+    tooltip.machine.withContext({
+      "aria-label": "Tooltip Custom Label",
+    }),
+  )
   const ref = useSetup({ send, id: "1" })
   const api = tooltip.connect(state, send)
 
@@ -14,7 +18,12 @@ export function Tooltip() {
       </button>
       {api.isOpen && (
         <div {...api.positionerProps}>
-          <div {...api.contentProps}>Tooltip</div>
+          <div {...api.contentProps}>
+            {/* rendered */}
+            <span>Tooltip</span>
+            {/* announced */}
+            <div {...api.labelProps} />
+          </div>
         </div>
       )}
     </>
