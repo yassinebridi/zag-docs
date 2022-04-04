@@ -70,6 +70,62 @@ const [state, send] = useMachine(
 )
 ```
 
+## Changing the placement
+
+The tooltip uses [floating-ui](https://floating-ui.com/) for dynamic
+positioning. You can change the placement of the tooltip by passing the
+`positioning.placement` context property to the machine.
+
+```jsx {3-5}
+const [state, send] = useMachine(
+  tooltip.machine.withContext({
+    positioning: {
+      placement: "bottom-start",
+    },
+  }),
+)
+```
+
+You can configure other position-related properties in the `positioning` object.
+Here's what the positioning API looks like:
+
+```ts
+export type PositioningOptions = {
+  /**
+   * The strategy to use for positioning
+   */
+  strategy?: "absolute" | "fixed"
+  /**
+   * The initial placement of the floating element
+   */
+  placement?: Placement
+  /**
+   * The offset of the floating element
+   */
+  offset?: { mainAxis?: number; crossAxis?: number }
+  /**
+   * The main axis offset or gap between the reference and floating elements
+   */
+  gutter?: number
+  /**
+   * Whether to flip the placement
+   */
+  flip?: boolean
+  /**
+   * Whether to make the floating element same width as the reference element
+   */
+  sameWidth?: boolean
+  /**
+   * The overflow boundary of the reference element
+   */
+  boundary?: Boundary
+  /**
+   * Options to activate auto-update listeners
+   */
+  listeners?: boolean | AutoUpdateOptions
+}
+```
+
 ## Adding an arrow
 
 To render an arrow within the tooltip, use the `api.arrowProps` and
@@ -203,7 +259,7 @@ When the tooltip is open, the `data-expanded` attribute is added to the trigger
 }
 ```
 
-### Using arrows
+### Styling the arrow
 
 When using arrows within the menu, you can style it using css variables.
 
