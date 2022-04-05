@@ -23,12 +23,6 @@ your command line:
 This command will install the framework agnostic range slider logic and the
 reactive utilities for your framework of choice.
 
-Now you can use the slider in your project!
-
-```jsx
-import * as rangeSlider from "@ui-machines/range-slider"
-```
-
 ## Anatomy
 
 To set up the slider correctly, you'll need to understand its anatomy and how we
@@ -42,13 +36,19 @@ On a high level, the slider consists of:
 - **Label**: The accessible label for the slider
 - **Control**: The container for the slider's track and thumb
 - **Track**: The slider's track element
-- **Range**: the element that visually represents the slider's range
+- **Range**: The element that visually represents the slider's range
 - **Thumb**: The control element used to drag the slider
 - **Output**: The element that displays the current value of the slider
 
 ## Usage
 
-The slider package exports two key functions:
+First, import the range slider package into your project
+
+```jsx
+import * as rangeSlider from "@ui-machines/range-slider"
+```
+
+The range slider package exports two key functions:
 
 - `machine` — The state machine logic for the slider widget as described in the
   WAI-ARIA spec.
@@ -57,6 +57,11 @@ The slider package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+range slider machine in your project 🔥
+
+<CodeSnippet id="range-slider/usage.mdx" />
 
 ## Changing the orientation
 
@@ -190,7 +195,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The range slider's api provides properties and methods you can use to
+The range slider's `api` provides properties and methods you can use to
 programmatically read and set the slider's value.
 
 ### Properties
@@ -213,8 +218,6 @@ programmatically read and set the slider's value.
 - `decrement`: Used to decrement the value of the thumb at the specified index
 - `focus`: Used to focus the thumb at the specified index
 - `blur`: Used to blur the currently focused thumb
-
-<CodeSnippet id="range-slider/programmatic-control.mdx" />
 
 ## Styling guide
 
@@ -275,7 +278,7 @@ label, control and thumb.
 }
 
 [data-part="range"][data-disabled] {
-  /* styles for thumb disabled state */
+  /* styles for range disabled state */
 }
 ```
 
