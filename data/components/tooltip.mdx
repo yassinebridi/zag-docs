@@ -18,13 +18,33 @@ hovered.
 
 ## Installation
 
-To use the accordion machine in your project, install the respective package
+To use the tooltip machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="tooltip/installation.mdx" />
+
+This command will install the framework agnostic tooltip logic and the reactive
+utilities for your framework of choice.
+
+Now you can use the tooltip in your project!
 
 ```jsx
 import * as tooltip from "@ui-machines/tooltip"
 ```
 
-<CodeSnippet id="tooltip/installation.mdx" />
+## Anatomy
+
+To set up the tooltip correctly, you'll need to understand its anatomy and how
+we name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the tooltip consists of:
+
+- **Trigger**: The trigger for the tooltip.
+- **Positioner**: The element that dynamically positions the tooltip.
+- **Arrow**: The arrow that points to the trigger.
+- **Content**: The element that houses the content of the tooltip.
 
 ## Usage
 
@@ -37,19 +57,94 @@ To get the tooltip working correct, you'll need to:
 
 ## Customizing the timings
 
-The tooltip is designed to show after `1200ms` and hide after `500ms`. You can
-customize this by passing the `openDelay` and `closeDelay` context properties.
+By default, the tooltip is designed to open after `1000ms` and close after
+`500ms`. You can customize this by passing the `openDelay` and `closeDelay`
+context properties.
 
-```jsx
+```jsx {3-4}
 const [state, send] = useMachine(
-  Tooltip.machine.withContext({
+  tooltip.machine.withContext({
     openDelay: 500,
     closeDelay: 200,
   }),
 )
 ```
 
-<CodeSnippet id="tooltip/custom-timings.mdx" />
+## Changing the placement
+
+The tooltip uses [floating-ui](https://floating-ui.com/) for dynamic
+positioning. You can change the placement of the tooltip by passing the
+`positioning.placement` context property to the machine.
+
+```jsx {3-5}
+const [state, send] = useMachine(
+  tooltip.machine.withContext({
+    positioning: {
+      placement: "bottom-start",
+    },
+  }),
+)
+```
+
+You can configure other position-related properties in the `positioning` object.
+Here's what the positioning API looks like:
+
+```ts
+export type PositioningOptions = {
+  /**
+   * The strategy to use for positioning
+   */
+  strategy?: "absolute" | "fixed"
+  /**
+   * The initial placement of the floating element
+   */
+  placement?: Placement
+  /**
+   * The offset of the floating element
+   */
+  offset?: { mainAxis?: number; crossAxis?: number }
+  /**
+   * The main axis offset or gap between the reference and floating elements
+   */
+  gutter?: number
+  /**
+   * Whether to flip the placement
+   */
+  flip?: boolean
+  /**
+   * Whether to make the floating element same width as the reference element
+   */
+  sameWidth?: boolean
+  /**
+   * The overflow boundary of the reference element
+   */
+  boundary?: Boundary
+  /**
+   * Options to activate auto-update listeners
+   */
+  listeners?: boolean | AutoUpdateOptions
+}
+```
+
+## Adding an arrow
+
+To render an arrow within the tooltip, use the `api.arrowProps` and
+`api.innerArrowProps`.
+
+```jsx {6-8}
+//...
+const api = popover.connect(state, send)
+//...
+return (
+  <div {...api.positionerProps}>
+    <div {...api.arrowProps}>
+      <div {...api.innerArrowProps} />
+    </div>
+    <div {...api.contentProps}>{/* ... */}</div>
+  </div>
+)
+//...
+```
 
 ## Pointerdown behavior
 
@@ -57,10 +152,23 @@ By default, the tooltip will close when the pointer is down on its trigger. To
 prevent this behavior, pass the `closeOnPointerDown` context property and set it
 to `false`.
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  Tooltip.machine.withContext({
+  tooltip.machine.withContext({
     closeOnPointerDown: false,
+  }),
+)
+```
+
+## Closing on Esc
+
+The tooltip is designed to close when the escape key is pressed. To prevent
+this, pass the `closeOnEscape` context property and set it to `false`.
+
+```jsx {3}
+const [state, send] = useMachine(
+  tooltip.machine.withContext({
+    closeOnEsc: false,
   }),
 )
 ```
@@ -76,15 +184,13 @@ To disabled this behavior, pass the `interactive` context property and set it to
 > Disabling this will violate the
 > [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)
 
-```jsx
+```jsx {3}
 const [state, send] = useMachine(
-  Tooltip.machine.withContext({
+  tooltip.machine.withContext({
     interactive: false,
   }),
 )
 ```
-
-<CodeSnippet id="tooltip/no-interactive.mdx" />
 
 ## Using custom labels
 
@@ -96,3 +202,70 @@ For this use-case, pass the `aria-label` context property and use the
 `labelProps` exposed in the tooltip's connect function.
 
 <CodeSnippet id="tooltip/custom-label.mdx" />
+
+## Events
+
+When the tooltip open or closes, the `onOpen` and `onClose` callbacks are fired.
+
+```jsx {3-8}
+const [state, send] = useMachine(
+  tooltip.machine.withContext({
+    onOpen() {
+      console.log("Tooltip opened")
+    },
+    onClose() {
+      console.log("Tooltip closed")
+    },
+  }),
+)
+```
+
+## Methods and Properties
+
+The accordion's connect method exposes the following methods:
+
+- `isOpen` — Whether the tooltip is open or not.
+- `open()` — Function used to programmatically open the tooltip.
+- `close()` — Function used to programmatically close the tooltip.
+
+```jsx
+api.isOpen // => boolean
+
+api.open()
+
+api.close()
+```
+
+## Styling guide
+
+Earlier, we mentioned that each tooltip part has a `data-part` attribute added
+to them to select and style them in the DOM.
+
+### Open and close states
+
+When the tooltip is open, the `data-expanded` attribute is added to the trigger
+
+```css
+[data-part="trigger"][data-expanded] {
+  /* styles for the trigger's expanded state */
+}
+```
+
+### Styling the tooltip
+
+```css
+[data-part="content"] {
+  /* styles for the content */
+}
+```
+
+### Styling the arrow
+
+When using arrows within the menu, you can style it using css variables.
+
+```css
+[data-part="arrow"] {
+  --arrow-size: 20px;
+  --arrow-background: red;
+}
+```

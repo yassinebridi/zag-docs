@@ -135,7 +135,8 @@ const components = {
       component={TagsInput}
       defaultProps={{
         disabled: false,
-        addOnBlur: false,
+        dir: { default: "ltr", options: ["ltr", "rtl"] },
+        blurBehavior: { default: "--", options: ["add", "clear"] },
         addOnPaste: false,
       }}
     />
@@ -146,8 +147,8 @@ const components = {
       component={Tooltip}
       defaultProps={{
         closeOnPointerDown: true,
-        openDelay: 400,
-        closeDelay: 200,
+        openDelay: 1000,
+        closeDelay: 500,
       }}
     />
   ),

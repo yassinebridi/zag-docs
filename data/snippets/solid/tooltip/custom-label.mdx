@@ -1,0 +1,32 @@
+```jsx {7,20-25}
+import { useMachine, useSetup } from "@ui-machines/solid"
+import * as tooltip from "@ui-machines/tooltip"
+
+export function Tooltip() {
+  const [state, send] = useMachine(
+    tooltip.machine.withContext({
+      "aria-label": "Tooltip Custom Label",
+    }),
+  )
+  const ref = useSetup({ send, id: "1" })
+  const api = createMemo(() => tooltip.connect(state, send, normalizeProps))
+
+  return (
+    <>
+      <button ref={ref} {...api().triggerProps}>
+        Over me
+      </button>
+      {api().isOpen && (
+        <div {...api().positionerProps}>
+          <div {...api().contentProps}>
+            {/* rendered */}
+            <span>Tooltip</span>
+            {/* announced */}
+            <div {...api().labelProps} />
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+```
