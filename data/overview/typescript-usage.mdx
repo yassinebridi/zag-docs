@@ -22,7 +22,7 @@ To make it work in TypeScript, you'll need to add an extra generic for the
 element type you want to attach the `ref` to.
 
 ```tsx
-const ref = useSetup<HTMLButtonElement>({ send, id: "..." })
+const ref = useSetup<HTMLButtonElement>({ send, id: "1" })
 ```
 
 ### `connect`
@@ -36,34 +36,34 @@ in your framework, you'll need to:
 
 > Note: This step isn't required for React
 
-**In Vue.js:**
+**In Vue.js**
 
 ```tsx
 import * as accordion from "@ui-machines/accordion"
-import { PropTypes, normalzeProps } from "@ui-machines/vue"
+import { PropTypes, normalizeProps } from "@ui-machines/vue"
 
 const Accordion = defineComponent({
   // ...
   setup() {
     // ...
     const apiRef = computed(() =>
-      accordion.connect<PropTypes>(state, send, normalzeProps),
+      accordion.connect<PropTypes>(state, send, normalizeProps),
     )
     // ...
   },
 })
 ```
 
-**In Solid.js:**
+**In Solid.js**
 
 ```tsx
 import * as accordion from "@ui-machines/accordion"
-import { PropTypes, normalzeProps } from "@ui-machines/solid"
+import { PropTypes, normalizeProps } from "@ui-machines/solid"
 
 const Accordion = (props) => {
   // ...
   const api = createMemo(() =>
-    accordion.connect<PropTypes>(state, send, normalzeProps),
+    accordion.connect<PropTypes>(state, send, normalizeProps),
   )
   // ...
 }

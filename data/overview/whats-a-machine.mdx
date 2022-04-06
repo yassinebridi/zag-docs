@@ -18,10 +18,10 @@ Consider a simple toggle or switch component that consists of two states,
 
 The supported transitions that can happen here:
 
-- In the `Active` state:
-  - When we click the toggle, it should transition to the `Inactive` state
-- In the `Inactive` state:
-  - When we click the toggle, it should transition to the `Active` state
+- In the `Active` state, when we click the toggle, it should transition to the
+  `Inactive` state
+- In the `Inactive` state, when we click the toggle, it should transition to the
+  `Active` state
 
 Here's how we'll model the logic in code:
 
@@ -95,18 +95,19 @@ import { toggleMachine, toggleConnect } from "./toggle"
 
 function Toggle() {
   const [state, send] = useMachine(toggleMachine)
-  const { buttonProps, isActive } = toggleConnect(state, send)
+  const api = toggleConnect(state, send)
+
   return (
     <button
-      {...buttonProps}
+      {...api.buttonProps}
       style={{
         width: "40px",
         height: "24px",
         borderRadius: "999px",
-        background: isActive ? "green" : "gray",
+        background: api.isActive ? "green" : "gray",
       }}
     >
-      {isActive ? "ON" : "OFF"}
+      {api.isActive ? "ON" : "OFF"}
     </button>
   )
 }

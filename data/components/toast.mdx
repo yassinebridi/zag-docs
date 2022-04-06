@@ -28,14 +28,14 @@ Then you'll need to install the framework specific binding
 
 The toast consists of five key functions:
 
-- `toast.machine`: The state machine representation of a single toast.
-- `toast.group.machine`: The state machine representation of a group of toasts.
+- `toast.machine`— The state machine representation of a single toast.
+- `toast.group.machine`— The state machine representation of a group of toasts.
   It is responsible for spawning and removing toasts.
-- `toast.connect`: The function that takes the toast machine and returns methods
+- `toast.connect`— The function that takes the toast machine and returns methods
   and JSX properties.
-- `toast.group.connect`: function gives you access to methods you can use to
+- `toast.group.connect`— function gives you access to methods you can use to
   add, update, and remove a toast.
-- `toast.api`: The external API that can be used to create toasts outside of the
+- `toast.api`— The external API that can be used to create toasts outside of the
   framework.
 
 > We recommend setting up the toast group machine once at the root of your
@@ -45,17 +45,13 @@ The toast consists of five key functions:
 
 ## Creating a toast
 
-There are four toast types that can be created with the toast machine.
+There are four toast types that can be created with the toast machine. `info`,
+`success`, `loading`, `custom` and `error`.
 
-- `info` - A toast with a info icon.
-- `success` - A toast with a success icon.
-- `warning` - A toast with a warning icon.
-- `error` - A toast with a error icon.
-
-To create a toast, use the `api.create(...)` method.
+To create a toast, use the `toast.create(...)` method.
 
 ```jsx
-api.create({
+toast.create({
   title: "Hello World",
   description: "This is a toast",
   type: "info",
@@ -64,21 +60,19 @@ api.create({
 
 The options you can pass in are:
 
-- `title`: The title of the toast.
-- `description`: The description of the toast.
-- `type`: The type of the toast. Can be either `error`, `success` , `info`,
+- `title`— The title of the toast.
+- `description`— The description of the toast.
+- `type`— The type of the toast. Can be either `error`, `success` , `info`,
   `loading`, or `custom`.
-- `duration`: The duration of the toast. By default, we compute the duration
-  based on the type of the toast.
-- `onClose`: A function that is called when the toast is closed.
-- `placement`: The placement of the toast.
-- `render`: A function that returns the toast JSX (Useful for library authors).
+- `duration`— The duration of the toast. The default duration is computed based
+  on the specified `type`.
+- `onClose`— A function that is called when the toast is closed.
+- `placement`— The placement of the toast.
+- `render`— A function that returns the toast JSX (Useful for library authors).
 
-### Important note 🚨
-
-When a toast is created and its visible duration is over, we add `1000ms` delay
-before removing it from the DOM. You can use this delay to animate the toast
-out.
+> **Important note 🚨**: When a toast is created and its visible duration has
+> elapsed , we add `1000ms` delay before removing it from the DOM. You can use
+> this delay to animate the toast out.
 
 ## Setting custom duration
 
@@ -94,10 +88,10 @@ the table showing the toast type and duration.
 | `loading` | `Infinity` |
 
 You can override the duration of the toast by passing the `duration` property to
-the `api.create(...)` function.
+the `toast.create(...)` function.
 
 ```jsx {5}
-api.create({
+toast.create({
   title: "Hello World",
   description: "This is a toast",
   type: "info",
@@ -105,7 +99,7 @@ api.create({
 })
 ```
 
-> You can also use the `api.upsert(...)` function which creates or updates a
+> You can also use the `toast.upsert(...)` function which creates or updates a
 > toast.
 
 ## Using portals
@@ -119,11 +113,11 @@ rendered toasts in the `ToastProvider` within your framework-specific portal.
 ## Positioning toast
 
 To position a toast when created, you can pass the `placement` property when you
-call the `api.create(...)` methods provided by the toast group's connect
+call the `toast.create(...)` methods provided by the toast group's connect
 funtion.
 
 ```jsx {6}
-api.create({
+toast.create({
   title: "Hello World",
   description: "This is a toast",
   type: "info",
@@ -139,21 +133,21 @@ the toast.
 
 This identifier can be either:
 
-- the `id` passed into `api.create(...)` or,
-- the returned random `id` when the `api.create(...)` is called.
+- the `id` passed into `toast.create(...)` or,
+- the returned random `id` when the `toast.create(...)` is called.
 
 You can use any of the following methods to control a toast:
 
-- `api.upsert(...)`: Creates or updates a toast.
-- `api.update(...)`: Updates a toast.
-- `api.remove(...)`: Removes a toast instantly without delay.
-- `api.dismiss(...)`: Removes a toast with delay.
-- `api.pause(...)`: Pauses a toast.
-- `api.resume(...)`: Resumes a toast.
+- `toast.upsert(...)`— Creates or updates a toast.
+- `toast.update(...)`— Updates a toast.
+- `toast.remove(...)`— Removes a toast instantly without delay.
+- `toast.dismiss(...)`— Removes a toast with delay.
+- `toast.pause(...)`— Pauses a toast.
+- `toast.resume(...)`— Resumes a toast.
 
 ```jsx {2,11-15}
 // grab the id from the created toast
-const id = api.create({
+const id = toast.create({
   title: "Hello World",
   description: "This is a toast",
   type: "info",
@@ -162,29 +156,29 @@ const id = api.create({
 })
 
 // update the toast
-api.update(id, {
+toast.update(id, {
   title: "Hello World",
   description: "This is a toast",
   type: "success",
 })
 
 // remove the toast
-api.remove(id)
+toast.remove(id)
 
 // dismiss the toast
-api.dismiss(id)
+toast.dismiss(id)
 ```
 
 ## Handling promises
 
-The toast group API exposes a `api.promise()` function to allow you update the
+The toast group API exposes a `toast.promise()` function to allow you update the
 toast when it resolves or rejects.
 
 > With the promise API, you can pass the toast options for each promise
 > lifecycle.
 
 ```jsx
-api.promise(promise, {
+toast.promise(promise, {
   loading: {
     title: "Loading",
     description: "Please wait...",
@@ -205,7 +199,7 @@ api.promise(promise, {
 The toast machine allows you render a custom progress bar to visualize the time
 left before the toast closes.
 
-The `toast.connect` API exposes a `progressbarProps` object you can use for this
+The `toast.connect` api exposes a `progressbarProps` object you can use for this
 purpose.
 
 ```jsx {4}
@@ -227,7 +221,8 @@ There are three scenarios we provide to pause a toast from timing out:
   browser tab), controlled via the `pauseOnPageIdle` context property.
 - When the toast is hovered or focused, controlled by the `pauseOnInteraction`
   context property.
-- When the `api.pause(id)` provided by the `toast.group.connect(...)` is called.
+- When the `toast.pause(id)` provided by the `toast.group.connect(...)` is
+  called.
 
 ```jsx
 // Global pause options
@@ -240,7 +235,7 @@ const [state, send] = useMachine(
 
 // Programmatically pause a toast (by `id`)
 // `id` is the return value of `api.create(...)`
-api.pause(id)
+toast.pause(id)
 ```
 
 ## Limiting the number of toasts
@@ -259,8 +254,8 @@ const [state, send] = useMachine(
 
 ## Using toast outside component
 
-The toast exposes a `api` function you can invoke to get access to specific
-methods from the `toast.group.connect`.
+The toast module exports an `api` function you can invoke to get access to
+specific methods from the `toast.group.connect`.
 
 The methods available are `count`, `isVisible`, `upsert`, `dismiss`, `remove`,
 `promise`.
@@ -355,7 +350,7 @@ function ToastItem(props) {
 }
 
 // 2. Later in the app, provide custom JSX
-api.create({
+toast.create({
   title: "Welcome",
   description: "This is a toast",
   type: "info",
@@ -409,8 +404,8 @@ When the toast is visible, we attach a `data-open` attribute to the toast's
 root. A common use-case for this is to specify the entry and exit animations for
 the toast.
 
-> Remember every toast as a 1000ms delay before it is removed from the DOM. We
-> can leverage the `--remove-delay` css variable to apply this.
+> Remember every toast has a `1000ms` delay before it is removed from the DOM.
+> We can leverage the `--remove-delay` css variable to apply this.
 
 ```css
 [data-part="root"] {

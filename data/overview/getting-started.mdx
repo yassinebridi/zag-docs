@@ -35,17 +35,13 @@ creator (Segun Adebayo) is more of React freak, Lol.
 Here's a sample code that consumes a toggle machine in React.
 
 ```jsx
-import { useMemo } from "react"
 import { useMachine } from "@ui-machines/react"
-import * as Toggle from "@ui-machines/toggle"
+import * as toggle from "@ui-machines/toggle"
 
 export default function Toggle() {
-  const [state, send] = useMachine(toggleMachine)
-  const { buttonProps, isActive } = useMemo(
-    () => Toggle.connect(state, send),
-    [state],
-  )
-  return <button {...buttonProps}>{isActive ? "On" : "Off"}</button>
+  const [state, send] = useMachine(toggle.machine)
+  const api = toggle.connect(state, send)
+  return <button {...api.buttonProps}>{api.isActive ? "On" : "Off"}</button>
 }
 ```
 
@@ -66,18 +62,18 @@ a means to consume output of the `connect` function. Here's what you need to do:
   experience for JSX attributes.
 
 ```jsx
-import { computed, defineComponent } from "vue"
-import * as Toggle from "@ui-machines/toggle"
+import { computed, defineComponent, h, Fragment } from "vue"
+import * as toggle from "@ui-machines/toggle"
 import { useMachine, normalizeProps } from "@ui-machines/vue"
 
 export default defineComponent({
   name: "Toggle",
   setup() {
-    const [state, send] = useMachine(Toggle.machine)
-    const connect = computed(() => Toggle.connect(state, send, normalizeProps))
+    const [state, send] = useMachine(toggle.machine)
+    const apiRef = computed(() => toggle.connect(state, send, normalizeProps))
     return () => {
-      const { buttonProps, isActive } = connect.value
-      return <button {...buttonProps}>{isActive ? "On" : "Off"}</button>
+      const api = apiRef.value
+      return <button {...api.buttonProps}>{api.isActive ? "On" : "Off"}</button>
     }
   },
 })
@@ -96,15 +92,13 @@ We love Solid.js and we've added support for it. Here's what you need to do:
 
 ```jsx
 import { createMemo } from "solid-js"
-import * as Toggle from "@ui-machines/toggle"
+import * as toggle from "@ui-machines/toggle"
 import { useMachine, normalizeProps } from "@ui-machines/solid"
 
 export default function Toggle() {
-  const [state, send] = useMachine(Toggle.machine)
-  const { buttonProps, isActive } = createMemo(() =>
-    Toggle.connect(state, send),
-  )
-  return <button {...buttonProps}>{isActive ? "On" : "Off"}</button>
+  const [state, send] = useMachine(toggle.machine)
+  const api = createMemo(() => toggle.connect(state, send))
+  return <button {...api().buttonProps}>{api.isActive ? "On" : "Off"}</button>
 }
 ```
 
@@ -112,10 +106,12 @@ export default function Toggle() {
 
 Most JSX framework use a different naming convention for their JSX attributes.
 For example, in React, the keydown listener property is `onKeyDown` while in vue
-the correct property is `onKeydown`. These little nuances between frameworks is
-handled for you automatically.
+the correct property is `onKeydown`. These little nuances between frameworks are
+handled automatically when you use `normalizeProps`.
 
-> The goal of UI machines is to help you abstract the interaction and accessible
-> patterns into a statechart so you never have to write them over and again.
+> The goal of UI machines is to help you abstract the interaction and
+> accessibility patterns into a statechart so you never have to re-invent the
+> wheel.
 
-Thanks for reading! Let's get started with the components and machines.
+Thanks for reading! If you're curious about how state machines work, the next
+page will give you a quick overview.
