@@ -97,7 +97,7 @@ const theme = {
       rounded: "base",
       paddingY: "0.5",
       paddingX: "1",
-      fontSize: "0.8em",
+      fontSize: "14px",
       fontFamily: "mono",
       fontWeight: "semibold",
       color: "pink.600",
