@@ -7,7 +7,6 @@ export function ContextMenu() {
   const [state, send] = useMachine(
     menu.machine.withContext({
       "aria-label": "File",
-      contextMenu: true,
     }),
   )
   const ref = useSetup({ send, id: "1" })
