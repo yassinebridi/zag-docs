@@ -58,11 +58,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             pt="4"
             pr={{ xl: "16" }}
           >
-            <Box
-              maxW={{ base: "3xl", xl: "none" }}
-              mr={{ xl: "15.5rem" }}
-              mx="auto"
-            >
+            <Box maxW={{ base: "3xl", xl: "none" }} mr={{ xl: "15.5rem" }}>
               {children}
               <HStack
                 as="a"
