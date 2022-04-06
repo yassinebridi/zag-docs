@@ -3,6 +3,8 @@
 The toast component is used to give feedback to users after an action has taken
 place.
 
+<Showcase id="Toast" />
+
 **Features**
 
 - Support for screen readers.
@@ -98,7 +100,7 @@ The options you can pass in are:
 - `render` — A function that returns the toast JSX (Useful for library authors).
 
 > **Important note 🚨**: When a toast is created and its visible duration has
-> elapsed , we add `1000ms` delay before removing it from the DOM. You can use
+> elapsed , we add `500ms` delay before removing it from the DOM. You can use
 > this delay to animate the toast out.
 
 ## Setting custom duration
@@ -429,8 +431,8 @@ When the toast is visible, we attach a `data-open` attribute to the toast's
 root. A common use-case for this is to specify the entry and exit animations for
 the toast.
 
-> Remember every toast has a `1000ms` delay before it is removed from the DOM.
-> We can leverage the `--remove-delay` css variable to apply this.
+> Remember every toast has a `500ms` delay before it is removed from the DOM.
+> Keep your exit animations within this range.
 
 ```css
 [data-part="root"] {
@@ -440,7 +442,7 @@ the toast.
 }
 
 [data-part="root"]:not([data-open]) {
-  animation-duration: var(--remove-delay);
+  animation-duration: 0.3s;
   animation-name: fadeout;
 }
 ```

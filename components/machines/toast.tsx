@@ -1,0 +1,117 @@
+import { useActor, useMachine, useSetup } from "@ui-machines/react"
+import * as toast from "@ui-machines/toast"
+import { useRef } from "react"
+import { chakra } from "@chakra-ui/system"
+import { HiX } from "react-icons/hi"
+
+function Toast({ actor }: { actor: toast.Service }) {
+  const [state, send] = useActor(actor)
+  const api = toast.connect(state, send)
+  const changed = api.type === "info"
+  return (
+    <chakra.div
+      sx={{
+        width: "400px",
+        position: "relative",
+        bg: changed ? "gray.600" : "green.500",
+        color: "white",
+        rounded: "sm",
+        padding: "6",
+        shadow: "rgba(0, 0, 0, 0.12) 0px 5px 10px 0px",
+        animationName: api.isVisible ? "toast-in" : "toast-out",
+        animationDuration: api.isVisible ? "0.35s" : "0.4s",
+        animationTimingFunction: api.isVisible
+          ? "cubic-bezier(.21,1.02,.73,1)"
+          : "cubic-bezier(.06,.71,.55,1)",
+        animationFillMode: "forwards",
+      }}
+      {...api.rootProps}
+    >
+      <chakra.div
+        bg="whiteAlpha.500"
+        sx={{
+          position: "absolute",
+          width: "full",
+          bottom: "0",
+          insetX: "0",
+          height: "4px",
+        }}
+      >
+        <chakra.div
+          key={state.value}
+          sx={{
+            height: "inherit",
+            bg: "white",
+            animationName: state.matches("active") ? "shrink" : "none",
+          }}
+          {...api.progressbarProps}
+        />
+      </chakra.div>
+      <p {...api.titleProps}>
+        [{api.type}] {api.title}
+      </p>
+
+      <chakra.button
+        display="flex"
+        position="absolute"
+        top="3"
+        right="3"
+        onClick={api.dismiss}
+      >
+        <HiX />
+      </chakra.button>
+    </chakra.div>
+  )
+}
+
+export function ToastGroup(props: any) {
+  const [state, send] = useMachine(
+    toast.group.machine.withContext({
+      offsets: "24px",
+    }),
+    { context: props.controls },
+  )
+
+  const ref = useSetup({ send, id: "1" })
+  const api = toast.group.connect(state, send)
+  const id = useRef<string>()
+
+  return (
+    <>
+      <div ref={ref} style={{ display: "flex", gap: "16px" }}>
+        <chakra.button
+          layerStyle="greenButton"
+          onClick={() => {
+            id.current = api.create({
+              title: "The Evil Rabbit jumped over the fence.",
+              type: "info",
+            })
+          }}
+        >
+          Show toast
+        </chakra.button>
+
+        <chakra.button
+          layerStyle="outlineButton"
+          onClick={() => {
+            if (!id.current) return
+            api.update(id.current, {
+              title: "The Evil Rabbit is eating...",
+              type: "success",
+            })
+          }}
+        >
+          Update
+        </chakra.button>
+      </div>
+      <chakra.div
+        maxWidth="420px"
+        {...api.getGroupProps({ placement: "bottom-end" })}
+      >
+        {api.toasts.map((actor) => (
+          <Toast key={actor.id} actor={actor} />
+        ))}
+      </chakra.div>
+    </>
+  )
+}

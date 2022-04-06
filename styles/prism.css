@@ -401,3 +401,34 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
   display: block;
   padding: 0 1em;
 }
+
+@keyframes toast-in {
+  from {
+    transform: translate3d(0, 200%, 0) scale(0.6);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translate3d(0, 0, -1px) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 150%, -1px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

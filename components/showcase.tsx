@@ -9,6 +9,7 @@ import { RangeSlider } from "./machines/range-slider"
 import { Slider } from "./machines/slider"
 import { Tabs } from "./machines/tabs"
 import { TagsInput } from "./machines/tags-input"
+import { ToastGroup } from "./machines/toast"
 import { Tooltip } from "./machines/tooltip"
 import { Playground } from "./playground"
 
@@ -149,6 +150,15 @@ const components = {
         closeOnPointerDown: true,
         openDelay: 1000,
         closeDelay: 500,
+      }}
+    />
+  ),
+  Toast: () => (
+    <Playground
+      component={ToastGroup}
+      defaultProps={{
+        pauseOnPageIdle: false,
+        pauseOnInteraction: true,
       }}
     />
   ),

@@ -106,6 +106,20 @@ const theme = {
       fontWeight: "semibold",
       color: "pink.600",
     },
+    greenButton: {
+      bg: "green.500",
+      color: "white",
+      px: "4",
+      py: "2",
+      fontWeight: "semibold",
+    },
+    outlineButton: {
+      bg: "white",
+      borderWidth: "1px",
+      px: "4",
+      py: "2",
+      fontWeight: "semibold",
+    },
   },
   textStyles: {
     h1: {
