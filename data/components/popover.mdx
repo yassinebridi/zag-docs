@@ -23,12 +23,6 @@ command line:
 This command will install the framework agnostic popover logic and the reactive
 utilities for your framework of choice.
 
-Now you can use the popover in your project!
-
-```jsx
-import * as popover from "@ui-machines/popover"
-```
-
 ## Anatomy
 
 To set up the popover correctly, you'll need to understand its anatomy and how
@@ -53,6 +47,12 @@ When positioning the popover, you might use these parts:
 
 ## Usage
 
+First, import the popover package into your project
+
+```jsx
+import * as popover from "@ui-machines/popover"
+```
+
 The popover package exports two key functions:
 
 - `machine` — The state machine logic for the popover widget.
@@ -61,6 +61,9 @@ The popover package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+popover machine in your project 🔥
 
 <CodeSnippet id="popover/usage.mdx" />
 
@@ -187,7 +190,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The popover's connect method exposes the following methods:
+The popover's `api` exposes the following methods:
 
 - `isOpen` — Whether the popover is open.
 - `portalled` — Whether the popover is portalled. Useful for conditionally

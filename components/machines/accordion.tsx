@@ -6,7 +6,7 @@ import { useMachine, useSetup } from "@ui-machines/react"
 const items = [
   {
     title: "Watercraft",
-    desc: "Yatch, Boats and Dinghies",
+    desc: "Yacht, Boats and Dinghies",
     content: "Sample accordion content",
   },
   {

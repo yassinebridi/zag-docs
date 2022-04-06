@@ -9,7 +9,7 @@ interact with it.
 **Features**
 
 - Supports modal and non-modal modes.
-- Focus is trapped and scrolling is blocked when modal.
+- Focus is trapped and scrolling is blocked in the modal mode.
 - Provides screen reader announcements via rendered title and description.
 - Pressing `Esc` closes the dialog.
 
@@ -22,12 +22,6 @@ command line:
 
 This command will install the framework agnostic dialog logic and the reactive
 utilities for your framework of choice.
-
-Now you can use the dialog in your project!
-
-```jsx
-import * as dialog from "@ui-machines/dialog"
-```
 
 ## Anatomy
 
@@ -46,11 +40,17 @@ The dialog pattern consists of:
 
 The dialog's content consists of:
 
-- **Title**: The human readable title of the dialog.
-- **Description**: The human readable description that supports the title.
+- **Title**: The title of the dialog.
+- **Description**: The description that supports the title.
 - **Close Button**: The button used to close the dialog.
 
 ## Usage
+
+First, import the dialog package into your project
+
+```jsx
+import * as dialog from "@ui-machines/dialog"
+```
 
 The dialog package exports two key functions:
 
@@ -62,11 +62,14 @@ The dialog package exports two key functions:
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
 
+Next, import the required hooks and functions for your framework and use the
+dialog machine in your project 🔥
+
 <CodeSnippet id="dialog/usage.mdx" />
 
 ## Methods and Properties
 
-The dialog's connect method exposes the following methods:
+The dialog's `api` exposes the following methods:
 
 - `isOpen` — Whether the dialog is open.
 - `open()` — Function used to open the dialog.
@@ -88,8 +91,7 @@ api.isOpen
 ## Managing focus within the dialog
 
 When the dialog opens, it automatically sets focus on the first focusable
-elements and traps focus within it, so that tabbing will be contrained within
-it.
+elements and traps focus within it, so that tabbing is constrained to it.
 
 To control the element that should receive focus on open, pass the
 `initialFocusEl` context (which can be an element or a function that returns an
@@ -129,7 +131,7 @@ const [state, send] = useMachine(
 ## Creating an Alert dialog
 
 The dialog has support for dialog and alert dialog roles. It's set to `dialog`
-by default, to change it's role, pass the `role: alertdialog` property to the
+by default. To change it's role, pass the `role: alertdialog` property to the
 machine's context.
 
 That's it! Now you have an alert dialog.

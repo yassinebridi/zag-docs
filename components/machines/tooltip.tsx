@@ -17,7 +17,7 @@ export function Tooltip(props) {
         ref={ref}
         {...api.triggerProps}
       >
-        Over me
+        Hover me
       </chakra.button>
       {api.isOpen && (
         <div {...api.positionerProps}>

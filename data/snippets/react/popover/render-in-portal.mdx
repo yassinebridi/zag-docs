@@ -4,7 +4,7 @@ import * as popover from "@ui-machines/popover"
 import { useMachine, useSetup } from "@ui-machines/react"
 import * as React from "react"
 
-export function Accordion() {
+export function Popover() {
   const [state, send] = useMachine(
     popover.machine.withContext({ portalled: true }),
   )

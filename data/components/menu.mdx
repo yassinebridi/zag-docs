@@ -23,12 +23,6 @@ command line:
 This command will install the framework agnostic menu logic and the reactive
 utilities for your framework of choice.
 
-Now you can use the menu in your project!
-
-```jsx
-import * as menu from "@ui-machines/menu"
-```
-
 ## Anatomy
 
 To set up the menu correctly, you'll need to understand its anatomy and how we
@@ -51,6 +45,12 @@ The optional parts include:
 
 ## Usage
 
+First, import the menu package into your project
+
+```jsx
+import * as menu from "@ui-machines/menu"
+```
+
 The menu package exports two key functions:
 
 - `machine` — The state machine logic for the menu widget.
@@ -60,11 +60,14 @@ The menu package exports two key functions:
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
 
+Next, import the required hooks and functions for your framework and use the
+menu machine in your project 🔥
+
 <CodeSnippet id="menu/usage.mdx" />
 
 ## Methods and Properties
 
-The menu's connect method exposes the following methods:
+The menu's `api` exposes the following methods:
 
 - `isOpen` — Whether the menu is open.
 - `open(...)` — Function to open the menu.
@@ -82,8 +85,8 @@ When building nested menus, you'll need to use:
 
 ## Grouping menu items
 
-When the number of menu items get much, it might be useful to group related menu
-items. To achieve this:
+When the number of menu items gets much, it might be useful to group related
+menu items. To achieve this:
 
 - Wrap the menu items within an element.
 - Spread the `api.groupProps(...)` JSX properties unto the element, providing an
@@ -162,7 +165,7 @@ pointer is pen or touch.
 <CodeSnippet id="menu/context-menu.mdx" />
 
 > ⚠️ Ensure you don't use both `contextTriggerProps` and `triggerProps`. Menus
-> should have only one trigger type, that is, you should be using either a
+> should have only one trigger type; that is, you should be using either a
 > dropdown menu or a context menu. Not both
 
 ## Styling guide
