@@ -1,8 +1,8 @@
 # Slider
 
-A slider is used to allow users to make selections from a range of values. Think
-of it as a custom `<input type='range'/>` with the ability to achieve custom
-styling and accessibility.
+A slider allows users to make selections from a range of values. Think of it as
+a custom `<input type='range'/>` with the ability to achieve custom styling and
+accessibility.
 
 <Showcase id="Slider" />
 
@@ -26,12 +26,6 @@ command line:
 This command will install the framework agnostic slider logic and the reactive
 utilities for your framework of choice.
 
-Now you can use the slider in your project!
-
-```jsx
-import * as slider from "@ui-machines/slider"
-```
-
 ## Anatomy
 
 To set up the slider correctly, you'll need to understand its anatomy and how we
@@ -45,11 +39,17 @@ On a high level, the slider consists of:
 - **Label**: The accessible label for the slider
 - **Control**: The container for the slider's track and thumb
 - **Track**: The slider's track element
-- **Range**: the element that visually represents the slider's range
+- **Range**: The element that visually represents the slider's range
 - **Thumb**: The control element used to drag the slider
 - **Output**: The element that displays the current value of the slider
 
 ## Usage
+
+First, import the slider package into your project
+
+```jsx
+import * as slider from "@ui-machines/slider"
+```
 
 The slider package exports two key functions:
 
@@ -60,6 +60,9 @@ The slider package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+slider machine in your project 🔥
 
 <CodeSnippet id="slider/usage.mdx" />
 
@@ -147,7 +150,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The slider's api provides properties and methods you can use to programmatically
+The slider's `api` provides properties and methods you can use to programmatically
 read and set the slider's value.
 
 | Property            | Description                                                  |

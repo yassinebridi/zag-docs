@@ -1,7 +1,7 @@
 # Number Input
 
-The number input component provides controls for editing, incrementing or
-decrementing numeric values using the keyboard or pointer.
+The number input provides controls for editing, incrementing or decrementing
+numeric values using the keyboard or pointer.
 
 <Showcase id="NumberInput" />
 
@@ -26,12 +26,6 @@ your command line:
 This command will install the framework agnostic number input logic and the
 reactive utilities for your framework of choice.
 
-Now you can use the number input in your project!
-
-```jsx
-import * as numberInput from "@ui-machines/pin-input"
-```
-
 ## Anatomy
 
 To set up the number input correctly, you'll need to understand its anatomy and
@@ -50,6 +44,12 @@ On a high level, the number input consists of:
 
 ## Usage
 
+First, import the number input package into your project
+
+```jsx
+import * as numberInput from "@ui-machines/number-input"
+```
+
 The number input package exports two key functions:
 
 - `machine` — The state machine logic for the number input widget as described
@@ -59,6 +59,9 @@ The number input package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that the every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+number input machine in your project 🔥
 
 <CodeSnippet id="number-input/usage.mdx" />
 
@@ -178,7 +181,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The number-input's connect method exposes the following methods:
+The number-input's `api` exposes the following methods:
 
 - `value` — The formatted value of the array.
 - `valueAsNumber` — The value of the input as number.

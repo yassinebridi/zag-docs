@@ -1,7 +1,9 @@
 # Tabs
 
 An accessible tabs component that provides keyboard interactions and ARIA
-attributes described in the WAI-ARIA Tabs Design Pattern.
+attributes described in the WAI-ARIA Tabs Design Pattern. Tabs consist of a tab
+list with one or more visually separated tabs. Each tab has associated content,
+and only the selected tab's content is shown.
 
 <Showcase id="Tabs" />
 
@@ -24,12 +26,6 @@ command line:
 This command will install the framework agnostic tabs logic and the reactive
 utilities for your framework of choice.
 
-Now you can use the tabs in your project!
-
-```jsx
-import * as tabs from "@ui-machines/tabs"
-```
-
 ## Anatomy
 
 To set up the tabs correctly, you'll need to understand its anatomy and how we
@@ -39,16 +35,19 @@ name its parts.
 
 On a high level, the tabs consists of:
 
-- **Root**: The root container for the tablist and tab panels
-- **Tab**: The button that activates a tab panel
-- **Tab Panel**: The element that holds the content of the tab
-- **Tab Indicator**: The element that holds the content of the tab
-- **Tab Delete Button**: An optional element used to close or delete a tab
+- **Root**: The root container for the tablist and tab panels.
+- **Tab**: The button that activates a tab panel.
+- **Tab Panel**: The element that holds the content of the tab.
+- **Tab Indicator**: The element that holds the content of the tab.
+- **Tab Delete Button**: An optional element used to close or delete a tab.
 
 ## Usage
 
-Tabs consist of a tab list with one or more visually separated tabs. Each tab
-has associated content, and only the selected tab's content is shown.
+First, import the tabs package into your project
+
+```jsx
+import * as tabs from "@ui-machines/tabs"
+```
 
 The tabs package exports two key functions:
 
@@ -58,6 +57,9 @@ The tabs package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+tabs machine in your project 🔥
 
 <CodeSnippet id="tabs/usage.mdx" />
 
@@ -160,7 +162,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The accordion's connect method exposes the following methods:
+The tab's `api` exposes the following methods:
 
 - `value` — The value of the currently selected accordion.
 - `setValue()` — Used to set the value of the accordion that will be expanded.

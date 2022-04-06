@@ -1,8 +1,9 @@
 # Tags Input
 
-Tag inputs render tags inside an input, followed by an actual text input. Tags
-are added when text is typed in the input field and the `Enter` or `Comma` key
-is pressed. Throughout the interaction, DOM focus remains on the input element.
+Tag inputs render tags inside an input, followed by an actual text input. By
+default, tags are added when text is typed in the input field and the `Enter` or
+`Comma` key is pressed. Throughout the interaction, DOM focus remains on the
+input element.
 
 <Showcase id="TagsInput" />
 
@@ -19,19 +20,10 @@ is pressed. Throughout the interaction, DOM focus remains on the input element.
 
 ## Installation
 
-To use the accordion machine in your project, run the following command in your
+To use the tags input machine in your project, run the following command in your
 command line:
 
 <CodeSnippet id="tags-input/installation.mdx" />
-
-This command will install the framework agnostic tags-input logic and the
-reactive utilities for your framework of choice.
-
-Now you can use the tags-input in your project!
-
-```jsx
-import * as tagsInput from "@ui-machines/tags-input"
-```
 
 ## Anatomy
 
@@ -58,14 +50,23 @@ Each tag consists of:
 
 ## Usage
 
+First, import the tags input package into your project
+
+```jsx
+import * as tagsInput from "@ui-machines/tags-input"
+```
+
 The tags input package exports two key functions:
 
 - `machine` — The state machine logic for the tags input widget.
 - `connect` — The function that translates the machine's state to JSX attributes
   and event handlers.
 
-> You'll need to provide a unique `id` to the `useSetup` hook. This is used to
-> ensure that every part has a unique identifier.
+> You'll also need to provide a unique `id` to the `useSetup` hook. This is used
+> to ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+tags input machine in your project 🔥
 
 <CodeSnippet id="tags-input/usage.mdx" />
 
@@ -130,7 +131,7 @@ const [state, send] = useMachine(
 )
 ```
 
-## Limiting the number of tag
+## Limiting the number of tags
 
 To limit the number of tags within the component, you can set the `max` property
 to the limit you want. The default value is `Infinity`.
@@ -241,7 +242,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The tag input's connect method exposes the following methods:
+The tag input's `api` exposes the following methods:
 
 - `value` — The value of the added tags.
 - `count` — The total number of the added tags.
@@ -281,15 +282,15 @@ focused state, the root, label, input.
 
 ```css
 [data-part="root"][data-focus] {
-  /* styles for focus state */
+  /* styles for root focus state */
 }
 
 [data-part="label"][data-focus] {
-  /* styles for focus state */
+  /* styles for label focus state */
 }
 
 [data-part="input"]:focus {
-  /* styles for focus state */
+  /* styles for input focus state */
 }
 ```
 
@@ -301,15 +302,15 @@ label.
 
 ```css
 [data-part="root"][data-invalid] {
-  /* styles for invalid state */
+  /* styles for invalid state for root */
 }
 
 [data-part="label"][data-invalid] {
-  /* styles for invalid state */
+  /*  styles for invalid state for label */
 }
 
 [data-part="input"][data-invalid] {
-  /* styles for invalid state */
+  /*  styles for invalid state for input */
 }
 ```
 
@@ -321,19 +322,19 @@ label.
 
 ```css
 [data-part="root"][data-disabled] {
-  /* styles for disabled state */
+  /* styles for disabled state for root */
 }
 
 [data-part="label"][data-disabled] {
-  /* styles for disabled state */
+  /* styles for disabled state for label */
 }
 
 [data-part="input"][data-disabled] {
-  /* styles for disabled state */
+  /* styles for disabled state for input */
 }
 
 [data-part="control"][data-disabled] {
-  /* styles for disabled state */
+  /* styles for disabled state for control */
 }
 ```
 
@@ -341,7 +342,7 @@ When an option is disabled, the `data-disabled` attribute is set on the option.
 
 ```css
 [data-part="option"][data-disabled] {
-  /* styles for disabled option */
+  /* styles for disabled option  */
 }
 ```
 
@@ -363,18 +364,18 @@ set on the root, label, input and control.
 
 ```css
 [data-part="root"][data-readonly] {
-  /* styles for readonly tag */
+  /* styles for readonly for root */
 }
 
 [data-part="control"][data-readonly] {
-  /* styles for readonly focus */
+  /* styles for readonly for control */
 }
 
 [data-part="input"][data-readonly] {
-  /* styles for readonly focus */
+  /* styles for readonly for input  */
 }
 
 [data-part="label"][data-readonly] {
-  /* styles for readonly focus */
+  /* styles for readonly for label */
 }
 ```

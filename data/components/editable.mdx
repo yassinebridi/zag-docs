@@ -1,8 +1,8 @@
 # Editable
 
-Editable is an input field used for editing a single line of text. It renderes
-as static text and transforms into a text input field when then edit interaction
-is triggered (click, focus, or double-click).
+Editable is an input field used for editing a single line of text. It renders as
+static text and transforms into a text input field when then edit interaction is
+triggered (click, focus, or double-click).
 
 <Showcase id="Editable" />
 
@@ -23,12 +23,6 @@ command line:
 
 This command will install the framework agnostic editable logic and the reactive
 utilities for your framework of choice.
-
-Now you can use the editable in your project!
-
-```jsx
-import * as editable from "@ui-machines/editable"
-```
 
 ## Anatomy
 
@@ -53,6 +47,12 @@ need these parts:
 
 ## Usage
 
+First, import the editable package into your project
+
+```jsx
+import * as editable from "@ui-machines/editable"
+```
+
 The editable package exports two key functions:
 
 - `machine` — The state machine logic for the editable widget.
@@ -61,6 +61,9 @@ The editable package exports two key functions:
 
 > You'll need to provide a unique `id` to the `useSetup` hook. This is used to
 > ensure that every part has a unique identifier.
+
+Next, import the required hooks and functions for your framework and use the
+editable machine in your project 🔥
 
 <CodeSnippet id="editable/usage.mdx" />
 
@@ -86,11 +89,11 @@ const [state, send] = useMachine(
 ```
 
 > **Please note that**, in this mode, the input and preview elements should not
-> have any styles. Instead pass the styles to the "area" element.
+> have any styles. Instead, pass the styles to the "area" element.
 
 ### Setting a maxWidth
 
-It's a common pattern to set a maximum of the editable as it auto-grows. To
+It is a common pattern to set a maximum of the editable as it auto-grows. To
 achieve this, set the `maxWidth` property of the machine's context to the
 desired value.
 
@@ -126,7 +129,7 @@ const [state, send] = useMachine(
 
 ## Methods and Properties
 
-The editable's connect method exposes the following methods:
+The editable's `api` method exposes the following methods:
 
 - `isEditing` — Whether the editable is in the edit mode.
 - `value` — The current value of the editable.
