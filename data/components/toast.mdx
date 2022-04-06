@@ -14,29 +14,56 @@ place.
 
 ## Installation
 
-To use the toast machine in your project, install the respective package
+To use the toast machine in your project, run the following command in your
+command line:
+
+<CodeSnippet id="toast/installation.mdx" />
+
+This command will install the framework agnostic toast logic and the reactive
+utilities for your framework of choice.
+
+## Anatomy
+
+To set up the toast correctly, you'll need to understand its anatomy and how we
+name its parts.
+
+> Each part includes a `data-part` attribute to help identify them in the DOM.
+
+On a high level, the toast consists of:
+
+- **Group**: The element that serves as a container for all the toasts.
+- **Root**: The root container for the toast.
+- **Title**: The element that contains the title of the toast.
+- **Description**: The element that contains the description of the toast.
+- **Close Button**: The action button that is used to dimiss a toast.
+
+## Usage
+
+First, import the toast package into your project
 
 ```jsx
 import * as toast from "@ui-machines/toast"
 ```
 
-Then you'll need to install the framework specific binding
+The toast consists of three key aspects:
 
-<CodeSnippet id="toast/installation.mdx" />
+### Toast Item
 
-## Usage
+- `toast.machine` — The state machine representation of a single toast.
+- `toast.connect` — The function that takes the toast machine and returns
+  methods and JSX properties.
 
-The toast consists of five key functions:
+### Toast Group
 
-- `toast.machine`— The state machine representation of a single toast.
-- `toast.group.machine`— The state machine representation of a group of toasts.
-  It is responsible for spawning and removing toasts.
-- `toast.connect`— The function that takes the toast machine and returns methods
-  and JSX properties.
-- `toast.group.connect`— function gives you access to methods you can use to
+- `toast.group.machine` — The state machine representation of a group of toasts.
+  It is responsible for spawning, updating and removing toasts.
+- `toast.group.connect` — function gives you access to methods you can use to
   add, update, and remove a toast.
-- `toast.api`— The external API that can be used to create toasts outside of the
-  framework.
+
+### External (Experimental)
+
+- `toast.api` — The external function that can be used to control toasts from
+  outside the framework.
 
 > We recommend setting up the toast group machine once at the root of your
 > project.
@@ -60,15 +87,15 @@ toast.create({
 
 The options you can pass in are:
 
-- `title`— The title of the toast.
-- `description`— The description of the toast.
-- `type`— The type of the toast. Can be either `error`, `success` , `info`,
+- `title` — The title of the toast.
+- `description` — The description of the toast.
+- `type` — The type of the toast. Can be either `error`, `success` , `info`,
   `loading`, or `custom`.
-- `duration`— The duration of the toast. The default duration is computed based
+- `duration` — The duration of the toast. The default duration is computed based
   on the specified `type`.
-- `onClose`— A function that is called when the toast is closed.
-- `placement`— The placement of the toast.
-- `render`— A function that returns the toast JSX (Useful for library authors).
+- `onClose` — A function that is called when the toast is closed.
+- `placement` — The placement of the toast.
+- `render` — A function that returns the toast JSX (Useful for library authors).
 
 > **Important note 🚨**: When a toast is created and its visible duration has
 > elapsed , we add `1000ms` delay before removing it from the DOM. You can use
@@ -138,12 +165,12 @@ This identifier can be either:
 
 You can use any of the following methods to control a toast:
 
-- `toast.upsert(...)`— Creates or updates a toast.
-- `toast.update(...)`— Updates a toast.
-- `toast.remove(...)`— Removes a toast instantly without delay.
-- `toast.dismiss(...)`— Removes a toast with delay.
-- `toast.pause(...)`— Pauses a toast.
-- `toast.resume(...)`— Resumes a toast.
+- `toast.upsert(...)` — Creates or updates a toast.
+- `toast.update(...)` — Updates a toast.
+- `toast.remove(...)` — Removes a toast instantly without delay.
+- `toast.dismiss(...)` — Removes a toast with delay.
+- `toast.pause(...)` — Pauses a toast.
+- `toast.resume(...)` — Resumes a toast.
 
 ```jsx {2,11-15}
 // grab the id from the created toast
@@ -301,10 +328,8 @@ const [state, send] = useMachine(
 ## Changing the viewport offsets
 
 The toast group's container has `position: fixed` css property applied to it
-based on the placement set.
-
-To change the viewport offsets of the toast group's container, pass the
-`offsets` context property.
+based on the placement set. To change the viewport offsets of the toast group's
+container, pass the `offsets` context property.
 
 ```jsx {4-8}
 const [state, send] = useMachine(
@@ -415,12 +440,12 @@ the toast.
 }
 
 [data-part="root"]:not([data-open]) {
-  animation-duration: "var(--remove-delay)";
+  animation-duration: var(--remove-delay);
   animation-name: fadeout;
 }
 ```
 
-### Progressbar
+### Progress bar
 
 When a progress bar is rendered and the `api.progressbarProps` from the
 `toast.connect` is used, we attach some styles the progress bar for ease of
@@ -431,8 +456,8 @@ To add animation to the progressbar, you only need to specify the
 
 ```css
 [data-part="progressbar"] {
-  height: "4px";
-  background: "rgb(116, 116, 116)";
+  height: 4px;
+  background: rgb(116, 116, 116);
   animation-name: shrink;
 }
 ```
