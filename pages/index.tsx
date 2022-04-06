@@ -49,7 +49,7 @@ export default function Home() {
               fontSize={{ base: "4xl", sm: "5xl", lg: "7xl" }}
               lineHeight="short"
             >
-              UI components powered by Finite State Machines.
+              UI components powered by Finite State Machines
             </chakra.h1>
             <Text
               fontSize="xl"
@@ -106,11 +106,11 @@ export default function Home() {
           <chakra.h2
             fontSize={{ base: "4xl", md: "6xl" }}
             mb="8"
-            maxW="28ch"
+            maxW="24ch"
             lineHeight="short"
             fontWeight="bold"
           >
-            UI machines provides the component SDK for the Web.
+            Zag provides the component API for the Web.
           </chakra.h2>
 
           <Link href="/overview/introduction" passHref>

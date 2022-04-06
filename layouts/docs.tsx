@@ -31,7 +31,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             position="fixed"
             zIndex={20}
             bottom="0"
-            top="3.8rem"
+            top="4rem"
             left="max(0px, calc(50% - 45rem))"
             right="auto"
             width="19.5rem"
@@ -55,7 +55,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             as="main"
             className="mdx-content"
             pl={{ lg: "19.5rem" }}
-            pt="8"
+            pt="4"
             pr={{ xl: "16" }}
           >
             <Box
@@ -66,6 +66,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
               {children}
               <HStack
                 as="a"
+                display="inline-flex"
                 href={doc.editUrl}
                 textStyle="a"
                 fontSize="sm"

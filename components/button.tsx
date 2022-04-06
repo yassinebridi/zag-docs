@@ -13,7 +13,6 @@ const styleConfig: StyleConfig = {
     fontSize: "lg",
     fontWeight: "semibold",
     textAlign: "start",
-    rounded: "lg",
     paddingX: "5",
     transition: "background 0.2s ease",
     shadow: "md",

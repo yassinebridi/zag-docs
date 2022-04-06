@@ -66,7 +66,7 @@ const theme = {
           "a:focus": { opacity: 1 },
         },
         "p, li:not([role])": {
-          lineHeight: "taller",
+          lineHeight: "tall",
         },
         "p + p": {
           marginTop: "6",
@@ -136,6 +136,7 @@ const theme = {
       lineHeight: "1.5",
     },
     a: {
+      color: "green.500",
       cursor: "pointer",
       fontWeight: "medium",
       textDecoration: "underline",

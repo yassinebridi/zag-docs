@@ -23,7 +23,18 @@ function IconLink({ label, href, icon }: IconLinkProps) {
 
 export function TopNavigation() {
   return (
-    <Box bg="white" position="sticky" top="0" width="full" zIndex={50} py="4">
+    <Box
+      bg="whiteAlpha.900"
+      backdropFilter="auto"
+      backdropBlur="sm"
+      position="sticky"
+      top="0"
+      width="full"
+      zIndex={50}
+      py="4"
+      borderBottomWidth="1px"
+      borderBottomColor="gray.100"
+    >
       <Flex
         align="center"
         justify="space-between"
