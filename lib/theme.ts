@@ -51,6 +51,10 @@ const theme = {
         bg: "transparent",
       },
       ".mdx-content": {
+        output: {
+          fontFeatureSettings: "tnum",
+          fontVariantNumeric: "tabular-nums",
+        },
         "li:not([role])": {
           marginY: "1",
         },
