@@ -324,6 +324,55 @@ const [state, send] = useMachine(
 )
 ```
 
+## Custom render functions
+
+When using the toast within a design system, you might want consumers to provide
+custom render functions that return the toast's JSX element.
+
+Here's how to achieve that:
+
+```jsx
+// 1. Update toast to support custom render
+function ToastItem(props) {
+  const [state, send] = useActor(props.actor)
+  const api = toast.connect(state, send)
+
+  // Custom toast JSX defined when `toast.create()` is called
+  const jsx = api.render()
+
+  if (jsx) {
+    return <div {...api.rootProps}>{jsx}</div>
+  }
+
+  // Default toast JSX
+  return (
+    <div {...api.rootProps}>
+      <p {...api.titleProps}>{api.title}</p>
+      <p>{api.type === "loading" ? <BeatLoader /> : null}</p>
+      <button onClick={api.dismiss}>Close</button>
+    </div>
+  )
+}
+
+// 2. Later in the app, provide custom JSX
+api.create({
+  title: "Welcome",
+  description: "This is a toast",
+  type: "info",
+  render(props) {
+    return (
+      <div
+        id={props.id}
+        style={{ background: props.type === "loading" ? "pink" : "red" }}
+      >
+        <p>{props.title}</p>
+        <button onClick={props.dismiss}>Close</button>
+      </div>
+    )
+  },
+})
+```
+
 ## Styling guide
 
 ### Toast styling
