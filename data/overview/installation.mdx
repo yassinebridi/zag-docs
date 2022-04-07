@@ -87,7 +87,7 @@ import { useMachine, normalizeProps } from "@zag-js/solid"
 export default function Toggle() {
   const [state, send] = useMachine(toggle.machine)
   const api = createMemo(() => toggle.connect(state, send, normalizeProps))
-  return <button {...api().buttonProps}>{api.isActive ? "On" : "Off"}</button>
+  return <button {...api().buttonProps}>{api().isActive ? "On" : "Off"}</button>
 }
 ```
 

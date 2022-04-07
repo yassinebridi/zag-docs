@@ -31,15 +31,19 @@ const machine = createMachine({
   // the finite states
   states: {
     active: {
-      CLICK: {
-        // go to inactive
-        target: "inactive",
+      on: {
+        CLICK: {
+          // go to inactive
+          target: "inactive",
+        },
       },
     },
     inactive: {
-      CLICK: {
-        // go to active
-        target: "active",
+      on: {
+        CLICK: {
+          // go to active
+          target: "active",
+        },
       },
     },
   },
