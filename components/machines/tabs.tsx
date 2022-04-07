@@ -24,7 +24,7 @@ export function Tabs(props: any) {
       className="focus-outline"
       ref={ref}
     >
-      <chakra.div bg="white" borderBottomWidth="1px" {...api.tablistProps}>
+      <chakra.div bg="white" borderBottomWidth="1px" {...api.triggerGroupProps}>
         {data.map((item) => (
           <chakra.button
             py="2"
@@ -35,7 +35,7 @@ export function Tabs(props: any) {
               color: "green.500",
               borderBottomColor: "currentColor",
             }}
-            {...api.getTabProps({ value: item.value })}
+            {...api.getTriggerProps({ value: item.value })}
             key={item.value}
           >
             {item.label}
@@ -47,7 +47,7 @@ export function Tabs(props: any) {
           padding="4"
           bg="white"
           minHeight="20"
-          {...api.getTabPanelProps({ value: item.value })}
+          {...api.getContentProps({ value: item.value })}
           key={item.value}
         >
           <p>{item.content}</p>
