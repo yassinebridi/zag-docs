@@ -146,3 +146,38 @@ const [state, send] = useMachine(
 
 > By definition, an alert dialog will contain two or more action buttons. We
 > recommended setting focus to the least destructive action via `initialFocusEl`
+
+## Styling guide
+
+Earlier, we mentioned that each accordion part has a `data-part` attribute added
+to them to select and style them in the DOM.
+
+```css
+[data-part="trigger"] {
+  /* styles for the trigger element */
+}
+
+[data-part="backdrop"] {
+  /* styles for the backdrop element */
+}
+
+[data-part="underlay"] {
+  /* styles for the underlay element */
+}
+
+[data-part="content"] {
+  /* styles for the content element */
+}
+
+[data-part="title"] {
+  /* styles for the title element */
+}
+
+[data-part="description"] {
+  /* styles for the description element */
+}
+
+[data-part="close-button"] {
+  /* styles for the close button element */
+}
+```
