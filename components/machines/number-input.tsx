@@ -1,5 +1,5 @@
-import * as numberInput from "@ui-machines/number-input"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as numberInput from "@zag-js/number-input"
+import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 

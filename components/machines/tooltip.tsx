@@ -1,5 +1,5 @@
-import { useMachine, useSetup } from "@ui-machines/react"
-import * as tooltip from "@ui-machines/tooltip"
+import { useMachine, useSetup } from "@zag-js/react"
+import * as tooltip from "@zag-js/tooltip"
 import { chakra } from "@chakra-ui/system"
 
 export function Tooltip(props) {

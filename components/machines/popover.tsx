@@ -1,6 +1,6 @@
 import { Portal } from "@reach/portal"
-import * as popover from "@ui-machines/popover"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as popover from "@zag-js/popover"
+import { useMachine, useSetup } from "@zag-js/react"
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"

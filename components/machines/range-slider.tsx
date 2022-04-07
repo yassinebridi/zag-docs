@@ -1,5 +1,5 @@
-import * as rangeSlider from "@ui-machines/range-slider"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as rangeSlider from "@zag-js/range-slider"
+import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
 

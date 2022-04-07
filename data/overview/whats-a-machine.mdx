@@ -1,55 +1,52 @@
 # What is a machine?
 
-A component machine is a behavior model of the component's logic and
-interactions. The machine is built based on the premise that a component has a
-finite number of states it can be in, and state changes can only happen based on
-events or interactions.
+State machines are a tool for modeling stateful, reactive systems. They are
+useful for declaratively describing the behavior of an application or component.
 
-State machines has been popularly known as a tool to model complex business
-model. In this case, the "business" is "components". Machines makes it easier to
-model and manage complex components logic.
+To model any logic as using the state machine pattern, it must have:
 
-The basic building blocks of a state machine are states and transitions.
+- A finite number of states.
+- A finite number of transitions between states.
 
 ## Example of State machine
 
 Consider a simple toggle or switch component that consists of two states,
-`Active` and `Inactive`. The initial state will be `Active`
+`active` and `inactive`. The initial state will be `active`
 
 The supported transitions that can happen here:
 
-- In the `Active` state, when we click the toggle, it should transition to the
-  `Inactive` state
-- In the `Inactive` state, when we click the toggle, it should transition to the
-  `Active` state
+- In the `active` state, when we click the toggle, it should transition to the
+  `inactive` state
+- In the `inactive` state, when we click the toggle, it should transition to the
+  `active` state
 
 Here's how we'll model the logic in code:
 
 ```jsx
-import { createMachine } from "@ui-machines/core"
+import { createMachine } from "@zag-js/core"
 
-const toggleMachine = createMachine({
+const machine = createMachine({
   // initial state
-  initial: "Active",
+  initial: "active",
   // the finite states
   states: {
-    Active: {
+    active: {
       CLICK: {
         // go to inactive
-        target: "Inactive",
+        target: "inactive",
       },
     },
-    Inactive: {
+    inactive: {
       CLICK: {
         // go to active
-        target: "Active",
+        target: "active",
       },
     },
   },
 })
 ```
 
-The `toggleMachine` gives you access to these key information:
+The `machine` gives you access to these key information:
 
 - `state`: State is a representation of the machine at a specific point in time
   and contains the following properties:
@@ -68,13 +65,13 @@ and event handlers. Let's follow the
 [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html)
 specification for the switch component.
 
-We'll write a function called `toggleConnect` to do this.
+We'll write a function called `connect` to do this.
 
 ```jsx
-function toggleConnect(state, send) {
-  const isActive = state.matches("Active")
+function connect(state, send) {
+  const active = state.matches("active")
   return {
-    isActive,
+    active,
     buttonProps: {
       type: "button",
       role: "switch",
@@ -90,12 +87,12 @@ function toggleConnect(state, send) {
 Here's how to consume the toggle machine logic and connect in React.js.
 
 ```jsx
-import { useMachine } from "@ui-machines/react"
-import { toggleMachine, toggleConnect } from "./toggle"
+import { useMachine } from "@zag-js/react"
+import { machine, connect } from "./toggle"
 
 function Toggle() {
-  const [state, send] = useMachine(toggleMachine)
-  const api = toggleConnect(state, send)
+  const [state, send] = useMachine(machine)
+  const api = connect(state, send)
 
   return (
     <button
@@ -104,10 +101,10 @@ function Toggle() {
         width: "40px",
         height: "24px",
         borderRadius: "999px",
-        background: api.isActive ? "green" : "gray",
+        background: api.active ? "green" : "gray",
       }}
     >
-      {api.isActive ? "ON" : "OFF"}
+      {api.active ? "ON" : "OFF"}
     </button>
   )
 }

@@ -2,8 +2,8 @@ import Icon from "@chakra-ui/icon"
 import { Center, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Portal } from "@reach/portal"
-import * as dialog from "@ui-machines/dialog"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as dialog from "@zag-js/dialog"
+import { useMachine, useSetup } from "@zag-js/react"
 import { HiX } from "react-icons/hi"
 
 export function Dialog(props: { controls: any }) {

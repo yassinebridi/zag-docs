@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import * as accordion from "@ui-machines/accordion"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as accordion from "@zag-js/accordion"
+import { useMachine, useSetup } from "@zag-js/react"
 
 const items = [
   {

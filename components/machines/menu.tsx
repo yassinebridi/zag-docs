@@ -1,5 +1,5 @@
-import * as menu from "@ui-machines/menu"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as menu from "@zag-js/menu"
+import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 

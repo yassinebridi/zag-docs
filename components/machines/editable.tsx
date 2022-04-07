@@ -1,5 +1,5 @@
-import * as editable from "@ui-machines/editable"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as editable from "@zag-js/editable"
+import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { HStack } from "@chakra-ui/layout"
 

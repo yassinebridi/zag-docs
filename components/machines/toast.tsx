@@ -1,5 +1,5 @@
-import { useActor, useMachine, useSetup } from "@ui-machines/react"
-import * as toast from "@ui-machines/toast"
+import { useActor, useMachine, useSetup } from "@zag-js/react"
+import * as toast from "@zag-js/toast"
 import { useRef } from "react"
 import { chakra } from "@chakra-ui/system"
 import { HiX } from "react-icons/hi"

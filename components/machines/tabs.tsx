@@ -1,5 +1,5 @@
-import { useMachine, useSetup } from "@ui-machines/react"
-import * as tabs from "@ui-machines/tabs"
+import { useMachine, useSetup } from "@zag-js/react"
+import * as tabs from "@zag-js/tabs"
 import { chakra } from "@chakra-ui/system"
 
 const data = [

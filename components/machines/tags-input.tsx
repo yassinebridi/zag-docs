@@ -1,5 +1,5 @@
-import * as tagsInput from "@ui-machines/tags-input"
-import { useMachine, useSetup } from "@ui-machines/react"
+import * as tagsInput from "@zag-js/tags-input"
+import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 
 export function TagsInput(props: any) {

@@ -13,11 +13,11 @@ There two ways to use UI machines in React:
 ## Local state
 
 This is useful the component encapsulate the state and doesn't use react
-context. You can use the `useMachine` hook from `@ui-machines/react`.
+context. You can use the `useMachine` hook from `@zag-js/react`.
 
 ```jsx
-import { useMachine } from "@ui-machines/react"
-import * as Toggle from "@ui-machines/toggle"
+import { useMachine } from "@zag-js/react"
+import * as Toggle from "@zag-js/toggle"
 
 function Toggle() {
   const [state, send] = useMachine(Toggle.machine)
@@ -46,8 +46,8 @@ pattern. It'll have:
 
 ```jsx
 import { createContext, useContext } from "react"
-import { useService, useActor } from "@ui-machines/react"
-import * as TAccordion from "@ui-machines/react"
+import { useService, useActor } from "@zag-js/react"
+import * as TAccordion from "@zag-js/react"
 
 // For TypeScript users, the type signature of this will be `TAccordion.Machine`
 const AccordionContext = createContext({})
