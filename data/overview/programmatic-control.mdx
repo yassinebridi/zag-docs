@@ -1,57 +1,94 @@
 # Programmatic Control
 
-In the react world we call this "controlled" and "uncontrolled" components or
-state. To achieve this, the machine provide three ways to define its initial
-context.
+In some cases, you may want to control the state or context values of a machine
+programmatically via its `props` or based on certain conditions. This is
+typically know as "controlling" the components.
 
-### Using exposed methods
+Zag provides a number of ways to control the state of a machine
+programmatically.
 
-The `connect` method of any component machine provide helpful methods to change
-the machine state or update its context. This approach is recommended approach.
+## Setting initial context
 
-Let's say we'd like to change the expanded accordion item in an accordion group.
-Here's how to do that:
+All machines have an "internal" context value that is used to manage extended
+state (or data) within the machine. To extend this initial value of this
+context, we expose the `.withContext(...)` method.
 
-```jsx
-// 1. Bind the machine in your framework
-const [state, send] = useMachine(Accordion.machine)
+> This is used set/override the **initial** context value of the machine. It
+> can't be updated later on. Keep reading to see how to update it.
 
-// 2. Call the connect function
-const accordion = Accordion.connect(state, send)
-
-// 3. Use exposed methods
-accordion.setValue("item-1")
-```
-
-### Setting initial context
-
-`<machine>.withContext(...)`: This is used to set the **initial** context value
-of the machine. It can't be updated later on.
-
-For example, let's stay we want an accordion to start with a specific selected
-value but allow the user change it later on. Here's how to acheive that.
+For example, if you want an accordion to start with a specific selected value.
+Here's how to acheive that:
 
 ```jsx
 const [state, send] = useMachine(
   // set initial context value
-  Accordion.machine.withContext({
+  accordion.machine.withContext({
     value: "item-1",
   }),
 )
 ```
 
-### Setting and controlling context programmatically
+## Using exposed methods
 
-In some cases you might want to control the component's context via props or in
-response to some external event. To achieve this, pass the `context` in the
-`useMachine`'s second argument.
+The `connect` method of the machines provide helpful methods (APIs) to change
+the machine state or update its context.
+
+> This approach is recommended approach to programmatically update a machine.
+
+Let's say we'd like to change the expanded accordion item in an accordion group.
+Here's how to do that:
 
 ```jsx
-// external value (e.g. from props)
-const value = "item-1"
+function Accordion() {
+  // 1. Bind the machine in your framework
+  const [state, send] = useMachine(accordion.machine)
 
-// control context with external value
-const [state, send] = useMachine(Accordion.machine, {
-  context: { value },
+  // 2. Call the connect function
+  const api = accordion.connect(state, send)
+
+  // 3. Use exposed methods
+  api.setValue("item-1")
+
+  return (...)
+}
+```
+
+Now, let's say you'd like to udpate the selected accordion based on props passed
+to the `Accordion` component, here is how to do that in React:
+
+```jsx
+import useUpdateEffect from "use-update-effect"
+
+function Accordion(props) {
+  const [state, send] = useMachine(
+    accordion.machine.withContext({
+      value: props.value,
+    }),
+  )
+
+  const api = accordion.connect(state, send)
+
+  useUpdateEffect(() => {
+    api.setValue(props.value)
+  }, [props.value])
+
+  return (...)
+}
+```
+
+## Transient updates
+
+In some edge-cases, you may want to update the machine's context
+programmatically without sending an event to the machine or using the provided
+`api`. You can pass the context value to the `useMachine` hook directly.
+
+```jsx
+const [state, send] = useMachine(accordion.machine, {
+  context: {
+    value: props.value,
+  },
 })
 ```
+
+> This only works for context updates, not internal state updates and is not the
+> recommended approach.
