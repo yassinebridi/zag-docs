@@ -29,6 +29,8 @@ import Link from "next/link"
 import { useMDX } from "components/mdx-components"
 import { getSnippetDoc } from "lib/get-paths"
 import { MultiframeworkTabs } from "components/mutli-framework"
+import { NextSeo } from "next-seo"
+import siteConfig from "site.config"
 
 type FeatureItemProps = {
   title: string
@@ -72,6 +74,7 @@ function CodeArea() {
 export default function Home() {
   return (
     <Box>
+      <NextSeo title={siteConfig.title} />
       <TopNavigation />
       <Box as="header" position="relative" maxW="8xl" mx="auto">
         <Box px={{ base: "4", sm: "6", md: "8" }}>

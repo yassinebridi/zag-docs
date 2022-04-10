@@ -1,6 +1,6 @@
 const baseConfig = {
   repo: "https://github.com/chakra-ui/zag-docs",
-  title: "Zag",
+  title: "Zag - Rapidly build UI components without sweating over the logic.",
   description:
     "State machines for accessible, interactive and performant UI components",
   url: "https://zagjs.com",
