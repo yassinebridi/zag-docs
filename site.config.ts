@@ -1,16 +1,15 @@
-const baseUrl = "https://github.com/chakra-ui/ui-machines-docs"
+const baseConfig = {
+  repo: "https://github.com/chakra-ui/zag-docs",
+  title: "Zag",
+  description:
+    "State machines for accessible, interactive and performant UI components",
+  url: "https://zagjs.com",
+}
 
 const siteConfig = {
-  title: "Chakra UI",
-  tagline: "A declarative, accessible, and performant UI library",
-  url: "https://ui-machines.com",
-  projectName: "ui-machines",
+  ...baseConfig,
+  projectName: "zag-js",
   copyright: `Copyright &copy; ${new Date().getFullYear()}`,
-  algolia: {
-    apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
-    indexName: "chakra-ui",
-    inputSelector: "#algolia-search",
-  },
   openCollective: {
     url: "https://opencollective.com/chakra-ui",
   },
@@ -22,47 +21,33 @@ const siteConfig = {
     email: "sage@adebayosegun.com",
   },
   repo: {
-    url: baseUrl,
-    editUrl: `${baseUrl}/edit/main/data`,
-    blobUrl: `${baseUrl}/blob/main`,
+    url: baseConfig.repo,
+    editUrl: `${baseConfig.repo}/edit/main/data`,
+    blobUrl: `${baseConfig.repo}/blob/main`,
   },
   discord: {
-    url: "https://discord.gg/ui-machines",
+    url: "https://discord.gg/zag-nation",
   },
-  youtube: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
   seo: {
-    title: "UI Machines",
-    titleTemplate: "%s - UI Machines",
-    description:
-      "Simple, Modular and Accessible UI Components for your React Applications.",
-    siteUrl: "https://chakra-ui.com",
+    title: baseConfig.title,
+    titleTemplate: "%s - Zag",
+    description: baseConfig.description,
+    siteUrl: baseConfig.url,
     twitter: {
-      handle: "@chakra-ui",
-      site: "@chakra-ui",
+      handle: "@zagjs",
+      site: baseConfig.url,
       cardType: "summary_large_image",
     },
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: "https://chakra-ui.com",
-      title: "Chakra UI",
-      description:
-        "Simple, Modular and Accessible UI Components for your React Applications.",
-      site_name:
-        "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
+      url: baseConfig.url,
+      title: baseConfig.title,
+      description: baseConfig.description,
+      site_name: baseConfig.title,
       images: [
-        {
-          url: "https://chakra-ui.com/og-image.png",
-          width: 1240,
-          height: 480,
-          alt: "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
-        },
-        {
-          url: "https://chakra-ui.com/twitter-og-image.png",
-          width: 1012,
-          height: 506,
-          alt: "Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.",
-        },
+        { url: `${baseConfig.url}/og.png`, width: 1240, height: 480 },
+        { url: `${baseConfig.url}/twitter-og.png`, width: 1012, height: 506 },
       ],
     },
   },
