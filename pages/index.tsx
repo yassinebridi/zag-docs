@@ -1,10 +1,20 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex, Stack, Text } from "@chakra-ui/layout"
+import {
+  Box,
+  Center,
+  Flex,
+  List,
+  ListIcon,
+  ListItem,
+  Stack,
+  Text,
+} from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
 import {
   AccessibilityIcon,
   ArrowRightIcon,
+  CheckIcon,
   FrameworkAgnosticIcon,
   PlayIcon,
   ReactIcon,
@@ -16,6 +26,9 @@ import { Illustration } from "components/illustration"
 import { ElementType } from "react"
 import { TopNavigation } from "components/top-navigation"
 import Link from "next/link"
+import { useMDX } from "components/mdx-components"
+import { getSnippetDoc } from "lib/get-paths"
+import { MultiframeworkTabs } from "components/mutli-framework"
 
 type FeatureItemProps = {
   title: string
@@ -32,6 +45,26 @@ function FeatureItem(props: FeatureItemProps) {
         <Text fontWeight="bold">{title}</Text>
         <Text mt={2}>{children}</Text>
       </Box>
+    </Box>
+  )
+}
+
+function CodeArea() {
+  const doc = getSnippetDoc("website/snippet")
+  const Component = useMDX(doc.body.code)
+  return (
+    <Box
+      height="full"
+      sx={{
+        "pre[class*=language-]": {
+          bg: "green.50",
+          margin: "0",
+          padding: "64px 24px !important",
+          height: "full",
+        },
+      }}
+    >
+      {Component}
     </Box>
   )
 }
@@ -141,6 +174,102 @@ export default function Home() {
             </FeatureItem>
           </Stack>
         </Box>
+      </Box>
+
+      <Box
+        as="section"
+        px={{ base: "4", sm: "6", md: "8" }}
+        my="32"
+        maxW="8xl"
+        mx="auto"
+      >
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1" fontSize="xl">
+            <chakra.h2
+              fontSize={{ base: "4xl", md: "6xl" }}
+              mb="8"
+              maxW="24ch"
+              lineHeight="shorter"
+              fontWeight="bold"
+            >
+              Machines handle the logic. You handle the UI
+            </chakra.h2>
+            <Text maxW="64ch">
+              Zag machine APIs are completely headless and unstyled. Use your
+              favorite styling solution and get it matching your design system.
+            </Text>
+
+            <List spacing="5" mt="8">
+              {[
+                "Install and import the component you need",
+                "Consume the component",
+                "Define your UI and connect logic to",
+              ].map((item, index) => (
+                <ListItem key={index} display="flex" alignItems="flex-start">
+                  <ListIcon fontSize="3xl" mr="2" as={CheckIcon} />
+                  <span>{item}</span>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+
+          <Center
+            position="relative"
+            width="full"
+            maxW={{ xl: "800px" }}
+            minHeight="500px"
+          >
+            <Box
+              width="100%"
+              mx="auto"
+              height="84%"
+              position="absolute"
+              bg="green.400"
+              rounded="2xl"
+            />
+            <Box
+              width={{ base: "640px", xl: "80%" }}
+              mx="auto"
+              bg="white"
+              rounded="2xl"
+              shadow="base"
+              height="full"
+              position="relative"
+            >
+              <CodeArea />
+            </Box>
+          </Center>
+        </Flex>
+      </Box>
+
+      <Box
+        as="section"
+        px={{ base: "4", sm: "6", md: "8" }}
+        my="32"
+        maxW="8xl"
+        mx="auto"
+      >
+        <Box>
+          <chakra.h2
+            maxW="24ch"
+            letterSpacing="tight"
+            fontWeight="bold"
+            fontSize={{ base: "4xl", sm: "5xl", lg: "7xl" }}
+            lineHeight="normal"
+          >
+            Work in your favorite JSX framework
+          </chakra.h2>
+          <Text fontSize="xl" maxW="560px" mt="6">
+            Finite state machines for building accessible design systems and UI
+            components. Works with React, Vue and Solid.
+          </Text>
+        </Box>
+
+        <MultiframeworkTabs />
       </Box>
     </Box>
   )

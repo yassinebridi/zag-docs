@@ -21,11 +21,12 @@ type PlaygroundProps = {
     string,
     string | number | boolean | { options: string[]; default: string }
   >
+  hideControls?: boolean
   debug?: boolean
 }
 
 export function Playground(props: PlaygroundProps) {
-  const { component: Comp, defaultProps = {}, debug } = props
+  const { component: Comp, defaultProps = {}, debug, hideControls } = props
   const [state, setState] = useState(
     Object.fromEntries(
       Object.entries(defaultProps).map(([key, value]) => [
@@ -35,10 +36,11 @@ export function Playground(props: PlaygroundProps) {
     ),
   )
 
-  const isEmpty = Object.keys(state).length === 0
+  const isEmpty = Object.keys(state).length === 0 || hideControls
 
   return (
     <Flex
+      id="playground"
       direction={{ base: "column", md: "row" }}
       borderWidth="1px"
       minHeight="24em"
@@ -127,6 +129,8 @@ export function Playground(props: PlaygroundProps) {
                 </Flex>
               )
             }
+
+            if (!value) return null
 
             return (
               <Flex justify="space-between" key={key}>

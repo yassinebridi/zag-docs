@@ -209,3 +209,12 @@ export function FrameworkAgnosticIcon(props: Props) {
     </svg>
   )
 }
+
+export const CheckIcon = (props: Props) => (
+  <svg width="32" height="24" viewBox="0 0 32 24" fill="none" {...props}>
+    <path
+      d="M27.9213 10.6667C27.2547 4.676 22.1653 0 16 0C9.83467 0 4.74533 4.676 4.07867 10.6667H0V13.3333H4.07867C4.74533 19.324 9.83467 24 16 24C22.1653 24 27.2547 19.324 27.9213 13.3333H32V10.6667H27.9213ZM14.6667 16.552L10.1147 12L12 10.1147L14.6667 12.7813L20 7.448L21.8853 9.33333L14.6667 16.552Z"
+      fill="#41B883"
+    />
+  </svg>
+)

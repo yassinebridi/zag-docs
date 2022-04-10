@@ -1,4 +1,9 @@
-import { allComponents, allOverviews, allGuides } from ".contentlayer/data"
+import {
+  allComponents,
+  allOverviews,
+  allGuides,
+  allSnippets,
+} from ".contentlayer/data"
 import { Framework, FRAMEWORKS, isFramework } from "./framework"
 
 function toParams(str: string | string[]) {
@@ -63,4 +68,18 @@ export function getGuidePaths() {
 
 export function getGuideDoc(slug: string | string[]) {
   return allGuides.find((post) => post.frontmatter.slug === `/guides/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Snippet
+ * -----------------------------------------------------------------------------*/
+
+export function getSnippetPaths() {
+  return allSnippets.map((doc) => `/snippets/${doc.slug}`)
+}
+
+export function getSnippetDoc(slug: string | string[]) {
+  return allSnippets.find(
+    (snippet) => snippet.frontmatter.slug === `/snippets/${slug}`,
+  )
 }

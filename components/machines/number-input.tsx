@@ -12,7 +12,7 @@ export function NumberInput(props: any) {
   const api = numberInput.connect(state, send)
 
   return (
-    <div ref={ref}>
+    <div ref={ref} {...api.rootProps}>
       <label {...api.labelProps}>Enter number:</label>
       <br />
       <chakra.div position="relative" display="inline-block">
