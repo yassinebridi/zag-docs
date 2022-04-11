@@ -6,7 +6,7 @@ import {
   extractParams,
   getComponentDoc,
   getComponentPaths,
-} from "lib/get-paths"
+} from "lib/path-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 
