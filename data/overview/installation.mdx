@@ -5,12 +5,12 @@ description: Setting up Zag UI machines in your project
 
 # Getting Started
 
-UI Machines can be used within most JSX frameworks like Vue, React and Solid.
+Zag can be used within most JSX frameworks like Vue, React and Solid.
 
-To get UI machines running, you'll need to:
+To get Zag running, you'll need to:
 
 1. Install the machine for the component you're interested in. Let's say you
-   want to use the `toggle` component.
+   want to use the `toggle` machine.
 
 ```bash
 npm install @zag-js/toggle
@@ -23,7 +23,7 @@ npm install @zag-js/toggle
 npm install @zag-js/react
 ```
 
-> Congrats! You're ready to use slider machine in your project.
+> Congrats! You're ready to use toggle machine in your project.
 
 ## Using the machine
 
@@ -40,7 +40,7 @@ export function Toggle() {
 }
 ```
 
-> UI machines uses [`valtio`](https://github.com/pmndrs/valtio) behind the
+> Zag uses [`valtio`](https://github.com/pmndrs/valtio) behind the
 > scenes to provide automatic render optimizations due to the `useSnapshot` hook
 > used within the machine hook.
 > [Learn more](https://github.com/pmndrs/valtio#react-via-usesnapshot)
@@ -106,21 +106,21 @@ frameworks like React, Solid and Vue. Here are some examples:
 
 **Keydown listener**
 
-- React and Solid: the keydown listener property is `onKeyDown`.
-- Vue: it's `onKeydown`. in vue the correct property is `onKeydown`.
+- React and Solid: The keydown listener property is `onKeyDown`.
+- Vue: The keydown listener property is `onKeydown`.
 
 **Styles**
 
-- React: you pass a numeric value for margin attributes like
+- React: Pass a numeric value for margin attributes like
   `{ marginBottom: 4 }`.
-- Solid: it has to `{ "margin-bottom": "4px" }`.
-- Vue: you need to ensure the value is a string with unit.
+- Solid: It has to be `{ "margin-bottom": "4px" }`.
+- Vue: You need to ensure the value is a string with unit.
   `{ marginBottom: "4px" }`.
 
 These little nuances between frameworks are handled automatically when you use
 `normalizeProps`.
 
-> The goal of UI machines is to help you abstract the interaction and
+> The goal of Zag is to help you abstract the interaction and
 > accessibility patterns into a statechart so you never have to re-invent the
 > wheel.
 
