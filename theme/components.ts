@@ -21,17 +21,10 @@ const Button: ComponentStyleConfig = {
       },
     },
     outline: {
-      bg: "white",
+      bg: "gray.50",
       borderWidth: "1px",
       _hover: {
-        bg: "gray.50",
-      },
-    },
-    ghost: {
-      color: "gray.900",
-      bg: "gray.200",
-      _hover: {
-        bg: "gray.300",
+        bg: "gray.100",
       },
     },
     black: {
@@ -57,7 +50,7 @@ const Button: ComponentStyleConfig = {
   },
   defaultProps: {
     size: "md",
-    variant: "ghost",
+    variant: "outline",
   },
 }
 

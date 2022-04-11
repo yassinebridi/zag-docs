@@ -12,6 +12,8 @@ import {
 } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
+import { CodeArea } from "components/code-area"
+import { Footer } from "components/footer"
 import {
   AccessibilityIcon,
   ArrowRightIcon,
@@ -24,15 +26,13 @@ import {
   VueIcon,
 } from "components/icons"
 import { Illustration } from "components/illustration"
-import { ElementType } from "react"
-import { TopNavigation } from "components/top-navigation"
-import Link from "next/link"
-import { useMDX } from "components/mdx-components"
-import { getSnippetDoc } from "lib/path-utils"
+import { MdxFooter } from "components/mdx-footer"
 import { MultiframeworkTabs } from "components/mutli-framework"
+import { TopNavigation } from "components/top-navigation"
 import { NextSeo } from "next-seo"
+import Link from "next/link"
+import { ElementType } from "react"
 import siteConfig from "site.config"
-import { CodeArea } from "components/code-area"
 
 type FeatureItemProps = {
   title: string
@@ -231,6 +231,40 @@ export default function Home() {
 
         <MultiframeworkTabs />
       </Box>
+
+      <Box
+        as="section"
+        bg={{ base: "green.100", md: "unset" }}
+        layerStyle="contain"
+        my={{ base: "20", md: "32" }}
+      >
+        <Box bg="green.100" px={{ md: "20" }} py={{ base: "10", md: "20" }}>
+          <chakra.h2 textStyle="display.xl" mb="8" maxW="24ch">
+            Build your design system with machines today
+          </chakra.h2>
+
+          <Stack direction={{ base: "column", sm: "row" }} spacing="5">
+            <Link href="/overview/introduction" passHref>
+              <Button
+                as="a"
+                variant="black"
+                width={{ base: "full", md: "auto" }}
+              >
+                Get Started
+              </Button>
+            </Link>
+
+            <Button width={{ base: "full", md: "auto" }}>
+              <HStack spacing="2">
+                <Icon as={PlayIcon} />
+                <span>Watch Demo</span>
+              </HStack>
+            </Button>
+          </Stack>
+        </Box>
+      </Box>
+
+      <Footer />
     </Box>
   )
 }
