@@ -52,6 +52,11 @@ First, import the toast package into your project
 import * as toast from "@zag-js/toast"
 ```
 
+Next, import the required hooks and functions for your framework and use the
+toast machine in your project 🔥
+
+<CodeSnippet id="toast/usage.mdx" />
+
 The toast consists of three key aspects:
 
 ### Toast Item
@@ -67,19 +72,17 @@ The toast consists of three key aspects:
 - `toast.group.connect` — function gives you access to methods you can use to
   add, update, and remove a toast.
 
+  > We recommend setting up the toast group machine once at the root of your
+  > project.
+
 ### External (Experimental)
 
 - `toast.api` — The external function that can be used to control toasts from
   outside the framework.
 
-> We recommend setting up the toast group machine once at the root of your
-> project.
-
-<CodeSnippet id="toast/usage.mdx" />
-
 ## Creating a toast
 
-There are four toast types that can be created with the toast machine. `info`,
+There are five toast types that can be created with the toast machine. `info`,
 `success`, `loading`, `custom` and `error`.
 
 To create a toast, use the `toast.create(...)` method.
