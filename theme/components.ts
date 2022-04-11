@@ -9,8 +9,8 @@ const Button: ComponentStyleConfig = {
     fontWeight: "semibold",
     textAlign: "start",
     paddingX: "5",
+    minWidth: "180px",
     transition: "background 0.2s ease",
-    shadow: "md",
     _focusVisible: {
       outline: "2px solid",
       outlineColor: "blue.600",
@@ -31,11 +31,11 @@ const Button: ComponentStyleConfig = {
         bg: "gray.50",
       },
     },
-    white: {
+    ghost: {
       color: "gray.900",
-      bg: "white",
+      bg: "gray.200",
       _hover: {
-        bg: "gray.100",
+        bg: "gray.300",
       },
     },
     black: {
@@ -57,7 +57,7 @@ const Button: ComponentStyleConfig = {
   },
   defaultProps: {
     size: "md",
-    variant: "white",
+    variant: "ghost",
   },
 }
 

@@ -27,10 +27,10 @@ const FrameworkButton = chakra("button", {
 
 export function MultiframeworkTabs() {
   const [state, send] = useMachine(tabs.machine.withContext({ value: "react" }))
-  const ref = useSetup({ send, id: "1" })
+  const ref = useSetup({ send, id: "r:1" })
   const api = tabs.connect(state, send)
   return (
-    <Box>
+    <Box ref={ref} {...api.rootProps}>
       <HStack {...api.triggerGroupProps}>
         <FrameworkButton {...api.getTriggerProps({ value: "react" })}>
           <VStack>
@@ -54,7 +54,6 @@ export function MultiframeworkTabs() {
 
       <Stack direction={{ base: "column", lg: "row" }} spacing="56px" mt="8">
         <Box
-          bg="green.50"
           shadow="md"
           width={{ lg: "680px" }}
           flex="1"
