@@ -8,8 +8,8 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "theme": "chakra-cli tokens lib/theme.ts",
-    "watch:theme": "npx nodemon --watch lib/theme.ts --exec yarn theme",
+    "theme": "chakra-cli tokens theme/index.ts",
+    "watch:theme": "npx nodemon --watch theme/index.ts --exec yarn theme",
     "snippet": "plop snippet"
   },
   "dependencies": {
