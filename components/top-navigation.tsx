@@ -48,7 +48,7 @@ export function TopNavigation() {
           </a>
         </Link>
         <HStack spacing="8">
-          <nav>
+          <nav hidden>
             <HStack
               as="ul"
               spacing="8"

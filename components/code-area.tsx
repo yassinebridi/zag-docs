@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/layout"
 import { getSnippetDoc } from "lib/get-paths"
 import { useMDX } from "./mdx-components"
 
-export function CodeArea({ slug, bg }: { slug: string; bg?: string }) {
+export function CodeArea({ slug }: { slug: string }) {
   const doc = getSnippetDoc(slug)
   const Component = useMDX(doc.body.code)
   return (
@@ -10,9 +10,9 @@ export function CodeArea({ slug, bg }: { slug: string; bg?: string }) {
       height="full"
       sx={{
         "pre[class*=language-]": {
-          bg: bg ?? "green.50",
+          bg: "inherit",
           margin: "0",
-          padding: "64px 24px !important",
+          padding: "40px 24px !important",
           height: "full",
         },
       }}

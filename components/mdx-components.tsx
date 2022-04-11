@@ -33,16 +33,16 @@ const components: Record<string, FC<Record<string, any>>> = {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },
   h1(props) {
-    return <chakra.h1 textStyle="h1" {...props} />
+    return <chakra.h1 textStyle="display.lg" mb="5" maxW="85ch" {...props} />
   },
   h2(props) {
-    return <chakra.h2 textStyle="h2" {...props} />
+    return <chakra.h2 textStyle="display.md" mt="12" mb="3" {...props} />
   },
   h3(props) {
-    return <chakra.h3 textStyle="h3" {...props} />
+    return <chakra.h3 textStyle="display.sm" mt="6" mb="4" {...props} />
   },
   h4(props) {
-    return <chakra.h4 textStyle="h4" {...props} />
+    return <chakra.h4 textStyle="display.xs" mt="6" mb="2" {...props} />
   },
   pre(props) {
     return <chakra.pre {...props} className={`prose ${props.className}`} />
@@ -140,14 +140,16 @@ const components: Record<string, FC<Record<string, any>>> = {
     if (isInternalLink) {
       return (
         <Link href={href} passHref>
-          <chakra.a textStyle="a" {...props}>
+          <chakra.a textStyle="link" {...props}>
             {props.children}
           </chakra.a>
         </Link>
       )
     }
 
-    return <chakra.a textStyle="a" target="_blank" rel="noopener" {...props} />
+    return (
+      <chakra.a textStyle="link" target="_blank" rel="noopener" {...props} />
+    )
   },
 }
 

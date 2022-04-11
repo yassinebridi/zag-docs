@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/provider"
 import { DefaultSeo } from "next-seo"
-import theme from "lib/theme"
+import theme from "theme"
 import "../styles/prism.css"
 import siteConfig from "site.config"
 

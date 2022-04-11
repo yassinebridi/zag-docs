@@ -3,6 +3,7 @@ import * as toast from "@zag-js/toast"
 import { useRef } from "react"
 import { chakra } from "@chakra-ui/system"
 import { HiX } from "react-icons/hi"
+import { Button } from "components/button"
 
 function Toast({ actor }: { actor: toast.Service }) {
   const [state, send] = useActor(actor)
@@ -79,8 +80,9 @@ export function ToastGroup(props: any) {
   return (
     <>
       <div ref={ref} style={{ display: "flex", gap: "16px" }}>
-        <chakra.button
-          layerStyle="greenButton"
+        <Button
+          size="sm"
+          variant="outline"
           onClick={() => {
             id.current = api.create({
               title: "The Evil Rabbit jumped over the fence.",
@@ -89,10 +91,11 @@ export function ToastGroup(props: any) {
           }}
         >
           Show toast
-        </chakra.button>
+        </Button>
 
-        <chakra.button
-          layerStyle="outlineButton"
+        <Button
+          size="sm"
+          variant="outline"
           onClick={() => {
             if (!id.current) return
             api.update(id.current, {
@@ -102,7 +105,7 @@ export function ToastGroup(props: any) {
           }}
         >
           Update
-        </chakra.button>
+        </Button>
       </div>
       <chakra.div
         maxWidth="420px"

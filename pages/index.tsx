@@ -3,6 +3,7 @@ import {
   Box,
   Center,
   Flex,
+  HStack,
   List,
   ListIcon,
   ListItem,
@@ -31,6 +32,7 @@ import { getSnippetDoc } from "lib/get-paths"
 import { MultiframeworkTabs } from "components/mutli-framework"
 import { NextSeo } from "next-seo"
 import siteConfig from "site.config"
+import { CodeArea } from "components/code-area"
 
 type FeatureItemProps = {
   title: string
@@ -51,44 +53,21 @@ function FeatureItem(props: FeatureItemProps) {
   )
 }
 
-function CodeArea() {
-  const doc = getSnippetDoc("website/snippet")
-  const Component = useMDX(doc.body.code)
-  return (
-    <Box
-      height="full"
-      sx={{
-        "pre[class*=language-]": {
-          bg: "green.50",
-          margin: "0",
-          padding: "64px 24px !important",
-          height: "full",
-        },
-      }}
-    >
-      {Component}
-    </Box>
-  )
-}
-
 export default function Home() {
   return (
     <Box>
       <NextSeo title={siteConfig.title} />
+
       <TopNavigation />
-      <Box as="header" position="relative" maxW="8xl" mx="auto">
-        <Box px={{ base: "4", sm: "6", md: "8" }}>
-          <Box pos="relative" maxW="4xl" pt="24">
-            <chakra.h1
-              letterSpacing="tight"
-              fontWeight="bold"
-              fontSize={{ base: "4xl", sm: "5xl", lg: "7xl" }}
-              lineHeight="short"
-            >
+
+      <Box as="header" position="relative">
+        <Box layerStyle="contain">
+          <Box pos="relative" maxW="4xl" pt={{ base: "16", md: "24" }}>
+            <chakra.h1 textStyle="display.2xl">
               UI components powered by Finite State Machines
             </chakra.h1>
-            <Text
-              fontSize="xl"
+            <chakra.p
+              textStyle="text.xl"
               maxW="xl"
               mt="6"
               sx={{ mark: { color: "green.500", fontWeight: "semibold" } }}
@@ -97,10 +76,10 @@ export default function Home() {
               <mark>accordion</mark>, <mark>menu</mark>, and <mark>dialog</mark>{" "}
               that can be used to build design systems for React, Vue and
               Solid.js
-            </Text>
+            </chakra.p>
           </Box>
 
-          <Icon
+          <chakra.svg
             display={{ base: "none", md: "initial" }}
             as={Illustration}
             pos="absolute"
@@ -110,54 +89,56 @@ export default function Home() {
             height="auto"
           />
 
-          <Flex mt="8" mb="12" gap="5" fontSize="lg">
+          <Stack
+            direction={{ base: "column", sm: "row" }}
+            mt="8"
+            mb="12"
+            spacing="5"
+          >
             <Link href="/overview/introduction" passHref>
-              <Button as="a" variant="green" gap="8">
-                <span>Get Started</span>
-                <Icon as={ArrowRightIcon} />
+              <Button as="a" variant="green">
+                <HStack spacing="6">
+                  <span>Get Started</span>
+                  <Icon as={ArrowRightIcon} />
+                </HStack>
               </Button>
             </Link>
-            <Button gap="2">
-              <Icon as={PlayIcon} />
-              <span>Watch Demo</span>
+            <Button>
+              <HStack spacing="2">
+                <Icon as={PlayIcon} />
+                <span>Watch Demo</span>
+              </HStack>
             </Button>
-          </Flex>
+          </Stack>
 
-          <Flex gap="12">
+          <HStack spacing="12">
             <ReactIcon />
             <VueIcon />
             <SolidIcon />
-          </Flex>
+          </HStack>
         </Box>
       </Box>
 
       <Box
         as="section"
-        px={{ base: "4", sm: "6", md: "8" }}
-        my="32"
-        maxW="8xl"
-        mx="auto"
+        bg={{ base: "green.100", md: "unset" }}
+        layerStyle="contain"
+        my={{ base: "20", md: "32" }}
       >
-        <Box bg="green.100" padding={{ base: "14", md: "20" }}>
-          <chakra.h2
-            fontSize={{ base: "4xl", md: "6xl" }}
-            mb="8"
-            maxW="24ch"
-            lineHeight="short"
-            fontWeight="bold"
-          >
+        <Box bg="green.100" px={{ md: "20" }} py={{ base: "10", md: "20" }}>
+          <chakra.h2 textStyle="display.xl" mb="8" maxW="24ch">
             Zag provides the component API for the Web.
           </chakra.h2>
 
           <Link href="/overview/introduction" passHref>
-            <Button as="a" variant="black" display="inline-flex">
+            <Button as="a" variant="black" width={{ base: "full", md: "auto" }}>
               Get Started
             </Button>
           </Link>
 
           <Stack
-            direction={{ base: "column", md: "row" }}
-            spacing={{ base: "8", md: "20" }}
+            direction={{ base: "column", lg: "row" }}
+            spacing={{ base: "8", lg: "20" }}
             mt="12"
           >
             <FeatureItem icon={StatechartIcon} title="Powered by Statecharts">
@@ -179,38 +160,26 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box
-        as="section"
-        px={{ base: "4", sm: "6", md: "8" }}
-        my="32"
-        maxW="8xl"
-        mx="auto"
-      >
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
         <Flex
           gap="64px"
           direction={{ base: "column", xl: "row" }}
           align={{ base: "flex-start", xl: "center" }}
         >
-          <Box flex="1" fontSize="xl">
-            <chakra.h2
-              fontSize={{ base: "4xl", md: "6xl" }}
-              mb="8"
-              maxW="24ch"
-              lineHeight="shorter"
-              fontWeight="bold"
-            >
+          <Box flex="1">
+            <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
               Machines handle the logic. You handle the UI
             </chakra.h2>
-            <Text maxW="64ch">
+            <chakra.p maxW="64ch" fontSize="lg">
               Zag machine APIs are completely headless and unstyled. Use your
               favorite styling solution and get it matching your design system.
-            </Text>
+            </chakra.p>
 
-            <List spacing="5" mt="8">
+            <List spacing="5" mt="8" fontSize="lg">
               {[
-                "Install and import the component you need",
-                "Consume the component",
-                "Define your UI and connect logic to",
+                "Install the machine you need",
+                "Consume the machine",
+                "Connect machine to your UI",
               ].map((item, index) => (
                 <ListItem key={index} display="flex" alignItems="flex-start">
                   <ListIcon fontSize="3xl" mr="2" as={CheckIcon} />
@@ -227,7 +196,7 @@ export default function Home() {
             minHeight="500px"
           >
             <Box
-              width="100%"
+              width="full"
               mx="auto"
               height="84%"
               position="absolute"
@@ -235,7 +204,7 @@ export default function Home() {
               rounded="2xl"
             />
             <Box
-              width={{ base: "640px", xl: "80%" }}
+              width={{ base: "full", xl: "max(640px,80%)" }}
               mx="auto"
               bg="white"
               rounded="2xl"
@@ -243,33 +212,21 @@ export default function Home() {
               height="full"
               position="relative"
             >
-              <CodeArea />
+              <CodeArea slug="website/snippet" />
             </Box>
           </Center>
         </Flex>
       </Box>
 
-      <Box
-        as="section"
-        px={{ base: "4", sm: "6", md: "8" }}
-        my="32"
-        maxW="8xl"
-        mx="auto"
-      >
-        <Box>
-          <chakra.h2
-            maxW="24ch"
-            letterSpacing="tight"
-            fontWeight="bold"
-            fontSize={{ base: "4xl", sm: "5xl", lg: "7xl" }}
-            lineHeight="normal"
-          >
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Box mb="10">
+          <chakra.h2 maxW={{ md: "24ch" }} textStyle="display.xl">
             Work in your favorite JSX framework
           </chakra.h2>
-          <Text fontSize="xl" maxW="560px" mt="6">
+          <chakra.p textStyle="text.lg" maxW="560px" mt="6">
             Finite state machines for building accessible design systems and UI
             components. Works with React, Vue and Solid.
-          </Text>
+          </chakra.p>
         </Box>
 
         <MultiframeworkTabs />

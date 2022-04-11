@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout"
+import { Box, Flex, HStack, Stack, Text, VStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { useMachine, useSetup } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
@@ -16,6 +16,7 @@ const FrameworkButton = chakra("button", {
     height: "120px",
     rounded: "md",
     borderWidth: "1px",
+    bg: "white",
     _selected: {
       bg: "green.50",
       borderBottomWidth: "4px",
@@ -29,7 +30,7 @@ export function MultiframeworkTabs() {
   const ref = useSetup({ send, id: "1" })
   const api = tabs.connect(state, send)
   return (
-    <Box mt="10">
+    <Box>
       <HStack {...api.triggerGroupProps}>
         <FrameworkButton {...api.getTriggerProps({ value: "react" })}>
           <VStack>
@@ -51,23 +52,24 @@ export function MultiframeworkTabs() {
         </FrameworkButton>
       </HStack>
 
-      <Flex gap="56px" mt="8">
+      <Stack direction={{ base: "column", lg: "row" }} spacing="56px" mt="8">
         <Box
           bg="green.50"
           shadow="md"
-          width="680px"
+          width={{ lg: "680px" }}
+          flex="1"
           rounded="xl"
           overflow="hidden"
           {...api.contentGroupProps}
         >
           <Box {...api.getContentProps({ value: "react" })}>
-            <CodeArea bg="inherit" slug="react/number-input/usage" />
+            <CodeArea slug="react/number-input/usage" />
           </Box>
           <Box {...api.getContentProps({ value: "vue" })}>
-            <CodeArea bg="inherit" slug="vue/number-input/usage" />
+            <CodeArea slug="vue/number-input/usage" />
           </Box>
           <Box {...api.getContentProps({ value: "solid" })}>
-            <CodeArea bg="inherit" slug="solid/number-input/usage" />
+            <CodeArea slug="solid/number-input/usage" />
           </Box>
         </Box>
         <Box
@@ -92,7 +94,7 @@ export function MultiframeworkTabs() {
             }}
           />
         </Box>
-      </Flex>
+      </Stack>
     </Box>
   )
 }
