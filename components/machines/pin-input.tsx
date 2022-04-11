@@ -7,7 +7,7 @@ export function PinInput(props: any) {
   const [state, send] = useMachine(pinInput.machine, {
     context: props.controls,
   })
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = pinInput.connect(state, send)
 
   return (

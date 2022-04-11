@@ -2,6 +2,7 @@ import * as menu from "@zag-js/menu"
 import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import Portal from "@reach/portal"
+import { Button } from "components/button"
 
 const data = [
   { label: "Edit", value: "edit" },
@@ -12,29 +13,27 @@ const data = [
 
 export function Menu(props) {
   const [state, send] = useMachine(menu.machine, { context: props.controls })
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = menu.connect(state, send)
 
   return (
-    <div className="focus-outline" ref={ref}>
-      <chakra.button
-        bg="green.500"
-        color="white"
-        px="3"
-        py="2"
-        {...api.triggerProps}
-      >
-        Actions <span aria-hidden>▾</span>
-      </chakra.button>
+    <div ref={ref}>
+      <Button size="sm" variant="green" {...api.triggerProps}>
+        Actions{" "}
+        <chakra.span ml="2" aria-hidden>
+          ▾
+        </chakra.span>
+      </Button>
       <Portal>
-        <div className="focus-outline" {...api.positionerProps}>
+        <div {...api.positionerProps}>
           <chakra.ul
             bg="white"
             width="240px"
             padding="2"
-            zIndex="50"
+            isolation="isolate"
             listStyleType="none"
             shadow="base"
+            className="focus-outline"
             {...api.contentProps}
           >
             {data.map((item) => (
@@ -43,7 +42,7 @@ export function Menu(props) {
                 py="1"
                 cursor="pointer"
                 key={item.value}
-                _selected={{ bg: "green.200" }}
+                _focus={{ bg: "green.200" }}
                 {...api.getItemProps({ id: item.value })}
               >
                 {item.label}

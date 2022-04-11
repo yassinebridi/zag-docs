@@ -11,7 +11,7 @@ export function RangeSlider(props: any) {
     }),
     { context: props.controls },
   )
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = rangeSlider.connect(state, send)
 
   return (

@@ -5,12 +5,8 @@ const Button: ComponentStyleConfig = {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "lg",
-    fontWeight: "semibold",
     textAlign: "start",
-    paddingX: "5",
-    minWidth: "180px",
-    transition: "background 0.2s ease",
+    cursor: "pointer",
     _focusVisible: {
       outline: "2px solid",
       outlineColor: "blue.600",
@@ -48,10 +44,14 @@ const Button: ComponentStyleConfig = {
   },
   sizes: {
     sm: {
+      fontWeight: "medium",
       px: "4",
-      py: "2",
+      py: "1",
     },
     md: {
+      minWidth: "180px",
+      fontWeight: "semibold",
+      fontSize: "lg",
       height: "14",
     },
   },

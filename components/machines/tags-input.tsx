@@ -9,7 +9,7 @@ export function TagsInput(props: any) {
     }),
     { context: props.controls },
   )
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = tagsInput.connect(state, send)
 
   return (
@@ -17,15 +17,12 @@ export function TagsInput(props: any) {
       <chakra.div ref={ref} {...api.rootProps}>
         <label {...api.labelProps}>Enter frameworks:</label>
         <chakra.div
+          className="focus-outline"
           bg="white"
           borderWidth="1px"
           mt="2"
           py="2px"
           px="1"
-          _focus={{
-            outline: "2px solid hsl(204, 100%, 40%)",
-            outlineOffset: "2px",
-          }}
           {...api.controlProps}
         >
           {api.value.map((value, index) => {
@@ -35,7 +32,6 @@ export function TagsInput(props: any) {
                 <chakra.div
                   bg="gray.100"
                   px="2"
-                  rounded="2px"
                   display="inline-block"
                   margin="4px"
                   _selected={{ bg: "green.200" }}

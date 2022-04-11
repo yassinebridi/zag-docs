@@ -34,7 +34,7 @@ export function Accordion(props: AccordionProps) {
   })
 
   const api = accordion.connect(state, send)
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
 
   return (
     <Box width="400px" ref={ref} {...api.rootProps}>

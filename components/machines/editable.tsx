@@ -2,6 +2,7 @@ import * as editable from "@zag-js/editable"
 import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { HStack } from "@chakra-ui/layout"
+import { Button } from "components/button"
 
 export function Editable(props: any) {
   const [state, send] = useMachine(editable.machine, {
@@ -24,37 +25,18 @@ export function Editable(props: any) {
 
       <div>
         {!api.isEditing && (
-          <chakra.button
-            bg="white"
-            px="2"
-            borderWidth="1px"
-            fontWeight="medium"
-            {...api.editButtonProps}
-          >
+          <Button size="sm" variant="outline" {...api.editButtonProps}>
             Edit
-          </chakra.button>
+          </Button>
         )}
         {api.isEditing && (
           <HStack>
-            <chakra.button
-              bg="green.500"
-              color="white"
-              px="2"
-              borderWidth="1px"
-              fontWeight="medium"
-              {...api.submitButtonProps}
-            >
+            <Button size="sm" variant="green" {...api.submitButtonProps}>
               Save
-            </chakra.button>
-            <chakra.button
-              bg="white"
-              px="2"
-              borderWidth="1px"
-              fontWeight="medium"
-              {...api.cancelButtonProps}
-            >
+            </Button>
+            <Button size="sm" variant="outline" {...api.cancelButtonProps}>
               Cancel
-            </chakra.button>
+            </Button>
           </HStack>
         )}
       </div>

@@ -8,7 +8,7 @@ export function Slider(props: any) {
     slider.machine.withContext({ min: -50, max: 50, value: 20 }),
     { context: props.controls },
   )
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = slider.connect(state, send)
 
   return (

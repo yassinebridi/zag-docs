@@ -17,13 +17,7 @@ export function Tabs(props: any) {
   const api = tabs.connect(state, send)
 
   return (
-    <chakra.div
-      width="full"
-      maxW="400px"
-      fontSize="sm"
-      className="focus-outline"
-      ref={ref}
-    >
+    <chakra.div width="full" maxW="400px" fontSize="sm" ref={ref}>
       <chakra.div bg="white" borderBottomWidth="1px" {...api.triggerGroupProps}>
         {data.map((item) => (
           <chakra.button

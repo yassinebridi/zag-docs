@@ -1,6 +1,8 @@
 import { useMachine, useSetup } from "@zag-js/react"
 import * as tooltip from "@zag-js/tooltip"
 import { chakra } from "@chakra-ui/system"
+import { Button } from "components/button"
+import Portal from "@reach/portal"
 
 export function Tooltip(props) {
   const [state, send] = useMachine(tooltip.machine, { context: props.controls })
@@ -9,32 +11,25 @@ export function Tooltip(props) {
 
   return (
     <>
-      <chakra.button
-        px="3"
-        py="2"
-        bg="green.500"
-        color="white"
-        ref={ref}
-        {...api.triggerProps}
-      >
+      <Button variant="green" size="sm" ref={ref} {...api.triggerProps}>
         Hover me
-      </chakra.button>
-      {api.isOpen && (
-        <div {...api.positionerProps}>
-          <chakra.div
-            px="2"
-            py="1"
-            fontSize="sm"
-            bg="white"
-            shadow="base"
-            color="#444"
-            borderWidth="1px"
-            {...api.contentProps}
-          >
-            Tooltip
-          </chakra.div>
-        </div>
-      )}
+      </Button>
+      <Portal>
+        {api.isOpen && (
+          <div {...api.positionerProps}>
+            <chakra.div
+              px="2"
+              py="1"
+              fontSize="sm"
+              bg="gray.700"
+              color="white"
+              {...api.contentProps}
+            >
+              Tooltip
+            </chakra.div>
+          </div>
+        )}
+      </Portal>
     </>
   )
 }

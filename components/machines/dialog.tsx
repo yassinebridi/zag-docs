@@ -4,6 +4,7 @@ import { chakra } from "@chakra-ui/system"
 import { Portal } from "@reach/portal"
 import * as dialog from "@zag-js/dialog"
 import { useMachine, useSetup } from "@zag-js/react"
+import { Button } from "components/button"
 import { HiX } from "react-icons/hi"
 
 export function Dialog(props: { controls: any }) {
@@ -13,17 +14,9 @@ export function Dialog(props: { controls: any }) {
 
   return (
     <>
-      <chakra.button
-        px="4"
-        py="2"
-        bg="green.500"
-        color="white"
-        fontWeight="medium"
-        ref={ref}
-        {...api.triggerProps}
-      >
+      <Button size="sm" variant="green" ref={ref} {...api.triggerProps}>
         Open Dialog
-      </chakra.button>
+      </Button>
       {api.isOpen && (
         <Portal>
           <chakra.div
@@ -58,7 +51,7 @@ export function Dialog(props: { controls: any }) {
               >
                 Edit profile
               </chakra.h2>
-              <chakra.p fontSize="sm" {...api.descriptionProps} mb="3">
+              <chakra.p fontSize="sm" mb="3" {...api.descriptionProps}>
                 Make changes to your profile here. Click save when you are done.
               </chakra.p>
 
@@ -67,22 +60,13 @@ export function Dialog(props: { controls: any }) {
                   flex="1"
                   fontSize="sm"
                   borderWidth="1px"
-                  rounded="base"
                   px="2"
                   py="1"
                   placeholder="Enter name..."
                 />
-                <chakra.button
-                  bg="green.500"
-                  color="white"
-                  rounded="base"
-                  fontWeight="semibold"
-                  fontSize="sm"
-                  px="4"
-                  py="1"
-                >
+                <Button variant="green" size="sm">
                   Save
-                </chakra.button>
+                </Button>
               </HStack>
               <chakra.button
                 display="flex"

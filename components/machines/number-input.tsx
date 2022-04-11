@@ -8,7 +8,7 @@ export function NumberInput(props: any) {
     sync: true,
     context: props.controls,
   })
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = numberInput.connect(state, send)
 
   return (

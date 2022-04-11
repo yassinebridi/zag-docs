@@ -5,31 +5,26 @@ import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
 import { HiX } from "react-icons/hi"
+import { Button } from "components/button"
 
 export function Popover(props: any) {
   const [state, send] = useMachine(popover.machine, {
     context: props.controls,
   })
-  const ref = useSetup<HTMLDivElement>({ send, id: "1" })
+  const ref = useSetup({ send, id: "1" })
   const api = popover.connect(state, send)
 
   const Wrapper = api.portalled ? Portal : React.Fragment
 
   return (
-    <div ref={ref} className="focus-outline">
-      <chakra.button
-        px="4"
-        py="2"
-        fontWeight="semibold"
-        bg="green.500"
-        color="white"
-        {...api.triggerProps}
-      >
+    <div ref={ref}>
+      <Button size="sm" variant="green" {...api.triggerProps}>
         Click me
-      </chakra.button>
+      </Button>
       <Wrapper>
-        <div className="focus-outline" {...api.positionerProps}>
+        <div {...api.positionerProps}>
           <chakra.div
+            className="focus-outline"
             bg="white"
             padding="4"
             borderWidth="1px"
@@ -41,7 +36,7 @@ export function Popover(props: any) {
             {...api.contentProps}
           >
             <chakra.div
-              sx={{ "--arrow-background": "white", "--arrow-size": "10px" }}
+              sx={{ "--arrow-background": "white", "--arrow-size": "8px" }}
               {...api.arrowProps}
             >
               <chakra.div rounded="sm" {...api.innerArrowProps} />
@@ -55,7 +50,13 @@ export function Popover(props: any) {
                 Tabs are used to organize and group content into sections that
                 the user can navigate between.
               </div>
-              <chakra.button bg="white" px="4" py="2" borderWidth="1px">
+              <chakra.button
+                className="focus-outline"
+                bg="white"
+                px="4"
+                py="2"
+                borderWidth="1px"
+              >
                 Action Button
               </chakra.button>
             </Stack>
