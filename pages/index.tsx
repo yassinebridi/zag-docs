@@ -221,7 +221,7 @@ export default function Home() {
       <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
         <Box mb="10">
           <chakra.h2 maxW={{ md: "24ch" }} textStyle="display.xl">
-            Work in your favorite JSX framework
+            Work in your favorite JS framework
           </chakra.h2>
           <chakra.p textStyle="text.lg" maxW="560px" mt="6">
             Finite state machines for building accessible design systems and UI
