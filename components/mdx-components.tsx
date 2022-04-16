@@ -8,8 +8,6 @@ import { allSnippets } from "contentlayer/generated"
 import { frameworks, FRAMEWORKS, getFrameworkIndex } from "lib/framework-utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
-import { useRef } from "react"
-import { useEffect } from "react"
 import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
@@ -34,17 +32,11 @@ const components: Record<string, FC<Record<string, any>>> = {
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },
-  // accessible routing, focus heading on route change
   h1(props) {
-    const ref = useRef<HTMLHeadingElement>(null)
-    useEffect(() => {
-      ref.current?.focus()
-    }, [])
     return (
       <chakra.h1
-        ref={ref}
+        id="skip-nav"
         textStyle="display.lg"
-        outline="0"
         mb="5"
         maxW="85ch"
         tabIndex={-1}

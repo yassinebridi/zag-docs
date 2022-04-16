@@ -5,9 +5,11 @@ import { FrameworkSelect } from "components/framework-select"
 import { MdxFooter } from "components/mdx-footer"
 import { SearchTrigger } from "components/search-trigger"
 import { Sidebar } from "components/sidebar"
+import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import { DocumentTypes } from "contentlayer/generated"
+import { useRouteChange } from "lib/use-route-change"
 import { useRouter } from "next/router"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
@@ -21,8 +23,15 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
   const { asPath } = useRouter()
   const isComponent = asPath.includes("/components/")
 
+  useRouteChange(() => {
+    setTimeout(() => {
+      document.querySelector("h1")?.focus()
+    })
+  })
+
   return (
     <Box>
+      <SkipNavLink>Skip to main content</SkipNavLink>
       <TopNavigation />
       <chakra.div pt="10">
         <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
