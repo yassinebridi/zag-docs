@@ -3,8 +3,8 @@ import {
   allOverviews,
   allGuides,
   allSnippets,
-} from ".contentlayer/data"
-import { Framework, FRAMEWORKS, isFramework } from "./framework"
+} from "contentlayer/generated"
+import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
   const slug = Array.isArray(str) ? str : [str]

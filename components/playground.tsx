@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Stack } from "@chakra-ui/layout"
+import { Box, Flex, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import React, { useState } from "react"
 

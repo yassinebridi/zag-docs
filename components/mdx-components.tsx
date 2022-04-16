@@ -1,19 +1,15 @@
-import { allSnippets } from ".contentlayer/data"
 import { Icon } from "@chakra-ui/icon"
 import { Box, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
 import { MDX } from "contentlayer/core"
-import {
-  frameworks,
-  FRAMEWORKS,
-  getFrameworkIndex,
-  useFramework,
-} from "lib/framework"
+import { allSnippets } from "contentlayer/generated"
+import { frameworks, FRAMEWORKS, getFrameworkIndex } from "lib/framework-utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC, useState } from "react"
 import { CopyButton } from "./copy-button"
+import { useFramework } from "./framework"
 import { Showcase } from "./showcase"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
@@ -29,6 +25,9 @@ function SnippetItem({ body, id }: { body: MDX; id: string }) {
 
 const components: Record<string, FC<Record<string, any>>> = {
   Showcase,
+  Admonition(props) {
+    return <div {...props} />
+  },
   blockquote(props) {
     return <chakra.blockquote layerStyle="blockquote" {...props} />
   },

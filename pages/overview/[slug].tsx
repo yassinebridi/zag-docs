@@ -1,7 +1,7 @@
-import { Overview } from ".contentlayer/types"
 import { useMDX } from "components/mdx-components"
+import { Overview } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
-import { getOverviewDoc, getOverviewPaths } from "lib/path-utils"
+import { getOverviewDoc, getOverviewPaths } from "lib/contentlayer-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 

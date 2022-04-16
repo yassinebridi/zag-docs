@@ -1,12 +1,12 @@
 import Icon from "@chakra-ui/icon"
 import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { useFramework } from "lib/framework"
 import { formatUrl } from "lib/pagination-utils"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
 import sidebar from "sidebar.config"
+import { useFramework } from "./framework"
 
 type DocLinkProps = {
   href: LinkProps["href"]

@@ -1,5 +1,4 @@
-import Icon from "@chakra-ui/icon"
-import { Box, Link, Stack, Text } from "@chakra-ui/layout"
+import { Box, Stack, Text } from "@chakra-ui/layout"
 import React from "react"
 import { DiGithubBadge } from "react-icons/di"
 import { IoLogoLinkedin, IoLogoTwitter } from "react-icons/io"

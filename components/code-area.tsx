@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/layout"
-import { getSnippetDoc } from "lib/path-utils"
+import { getSnippetDoc } from "lib/contentlayer-utils"
 import { useMDX } from "./mdx-components"
 
 export function CodeArea({ slug }: { slug: string }) {

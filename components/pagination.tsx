@@ -1,10 +1,10 @@
 import Icon from "@chakra-ui/icon"
 import { Box, Flex, FlexProps, HStack } from "@chakra-ui/layout"
-import { useFramework } from "lib/framework"
 import { paginate } from "lib/pagination-utils"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import { useFramework } from "./framework"
 
 export function usePagination() {
   const { framework } = useFramework()

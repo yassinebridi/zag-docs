@@ -9,8 +9,10 @@ import rehypeCodeTitles from "rehype-code-titles"
 import rehypePrism from "rehype-prism-plus"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
+import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
+import { remarkAdmonition } from "./lib/remark-utils"
 
 const fields: FieldDefs = {
   title: { type: "string" },
@@ -47,7 +49,7 @@ const computedFields: ComputedFields = {
 const Overview = defineDocumentType(() => ({
   name: "Overview",
   filePathPattern: "overview/**/*.mdx",
-  bodyType: "mdx",
+  contentType: "mdx",
   fields,
   computedFields,
 }))
@@ -55,7 +57,7 @@ const Overview = defineDocumentType(() => ({
 const Guide = defineDocumentType(() => ({
   name: "Guide",
   filePathPattern: "guides/**/*.mdx",
-  bodyType: "mdx",
+  contentType: "mdx",
   fields,
   computedFields,
 }))
@@ -63,7 +65,7 @@ const Guide = defineDocumentType(() => ({
 const Component = defineDocumentType(() => ({
   name: "Component",
   filePathPattern: "components/**/*.mdx",
-  bodyType: "mdx",
+  contentType: "mdx",
   fields,
   computedFields,
 }))
@@ -71,7 +73,7 @@ const Component = defineDocumentType(() => ({
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   filePathPattern: "snippets/**/*.mdx",
-  bodyType: "mdx",
+  contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
@@ -86,7 +88,7 @@ const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [Overview, Guide, Snippet, Component],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,
@@ -95,10 +97,8 @@ const contentLayerConfig = makeSource({
         rehypeAutolinkHeadings,
         {
           behavior: "append",
-          test: ["h2", "h3", "h4", "h5", "h6"],
-          properties: {
-            className: ["anchor"],
-          },
+          test: ["h2", "h3", "h4"],
+          properties: { className: ["anchor"] },
         },
       ],
     ],

@@ -1,7 +1,8 @@
 import { HStack } from "@chakra-ui/layout"
-import { Framework, useFramework } from "lib/framework"
+import { Framework } from "lib/framework-utils"
 import { useRouter } from "next/router"
 import { chakra } from "@chakra-ui/system"
+import { useFramework } from "./framework"
 
 export function FrameworkSelect() {
   const { framework, setFramework } = useFramework()

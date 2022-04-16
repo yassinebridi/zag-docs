@@ -26,7 +26,6 @@ import {
   VueIcon,
 } from "components/icons"
 import { Illustration } from "components/illustration"
-import { MdxFooter } from "components/mdx-footer"
 import { MultiframeworkTabs } from "components/mutli-framework"
 import { TopNavigation } from "components/top-navigation"
 import { NextSeo } from "next-seo"
