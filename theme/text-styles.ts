@@ -74,7 +74,7 @@ const link: SystemStyleObject = {
 }
 
 const sidebarLink: SystemStyleObject = {
-  display: "block",
+  display: "inline-block",
   paddingY: "1",
   transition: "color 0.2s ease-in-out",
   _hover: {

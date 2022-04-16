@@ -1,14 +1,12 @@
 import { Box, Flex, HStack } from "@chakra-ui/layout"
 import { GithubIcon } from "components/icons"
-import Link from "next/link"
-import { useRouter } from "next/router"
 import { FaDiscord } from "react-icons/fa"
 import siteConfig from "site.config"
 import { IconLink } from "./icon-link"
-import { Logo } from "./logo"
+import { LogoWithLink } from "./logo"
+import { MobileNavigation } from "./mobile-navigation"
 
 export function TopNavigation() {
-  const { asPath } = useRouter()
   return (
     <Box
       bg="whiteAlpha.900"
@@ -29,14 +27,8 @@ export function TopNavigation() {
         mx="auto"
         px={{ base: "4", sm: "6", md: "8" }}
       >
-        <Link href="/" passHref>
-          <a
-            aria-label="Go to Zag homepage"
-            aria-current={asPath === "/" ? "page" : undefined}
-          >
-            <Logo color="#000" height="8" />
-          </a>
-        </Link>
+        <LogoWithLink />
+
         <HStack spacing="8">
           <nav hidden>
             <HStack
@@ -62,6 +54,7 @@ export function TopNavigation() {
               icon={FaDiscord}
               label="Join the Discord server"
             />
+            <MobileNavigation />
           </HStack>
         </HStack>
       </Flex>

@@ -1,5 +1,5 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex, FlexProps, HStack } from "@chakra-ui/layout"
+import { Box, HStack, StackProps } from "@chakra-ui/layout"
 import { paginate } from "lib/pagination-utils"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -13,19 +13,19 @@ export function usePagination() {
   return { prev, next, hasPrev: !!prev, hasNext: !!next }
 }
 
-export function Pagination(props: FlexProps) {
+export function Pagination(props: StackProps) {
   const { prev, next } = usePagination()
   return (
-    <Flex
-      align="center"
+    <HStack
       justify="space-between"
+      spacing="10"
       mb="10"
       color="gray.700"
       {...props}
     >
       {prev ? (
         <Link href={prev.url} passHref>
-          <Box as="a" rel="prev">
+          <Box as="a" rel="prev" flex="1" textAlign="start">
             <HStack spacing="1">
               <Icon as={HiChevronLeft} />
               <span>Previous</span>
@@ -36,11 +36,11 @@ export function Pagination(props: FlexProps) {
           </Box>
         </Link>
       ) : (
-        <div className="pagination__empty" />
+        <Box className="pagination__empty" flex="1" />
       )}
       {next ? (
         <Link href={next.url} passHref>
-          <Box as="a" rel="next">
+          <Box as="a" rel="next" flex="1" textAlign="end">
             <HStack spacing="1" justify="flex-end">
               <span>Next</span>
               <Icon as={HiChevronRight} />
@@ -51,8 +51,8 @@ export function Pagination(props: FlexProps) {
           </Box>
         </Link>
       ) : (
-        <div className="pagination__empty" />
+        <Box className="pagination__empty" flex="1" />
       )}
-    </Flex>
+    </HStack>
   )
 }

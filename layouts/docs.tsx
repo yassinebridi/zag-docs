@@ -50,7 +50,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             overscrollBehavior="contain"
           >
             <Box position="relative">
-              <Box position="sticky" top="0" bg="white" pb="5">
+              <Box position="sticky" top="0" bg="white" pb="8">
                 <Spacer height="10" bg="white" />
                 <SearchTrigger />
                 <Spacer mt="px" height="5" bg="white" />
@@ -67,7 +67,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             pt="4"
             pr={{ xl: "16" }}
           >
-            <Box maxW={{ base: "3xl", xl: "none" }} mr={{ xl: "15.5rem" }}>
+            <Box  mr={{ xl: "15.5rem" }}>
               {children}
               <HStack
                 as="a"

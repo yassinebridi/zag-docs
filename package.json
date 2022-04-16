@@ -48,7 +48,8 @@
     "plop": "^3.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "use-match-media-hook": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
