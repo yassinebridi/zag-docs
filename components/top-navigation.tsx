@@ -1,27 +1,14 @@
-import Icon from "@chakra-ui/icon"
-import { Box, Center, Flex, HStack } from "@chakra-ui/layout"
+import { Box, Flex, HStack } from "@chakra-ui/layout"
 import { GithubIcon } from "components/icons"
 import Link from "next/link"
-import { ElementType } from "react"
+import { useRouter } from "next/router"
 import { FaDiscord } from "react-icons/fa"
+import siteConfig from "site.config"
+import { IconLink } from "./icon-link"
 import { Logo } from "./logo"
 
-type IconLinkProps = {
-  label: string
-  href: string
-  icon: ElementType
-}
-
-function IconLink({ label, href, icon }: IconLinkProps) {
-  return (
-    <Center width="6" height="6" as="a" href={href} target="_blank">
-      <Box srOnly>{label}</Box>
-      <Icon as={icon} fontSize="lg" color="gray.500" />
-    </Center>
-  )
-}
-
 export function TopNavigation() {
+  const { asPath } = useRouter()
   return (
     <Box
       bg="whiteAlpha.900"
@@ -43,7 +30,10 @@ export function TopNavigation() {
         px={{ base: "4", sm: "6", md: "8" }}
       >
         <Link href="/" passHref>
-          <a>
+          <a
+            aria-label="Go to Zag homepage"
+            aria-current={asPath === "/" ? "page" : undefined}
+          >
             <Logo color="#000" height="8" />
           </a>
         </Link>
@@ -63,12 +53,12 @@ export function TopNavigation() {
           </nav>
           <HStack spacing="4">
             <IconLink
-              href="https://github.com/chakra-ui/ui-machines"
+              href={siteConfig.repo.url}
               icon={GithubIcon}
-              label="UI machines on Github"
+              label="View Zag.js on Github"
             />
             <IconLink
-              href="#"
+              href={siteConfig.discord.url}
               icon={FaDiscord}
               label="Join the Discord server"
             />

@@ -18,6 +18,7 @@ const siteConfig = {
     github: "https://github.com/segunadebayo",
     twitter: "https://twitter.com/thesegunadebayo",
     linkedin: "https://linkedin.com/in/thesegunadebayo",
+    polywork: "https://www.polywork.com/segunadebayo",
     email: "sage@adebayosegun.com",
   },
   repo: {
@@ -26,7 +27,7 @@ const siteConfig = {
     blobUrl: `${baseConfig.repo}/blob/main`,
   },
   discord: {
-    url: "https://discord.gg/zag-nation",
+    url: "https://zagjs.com/discord",
   },
   seo: {
     title: baseConfig.title,
@@ -34,7 +35,7 @@ const siteConfig = {
     description: baseConfig.description,
     siteUrl: baseConfig.url,
     twitter: {
-      handle: "@zagjs",
+      handle: "@zag_js",
       site: baseConfig.url,
       cardType: "summary_large_image",
     },

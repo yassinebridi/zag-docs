@@ -1,76 +1,36 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Link, Stack, Text, VStack } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
+import { Box, Link, Stack, Text } from "@chakra-ui/layout"
 import React from "react"
 import { DiGithubBadge } from "react-icons/di"
-import { FaYoutube } from "react-icons/fa"
 import { IoLogoLinkedin, IoLogoTwitter } from "react-icons/io"
 import { MdEmail } from "react-icons/md"
 import siteConfig from "site.config"
+import { FooterLink, FooterLinkProps } from "./footer-link"
+import { NigeriaFlag } from "./nigeria-flag"
 
-type FooterLinkProps = {
-  icon?: React.ElementType
-  href?: string
-  label?: string
-}
-
-const FooterLink: React.FC<FooterLinkProps> = ({ icon, href, label }) => (
-  <Link display="inline-block" href={href} aria-label={label} isExternal>
-    <Icon as={icon} fontSize="xl" color="gray.400" />
-  </Link>
-)
-
-const links = [
+const links: FooterLinkProps[] = [
   {
     icon: DiGithubBadge,
-    label: "GitHub",
-    href: "https://github.com/segunadebayo",
+    label: "Go to Segun's GitHub",
+    href: siteConfig.author.github,
+    fontSize: "2xl",
   },
   {
     icon: IoLogoTwitter,
-    label: "Twitter",
-    href: "https://twitter.com/thesegunadebayo",
+    label: "Go to Segun's Twitter",
+    href: siteConfig.author.twitter,
   },
   {
     icon: IoLogoLinkedin,
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/thesegunadebayo/",
+    label: "Go to Segun's LinkedIn",
+    href: siteConfig.author.linkedin,
   },
   {
     icon: MdEmail,
-    label: "Email",
-    href: "mailto:sage@adebayosegun.com",
-  },
-  {
-    icon: FaYoutube,
-    label: "YouTube",
-    href: "https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg",
+    label: "Send email to Segun",
+    href: `mailto:${siteConfig.author.email}`,
   },
 ]
-
-const NigeriaFlag = (props) => (
-  <chakra.svg
-    display="inline-block"
-    mx="3"
-    h="16px"
-    w="auto"
-    viewBox="0 0 48 48"
-    verticalAlign="middle"
-    {...props}
-  >
-    <g>
-      <rect x="16" y="6" fill="#E6E6E6" width="16" height="36"></rect>{" "}
-      <path
-        fill="#078754"
-        d="M48,40c0,1.105-0.895,2-2,2H32V6h14c1.105,0,2,0.895,2,2V40z"
-      />
-      <path
-        fill="#078754"
-        d="M16,42H2c-1.105,0-2-0.895-2-2V8c0-1.105,0.895-2,2-2h14V42z"
-      />
-    </g>
-  </chakra.svg>
-)
 
 export const Footer = () => (
   <Box as="footer">
