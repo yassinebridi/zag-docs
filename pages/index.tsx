@@ -2,6 +2,7 @@ import Icon from "@chakra-ui/icon"
 import {
   Box,
   Center,
+  Circle,
   Flex,
   HStack,
   List,
@@ -29,6 +30,7 @@ import { Illustration } from "components/illustration"
 import { MultiframeworkTabs } from "components/mutli-framework"
 import { TopNavigation } from "components/top-navigation"
 import { NextSeo } from "next-seo"
+import Image from "next/image"
 import Link from "next/link"
 import { ElementType } from "react"
 import siteConfig from "site.config"
@@ -66,10 +68,10 @@ export default function Home() {
               UI components powered by Finite State Machines
             </chakra.h1>
             <chakra.p
+              className="has-highlight"
               textStyle="text.xl"
               maxW="xl"
               mt="6"
-              sx={{ mark: { color: "green.500", fontWeight: "semibold" } }}
             >
               A collection of framework-agnostic UI component patterns like{" "}
               <mark>accordion</mark>, <mark>menu</mark>, and <mark>dialog</mark>{" "}
@@ -231,6 +233,68 @@ export default function Home() {
         <MultiframeworkTabs />
       </Box>
 
+      <Box as="section" my="10" layerStyle="contain">
+        <Box maxW="72ch" mx="auto">
+          <chakra.h2 textStyle="display.xl" mb="10">
+            The better way to model component logic
+          </chakra.h2>
+          <chakra.p fontSize="md" className="has-highlight">
+            Today, design systems are becoming a very popular toolkit for
+            companies to create a cohesive and accessible user experience for
+            their customers.
+            <br /> <br />
+            With the rise of component-driven development, there's an endless
+            re-implementation of common component patterns (tabs, menu, etc.) in
+            multiple frameworks.
+            <br /> <br />
+            Most of these implementations tend to be fairly similar, with slight
+            differences between frameworks. However, framework-specific
+            solutions tend to grow in complexity over time and often become hard
+            to understand, debug, improve, or test.
+            <chakra.blockquote
+              layerStyle="blockquote"
+              fontWeight="semibold"
+              borderLeft="2px"
+              borderLeftColor="green.500"
+            >
+              We need a better way to model component logic.
+            </chakra.blockquote>
+            <mark>Zag is a new approach</mark> to the component design process,
+            designed to help you avoid re-inventing the wheel and build better
+            UI components regardless of framework. Heavily inspired by XState,
+            but built to make it easier to maintain, test, and enhance.
+            <br /> <br />
+            With Zag, we're abstracting the complex logic for many components
+            into a cohesive, framework-agnostic system — giving you complete
+            control over styling and providing a thin adapter for your favorite
+            framework.
+            <br /> <br />
+            <mark>
+              Welcome to the future of building interactive components!
+            </mark>
+          </chakra.p>
+
+          <HStack mt="10" spacing="4">
+            <Circle overflow="hidden" bg="green.400">
+              <Image
+                src="/segun-adebayo-headshot.png"
+                width="64px"
+                height="64px"
+                alt="Segun Adebayo"
+              />
+            </Circle>
+            <Stack spacing="1">
+              <chakra.h3 fontSize="lg" fontWeight="semibold">
+                Segun Adebayo
+              </chakra.h3>
+              <chakra.p fontSize="md" textStyle="text.sm">
+                Creator of Zag.js
+              </chakra.p>
+            </Stack>
+          </HStack>
+        </Box>
+      </Box>
+
       <Box
         as="section"
         bg={{ base: "green.100", md: "unset" }}
@@ -239,7 +303,7 @@ export default function Home() {
       >
         <Box bg="green.100" px={{ md: "20" }} py={{ base: "10", md: "20" }}>
           <chakra.h2 textStyle="display.xl" mb="8" maxW="24ch">
-            Build your design system with machines today
+            Build your design system with state machines today
           </chakra.h2>
 
           <Stack direction={{ base: "column", sm: "row" }} spacing="5">

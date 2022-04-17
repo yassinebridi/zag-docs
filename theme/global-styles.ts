@@ -25,6 +25,13 @@ export const globalStyles: SystemStyleObject = {
     },
   },
 
+  ".has-highlight": {
+    mark: {
+      color: "green.500",
+      fontWeight: "semibold",
+    },
+  },
+
   table: {
     width: "100%",
     marginY: "8",
