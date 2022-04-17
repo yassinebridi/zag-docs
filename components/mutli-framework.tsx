@@ -26,7 +26,7 @@ const FrameworkButton = chakra("button", {
 })
 
 export function MultiframeworkTabs() {
-  const [state, send] = useMachine(tabs.machine.withContext({ value: "react" }))
+  const [state, send] = useMachine(tabs.machine({ value: "react" }))
   const ref = useSetup({ send, id: "r:1" })
   const api = tabs.connect(state, send)
   return (

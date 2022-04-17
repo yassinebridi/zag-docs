@@ -4,7 +4,7 @@ export function Dialog() {
   const [inputEl, setInputEl] = createSignal()
 
   const [state, send] = useMachine(
-    dialog.machine.withContext({
+    dialog.machine({
       initialFocusEl: inputEl,
     }),
   )

@@ -108,7 +108,7 @@ context. When `modal: true`, we set the `portalled` attribute to `true` as well.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     modal: true,
   }),
 )
@@ -123,7 +123,7 @@ To prevent it from closing on blur (clicking or focusing outside), pass the
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     closeOnBlur: true,
   }),
 )
@@ -134,7 +134,7 @@ property and set it to `false`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     closeOnEsc: true,
   }),
 )
@@ -167,7 +167,7 @@ in the machine's context.
 
 ```jsx {3-5}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     positioning: {
       placement: "top-start",
     },
@@ -182,7 +182,7 @@ callbacks.
 
 ```jsx {3-8}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     onOpen() {
       console.log("Popover opened")
     },

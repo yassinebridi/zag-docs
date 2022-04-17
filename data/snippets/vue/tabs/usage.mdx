@@ -12,9 +12,7 @@ const data = [
 export default defineComponent({
   name: "Tabs",
   setup() {
-    const [state, send] = useMachine(
-      tabs.machine.withContext({ value: "item-1" }),
-    )
+    const [state, send] = useMachine(tabs.machine({ value: "item-1" }))
     const ref = useSetup({ send, id: "1" })
     const apiRef = computed(() =>
       tabs.connect(state.value, send, normalizeProps),

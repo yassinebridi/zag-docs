@@ -2,13 +2,14 @@
 import { Icon } from "@chakra-ui/icon"
 import { Box, HStack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs"
+import { useMachine, useSetup } from "@zag-js/react"
+import * as tabs from "@zag-js/tabs"
 import { MDX } from "contentlayer/core"
 import { allSnippets } from "contentlayer/generated"
-import { frameworks, FRAMEWORKS, getFrameworkIndex } from "lib/framework-utils"
+import { frameworks, FRAMEWORKS } from "lib/framework-utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
-import { FC, useState } from "react"
+import { FC } from "react"
 import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
 import { Showcase } from "./showcase"
@@ -79,28 +80,35 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   CodeSnippet(props) {
     const { framework: userFramework } = useFramework()
+
     const snippets = allSnippets.filter((p) => {
       const [_, __, ...rest] = p.params
       const str = rest.join("/") + ".mdx"
       return str === props.id
     })
-    const [index, setIndex] = useState(
-      getFrameworkIndex(userFramework ?? "react"),
+
+    const [state, send] = useMachine(
+      tabs.machine({
+        value: userFramework ?? "react",
+      }),
     )
+    const ref = useSetup({ send, id: props.id })
+
+    const api = tabs.connect(state, send)
 
     return (
-      <Tabs
-        index={index}
-        onChange={setIndex}
+      <Box
+        ref={ref}
         width="full"
         maxW="768px"
         my="8"
         bg="hsl(230, 1%, 98%)"
         rounded="6px"
+        {...api.rootProps}
       >
-        <TabList>
+        <Box {...api.triggerGroupProps}>
           {FRAMEWORKS.map((framework) => (
-            <Tab
+            <chakra.button
               py="2"
               px="8"
               fontSize="sm"
@@ -108,20 +116,22 @@ const components: Record<string, FC<Record<string, any>>> = {
               borderBottom="2px solid transparent"
               _selected={{ borderColor: "currentColor", color: "green.500" }}
               _focusVisible={{ outline: "2px solid blue" }}
+              {...api.getTriggerProps({ value: framework })}
               key={framework}
             >
               <HStack>
                 <Icon as={frameworks[framework].icon} />
                 <p>{frameworks[framework].label}</p>
               </HStack>
-            </Tab>
+            </chakra.button>
           ))}
-        </TabList>
-        <TabPanels>
+        </Box>
+        <Box {...api.contentGroupProps}>
           {FRAMEWORKS.map((framework) => {
             const snippet = snippets.find((p) => p.framework === framework)
             return (
-              <TabPanel
+              <Box
+                {...api.getContentProps({ value: framework })}
                 position="relative"
                 key={framework}
                 mt="-6"
@@ -134,11 +144,11 @@ const components: Record<string, FC<Record<string, any>>> = {
                     Snippet not found :(
                   </Box>
                 )}
-              </TabPanel>
+              </Box>
             )
           })}
-        </TabPanels>
-      </Tabs>
+        </Box>
+      </Box>
     )
   },
   a(props) {

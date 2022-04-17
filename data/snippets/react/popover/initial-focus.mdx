@@ -4,7 +4,7 @@ export function Popover() {
   const inputRef = useRef(null)
 
   const [state, send] = useMachine(
-    popover.machine.withContext({
+    popover.machine({
       initialFocusEl: () => inputRef.current,
     }),
   )

@@ -7,14 +7,14 @@ import { Portal } from "solid-js/web"
 export default function Page() {
   // Level 1 - File Menu
   const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
-    menu.machine.withContext({ "aria-label": "File" }),
+    menu.machine({ "aria-label": "File" }),
   )
   const fileMenuRef = useSetup({ send, id: "1" })
   const fileMenu = createMemo(() => menu.connect(state, send, normalizeProps))
 
   // Level 2 - Share Menu
   const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
-    menu.machine.withContext({ "aria-label": "Share" }),
+    menu.machine({ "aria-label": "Share" }),
   )
   const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
   const shareMenu = createMemo(() =>

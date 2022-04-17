@@ -84,7 +84,7 @@ increment/decrement its value.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     orientation: "vertical",
   }),
 )
@@ -94,7 +94,7 @@ const [state, send] = useMachine(
 
 ```jsx {3}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     value: 30,
   }),
 )
@@ -110,7 +110,7 @@ For example, to ask the user for a value between `-10` and `10`, you can use:
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     min: -10,
     max: 10,
   }),
@@ -127,7 +127,7 @@ places, you should set the value of step to `0.01`:
 
 ```jsx {5}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     min: 5,
     max: 10,
     step: 0.01,
@@ -142,7 +142,7 @@ invoked. You can use this to setup custom behaviors in your app.
 
 ```jsx {3-8}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     onChange(value) {
       console.log("value is changing to:", value)
     },
@@ -181,7 +181,7 @@ context property to `center`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     origin: "center",
   }),
 )
@@ -196,7 +196,7 @@ correctly.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     name: "quantity",
   }),
 )
@@ -212,7 +212,7 @@ To enable RTL support, pass the `dir: rtl` context property
 
 ```jsx {3}
 const [state, send] = useMachine(
-  slider.machine.withContext({
+  slider.machine({
     dir: "rtl",
   }),
 )

@@ -1,18 +1,18 @@
-import * as rangeSlider from "@zag-js/range-slider"
+import * as slider from "@zag-js/range-slider"
 import { useMachine, useSetup } from "@zag-js/react"
 import { chakra } from "@chakra-ui/system"
 import { Center, Flex } from "@chakra-ui/layout"
 
 export function RangeSlider(props: any) {
   const [state, send] = useMachine(
-    rangeSlider.machine.withContext({
+    slider.machine({
       name: "quantity",
       value: [10, 60],
     }),
     { context: props.controls },
   )
   const ref = useSetup({ send, id: "1" })
-  const api = rangeSlider.connect(state, send)
+  const api = slider.connect(state, send)
 
   return (
     <chakra.div width="200px" ref={ref} {...api.rootProps}>

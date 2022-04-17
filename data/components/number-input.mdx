@@ -79,7 +79,7 @@ property.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     value: "13",
   }),
 )
@@ -93,7 +93,7 @@ range.
 
 ```jsx {3,4}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     min: 10,
     max: 200,
   }),
@@ -110,7 +110,7 @@ points. Pass the `precision` prop and set it to the number of decimal points.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     precision: 3,
   }),
 )
@@ -134,7 +134,7 @@ the machine's context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     allowMouseWheel: true,
   }),
 )
@@ -150,7 +150,7 @@ To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     clampValueOnBlur: false,
   }),
 )
@@ -163,7 +163,7 @@ contact.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     name: "quantity",
   }),
 )
@@ -177,7 +177,7 @@ how to achieve it:
 
 ```jsx {3,4}
 const [state, send] = useMachine(
-  numberInput.machine.withContext({
+  numberInput.machine({
     format: (value) => `$${value}`,
     parse: (value) => value.replace(/\$/g, ""),
   }),

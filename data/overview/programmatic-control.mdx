@@ -15,8 +15,8 @@ programmatically.
 ## Setting initial context
 
 All machines have an "internal" context value that is used to manage extended
-state (or data) within the machine. To extend this initial value of this
-context, we expose the `.withContext(...)` method.
+state (or data) within the machine. To extend this intial value of this context,
+we allow uses pass it directly into the `machine` function.
 
 > This is used set/override the **initial** context value of the machine. It
 > can't be updated later on. Keep reading to see how to update it.
@@ -27,7 +27,7 @@ Here's how to acheive that:
 ```jsx
 const [state, send] = useMachine(
   // set initial context value
-  accordion.machine.withContext({
+  accordion.machine({
     value: "item-1",
   }),
 )
@@ -66,7 +66,7 @@ import useUpdateEffect from "use-update-effect"
 
 function Accordion(props) {
   const [state, send] = useMachine(
-    accordion.machine.withContext({
+    accordion.machine({
       value: props.value,
     }),
   )
@@ -95,5 +95,5 @@ const [state, send] = useMachine(accordion.machine, {
 })
 ```
 
-> This only works for context updates, not internal state updates and is not the
-> recommended approach.
+> This only works for context updates, not internal state updates and is not
+> recommended.

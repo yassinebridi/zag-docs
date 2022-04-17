@@ -14,7 +14,7 @@ import { useEffect, useRef } from "react"
 
 export function MobileNavigation() {
   const [state, send] = useMachine(
-    dialog.machine.withContext({
+    dialog.machine({
       initialFocusEl: () => initialRef.current,
     }),
   )

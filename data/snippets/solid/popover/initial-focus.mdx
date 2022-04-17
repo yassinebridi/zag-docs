@@ -4,7 +4,7 @@ export function Popover() {
   const [inputEl, setInputEl] = createSignal()
 
   const [state, send] = useMachine(
-    popover.machine.withContext({
+    popover.machine({
       initialFocusEl: inputEl,
     }),
   )

@@ -138,7 +138,7 @@ option and its new value.
 
 ```jsx {3-6}
 const [state, send] = useMachine(
-  menu.machine.withContext({
+  menu.machine({
     values: { order: "", type: [] },
     onValuesChange(data) {
       // data => { name: string, value: string | string[] }

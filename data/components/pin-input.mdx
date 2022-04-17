@@ -71,7 +71,7 @@ machine's context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     value: ["1", "2", ""],
   }),
 )
@@ -84,7 +84,7 @@ To customize the default pin input placeholder (○) for each input, pass the
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     placeholder: "*",
   }),
 )
@@ -98,7 +98,7 @@ set the `blurOnComplete: true` in the machine's context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     blurOnComplete: true,
   }),
 )
@@ -112,7 +112,7 @@ pass the `type` context property and set its value to `alphanumeric`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     type: "alphanumeric",
   }),
 )
@@ -127,7 +127,7 @@ support for this automatically when you set the `otp` context property to
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     otp: true,
   }),
 )
@@ -141,7 +141,7 @@ need to mask the value entered, similar to `<input type="password"/>`. Pass the
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     mask: true,
   }),
 )
@@ -159,7 +159,7 @@ The pin input machine invokes several callback functions when the user enters:
 
 ```jsx
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     onChange(value) {
       // value => string[]
       console.log("value changed to:", values)
@@ -185,7 +185,7 @@ When this attribute is set, we attach a `dir` attribute to the root part.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  pinInput.machine.withContext({
+  pinInput.machine({
     dir: "rtl",
   }),
 )

@@ -3,9 +3,7 @@ import * as menu from "@zag-js/menu"
 import { useMachine, useSetup } from "@zag-js/react"
 
 export function Menu() {
-  const [state, send] = useMachine(
-    menu.machine.withContext({ "aria-label": "File" }),
-  )
+  const [state, send] = useMachine(menu.machine({ "aria-label": "File" }))
   const ref = useSetup({ send, id: "1" })
   const api = menu.connect(state, send)
 

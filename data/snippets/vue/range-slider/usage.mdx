@@ -7,7 +7,7 @@ export default defineComponent({
   name: "RangeSlider",
   setup() {
     const [state, send] = useMachine(
-      rangeSlider.machine.withContext({
+      rangeSlider.machine({
         name: ["min", "max"],
         value: [10, 60],
       }),

@@ -79,7 +79,7 @@ be expanded.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     multiple: true,
   }),
 )
@@ -87,13 +87,13 @@ const [state, send] = useMachine(
 
 ## Opening specific accordions
 
-To set the value of the accordion(s) that should be opened initially, use the
-`withContext(...)` pattern and pass the `value` attribute.
+To set the value of the accordion(s) that should be opened initially, pass the
+`value` property to the machine function.
 
 ```jsx {4,5,12}
 // for multiple accordions
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     multiple: true,
     value: ["home"],
   }),
@@ -101,7 +101,7 @@ const [state, send] = useMachine(
 
 // for single accordions
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     value: "home",
   }),
 )
@@ -116,7 +116,7 @@ context's `collapsible` property to `true`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     collapsible: true,
   }),
 )
@@ -148,7 +148,7 @@ machine's context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     disabled: true,
   }),
 )

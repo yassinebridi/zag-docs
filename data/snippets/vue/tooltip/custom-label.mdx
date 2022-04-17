@@ -7,7 +7,7 @@ export default defineComponent({
   name: "Tooltip",
   setup() {
     const [state, send] = useMachine(
-      tooltip.machine.withContext({
+      tooltip.machine({
         "aria-label": "Tooltip Custom Label",
       }),
     )

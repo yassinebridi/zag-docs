@@ -114,7 +114,7 @@ By default, the dialog closes when you click its overlay. You can set
 
 ```jsx {3}
 const [state, send] = useMachine(
-  dialog.machine.withContext({
+  dialog.machine({
     closeOnOutsideClick: false,
   }),
 )
@@ -127,7 +127,7 @@ this behavior, set the `preventScroll` context to `false`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  dialog.machine.withContext({
+  dialog.machine({
     preventScroll: false,
   }),
 )
@@ -143,7 +143,7 @@ That's it! Now you have an alert dialog.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  dialog.machine.withContext({
+  dialog.machine({
     role: "alertdialog",
   }),
 )

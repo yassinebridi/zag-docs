@@ -80,7 +80,7 @@ context properties.
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     openDelay: 500,
     closeDelay: 200,
   }),
@@ -95,7 +95,7 @@ positioning. You can change the placement of the tooltip by passing the
 
 ```jsx {3-5}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     positioning: {
       placement: "bottom-start",
     },
@@ -171,7 +171,7 @@ to `false`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     closeOnPointerDown: false,
   }),
 )
@@ -184,7 +184,7 @@ this, pass the `closeOnEscape` context property and set it to `false`.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     closeOnEsc: false,
   }),
 )
@@ -203,7 +203,7 @@ To disabled this behavior, pass the `interactive` context property and set it to
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     interactive: false,
   }),
 )
@@ -226,7 +226,7 @@ When the tooltip open or closes, the `onOpen` and `onClose` callbacks are fired.
 
 ```jsx {3-8}
 const [state, send] = useMachine(
-  tooltip.machine.withContext({
+  tooltip.machine({
     onOpen() {
       console.log("Tooltip opened")
     },

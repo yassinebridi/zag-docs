@@ -17,7 +17,7 @@ const data = {
 
 export function Menu() {
   const [state, send] = useMachine(
-    menu.machine.withContext({
+    menu.machine({
       "aria-label": "Sort by",
       values: { order: "", type: [] },
     }),

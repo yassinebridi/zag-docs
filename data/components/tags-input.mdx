@@ -92,7 +92,7 @@ context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     value: ["React", "Redux", "TypeScript"],
   }),
 )
@@ -129,7 +129,7 @@ render the `hiddenInput` element.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     name: "tags",
     values: ["React", "Redux", "TypeScript"],
   }),
@@ -146,7 +146,7 @@ When the tag reaches the limit, new tags cannot be added except the
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  accordion.machine.withContext({
+  accordion.machine({
     max: 10,
     allowOverflow: true,
   }),
@@ -163,7 +163,7 @@ data type.
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  tagsInput.machine.withContext({
+  tagsInput.machine({
     validate(details) {
       return !details.values.includes(details.value)
     },
@@ -181,7 +181,7 @@ take by passing the `blurBehavior` option to the context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tagsInput.machine.withContext({
+  tagsInput.machine({
     blurBehavior: "add",
   }),
 )
@@ -199,7 +199,7 @@ When a value is pasted, the machine will:
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tagsInput.machine.withContext({
+  tagsInput.machine({
     addOnPaste: true,
   }),
 )
@@ -213,7 +213,7 @@ them and pressing `Enter`. To disable this behavior, pass the
 
 ```jsx {3}
 const [state, send] = useMachine(
-  tagsInput.machine.withContext({
+  tagsInput.machine({
     allowEditTag: false,
   }),
 )
@@ -231,7 +231,7 @@ emit:
 
 ```jsx
 const [state, send] = useMachine(
-  tagsInput.machine.withContext({
+  tagsInput.machine({
     onChange(tags) {
       console.log("tags changed to:", tags)
     },

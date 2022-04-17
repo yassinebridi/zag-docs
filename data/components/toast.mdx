@@ -264,7 +264,7 @@ There are three scenarios we provide to pause a toast from timing out:
 ```jsx
 // Global pause options
 const [state, send] = useMachine(
-  toast.group.machine.withContext({
+  toast.group.machine({
     pauseOnPageIdle: true,
     pauseOnInteraction: true,
   }),
@@ -283,7 +283,7 @@ the group machine's context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  toast.group.machine.withContext({
+  toast.group.machine({
     max: 10,
   }),
 )
@@ -329,7 +329,7 @@ toast. To change this value, pass the `gutter` context property.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  toast.group.machine.withContext({
+  toast.group.machine({
     gutter: "50px",
   }),
 )
@@ -343,7 +343,7 @@ container, pass the `offsets` context property.
 
 ```jsx {4-8}
 const [state, send] = useMachine(
-  toast.group.machine.withContext({
+  toast.group.machine({
     offsets: {
       top: "10px",
       right: "10px",

@@ -6,9 +6,7 @@ import { defineComponent, computed, h, Fragment, Teleport } from "vue"
 export default defineComponent({
   name: "Popover",
   setup() {
-    const [state, send] = useMachine(
-      popover.machine.withContext({ portalled: true }),
-    )
+    const [state, send] = useMachine(popover.machine({ portalled: true }))
     const ref = useSetup({ send, id: "1" })
     const apiRef = computed(() =>
       popover.connect(state.value, send, normalizeProps),

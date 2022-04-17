@@ -6,7 +6,7 @@ export default defineComponent({
     const inputRef = ref(null)
 
     const [state, send] = useMachine(
-      popover.machine.withContext({
+      popover.machine({
         initialFocusEl: () => inputRef.value,
       }),
     )

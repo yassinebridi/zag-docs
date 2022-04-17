@@ -6,7 +6,7 @@ export default defineComponent({
     const inputRef = ref(null)
 
     const [state, send] = useMachine(
-      dialog.machine.withContext({
+      dialog.machine({
         initialFocusEl: () => inputRef.value,
       }),
     )

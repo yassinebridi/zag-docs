@@ -15,7 +15,7 @@ export default defineComponent({
   setup() {
     // Level 1 - File Menu
     const [fileMenuState, fileMenuSend, fileMenuMachine] = useMachine(
-      menu.machine.withContext({ "aria-label": "File" }),
+      menu.machine({ "aria-label": "File" }),
     )
     const fileMenuRef = useSetup({ send: fileMenuSend, id: "1" })
     const fileMenuApi = computed(() =>
@@ -24,7 +24,7 @@ export default defineComponent({
 
     // Level 2 - Share Menu
     const [shareMenuState, shareMenuSend, shareMenuMachine] = useMachine(
-      menu.machine.withContext({ "aria-label": "Share" }),
+      menu.machine({ "aria-label": "Share" }),
     )
     const shareMenuRef = useSetup({ send: shareMenuSend, id: "2" })
     const shareMenuApi = computed(() =>
