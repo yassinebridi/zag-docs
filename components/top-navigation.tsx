@@ -5,6 +5,7 @@ import siteConfig from "site.config"
 import { IconLink } from "./icon-link"
 import { LogoWithLink } from "./logo"
 import { MobileNavigation } from "./mobile-navigation"
+// import { WorkshopLink } from "./workshop-link"
 
 export function TopNavigation() {
   return (
@@ -27,8 +28,10 @@ export function TopNavigation() {
         mx="auto"
         px={{ base: "4", sm: "6", md: "8" }}
       >
-        <LogoWithLink />
-
+        <HStack spacing="6">
+          <LogoWithLink />
+          {/* <WorkshopLink /> */}
+        </HStack>
         <HStack spacing="8">
           <nav hidden>
             <HStack

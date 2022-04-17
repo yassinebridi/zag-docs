@@ -275,7 +275,7 @@ export default function Home() {
           </chakra.p>
 
           <HStack mt="10" spacing="4">
-            <Circle overflow="hidden" bg="green.400">
+            <Circle overflow="hidden" bg="gray.100">
               <Image
                 src="/segun-adebayo-headshot.png"
                 width="64px"
