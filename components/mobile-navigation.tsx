@@ -1,16 +1,16 @@
 import { Box, Flex, HStack, Spacer } from "@chakra-ui/layout"
+import { useToken } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 import * as dialog from "@zag-js/dialog"
 import { useMachine, useSetup } from "@zag-js/react"
 import { useRouteChange } from "lib/use-route-change"
+import { useEffect, useRef } from "react"
 import { HiMenu, HiX } from "react-icons/hi"
+import useMatchMedia from "use-match-media-hook"
 import { Button } from "./button"
 import { FrameworkSelect } from "./framework-select"
 import { LogoWithLink } from "./logo"
 import { Sidebar } from "./sidebar"
-
-import useMatchMedia from "use-match-media-hook"
-import { useEffect, useRef } from "react"
 
 export function MobileNavigation() {
   const [state, send] = useMachine(
@@ -22,7 +22,8 @@ export function MobileNavigation() {
   const api = dialog.connect(state, send)
   const initialRef = useRef<HTMLButtonElement>(null)
 
-  const [desktop] = useMatchMedia(["(min-width: 600px)"])
+  const lgBreakpoint = useToken("breakpoints", "lg")
+  const [desktop] = useMatchMedia([`(min-width: ${lgBreakpoint})`])
 
   useEffect(() => {
     if (desktop) api.close()
