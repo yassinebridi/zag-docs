@@ -24,7 +24,7 @@ function DocLink(props: DocLinkProps) {
   const { href, children } = props
   const current = test(href.toString(), asPath)
   return (
-    <Box as="li" fontSize="sm">
+    <Box key={asPath} as="li" fontSize="sm">
       <Link href={href} passHref>
         <chakra.a
           aria-current={current ? "page" : undefined}
