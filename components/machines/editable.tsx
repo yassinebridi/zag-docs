@@ -25,7 +25,12 @@ export function Editable(props: any) {
 
       <div>
         {!api.isEditing && (
-          <Button size="sm" variant="outline" {...api.editButtonProps}>
+          <Button
+            size="sm"
+            variant="outline"
+            bg="white"
+            {...api.editButtonProps}
+          >
             Edit
           </Button>
         )}
@@ -34,7 +39,12 @@ export function Editable(props: any) {
             <Button size="sm" variant="green" {...api.submitButtonProps}>
               Save
             </Button>
-            <Button size="sm" variant="outline" {...api.cancelButtonProps}>
+            <Button
+              size="sm"
+              variant="outline"
+              bg="white"
+              {...api.cancelButtonProps}
+            >
               Cancel
             </Button>
           </HStack>
