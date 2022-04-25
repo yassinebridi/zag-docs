@@ -27,7 +27,7 @@ export function useSearch() {
       onSelect({ value }) {
         try {
           const { pathname, slug, url } = JSON.parse(value)
-          router.push({ pathname, query: { slug } }, url, { scroll: false })
+          router.push({ pathname, query: { slug } }, url)
         } catch (err) {
           console.log(err)
         }
