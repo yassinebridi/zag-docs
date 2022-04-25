@@ -51,7 +51,13 @@ const Overview = defineDocumentType(() => ({
   filePathPattern: "overview/**/*.mdx",
   contentType: "mdx",
   fields,
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/overview/[slug]",
+    },
+  },
 }))
 
 const Guide = defineDocumentType(() => ({
@@ -67,7 +73,13 @@ const Component = defineDocumentType(() => ({
   filePathPattern: "components/**/*.mdx",
   contentType: "mdx",
   fields,
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/components/[...slug]",
+    },
+  },
 }))
 
 const Snippet = defineDocumentType(() => ({
