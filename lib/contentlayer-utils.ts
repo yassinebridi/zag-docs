@@ -52,7 +52,8 @@ export function getOverviewPaths() {
   return allOverviews.map((doc) => `/overview/${doc.slug}`)
 }
 
-export function getOverviewDoc(slug: string | string[]) {
+export function getOverviewDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allOverviews.find(
     (post) => post.frontmatter.slug === `/overview/${slug}`,
   )

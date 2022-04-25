@@ -3,13 +3,12 @@ import { Box, HStack, Spacer } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { FrameworkSelect } from "components/framework-select"
 import { MdxFooter } from "components/mdx-footer"
-import { SearchTrigger } from "components/search-trigger"
+import { Search } from "components/search-dialog"
 import { Sidebar } from "components/sidebar"
 import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import { DocumentTypes } from "contentlayer/generated"
-import { useRouteChange } from "lib/use-route-change"
 import { useRouter } from "next/router"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
@@ -22,12 +21,6 @@ type DocsLayoutProps = {
 export default function DocsLayout({ children, doc }: DocsLayoutProps) {
   const { asPath } = useRouter()
   const isComponent = asPath.includes("/components/")
-
-  useRouteChange(() => {
-    setTimeout(() => {
-      document.querySelector("h1")?.focus()
-    })
-  })
 
   return (
     <Box>
@@ -52,7 +45,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             <Box position="relative">
               <Box position="sticky" top="0" bg="white" pb="8">
                 <Spacer height="10" bg="white" />
-                <SearchTrigger />
+                <Search />
                 <Spacer mt="px" height="5" bg="white" />
                 <FrameworkSelect />
               </Box>
@@ -67,7 +60,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             pt="4"
             pr={{ xl: "16" }}
           >
-            <Box  mr={{ xl: "15.5rem" }}>
+            <Box mr={{ xl: "15.5rem" }}>
               {children}
               <HStack
                 as="a"

@@ -128,7 +128,7 @@ export default function Home() {
       >
         <Box bg="green.100" px={{ md: "20" }} py={{ base: "10", md: "20" }}>
           <chakra.h2 textStyle="display.xl" mb="8" maxW="24ch">
-            Zag provides the component API for the Web.
+            Zag provides the component API for the Web
           </chakra.h2>
 
           <Link href="/overview/introduction" passHref>
@@ -244,13 +244,9 @@ export default function Home() {
             their customers.
             <br /> <br />
             With the rise of component-driven development, there's an endless
-            re-implementation of common component patterns (tabs, menu, etc.) in
-            multiple frameworks.
-            <br /> <br />
-            Most of these implementations tend to be fairly similar, with slight
-            differences between frameworks. However, framework-specific
-            solutions tend to grow in complexity over time and often become hard
-            to understand, debug, improve, or test.
+            re-implementation of common widgets (tabs, menu, etc.) in multiple
+            frameworks. These implementations tend to grow in complexity over
+            time and often become hard to understand, debug, improve, or test.
             <chakra.blockquote
               layerStyle="blockquote"
               fontWeight="semibold"
