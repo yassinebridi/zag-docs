@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from "@chakra-ui/layout"
+import { Badge, Box, Flex, HStack } from "@chakra-ui/layout"
 import { GithubIcon } from "components/icons"
 import { FaDiscord } from "react-icons/fa"
 import siteConfig from "site.config"
@@ -28,8 +28,19 @@ export function TopNavigation() {
         mx="auto"
         px={{ base: "4", sm: "6", md: "8" }}
       >
-        <HStack spacing="6">
+        <HStack spacing="3">
           <LogoWithLink />
+          <Badge
+            bg="orange.100"
+            color="orange.700"
+            px="2"
+            py="0.5"
+            fontSize="xs"
+            letterSpacing="wider"
+            fontWeight="semibold"
+          >
+            BETA
+          </Badge>
           {/* <WorkshopLink /> */}
         </HStack>
         <HStack spacing="8">
