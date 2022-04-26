@@ -40,7 +40,7 @@ import * as toggle from "@zag-js/toggle"
 export function Toggle() {
   const [state, send] = useMachine(toggle.machine)
   const api = toggle.connect(state, send)
-  return <button {...api.buttonProps}>{api.isActive ? "On" : "Off"}</button>
+  return <button {...api.buttonProps}>{api.isPressed ? "On" : "Off"}</button>
 }
 ```
 
@@ -66,7 +66,7 @@ export default defineComponent({
     const apiRef = computed(() => toggle.connect(state, send, normalizeProps))
     return () => {
       const api = apiRef.value
-      return <button {...api.buttonProps}>{api.isActive ? "On" : "Off"}</button>
+      return <button {...api.buttonProps}>{api.isPressed ? "On" : "Off"}</button>
     }
   },
 })
@@ -92,7 +92,7 @@ import { useMachine, normalizeProps } from "@zag-js/solid"
 export default function Toggle() {
   const [state, send] = useMachine(toggle.machine)
   const api = createMemo(() => toggle.connect(state, send, normalizeProps))
-  return <button {...api().buttonProps}>{api().isActive ? "On" : "Off"}</button>
+  return <button {...api().buttonProps}>{api().isPressed ? "On" : "Off"}</button>
 }
 ```
 
