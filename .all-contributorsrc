@@ -1,5 +1,5 @@
 {
-  "projectName": "ui-machines-docs",
+  "projectName": "zag",
   "projectOwner": "chakra-ui",
   "repoType": "github",
   "repoHost": "https://github.com",
@@ -16,6 +16,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
       "profile": "https://twitter.com/thesegunadebayo",
       "contributions": [
+        "maintenance",
         "code",
         "doc",
         "content"
