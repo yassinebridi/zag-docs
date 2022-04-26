@@ -96,8 +96,8 @@ const value = state.context.value
 
 - When dealing with editable fields, you might notice inconsistent caret
   behavior. This is due to the state batching mechanism in valtio. To fix this
-  pass the `sync` option to the `useMachine` or `useActor` hook.
+  pass the `hookSync` option to machine.
 
 ```jsx
-const [state, send] = useMachine(machine, { sync: true })
+const machine = createMachine({...}, { hookSync: true })
 ```
