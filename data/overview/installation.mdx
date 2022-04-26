@@ -40,7 +40,7 @@ import * as toggle from "@zag-js/toggle"
 export function Toggle() {
   const [state, send] = useMachine(toggle.machine)
   const api = toggle.connect(state, send)
-  return <button {...api.buttonProps}>{api.isActive ? "On" : "Off"}</button>
+  return <button {...api.buttonProps}>{api.isPressed ? "On" : "Off"}</button>
 }
 ```
 
