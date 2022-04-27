@@ -36,6 +36,14 @@ export default function Document() {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {process.env.NODE_ENV === "production" && (
+          <script
+            async
+            defer
+            data-domain="zagjs.com"
+            src="https://plausible.io/js/plausible.js"
+          />
+        )}
       </Head>
       <body>
         <Main />
