@@ -104,7 +104,7 @@ export default function Home() {
                 </HStack>
               </Button>
             </Link>
-            <Button>
+            <Button hidden>
               <HStack spacing="2">
                 <Icon as={PlayIcon} />
                 <span>Watch Demo</span>
@@ -313,7 +313,7 @@ export default function Home() {
               </Button>
             </Link>
 
-            <Button width={{ base: "full", md: "auto" }}>
+            <Button hidden width={{ base: "full", md: "auto" }}>
               <HStack spacing="2">
                 <Icon as={PlayIcon} />
                 <span>Watch Demo</span>
