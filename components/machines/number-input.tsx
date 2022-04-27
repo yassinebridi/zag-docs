@@ -5,7 +5,6 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 export function NumberInput(props: any) {
   const [state, send] = useMachine(numberInput.machine, {
-    sync: true,
     context: props.controls,
   })
   const ref = useSetup({ send, id: "1" })
