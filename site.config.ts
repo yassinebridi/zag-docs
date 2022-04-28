@@ -22,7 +22,7 @@ const siteConfig = {
     email: "sage@adebayosegun.com",
   },
   repo: {
-    url: baseConfig.repo,
+    url: "https://github.com/chakra-ui/zag",
     editUrl: `${baseConfig.repo}/edit/main/data`,
     blobUrl: `${baseConfig.repo}/blob/main`,
   },
