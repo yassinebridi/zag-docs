@@ -9,7 +9,6 @@ import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import { DocumentTypes } from "contentlayer/generated"
-import { useRouter } from "next/router"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 
@@ -19,8 +18,7 @@ type DocsLayoutProps = {
 }
 
 export default function DocsLayout({ children, doc }: DocsLayoutProps) {
-  const { asPath } = useRouter()
-  const isComponent = asPath.includes("/components/")
+  const hideToc = doc.frontmatter.toc.length < 3
 
   return (
     <Box>
@@ -87,7 +85,7 @@ export default function DocsLayout({ children, doc }: DocsLayoutProps) {
             right="max(0px,calc(50% - 45rem))"
             display={{ base: "none", xl: "block" }}
             width="19.5rem"
-            visibility={!isComponent ? "hidden" : undefined}
+            visibility={hideToc ? "hidden" : undefined}
           >
             <TableOfContents data={doc.frontmatter.toc} />
           </Box>

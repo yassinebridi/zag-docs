@@ -43,6 +43,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           label: "Programmatic Control",
           id: "programmatic-control",
         },
+        { type: "doc", label: "FAQ", id: "faq" },
       ],
     },
     {

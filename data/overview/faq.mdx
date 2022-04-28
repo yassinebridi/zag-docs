@@ -1,0 +1,77 @@
+---
+title: Frequently Asked Questions
+description: Common questions and answers about the project
+---
+
+# Frequently Asked Questions
+
+## Why the need for `normalizeProps`?
+
+The goal of `normalizeProps` is to convert the props of the component into the
+format that is compatible with the respective framework.
+
+There are subtle difference between how element attributes are named across
+frameworks like React, Solid and Vue. Here are some examples:
+
+**Keydown listener**
+
+- React and Solid: The keydown listener property is `onKeyDown`.
+- Vue: The keydown listener property is `onKeydown`.
+
+**Styles**
+
+- React: Pass a numeric value for margin attributes like `{ marginBottom: 4 }`.
+- Solid: It has to be `{ "margin-bottom": "4px" }`.
+- Vue: You need to ensure the value is a string with unit.
+  `{ marginBottom: "4px" }`.
+
+These little nuances between frameworks are handled automatically when you use
+`normalizeProps`.
+
+## How do I attach custom extra event handlers to the elements?
+
+Zag encourages the use of spread props to ensure we automatically attach all the
+event handlers and properties to elements.
+
+Sometimes, you may want to attach your own event handlers to the elements. To do
+that, import the `mergeProps` utility provided by zag for your framework.
+
+```jsx
+// 1. import mergeProps utility
+import { useMachine, useSetup, mergeProps } from "@zag-js/react"
+import * as toggle from "@zag-js/toggle"
+
+export function Toggle() {
+  const [state, send] = useMachine(toggle.machine)
+  const ref = useSetup({ send, id: "1" })
+  const api = toggle.connect(state, send)
+
+  // 2. write your custom event handlers
+  const handleClick = () => {
+    // do something
+  }
+
+  // 3. merge the props
+  const buttonProps = mergeProps(api.buttonProps, {
+    onClick: handleClick,
+  })
+
+  return (
+    // 4. spread the new props
+    <button ref={ref} {...buttonProps}>
+      {api.isPressed ? "On" : "Off"}
+    </button>
+  )
+}
+```
+
+## What would it take to support other frameworks?
+
+We're currently interested in supporting as many frameworks as possible. The key
+requirements are:
+
+- **Support for "spread props"**: The framework should have support for
+  spreading attributes and event handlers.
+
+- **Exposed Typings**: The framework should expose the typings for the
+  attributes and event handlers. This is optional but would provide the best DX.
