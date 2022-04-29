@@ -799,19 +799,19 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@reach/portal@^0.16.2":
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/@reach/portal/-/portal-0.16.2.tgz#ca83696215ee03acc2bb25a5ae5d8793eaaf2f64"
-  integrity sha512-9ur/yxNkuVYTIjAcfi46LdKUvH0uYZPfEp4usWcpt6PIp+WDF57F/5deMe/uGi/B/nfDweQu8VVwuMVrCb97JQ==
+"@reach/portal@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@reach/portal/-/portal-0.17.0.tgz#1dd69ffc8ffc8ba3e26dd127bf1cc4b15f0c6bdc"
+  integrity sha512-+IxsgVycOj+WOeNPL2NdgooUdHPSY285wCtj/iWID6akyr4FgGUK7sMhRM9aGFyrGpx2vzr+eggbUmAVZwOz+A==
   dependencies:
-    "@reach/utils" "0.16.0"
+    "@reach/utils" "0.17.0"
     tiny-warning "^1.0.3"
     tslib "^2.3.0"
 
-"@reach/utils@0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.16.0.tgz#5b0777cf16a7cab1ddd4728d5d02762df0ba84ce"
-  integrity sha512-PCggBet3qaQmwFNcmQ/GqHSefadAFyNCUekq9RrWoaU9hh/S4iaFgf2MBMdM47eQj5i/Bk0Mm07cP/XPFlkN+Q==
+"@reach/utils@0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.17.0.tgz#3d1d2ec56d857f04fe092710d8faee2b2b121303"
+  integrity sha512-M5y8fCBbrWeIsxedgcSw6oDlAMQDkl5uv3VnMVJ7guwpf4E48Xlh1v66z/1BgN/WYe2y8mB/ilFD2nysEfdGeA==
   dependencies:
     tiny-warning "^1.0.3"
     tslib "^2.3.0"
@@ -1096,15 +1096,6 @@
     "@zag-js/types" "0.1.0"
     scroll-into-view-if-needed "^2.2.28"
 
-"@zag-js/core@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@zag-js/core/-/core-0.1.0.tgz#c8295b9cac67eaa5d1524b0c5b9b77433bfb5654"
-  integrity sha512-sF+pJ0ZPGXE8o6p00EUZv0vuSHzpzHtRmjmj15ig6xEccDfZIr29MKFQaTvip5MDpKmictR02HRnWZoP7di7Vg==
-  dependencies:
-    "@zag-js/utils" "^0.1.0"
-    klona "^2.0.5"
-    valtio "^1.6.0"
-
 "@zag-js/core@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@zag-js/core/-/core-0.1.1.tgz#ca03665f0bc38844cef00c2d911d4e9fad940d1d"
@@ -1229,12 +1220,12 @@
     "@zag-js/types" "0.1.0"
     "@zag-js/utils" "0.1.0"
 
-"@zag-js/react@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@zag-js/react/-/react-0.1.1.tgz#71e8710afa3c9f4af11ad9f15917bd76d22f3aba"
-  integrity sha512-aoJWP6VoLgcr5XJq1uWPGH71x1i/I2xmv1JbyacT3EOdYTfm2U+ogOTX5FG5XIWMrJg2ShtpVtRLCP3Uu67odw==
+"@zag-js/react@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@zag-js/react/-/react-0.1.2.tgz#e649d811881b1a0440617734b3d5b5cc4b37005e"
+  integrity sha512-wyNhMXH3d2qM+FjJz9fDdue9I8hCFT8rP15PL+dRf9uuHOiAen1LqBZTJloKe3pdfrXHQHi70J0bhf+mMolwfA==
   dependencies:
-    "@zag-js/core" "0.1.0"
+    "@zag-js/core" "0.1.1"
     valtio "^1.6.0"
 
 "@zag-js/rect-utils@0.1.0":
