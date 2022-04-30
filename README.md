@@ -1,4 +1,4 @@
-# UI Machines
+# Zag Docs
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -6,7 +6,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Documentation website for [UI machines](https://ui-machines.com)
+Documentation website for [Zag](https://zagjs.com)
 
 ## Contributors ✨
 
