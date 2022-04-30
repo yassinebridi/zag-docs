@@ -6,7 +6,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Documentation website for [Zag](https://github.com/chakra-ui/zag)
+Documentation website for [Zag](https://zagjs.com)
 
 ## Contributors ✨
 
