@@ -84,7 +84,7 @@ function connect(state, send) {
     buttonProps: {
       type: "button",
       role: "switch",
-      "aria-checked": isActive,
+      "aria-checked": active,
       onClick() {
         send("CLICK")
       },
