@@ -36,7 +36,7 @@ export function Menu() {
             const option = { type: "radio", name: "order", value: item.id }
             return (
               <div key={item.id} {...api.getOptionItemProps(option)}>
-                {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+                {api.isOptionChecked(option) ? "✅" : null} {item.label}
               </div>
             )
           })}
@@ -45,7 +45,7 @@ export function Menu() {
             const option = { type: "checkbox", name: "type", value: item.id }
             return (
               <div key={item.id} {...api.getOptionItemProps(option)}>
-                {api.isOptionChecked(opts) ? "✅" : null} {item.label}
+                {api.isOptionChecked(option) ? "✅" : null} {item.label}
               </div>
             )
           })}
