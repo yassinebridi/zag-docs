@@ -146,7 +146,7 @@ When the tag reaches the limit, new tags cannot be added except the
 
 ```jsx {3-4}
 const [state, send] = useMachine(
-  accordion.machine({
+  tagsInput.machine({
     max: 10,
     allowOverflow: true,
   }),
