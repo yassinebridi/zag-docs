@@ -165,7 +165,7 @@ data type.
 const [state, send] = useMachine(
   tagsInput.machine({
     validate(details) {
-      return !details.values.includes(details.value)
+      return !details.values.includes(details.inputValue)
     },
   }),
 )
