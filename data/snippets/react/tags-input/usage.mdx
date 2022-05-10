@@ -21,7 +21,7 @@ export function TagsInput() {
               &#x2715;
             </button>
           </div>
-          <input {...api.getTagInputProps({ index })} />
+          <input {...api.getTagInputProps({ index, value })} />
         </span>
       ))}
       <input placeholder="Add tag..." {...api.inputProps} />

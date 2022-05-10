@@ -40,7 +40,7 @@ export default defineComponent({
                 return (
                   <div key={item.id} {...api.getOptionItemProps(option)}>
                     {api.isOptionChecked(option) ? "✅" : null} {item.label}
-                  </div>
+                </div>
                 )
               })}
             </div>
