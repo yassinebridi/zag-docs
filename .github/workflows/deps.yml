@@ -19,9 +19,18 @@ jobs:
       - name: Upgrade Dependencies
         run: yarn upgrade --scope @zag-js --latest
 
+      - name: Setup Git
+        run: |
+          git config --global user.name "Segun Adebayo"
+          git config --global user.email "joseshegs@gmail.com"
+
+      - name: Commit Changes
+        run: |
+          git add . && git commit -m "chore: update zag dependencies"
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          title: Update Zag Dependencies
+          title: "chore: update zag versions"
           delete-branch: true
           branch: chore/update-deps
