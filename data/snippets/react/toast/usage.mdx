@@ -44,13 +44,13 @@ export function ToastProvider() {
 export function App() {
   return (
     <ToastProvider>
-      <Component />
+      <ExampleComponent />
     </ToastProvider>
   )
 }
 
 // 4. Within your app
-function Example() {
+function ExampleComponent() {
   const toast = useToast()
 
   return (
