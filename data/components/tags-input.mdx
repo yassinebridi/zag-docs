@@ -92,7 +92,7 @@ context.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine({
+  tagsInput.machine({
     value: ["React", "Redux", "TypeScript"],
   }),
 )
@@ -129,7 +129,7 @@ render the `hiddenInput` element.
 
 ```jsx {3}
 const [state, send] = useMachine(
-  accordion.machine({
+  tagsInput.machine({
     name: "tags",
     value: ["React", "Redux", "TypeScript"],
   }),
