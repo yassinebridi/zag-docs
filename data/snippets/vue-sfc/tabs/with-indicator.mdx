@@ -1,0 +1,22 @@
+```jsx {11}
+// ...
+<div ref="ref" v-bind="api.rootProps">
+  <div v-bind="api.tablistProps">
+    <button
+      v-for="item in data"
+      v-bind="api.getTabProps({ value: item.value })"
+      :key="item.value"
+    >
+      {item.label}
+    </button>
+    <div v-bind="api.tabIndicatorProps" />
+  </div>
+  <div
+    v-for="item in data"
+    v-bind="api.getTabPanelProps({ value: item.value })"
+    key="{item.value}"
+  >
+    <p>{item.content}</p>
+  </div>
+</div>
+```
