@@ -1,0 +1,33 @@
+```jsx
+<script setup>
+import * as pinInput from "@zag-js/pin-input";
+import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
+import { computed } from "vue";
+
+const [state, send] = useMachine(
+  rangeSlider.machine({
+    name: ["min", "max"],
+    value: [10, 60],
+  })
+);
+const ref = useSetup({ send, id: "1" });
+const api = computed(() =>
+  rangeSlider.connect(state.value, send, normalizeProps)
+);
+</script>
+
+<template>
+  <div ref="ref" v-bind="api.rootProps">
+    <div v-bind="api.trackProps">
+      <div v-bind="api.rangeProps" />
+    </div>
+    <div
+      v-for="(_, index) in api.values"
+      :key="index"
+      v-bind="api.getThumbProps(index)"
+    >
+      <input v-bind="api.getInputProps(index)" />
+    </div>
+  </div>
+</template>
+```
