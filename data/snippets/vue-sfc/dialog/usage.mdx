@@ -2,7 +2,7 @@
 <script setup>
 import * as dialog from "@zag-js/dialog";
 import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
-import { computed, defineComponent, h, Fragment, Teleport } from "vue";
+import { computed, Teleport } from "vue";
 
 const [state, send] = useMachine(dialog.machine);
 const ref = useSetup({ send, id: "1" });
