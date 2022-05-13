@@ -64,8 +64,11 @@ export function MultiframeworkTabs() {
           <Box {...api.getContentProps({ value: "react" })}>
             <CodeArea slug="react/number-input/usage" />
           </Box>
-          <Box {...api.getContentProps({ value: "vue" })}>
-            <CodeArea slug="vue/number-input/usage" />
+          <Box {...api.getContentProps({ value: "vue-jsx" })}>
+            <CodeArea slug="vue-jsx/number-input/usage" />
+          </Box>
+          <Box {...api.getContentProps({ value: "vue-sfc" })}>
+            <CodeArea slug="vue-sfc/number-input/usage" />
           </Box>
           <Box {...api.getContentProps({ value: "solid" })}>
             <CodeArea slug="solid/number-input/usage" />
