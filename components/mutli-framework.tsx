@@ -38,10 +38,16 @@ export function MultiframeworkTabs() {
             <Text>React</Text>
           </VStack>
         </FrameworkButton>
-        <FrameworkButton {...api.getTriggerProps({ value: "vue" })}>
+        <FrameworkButton {...api.getTriggerProps({ value: "vue-jsx" })}>
           <VStack>
             <VueIcon />
-            <Text>Vue</Text>
+            <Text>Vue (JSX)</Text>
+          </VStack>
+        </FrameworkButton>
+        <FrameworkButton {...api.getTriggerProps({ value: "vue-sfc" })}>
+          <VStack>
+            <VueIcon />
+            <Text>Vue (SFC)</Text>
           </VStack>
         </FrameworkButton>
         <FrameworkButton {...api.getTriggerProps({ value: "solid" })}>
