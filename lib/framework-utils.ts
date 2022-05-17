@@ -4,11 +4,12 @@ import { SiReact } from "react-icons/si"
 
 export const frameworks = {
   react: { icon: SiReact, label: "React" },
-  vue: { icon: FaVuejs, label: "Vue" },
+  "vue-jsx": { icon: FaVuejs, label: "Vue (JSX)" },
+  "vue-sfc": { icon: FaVuejs, label: "Vue (SFC)" },
   solid: { icon: AiFillCode, label: "Solid" },
 }
 
-export const FRAMEWORKS = ["react", "vue", "solid"] as const
+export const FRAMEWORKS = ["react", "vue-jsx", "vue-sfc", "solid"] as const
 
 export type Framework = keyof typeof frameworks
 

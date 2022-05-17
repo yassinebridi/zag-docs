@@ -33,7 +33,8 @@ export function FrameworkSelect() {
         }}
       >
         <option value="react">React</option>
-        <option value="vue">Vue 3</option>
+        <option value="vue-jsx">Vue 3 (JSX)</option>
+        <option value="vue-sfc">Vue 3 (SFC)</option>
         <option value="solid">Solid.js</option>
       </chakra.select>
     </HStack>
