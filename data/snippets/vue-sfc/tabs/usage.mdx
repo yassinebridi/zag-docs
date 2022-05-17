@@ -1,4 +1,4 @@
-```jsx
+```md
 <script setup>
 import * as tabs from "@zag-js/tabs";
 import { normalizeProps, useMachine, useSetup } from "@zag-js/vue";
@@ -17,10 +17,10 @@ const api = computed(() => tabs.connect(state.value, send, normalizeProps));
 
 <template>
   <div ref="ref" v-bind="api.rootProps">
-    <div v-bind="api.tablistProps">
+    <div v-bind="api.triggerGroupProps">
       <button
         v-for="item in data"
-        v-bind="api.getTabProps({ value: item.value })"
+        v-bind="api.getTriggerProps({ value: item.value })"
         :key="item.value"
       >
         {item.label}
@@ -28,7 +28,7 @@ const api = computed(() => tabs.connect(state.value, send, normalizeProps));
     </div>
     <div
       v-for="item in data"
-      v-bind="api.getTabPanelProps({ value: item.value })"
+      v-bind="api.getContentProps({ value: item.value })"
       key="{item.value}"
     >
       <p>{item.content}</p>
