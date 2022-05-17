@@ -16,11 +16,10 @@ export function Tabs() {
 
   return (
     <div ref={ref} {...api().rootProps}>
-      <div {...api().tabIndicatorProps} />
-      <div {...api().tablistProps}>
+      <div {...api().triggerGroupProps}>
         <For each={data}>
           {(item) => (
-            <button {...api().getTabProps({ value: item.value })}>
+            <button {...api().getTriggerProps({ value: item.value })}>
               {item.label}
             </button>
           )}
@@ -28,7 +27,7 @@ export function Tabs() {
       </div>
       <For each={data}>
         {(item) => (
-          <div {...api().getTabPanelProps({ value: item.value })}>
+          <div {...api().getContentProps({ value: item.value })}>
             <p>{item.content}</p>
           </div>
         )}

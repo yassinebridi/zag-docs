@@ -22,10 +22,10 @@ export default defineComponent({
       const api = apiRef.value
       return (
         <div ref={ref} {...api.rootProps}>
-          <div {...api.tablistProps}>
+          <div {...api.triggerGroupProps}>
             {data.map((item) => (
               <button
-                {...api.getTabProps({ value: item.value })}
+                {...api.getTriggerProps({ value: item.value })}
                 key={item.value}
               >
                 {item.label}
@@ -34,7 +34,7 @@ export default defineComponent({
           </div>
           {data.map((item) => (
             <div
-              {...api.getTabPanelProps({ value: item.value })}
+              {...api.getContentProps({ value: item.value })}
               key={item.value}
             >
               <p>{item.content}</p>

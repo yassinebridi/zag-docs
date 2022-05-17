@@ -14,16 +14,19 @@ export function Tabs() {
   const api = tabs.connect(state, send)
 
   return (
-    <div ref={ref}>
-      <div {...api.tablistProps}>
+    <div ref={ref} {...api.rootProps}>
+      <div {...api.triggerGroupProps}>
         {data.map((item) => (
-          <button {...api.getTabProps({ value: item.value })} key={item.value}>
+          <button
+            {...api.getTriggerProps({ value: item.value })}
+            key={item.value}
+          >
             {item.label}
           </button>
         ))}
       </div>
       {data.map((item) => (
-        <div {...api.getTabPanelProps({ value: item.value })} key={item.value}>
+        <div {...api.getContentProps({ value: item.value })} key={item.value}>
           <p>{item.content}</p>
         </div>
       ))}
