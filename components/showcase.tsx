@@ -76,13 +76,12 @@ const components = {
       component={NumberInput}
       defaultProps={{
         disabled: false,
-        precision: 0,
+        minFractionDigits: 0,
+        maxFractionDigits: 5,
         min: -10,
         max: 20,
         step: 1,
         allowMouseWheel: false,
-        clampValueOnBlur: true,
-        allowOverflow: false,
       }}
     />
   ),
