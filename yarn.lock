@@ -1126,10 +1126,10 @@
     "@zag-js/utils" "0.1.1"
     scroll-into-view-if-needed "^2.2.29"
 
-"@zag-js/editable@0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@zag-js/editable/-/editable-0.1.4.tgz#6799392b327025fd478bbe1e3947e4ca1f32fa5f"
-  integrity sha512-gm89Knv54h/KVBc8CaqEuNqN+aQBR4qq6AeRcy+k1wqPZjKwEJVWaiRA64EBkgmzi98A++bMH33lX6L9gjFMdw==
+"@zag-js/editable@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@zag-js/editable/-/editable-0.1.5.tgz#f67b878a7de6f8aa8f8f0e7f7ef46cf32ec6aa9b"
+  integrity sha512-/tmtHBy8od1TsNP/tnb8ohHuP84J0tCfAxRqA9dw+g1Rw77MPPmch86xg05iV/0QkjOks1d195p6f9byYU6goQ==
   dependencies:
     "@zag-js/core" "0.1.4"
     "@zag-js/dom-utils" "0.1.1"

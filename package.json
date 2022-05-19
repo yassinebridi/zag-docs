@@ -28,7 +28,7 @@
     "@zag-js/accordion": "0.1.4",
     "@zag-js/combobox": "0.1.4",
     "@zag-js/dialog": "0.1.4",
-    "@zag-js/editable": "0.1.4",
+    "@zag-js/editable": "0.1.5",
     "@zag-js/menu": "0.1.4",
     "@zag-js/number-input": "0.1.4",
     "@zag-js/pin-input": "0.1.4",
