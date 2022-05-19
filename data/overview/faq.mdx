@@ -75,3 +75,19 @@ requirements are:
 
 - **Exposed Typings**: The framework should expose the typings for the
   attributes and event handlers. This is optional but would provide the best DX.
+
+## How do I upgrade all zag dependencies?
+
+Since we use independent versioning for each zag package, it can sometimes be
+inconvenient to upgrade all dependencies individually.
+
+You can use scoped upgrades feature in your package manager to update all zag
+packages seamlessly.
+
+```bash
+pnpm up "@zag-js/*"
+# or
+yarn upgrade --scope @zag-js
+# or
+npm up @zag-js/...
+```
