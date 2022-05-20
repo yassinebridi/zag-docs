@@ -10,7 +10,8 @@
     "lint": "next lint",
     "theme": "chakra-cli tokens theme/index.ts",
     "watch:theme": "npx nodemon --watch theme/index.ts --exec yarn theme",
-    "snippet": "plop snippet",
+    "gen:snippet": "plop snippet",
+    "gen:component": "plop component",
     "contributors:add": "all-contributors add",
     "contributors:gen": "all-contributors generate",
     "deps": "yarn upgrade --scope @zag-js --latest"
