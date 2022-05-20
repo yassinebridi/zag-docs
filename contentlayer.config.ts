@@ -13,6 +13,7 @@ import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
+import fs from "fs"
 
 const fields: FieldDefs = {
   title: { type: "string" },
@@ -78,6 +79,20 @@ const Component = defineDocumentType(() => ({
     pathname: {
       type: "string",
       resolve: () => "/components/[...slug]",
+    },
+    version: {
+      type: "string",
+      resolve: (doc) => {
+        try {
+          const file = fs.readFileSync(
+            `node_modules/${doc.package}/package.json`,
+            "utf8",
+          )
+          return JSON.parse(file).version
+        } catch {
+          return ""
+        }
+      },
     },
   },
 }))
