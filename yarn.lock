@@ -1147,10 +1147,10 @@
     "@zag-js/types" "0.1.1"
     "@zag-js/utils" "0.1.1"
 
-"@zag-js/number-input@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@zag-js/number-input/-/number-input-0.1.6.tgz#7d13f1e543cdf592198132645ea02ea1a3103966"
-  integrity sha512-hNcgxesRljCgbK0MYG84+P/oxXNnTbuE2KfsFCKWRMjbn5MlCIoOn6mMNrULyFyHg5Y0PEJISMIbjJ2WERn3zQ==
+"@zag-js/number-input@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@zag-js/number-input/-/number-input-0.1.7.tgz#185a894ad361ec9747a3479b8ea113c51109e751"
+  integrity sha512-O/T6cinORuXxp7+Fp+JThQG8441aTfamWCULDSNAup/s8mzpEW+nJO3FCQ3NbNP3bTeMJp1Kn/FW6s7fPzGwOQ==
   dependencies:
     "@zag-js/core" "0.1.4"
     "@zag-js/dom-utils" "0.1.2"
