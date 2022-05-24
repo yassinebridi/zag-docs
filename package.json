@@ -31,7 +31,7 @@
     "@zag-js/dialog": "0.1.5",
     "@zag-js/editable": "0.1.6",
     "@zag-js/menu": "0.1.5",
-    "@zag-js/number-input": "0.1.6",
+    "@zag-js/number-input": "0.1.7",
     "@zag-js/pin-input": "0.1.5",
     "@zag-js/popover": "0.1.5",
     "@zag-js/range-slider": "0.1.5",
